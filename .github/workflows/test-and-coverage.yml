@@ -35,7 +35,7 @@ jobs:
         if: always()
         with:
           name: coverage-report
-          path: coverage/ (or your coverage report directory)
+          path: coverage/ #(or your coverage report directory)
 
       - name: Calculate and upload coverage
         uses: marocchino/istanbul-action@v2
