@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test --browsers=ChromeHeadless",
+    "test": "ng test --browsers=ChromeHeadless --fail-fast",
     "serve:ssr:web_sport_app": "node dist/web_sport_app/server/server.mjs"
   },
   "private": true,
