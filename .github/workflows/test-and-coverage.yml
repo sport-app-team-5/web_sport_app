@@ -33,7 +33,7 @@ jobs:
       - name: Get coverage summary
         id: coverage
         run: |
-          coverage=$(awk '/Statements/ {print $3}' coverage/lcov-report/index.html | tr -d '%')
+          coverage=$(awk '/Statements/ {print $3}' coverage/web_sport_app/index.html | tr -d '%')
           echo "::set-output name=coverage::$coverage"
 
       - name: Check coverage threshold
