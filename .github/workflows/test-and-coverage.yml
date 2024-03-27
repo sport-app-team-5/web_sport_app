@@ -17,9 +17,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '21'  # Adjust as per your requirement
+          node-version: '21'  # Adjust as needed
 
       - name: Install dependencies
         run: npm ci
@@ -40,10 +40,7 @@ jobs:
       - name: Calculate and upload coverage
         uses: marocchino/istanbul-action@v2
         with:
-          # Path to your coverage report directory (adjust if needed)
           coverageFolder: coverage/
-
-          # Set the global coverage threshold to 60%
           thresholds:
             global:
               lines: 60
@@ -56,4 +53,3 @@ jobs:
             if (process.env.COVERAGE_TOTAL_LINES < 60) {
               throw new Error('Code coverage total lines below 60%')
             }
-
