@@ -41,9 +41,10 @@ jobs:
         uses: marocchino/istanbul-action@vlatest  # Optional: Update action version
         with:
           coverageFolder: coverage/
-          thresholds:  # Corrected indentation
+          thresholds:  # Corrected indentation (remove the space character)
             global:
               lines: 60
+
       - name: Fail if coverage is below threshold
         if: ${{ failure() }}
         uses: actions/github-script@v3
