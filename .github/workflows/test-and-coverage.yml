@@ -27,29 +27,19 @@ jobs:
       - name: Run Jasmine tests
         run: npm test
 
-      - name: Run tests and generate coverage report
-        run: npm run test:coverage
+      - name: Run Karma tests with coverage
+        run: npm test -- --code-coverage
 
-      - name: Upload coverage report (optional)
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: coverage-report
-          path: coverage/  # Adjust if your report location is different
+      - name: Get coverage summary
+        id: coverage
+        run: |
+          echo "::set-output name=coverage::$(grep -oP '^Statements\s*:\s*\K\d+\.\d+(?=%)' coverage/lcov-report/index.html)"
 
-      - name: Calculate and upload coverage
-        uses: marocchino/istanbul-action@vlatest
-        with:
-          coverageFolder: coverage/  # Adjust if your report location is different
-          thresholds:
-            global:
-              lines: 60  # Set your desired minimum coverage threshold
-
-      - name: Fail if coverage is below threshold
-        if: ${{ failure() }}
-        uses: actions/github-script@v3
-        with:
-          script: |
-            if (process.env.COVERAGE_TOTAL_LINES < 60) {
-              throw new Error('Code coverage total lines below 60%')
-            }
+      - name: Check coverage threshold
+        run: |
+          if (( $(echo "${{ steps.coverage.outputs.coverage }}" | awk '{print ($1 >= 60) ? "1" : "0"}') )); then
+            echo "Coverage meets threshold"
+          else
+            echo "Coverage does not meet threshold"
+            exit 1
+          fi
