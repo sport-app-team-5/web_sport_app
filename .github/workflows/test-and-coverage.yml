@@ -28,12 +28,13 @@ jobs:
         run: npm test
 
       - name: Run Karma tests with coverage
-        run: npm test -- --code-coverage
+        run: ng test --no-watch --no-progress --watch=false --browsers=ChromeHeadless --code-coverage=true
 
       - name: Get coverage summary
         id: coverage
         run: |
-          echo "::set-output name=coverage::$(grep -oP '^Statements\s*:\s*\K\d+\.\d+(?=%)' coverage/lcov-report/index.html)"
+          coverage=$(awk '/Statements/ {print $3}' coverage/lcov-report/index.html | tr -d '%')
+          echo "::set-output name=coverage::$coverage"
 
       - name: Check coverage threshold
         run: |
