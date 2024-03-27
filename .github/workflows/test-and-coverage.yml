@@ -28,7 +28,7 @@ jobs:
         run: npm test
 
       - name: Run Karma tests with coverage
-        run: ng test --no-watch --no-progress --watch=false --browsers=ChromeHeadless --code-coverage=true
+        run: npm test --no-watch --no-progress --watch=false --browsers=ChromeHeadless --code-coverage=true
 
       - name: Get coverage summary
         id: coverage
