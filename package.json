@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --no-watch --no-progress --watch=false --browsers=ChromeHeadless",
+    "test:coverage":"ng test --no-watch --no-progress --watch=false --browsers=ChromeHeadless --code-coverage=true",
     "serve:ssr:web_sport_app": "node dist/web_sport_app/server/server.mjs"
   },
   "private": true,
@@ -33,6 +34,8 @@
     "@types/express": "^4.17.17",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
+    "istanbul": "^0.4.5",
+    "istanbul-combine": "^0.3.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

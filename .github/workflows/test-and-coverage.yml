@@ -27,19 +27,33 @@ jobs:
       - name: Run Jasmine tests
         run: npm test
 
-      - name: Check coverage
-        run: |
-          npm install istanbul-combine
-          ./node_modules/.bin/istanbul-combine -d coverage -r lcov ./coverage/*/lcov.info
-          total_coverage=$(awk '/All files/{print $4}' coverage/lcov-report/index.html | sed 's/%<//g' | sed 's/^/0/') # Agregar 0 si el valor está vacío
-          if [ -z "$total_coverage" ]; then
-            echo "No coverage information available"
-            exit 1
-          fi
+      - name: Run tests and generate coverage report
+        run: npm run test:coverage
 
-          if (( $(echo "$total_coverage < 60" | bc) )); then
-            echo "Coverage is below 60% threshold: $total_coverage%"
-            exit 1
-          else
-            echo "Coverage is above 60% threshold: $total_coverage%"
-          fi
+      - name: Upload coverage report (optional)
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/ (or your coverage report directory)
+
+      - name: Calculate and upload coverage
+        uses: marocchino/istanbul-action@v2
+        with:
+          # Path to your coverage report directory (adjust if needed)
+          coverageFolder: coverage/
+
+          # Set the global coverage threshold to 60%
+          thresholds:
+            global:
+              lines: 60
+
+      - name: Fail if coverage is below threshold
+        if: ${{ failure() }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            if (process.env.COVERAGE_TOTAL_LINES < 60) {
+              throw new Error('Code coverage total lines below 60%')
+            }
+
