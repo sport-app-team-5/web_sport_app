@@ -29,12 +29,12 @@ jobs:
 
       - name: Check coverage
         run: |
-        npm install istanbul-combine
-        ./node_modules/.bin/istanbul-combine -d coverage -r lcov ./coverage/*/lcov.info
-        total_coverage=$(awk '/All files/{print $4}' coverage/lcov-report/index.html | sed 's/%<//g')
-        if [ "$(echo "$total_coverage < 60" | bc)" -eq 1 ]; then
-          echo "Coverage is below 60% threshold: $total_coverage%"
-          exit 1
-        else
-          echo "Coverage is above 60% threshold: $total_coverage%"
-        fi
+          npm install istanbul-combine
+          ./node_modules/.bin/istanbul-combine -d coverage -r lcov ./coverage/*/lcov.info
+          total_coverage=$(awk '/All files/{print $4}' coverage/lcov-report/index.html | sed 's/%<//g')
+          if [ "$(echo "$total_coverage < 60" | bc)" -eq 1 ]; then
+            echo "Coverage is below 60% threshold: $total_coverage%"
+            exit 1
+          else
+            echo "Coverage is above 60% threshold: $total_coverage%"
+          fi
