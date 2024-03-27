@@ -38,13 +38,12 @@ jobs:
           path: coverage/ #(or your coverage report directory)
 
       - name: Calculate and upload coverage
-        uses: marocchino/istanbul-action@v2
+        uses: marocchino/istanbul-action@vlatest  # Optional: Update action version
         with:
           coverageFolder: coverage/
-          thresholds:
+          thresholds:  # Corrected indentation
             global:
               lines: 60
-
       - name: Fail if coverage is below threshold
         if: ${{ failure() }}
         uses: actions/github-script@v3
