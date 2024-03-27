@@ -13,34 +13,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Use Node.js 16 (recommended for Angular)
         uses: actions/setup-node@v3
         with:
-          node-version: '21'  # Adjust as needed
+          node-version: 16.x
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Jasmine tests
-        run: npm test
+      - name: Install nyc (if not already installed)
+        run: npm install --save-dev nyc
 
-      - name: Run Karma tests with coverage
-        run: npm test --no-watch --no-progress --watch=false --browsers=ChromeHeadless --code-coverage=true
+      - name: Run Jasmine tests with coverage (using nyc)
+        run: nyc npm test -- --no-watch --no-progress --watch=false --browsers=ChromeHeadless
 
-      - name: Get coverage summary
-        id: coverage
-        run: |
-          coverage=$(awk '/Statements/ {print $3}' coverage/web_sport_app/index.html | tr -d '%')
-          echo "COVERAGE=$coverage" >> $GITHUB_ENV
+      - name: Upload coverage report (optional)
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/  # Adjust if your report location is different
+
+      - name: Calculate code coverage using nyc report
+        run: nyc report --json | jq '.total.lines.pct' > coverage.txt
 
       - name: Check coverage threshold
         run: |
-          if (( $(echo "$COVERAGE" | awk '{print ($1 >= 60) ? "1" : "0"}') )); then
-            echo "Coverage meets threshold"
+          coverage=$(cat coverage.txt)
+          if [[ $coverage -ge 60 ]]; then
+            echo "Coverage meets threshold ($coverage%)"
           else
-            echo "Coverage does not meet threshold"
+            echo "Coverage does not meet threshold ($coverage%)"
             exit 1
           fi
