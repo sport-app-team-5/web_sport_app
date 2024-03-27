@@ -31,8 +31,13 @@ jobs:
         run: |
           npm install istanbul-combine
           ./node_modules/.bin/istanbul-combine -d coverage -r lcov ./coverage/*/lcov.info
-          total_coverage=$(awk '/All files/{print $4}' coverage/lcov-report/index.html | sed 's/%<//g')
-          if [ "$(echo "$total_coverage < 60" | bc)" -eq 1 ]; then
+          total_coverage=$(awk '/All files/{print $4}' coverage/lcov-report/index.html | sed 's/%<//g' | sed 's/^/0/') # Agregar 0 si el valor está vacío
+          if [ -z "$total_coverage" ]; then
+            echo "No coverage information available"
+            exit 1
+          fi
+
+          if (( $(echo "$total_coverage < 60" | bc) )); then
             echo "Coverage is below 60% threshold: $total_coverage%"
             exit 1
           else
