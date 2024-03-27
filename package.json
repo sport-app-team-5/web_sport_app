@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --no-watch --no-progress --watch=false --browsers=ChromeHeadless",
-    "test:coverage":"ng test --no-watch --no-progress --watch=false --browsers=ChromeHeadless --code-coverage=true",
+    "test:coverage": "ng test --no-watch --no-progress --watch=false --browsers=ChromeHeadless --code-coverage=true",
     "serve:ssr:web_sport_app": "node dist/web_sport_app/server/server.mjs"
   },
   "private": true,

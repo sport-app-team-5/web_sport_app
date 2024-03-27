@@ -30,17 +30,15 @@ jobs:
       - name: Run Karma tests with coverage
         run: npm test --no-watch --no-progress --watch=false --browsers=ChromeHeadless --code-coverage=true
 
-      - name: Get coverage summary
-        id: coverage
-        run: |
-          coverage=$(awk '/Statements/ {print $3}' coverage/web_sport_app/index.html | tr -d '%')
-          echo "COVERAGE=$coverage" >> $GITHUB_ENV
 
-      - name: Check coverage threshold
+      - name: Validate coverage threshold
         run: |
-          if (( $(echo "$COVERAGE" | awk '{print ($1 >= 60) ? "1" : "0"}') )); then
-            echo "Coverage meets threshold"
+          COVERAGE_THRESHOLD=90
+          ACTUAL_COVERAGE=$(grep -m 1 '<span class="strong">' coverage/index.html | sed -n 's/.*<span class="strong">\([0-9]*\)%.*<\/span>.*/\1/p')
+
+          if (( $(echo "$ACTUAL_COVERAGE >= $COVERAGE_THRESHOLD" | bc -l) )); then
+            echo "Coverage meets the threshold of $COVERAGE_THRESHOLD%"
           else
-            echo "Coverage does not meet threshold"
+            echo "Error: Coverage is below the threshold of $COVERAGE_THRESHOLD%"
             exit 1
           fi
