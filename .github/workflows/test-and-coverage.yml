@@ -34,11 +34,11 @@ jobs:
         id: coverage
         run: |
           coverage=$(awk '/Statements/ {print $3}' coverage/web_sport_app/index.html | tr -d '%')
-          echo "::set-output name=coverage::$coverage"
+          echo "COVERAGE=$coverage" >> $GITHUB_ENV
 
       - name: Check coverage threshold
         run: |
-          if (( $(echo "${{ steps.coverage.outputs.coverage }}" | awk '{print ($1 >= 60) ? "1" : "0"}') )); then
+          if (( $(echo "$COVERAGE" | awk '{print ($1 >= 60) ? "1" : "0"}') )); then
             echo "Coverage meets threshold"
           else
             echo "Coverage does not meet threshold"
