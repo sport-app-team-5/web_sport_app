@@ -39,3 +39,8 @@ jobs:
           find . -type f -name "lcov.info" | while read FILE; do
             echo "La ruta del archivo de cobertura es: $FILE"
           done
+      - name: Print Main Path
+        run: |
+          find . -type f -name "main.ts" | while read FILE; do
+            echo "La ruta del archivo de cobertura es: $FILE"
+          done
