@@ -3,10 +3,12 @@ name: Angular Jasmine Tests
 on:
   push:
     branches:
-      - feature/coverage
+      - develop
+      - feature/*
   pull_request:
     branches:
       - main
+      - develop
 
 jobs:
   test:
