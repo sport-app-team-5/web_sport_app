@@ -34,3 +34,8 @@ jobs:
 
       - name: Run Karma tests with coverage
         run: ng test --no-watch --no-progress --browsers=ChromeHeadless --code-coverage
+      - name: Print Coverage Path
+        run: |
+          find . -type f -name "lcov.info" | while read FILE; do
+            echo "La ruta del archivo de cobertura es: $FILE"
+          done
