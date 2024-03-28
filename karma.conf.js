@@ -26,7 +26,8 @@ module.exports = function (config) {
         subdir: '.',
         reporters: [
           { type: 'html' },
-          { type: 'text-summary' }
+          { type: 'text-summary' },
+          { type: 'lcovonly' }
         ],
         check: {
           global: {
@@ -51,7 +52,7 @@ module.exports = function (config) {
           flags: ['--no-sandbox', '--disable-gpu']
         }
       },
-      
-      
+
+
     });
   };
