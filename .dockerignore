@@ -1,0 +1,13 @@
+node_modules/
+.gitignore
+.github/
+coverage/
+.editorconfig
+docker-compose-stage.yml
+docker-compose.yml
+.dockerignore
+Dockerfile
+Dockerfile-stage
+sonar-project.properties
+README.md
+.angular/
