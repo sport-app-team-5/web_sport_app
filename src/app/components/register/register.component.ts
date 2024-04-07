@@ -3,10 +3,6 @@ import { Component, OnInit } from '@angular/core'
 import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
 import { RegisterUserService } from './registeruser.service'
 import { ToastrService } from 'ngx-toastr'
-import {
-  BrowserAnimationsModule,
-  provideAnimations
-} from '@angular/platform-browser/animations'
 
 @Component({
   selector: 'app-register',
@@ -209,6 +205,10 @@ export class RegisterComponent implements OnInit {
   }
 
   saveUserData () {
+    if (!this.registerUserService || !this.formData) {
+      // Manejar el caso cuando registerUserService o formData es nulo o indefinido
+      return;
+  }
     this.registerUserService.createUser(this.formData).subscribe(
       response => {
         this.citiesBirth = response
