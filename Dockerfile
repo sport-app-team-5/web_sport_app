@@ -1,13 +1,17 @@
-FROM node:20.11.1
+FROM node:latest as build
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY . .
 
-RUN npm install -g @angular/cli
-
 RUN npm install
+
+RUN npm run build --prod
+
+FROM nginx:alpine as deploy
+
+COPY --from=build /app/dist/web_sport_app/browser/* /usr/share/nginx/html/
 
 EXPOSE 80
 
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "80"]
+CMD ["nginx", "-g", "daemon off;"]
