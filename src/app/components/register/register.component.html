@@ -45,7 +45,10 @@
             caracteres</span>
           <span class="error" *ngIf="password.errors?.['invalidPassword']">La contraseña debe contener letras y
             números</span>
+          <span class="error" *ngIf="password.errors?.['invalidConfirmPassword']">Las contraseñas no
+            coinciden</span>
         </div>
+  
       </div>
 
       <div class="form-group">
@@ -115,8 +118,7 @@
     <div class="container-inputs">
       <div class="form-group" *ngIf="role_id == 1">
         <label class="label-text" for="input3">País de nacimiento</label>
-        <select [formControl]="birth_country_id" type="text" name="birth_country_id"
-         (change)="changeValueForm($event)">
+        <select [formControl]="birth_country_id" type="text" name="birth_country_id" (change)="changeValueForm($event)">
           <option value="" disabled selected hidden>Selecciona una opción</option>
           <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
         </select>
@@ -128,11 +130,10 @@
 
       <div class="form-group" *ngIf="role_id == 1">
         <label class="label-text" for="input3">Ciudad de nacimiento</label>
-        <select [formControl]="birth_city_id" type="text" name="birth_city_id"
-           (change)="changeValueForm($event)">
+        <select [formControl]="birth_city_id" type="text" name="birth_city_id" (change)="changeValueForm($event)">
           <option value="" disabled selected hidden>Selecciona una opción</option>
           <option *ngFor="let city of citiesBirth" [value]="city.id">{{ city.name }}</option>
-          
+
         </select>
         <div [formControl]="birth_city_id" class="error-container"
           *ngIf="birth_city_id.invalid && (birth_city_id.dirty || birth_city_id.touched)">
@@ -156,8 +157,8 @@
         <label class="label-text" for="input3">Ciudad de residencia</label>
         <select [formControl]="residence_city_id" type="text" name="residence_city_id"
           (change)="changeValueForm($event)">
-          <option value="" disabled selected hidden>Selecciona ciudad de residencia</option>          
-          <option *ngFor="let city of citiesResidence" [value]="city.country_id">{{ city.name }}</option>     
+          <option value="" disabled selected hidden>Selecciona ciudad de residencia</option>
+          <option *ngFor="let city of citiesResidence" [value]="city.country_id">{{ city.name }}</option>
         </select>
         <div [formControl]="residence_city_id" class="error-container"
           *ngIf="residence_city_id.invalid && (residence_city_id.dirty || residence_city_id.touched)">

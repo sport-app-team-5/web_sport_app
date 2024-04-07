@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { Observable } from 'rxjs'
 
@@ -8,7 +9,9 @@ import { Observable } from 'rxjs'
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor (private route: ActivatedRoute, private router: Router) {}
+  constructor (private route: ActivatedRoute, private router: Router, private titleService:Title) {
+    this.titleService.setTitle($localize `${this.titleService}`)
+  }
 
   ngOnInit () {}
 

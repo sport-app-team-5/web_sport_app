@@ -3,7 +3,12 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+
     "web_sport_app": {
+      "i18n":{
+        "sourceLocale":"en-US",
+        "locales": {"es-PR":"src/locale/message.es.xlf"}
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,6 +18,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize":["es-PR"],
             "outputPath": "dist/web_sport_app",
             "index": "src/index.html",
             "browser": "src/main.ts",

@@ -15,11 +15,10 @@ export class RegisterUserService {
   }
 
   createUser (data: any): Observable<any> {
-    return this.http.post(API_USER_BASE_URL
-+'users', data)
+    return this.http.post(API_USER_BASE_URL + 'users', data)
   }
 
-  saveDataUserInfo (user_id: any): Observable<any> {
+  saveInfoSporPlanService (user_id: any): Observable<any> {
     return this.http.post(API_SPORT_PLAN_BASE_URL + 'sport_men', user_id)
   }
 

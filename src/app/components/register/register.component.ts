@@ -23,7 +23,8 @@ export class RegisterComponent implements OnInit {
     Validators.required,
     Validators.minLength(6),
     Validators.maxLength(10),
-    this.passwordValidator.bind(this)
+    this.passwordValidator.bind(this),
+    this.messagePassworsInvalid.bind(this)
   ])
   name = new FormControl('', [Validators.required])
   lastname = new FormControl('', [
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
   birth_country_id = new FormControl('', [Validators.required])
   residence_country_id = new FormControl('', [Validators.required])
   residence_city_id = new FormControl('', [Validators.required])
-  role_id = 1
+  role_id = null
 
   selectedType = new FormControl('')
   currentStep: any = 1
@@ -133,7 +134,9 @@ export class RegisterComponent implements OnInit {
 
   nextStep () {
     if (this.currentStep === 1) {
-      this.currentStep++
+      if (this.validateStep1()) {
+        this.currentStep++
+      }
     } else if (this.currentStep === 2) {
       if (this.validateStep2()) {
         this.currentStep++
@@ -147,11 +150,18 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  validateStep1 () {
+    return !!this.role_id
+  }
+
   validateStep2 () {
     return (
       !!this.email.value &&
       !!this.password.value &&
-      !!this.confirmPassword.value
+      !!this.confirmPassword.value &&
+      this.email.errors === null &&
+      this.password.errors === null &&
+      this.confirmPassword.errors === null
     )
   }
 
@@ -160,18 +170,21 @@ export class RegisterComponent implements OnInit {
       !!this.name.value &&
       !!this.lastname.value &&
       !!this.document_type.value &&
-      !!this.document_number.value
+      !!this.document_number.value &&
+      this.name.errors === null &&
+      this.lastname.errors === null &&
+      this.document_number.errors === null
     )
   }
   validateStep4 () {
     let isComplete: Boolean = false
-    if ((this.role_id = 1)) {
+    if (this.role_id === 1) {
       isComplete =
         !!this.birth_city_id.value &&
         !!this.birth_country_id.value &&
         !!this.residence_country_id.value &&
         !!this.residence_city_id.value
-    } else if ((this.role_id = 2)) {
+    } else if (this.role_id === 2) {
       isComplete =
         !!this.residence_country_id.value && !!this.residence_city_id.value
     }
@@ -189,6 +202,7 @@ export class RegisterComponent implements OnInit {
   }
 
   setRoleId (value: any) {
+    this.role_id = value
     this.formData['role_id'] = value
   }
 
@@ -206,19 +220,25 @@ export class RegisterComponent implements OnInit {
 
   saveUserData () {
     if (!this.registerUserService || !this.formData) {
-      // Manejar el caso cuando registerUserService o formData es nulo o indefinido
-      return;
-  }
+      return
+    }
     this.registerUserService.createUser(this.formData).subscribe(
       response => {
-        this.citiesBirth = response
+        this.registerUserService.saveInfoSporPlanService(response.id);
+
         this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
           timeOut: 3000
         })
       },
       error => {
-        console.error('Error:', error)
-        this.toastr.error('Error almacenando el usuario', 'Major Error', {
+        console.error('Error:', error.status)
+        let text = 'Error almacenando el usuario'
+        if (error.status === 409) {
+          text = 'El correo ya existe'
+        } else if (error.status === 422) {
+          text = 'Hay un error en uno de los campos'
+        }
+        this.toastr.error(text, 'Major Error', {
           timeOut: 3000
         })
       }
