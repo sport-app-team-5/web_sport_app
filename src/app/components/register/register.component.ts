@@ -165,13 +165,13 @@ export class RegisterComponent implements OnInit {
   }
   validateStep4 () {
     let isComplete: Boolean = false
-    if ((this.role_id = 1)) {
+    if ((this.role_id === 1)) {
       isComplete =
         !!this.birth_city_id.value &&
         !!this.birth_country_id.value &&
         !!this.residence_country_id.value &&
         !!this.residence_city_id.value
-    } else if ((this.role_id = 2)) {
+    } else if ((this.role_id === 2)) {
       isComplete =
         !!this.residence_country_id.value && !!this.residence_city_id.value
     }
@@ -205,10 +205,6 @@ export class RegisterComponent implements OnInit {
   }
 
   saveUserData () {
-    if (!this.registerUserService || !this.formData) {
-      // Manejar el caso cuando registerUserService o formData es nulo o indefinido
-      return;
-  }
     this.registerUserService.createUser(this.formData).subscribe(
       response => {
         this.citiesBirth = response
