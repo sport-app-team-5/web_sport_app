@@ -1,5 +1,4 @@
-name: Angular Jasmine Tests
-
+name: Test coverage
 on:
   push:
     branches:
