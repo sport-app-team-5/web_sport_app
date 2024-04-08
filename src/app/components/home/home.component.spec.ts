@@ -16,9 +16,10 @@ describe('HomeComponent', () => {
   let component: HomeComponent
   let fixture: ComponentFixture<HomeComponent>
   let router: Router
-  
+  let translateService: jasmine.SpyObj<TranslateService>
 
   beforeEach(async () => {
+    const translateSpy = jasmine.createSpyObj('TranslateService', ['instant'])
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule, TranslateModule],
       providers: [
@@ -30,11 +31,16 @@ describe('HomeComponent', () => {
         TranslateStore,
         {
           provide: 'es'
-        }
+        },
+        { provide: TranslateService, useValue: translateSpy }
       ]
     }).compileComponents()
 
     router = TestBed.inject(Router)
+    translateService = TestBed.inject(
+      TranslateService
+    ) as jasmine.SpyObj<TranslateService>
+
     fixture = TestBed.createComponent(HomeComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
