@@ -1,0 +1,53 @@
+header,
+main,
+footer {
+    background-color: #000000;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.column {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 30%;
+    padding: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {  
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: white;
+}
+
+.line {
+    width: 1px;
+    height: 20px;
+    background-color: white;
+    margin: 0 10px; 
+}
