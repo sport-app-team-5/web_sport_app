@@ -1,0 +1,13 @@
+{
+  "register": "Registrarse",
+  "login":"Iniciar sesión",
+  "questionprofiletype":"¿Con cuál perfil te quieres registrar?",
+  "sportman":"Deportista",
+  "supplier":"Proveedor",
+  "email":"Correo electrónico",
+  "enterEmail":"Ingrese su email",
+  "fieldRequired":"Este campo es requerido",
+  "emailFail":"El email no es válido",
+  "password":"Contraseña",
+  "enterPassword":"Ingrese su contraseña"
+}

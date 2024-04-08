@@ -3,14 +3,19 @@ import { Component, OnInit } from '@angular/core'
 import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
 import { RegisterUserService } from './registeruser.service'
 import { ToastrService } from 'ngx-toastr'
+import {
+  TranslateModule,
+  TranslateService,
+  TranslateStore
+} from '@ngx-translate/core'
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  providers: [RegisterUserService]
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  providers: [RegisterUserService, TranslateService, TranslateStore]
 })
 export class RegisterComponent implements OnInit {
   formData: any = {}
@@ -46,18 +51,24 @@ export class RegisterComponent implements OnInit {
   birth_country_id = new FormControl('', [Validators.required])
   residence_country_id = new FormControl('', [Validators.required])
   residence_city_id = new FormControl('', [Validators.required])
-  role_id = null
+  role_id = 1;
 
   selectedType = new FormControl('')
   currentStep: any = 1
 
   constructor (
     private registerUserService: RegisterUserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit () {
     this.getCountries()
+    this.switchLanguage('es')
+  }
+  
+  switchLanguage (language: string): void {
+    this.translate.use(language)
   }
 
   getCountries (): void {
@@ -224,7 +235,7 @@ export class RegisterComponent implements OnInit {
     }
     this.registerUserService.createUser(this.formData).subscribe(
       response => {
-        this.registerUserService.saveInfoSporPlanService(response.id);
+        this.registerUserService.saveInfoSporPlanService(response.id)
 
         this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
           timeOut: 3000
