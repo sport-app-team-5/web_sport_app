@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
   role_id = 1;
 
   selectedType = new FormControl('')
-  currentStep: any = 1
+  currentStep: any = null
 
   constructor (
     private registerUserService: RegisterUserService,
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
     this.getCountries()
     this.switchLanguage('es')
   }
-  
+
   switchLanguage (language: string): void {
     this.translate.use(language)
   }
