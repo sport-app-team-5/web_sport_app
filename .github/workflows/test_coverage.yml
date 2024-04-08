@@ -3,19 +3,17 @@ name: Test coverage
 on:
   push:
     branches:
-      - main
-      - develop
+        - develop
+        - main
+        - release/*
+        - feature/*
+
   pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
-      - converted_to_draft
-      - ready_for_review
+    types: [opened, edited, synchronize, reopened, converted_to_draft, ready_for_review]
     branches:
-      - main
-      - develop
+        - develop
+        - main
+        - release/*
 
 jobs:
   test:
@@ -28,7 +26,8 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '21'  # Adjust as needed
+          node-version: '21'
+
 
       - name: Install Angular CLI
         run: npm install -g @angular/cli
@@ -42,9 +41,6 @@ jobs:
       - name: Run Karma tests with coverage
         run: ng test --no-watch --no-progress --browsers=ChromeHeadless --code-coverage
 
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:

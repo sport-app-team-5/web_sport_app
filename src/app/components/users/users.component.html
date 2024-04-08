@@ -1,3 +1,35 @@
-<p>
-  users works!
-</p>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de registro</title>
+</head>
+
+<body>
+  <h1>Iniciar sesión</h1>
+  <form action="/" method="post">
+    <fieldset>
+      <legend>Idioma:</legend>
+      <label for="language">GEspañol</label>
+      <input type="radio" id="language" name="language" value="es" checked>
+    </fieldset>
+    <fieldset>
+      <legend>País:</legend>
+      <label for="country">Colombia</label>
+      <input type="radio" id="country" name="country" value="co" checked>
+    </fieldset>
+    <fieldset>
+      <legend>Perfil:</legend>
+      <label for="profile1">Deporsita</label>
+      <input type="radio" id="profile1" name="profile" value="deporsita" checked>
+      <label for="profile2">Proveedor</label>
+      <input type="radio" id="profile2" name="profile" value="proveedor">
+    </fieldset>
+    <button type="button" id="previous">Anterior</button>
+    <button type="submit" id="continue">Continuar</button>
+  </form>
+</body>
+
+</html>
