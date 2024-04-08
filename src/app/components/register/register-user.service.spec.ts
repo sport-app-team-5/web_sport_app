@@ -34,7 +34,7 @@ describe('RegisterUserService', () => {
 
   it('should save user info', () => {
     const mockData = {  "CONTRY": "COLOMBIA" };
-    service.saveDataUserInfo(mockData).subscribe(data => {
+    service.saveInfoSporPlanService(mockData).subscribe((data:any) => {
       expect(data).toEqual(mockData);
     });
 
