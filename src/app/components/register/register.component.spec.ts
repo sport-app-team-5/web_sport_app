@@ -9,6 +9,7 @@ import {
   MissingTranslationHandler,
   TranslateCompiler,
   TranslateLoader,
+  TranslateModule,
   TranslateParser
 } from '@ngx-translate/core'
 describe('RegisterComponent', () => {
@@ -30,7 +31,9 @@ describe('RegisterComponent', () => {
         HttpClientModule,
         ReactiveFormsModule,
         FormsModule,
-        ToastrModule.forRoot()
+        ToastrModule.forRoot(),
+        TranslateModule
+
       ],
       providers: [
         RegisterUserService,
@@ -156,11 +159,6 @@ describe('RegisterComponent', () => {
     })
   })
 
-  describe('validateStep5', () => {
-    it('should always return true', () => {
-      expect(component.validateStep5()).toBeTrue()
-    })
-  })
 
   describe('validateStep2', () => {
     it('should return true if all fields have values', () => {

@@ -202,9 +202,7 @@ export class RegisterComponent implements OnInit {
     return isComplete
   }
 
-  validateStep5 () {
-    return true
-  }
+
 
   backStep () {
     if (this.currentStep > 1) {
@@ -230,13 +228,9 @@ export class RegisterComponent implements OnInit {
   }
 
   saveUserData () {
-    if (!this.registerUserService || !this.formData) {
-      return
-    }
     this.registerUserService.createUser(this.formData).subscribe(
       response => {
         this.registerUserService.saveInfoSporPlanService(response.id)
-
         this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
           timeOut: 3000
         })
