@@ -185,6 +185,7 @@ export class RegisterComponent implements OnInit {
       this.document_number.errors === null
     )
   }
+
   validateStep4 () {
     let isComplete: Boolean = false
     if (this.role_id === 1) {
@@ -222,6 +223,7 @@ export class RegisterComponent implements OnInit {
     }
     this.formData[name] = value
   }
+  
   handleUpdateResponse (response: any) {
     if (this.role_id === 1) {
       this.saveSportMan(response.id)

@@ -1,12 +1,28 @@
 @import '../register/vars.css';
 
+:host {
+    display: block;
+    background-image: url('../../../assets/images/background-login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
 header {
-    background-color: var(--c-black-light);
+    /* background-color: var(--c-black-main); */
     box-sizing: border-box;
 }
 
+header img {
+    width: 70px;
+    height: 70.809px;
+    margin-top: 80px;
+    margin-left: 80px;
+
+}
+
 main {
-    background-color: var(--c-black-main);
+    /* background-color: var(--c-black-main); */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -51,7 +67,7 @@ button {
 }
 
 .container-buttons {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     display: flex;
     padding: 15px;
     justify-content: center;
@@ -109,8 +125,9 @@ button {
     height: 40px;
     padding: 0px 30px;
     align-items: center;
-    gap: 20px;
     font-weight: 500;
+    width: 300px;
+    justify-content: center;
 }
 
 .container-inputs {
