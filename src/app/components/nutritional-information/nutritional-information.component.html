@@ -1,0 +1,32 @@
+<header class="header">
+  <p>Logo</p>
+  <div class="buttons">
+    <button> {{ 'login' | translate }}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
+  </div>
+</header>
+<main class="wrapper">
+  <div *ngIf="currentStep === 1">
+    <div class="question">{{ 'questionNutritionalType' | translate }} </div>
+    <div class="container-buttons">
+      <button class="question-button" (click)="setRoleId(1)">
+        {{'vegan'| translate}}
+      </button>
+      <button class="question-button" (click)="setRoleId(2)">
+        {{ 'vegetarian' | translate}}
+      </button>
+      <button class="question-button" (click)="setRoleId(2)">
+        {{ 'keto diet' | translate}}
+      </button>
+      <button class="question-button" (click)="setRoleId(2)">
+        {{ 'carnivorous' | translate}}
+      </button>
+      <button class="question-button" (click)="setRoleId(2)">
+        {{ 'none' | translate}}
+      </button>
+    </div>
+  </div>
+</main>

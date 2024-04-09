@@ -35,5 +35,12 @@
   "next":"Continuar",
   "registerForm":"Registrar",
   "spanish":"Español",
-  "portugues":"Portugués"
+  "portugues":"Portugués",
+
+  "questionNutritionalType":"¿Con cuál dieta te identificas más?",
+  "vegan":"Vegano",
+  "vegetarian":"Vegetariano",
+  "keto diet":"Dieta keto",
+  "carnivorous":"Carnívoro",
+  "none":"Ninguna"
 }
