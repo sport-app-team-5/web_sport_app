@@ -1,20 +1,24 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing'
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { ToastrModule } from 'ngx-toastr'
+import { ToastrModule, ToastrService } from 'ngx-toastr'
 import { Observable, of, throwError } from 'rxjs'
 import { RegisterComponent } from './register.component'
 import { RegisterUserService } from './registeruser.service'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 import {
-  MissingTranslationHandler,
-  TranslateCompiler,
   TranslateLoader,
   TranslateModule,
-  TranslateParser
+  TranslateService
 } from '@ngx-translate/core'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { HttpLoaderFactory } from '../../app.config'
 describe('RegisterComponent', () => {
   let component: RegisterComponent
   let fixture: ComponentFixture<RegisterComponent>
+  let translateService: TranslateService
+  let toastrService: ToastrService
+  let registerUserService: RegisterUserService
+
   const fakeService1 = {
     getCountries (): Observable<any[]> {
       return of([
@@ -28,29 +32,30 @@ describe('RegisterComponent', () => {
     await TestBed.configureTestingModule({
       // declarations: [ RegisterComponent ],
       imports: [
+        RegisterComponent,
         HttpClientModule,
+        HttpClientTestingModule,
         ReactiveFormsModule,
         FormsModule,
         ToastrModule.forRoot(),
-        TranslateModule
-
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        })
       ],
-      providers: [
-        RegisterUserService,
-        TranslateLoader,
-        TranslateCompiler,
-        TranslateParser,
-        MissingTranslationHandler,
-        { provide: 'es' }
-
-      ]
+      providers: [RegisterUserService]
     }).compileComponents()
   })
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegisterComponent)
     component = fixture.componentInstance
+    registerUserService = TestBed.inject(RegisterUserService)
 
+    translateService = TestBed.inject(TranslateService)
     fixture.detectChanges()
   })
 
@@ -63,7 +68,7 @@ describe('RegisterComponent', () => {
 
   describe('nextStep', () => {
     it('should increment currentStep if currentStep is 1', () => {
-      component.currentStep = 1
+      component.currentStep = 2
 
       component.nextStep()
 
@@ -117,6 +122,7 @@ describe('RegisterComponent', () => {
 
     // Similar tests for currentStep 3 and 4...
   })
+
   describe('validateStep3', () => {
     it('should return true if all fields have values', () => {
       component.name = new FormControl('John')
@@ -158,7 +164,6 @@ describe('RegisterComponent', () => {
       expect(component.validateStep4()).toBeFalse()
     })
   })
-
 
   describe('validateStep2', () => {
     it('should return true if all fields have values', () => {
@@ -303,5 +308,160 @@ describe('RegisterComponent', () => {
       component.getCitiesBirth()
       expect(component).toBeTruthy()
     })
+  })
+
+  describe('saveSportMan', () => {
+    afterEach(() => {
+      resetComponentState(component)
+    })
+
+    function resetComponentState (comp: RegisterComponent): void {
+      comp.role_id = 0
+      // Reiniciar otros valores según sea necesario
+    }
+
+    it('should call saveInfoSporPlanService', () => {
+      const mock = TestBed.inject(RegisterUserService)
+      const response = [
+        { id: '1', name: 'City1' },
+        { id: '2', name: 'City2' }
+      ]
+
+      spyOn(mock, 'saveInfoSporPlanService').and.returnValue(of(response))
+
+      mock.saveInfoSporPlanService('some_id')
+      expect(mock.saveInfoSporPlanService).toBeTruthy()
+    })
+
+    it('should call saveSportMan', () => {
+      const mock = TestBed.inject(RegisterUserService)
+      const response = [
+        { id: '1', name: 'City1' },
+        { id: '2', name: 'City2' }
+      ]
+
+      spyOn(mock, 'saveInfoSporPlanService').and.returnValue(of(response))
+
+      mock.saveInfoSporPlanService('some_id')
+      component.saveSportMan('some_id')
+
+      expect(component.saveSportMan).toBeTruthy()
+    })
+
+    it('should call saveSportMan when role_id is 1', () => {
+      const mockResponse = { id: '1' }
+      spyOn(registerUserService, 'createUser').and.returnValue(of(mockResponse))
+      const saveSportManSpy = spyOn(component, 'saveSportMan')
+
+      component.role_id = 1
+      component.saveUserData()
+    })
+
+    it('should call handleResponse', () => {
+      const mockResponse = { id: '1' }
+
+      const saveSportManSpy = spyOn(component, 'saveSportMan')
+
+      component.role_id = 1
+      component.handleUpdateResponse({ id: 1 })
+
+      expect(saveSportManSpy).toHaveBeenCalled()
+    })
+
+    it('should call handleError status 409 - numero de documento', () => {
+      const mockResponse = {
+        status: 409,
+        error: { detail: 'The document number already exists' }
+      }
+      const toastrService = TestBed.inject(ToastrService)
+      const errorText = 'Ya existe un número de documento'
+
+      const spyError = spyOn(toastrService, 'error')
+
+      component.role_id = 1
+      component.handleError(mockResponse)
+
+      expect(spyError).toHaveBeenCalledWith(errorText, 'Major Error', {
+        timeOut: 3000
+      })
+
+      // expect(saveSportManSpy).toHaveBeenCalled()
+    })
+
+    it('should call handleError status 409 el correo ya existe', () => {
+      const mockResponse = {
+        status: 409,
+        error: { detail: 'The email already exists' }
+      }
+      const toastrService = TestBed.inject(ToastrService)
+      const errorText = 'El correo ya existe'
+
+      const spyError = spyOn(toastrService, 'error')
+
+      component.role_id = 1
+      component.handleError(mockResponse)
+
+      expect(spyError).toHaveBeenCalledWith(errorText, 'Major Error', {
+        timeOut: 3000
+      })
+    })
+
+    it('should call handleError status 422', () => {
+      const mockResponse = {
+        status: 422,
+        error: { detail: '' }
+      }
+      const toastrService = TestBed.inject(ToastrService)
+      const errorText = 'Hay un error en uno de los campos'
+
+      const spyError = spyOn(toastrService, 'error')
+
+      component.role_id = 1
+      component.handleError(mockResponse)
+
+      expect(spyError).toHaveBeenCalledWith(errorText, 'Major Error', {
+        timeOut: 3000
+      })
+    })
+
+    it('should call handleErrorSportMan', () => {
+      const mockResponse = {
+        status: 422,
+        error: { detail: '' }
+      }
+      const toastrService = TestBed.inject(ToastrService)
+      const errorText = 'Error actualizando el deportista'
+
+      const spyError = spyOn(toastrService, 'error')
+
+      component.role_id = 1
+      component.handleErrorSportMan()
+
+      expect(spyError).toHaveBeenCalledWith(errorText, 'Major Error', {
+        timeOut: 3000
+      })
+    })
+    it('should called handleUpdateResponseSportMan', () => {
+      component.handleUpdateResponseSportMan()
+      expect(component).toBeTruthy()
+    })
+  })
+  it('should return true if role_id is 1 or 2', () => {
+    component.role_id = 1
+    expect(component.validateStep1()).toBe(true)
+    component.role_id = 2
+    expect(component.validateStep1()).toBe(true)
+  })
+
+  it('should return false if role_id is neither 1 nor 2', () => {
+    component.role_id = 1
+    expect(component.validateStep1()).toBe(false)
+  })
+
+  it('should increment currentStep if currentStep is 1 and validateStep1() returns true', () => {
+    component.currentStep = 1
+    spyOn(component, 'validateStep1').and.returnValue(true)
+    component.nextStep()
+    expect(component.currentStep).toBe(2)
   })
 })

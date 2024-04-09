@@ -81,8 +81,9 @@ button {
     /* justify-content: flex-start; */
     height: 100vh;
 }
-.wrapper div .question{
-justify-content: flex-start;
+
+.wrapper div .question {
+    justify-content: flex-start;
 }
 
 .wrapper>div {
@@ -143,14 +144,22 @@ select {
     border: 1px solid var(--c-gray-light);
     box-sizing: border-box;
     gap: 10px;
-    height: 35px;
     background-color: #111111;
     color: var(--c-gray-light);
     border-color: var(--c-gray-light);
     font-style: normal;
     font-weight: 400;
-    line-height: normal;
+    line-height: normal;   
+}
+
+input {
+    height: 35px;
     font-size: 16px;
+}
+
+select {
+    height: 43px;
+    font-size: 15px;
 }
 
 input {

@@ -12,8 +12,8 @@ import { TranslateModule } from '@ngx-translate/core'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-  imports: [TranslateModule],
-  providers: [TranslateService, TranslateStore]
+   imports: [TranslateModule],
+  // providers: [TranslateService, TranslateStore]
 })
 export class HomeComponent implements OnInit {
   constructor (
