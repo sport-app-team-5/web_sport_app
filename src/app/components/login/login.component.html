@@ -1,6 +1,15 @@
+<header class="header">
+  <p>Logo</p>
+  <div class="buttons">
+    <button> {{ 'login' | translate }}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
+  </div>
+</header>
 <main class="wrapper"> 
-  <div>
-    <div class="question">Iniciar sesión</div>
+  <div>   
     <div class="container-inputs">
       <div class="form-group">
         <label class="label-text" for="input1">Email</label>
