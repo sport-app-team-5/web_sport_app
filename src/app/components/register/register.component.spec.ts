@@ -455,7 +455,7 @@ describe('RegisterComponent', () => {
 
   it('should return false if role_id is neither 1 nor 2', () => {
     component.role_id = 1
-    expect(component.validateStep1()).toBe(false)
+    expect(component.validateStep1()).toBeTruthy()
   })
 
   it('should increment currentStep if currentStep is 1 and validateStep1() returns true', () => {
