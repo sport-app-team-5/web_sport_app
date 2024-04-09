@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
 import {
-  TranslateLoader,
-  TranslateService,
-  TranslateStore
+  TranslateService
 } from '@ngx-translate/core'
 import { TranslateModule } from '@ngx-translate/core'
 

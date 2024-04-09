@@ -78,7 +78,6 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* justify-content: flex-start; */
     height: 100vh;
 }
 
@@ -198,6 +197,5 @@ select:focus-visible {
     flex-direction: column;
     text-align: left;
     align-items: flex-start;
-    /* min-height: 120px; */
     width: 300px;
 }
