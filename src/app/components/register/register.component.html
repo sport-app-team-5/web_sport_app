@@ -39,8 +39,8 @@
           (change)="changeValueForm($event)">
         <div class="error-container" *ngIf="password.invalid && (password.dirty || password.touched)">
           <span class="error" *ngIf="password.errors?.['required']">{{'fieldRequired'| translate}} </span>
-          <span class="error" *ngIf="password.errors?.['minlength']">{{'greater6characters'| translate}} </span>
-          <span class="error" *ngIf="password.errors?.['maxlength']">{{'less10characters'| translate}}</span>
+          <span class="error" *ngIf="password.errors?.['minlength']">{{'greaterCharacters'| translate}}6</span>
+          <span class="error" *ngIf="password.errors?.['maxlength']">{{'lessCharacters'| translate}}10</span>
           <span class="error" *ngIf="password.errors?.['invalidPassword']">{{'containLettersAndNumbers'|
             translate}}</span>
           <span class="error" *ngIf="password.errors?.['invalidConfirmPassword']">{{'passwordsNotMatch'|
@@ -83,8 +83,8 @@
           (change)="changeValueForm($event)">
         <div class="error-container" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
           <span class="error" *ngIf="lastname.errors?.['required']">{{'fieldRequired'|translate}}</span>
-          <span class="error" *ngIf="lastname.errors?.['minlength']">{{'greater6characters'| translate}}</span>
-          <span class="error" *ngIf="lastname.errors?.['maxlength']">{{'less20characters'| translate}}</span>
+          <span class="error" *ngIf="lastname.errors?.['minlength']">{{'greaterCharacters'| translate}}2</span>
+          <span class="error" *ngIf="lastname.errors?.['maxlength']">{{'lessCharacters'| translate}}50</span>
         </div>
       </div>
 
@@ -110,8 +110,8 @@
         <div class="error-container"
           *ngIf="document_number.invalid && (document_number.dirty || document_number.touched)">
           <span class="error" *ngIf="document_number.errors?.['required']">{{'fieldRequired'| translate}}</span>
-          <span class="error" *ngIf="document_number.errors?.['minlength']">{{'greater6characters'| translate}}</span>
-          <span class="error" *ngIf="document_number.errors?.['maxlength']">{{'less20characters'| translate}}</span>
+          <span class="error" *ngIf="document_number.errors?.['minlength']">{{'greaterCharacters'| translate}}6</span>
+          <span class="error" *ngIf="document_number.errors?.['maxlength']">{{'lessCharacters'| translate}}20</span>
         </div>
       </div>
     </div>
