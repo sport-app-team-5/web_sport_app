@@ -2,11 +2,11 @@ name: Test coverage
 
 on:
   push:
-    branches:
+    branches:      
         - develop
         - main
-        - release/*
-        - feature/*
+        - release/.*
+        - feature/.*
 
   pull_request:
     types: [opened, edited, synchronize, reopened, converted_to_draft, ready_for_review]
@@ -26,8 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '21'
-
+          node-version: '21'  # Adjust as needed
 
       - name: Install Angular CLI
         run: npm install -g @angular/cli

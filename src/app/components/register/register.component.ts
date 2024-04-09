@@ -3,13 +3,19 @@ import { Component, OnInit } from '@angular/core'
 import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
 import { RegisterUserService } from './registeruser.service'
 import { ToastrService } from 'ngx-toastr'
+import {
+  TranslateModule,
+  TranslateService,
+  TranslateStore
+} from '@ngx-translate/core'
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  // providers: [RegisterUserService, TranslateService, TranslateStore]
   providers: [RegisterUserService]
 })
 export class RegisterComponent implements OnInit {
@@ -23,7 +29,8 @@ export class RegisterComponent implements OnInit {
     Validators.required,
     Validators.minLength(6),
     Validators.maxLength(10),
-    this.passwordValidator.bind(this)
+    this.passwordValidator.bind(this),
+    this.messagePassworsInvalid.bind(this)
   ])
   name = new FormControl('', [Validators.required])
   lastname = new FormControl('', [
@@ -45,18 +52,24 @@ export class RegisterComponent implements OnInit {
   birth_country_id = new FormControl('', [Validators.required])
   residence_country_id = new FormControl('', [Validators.required])
   residence_city_id = new FormControl('', [Validators.required])
-  role_id = 1
+  role_id = 0
 
   selectedType = new FormControl('')
   currentStep: any = 1
 
   constructor (
     private registerUserService: RegisterUserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private translate: TranslateService
   ) {}
 
   ngOnInit () {
     this.getCountries()
+    this.switchLanguage('es')
+  }
+
+  switchLanguage (language: string): void {
+    this.translate.use(language)
   }
 
   getCountries (): void {
@@ -65,7 +78,6 @@ export class RegisterComponent implements OnInit {
         this.countries = response
       },
       error => {
-        console.error('Error:', error)
         this.toastr.error('Error obteniendo los países', 'Error', {
           timeOut: 3000
         })
@@ -133,7 +145,9 @@ export class RegisterComponent implements OnInit {
 
   nextStep () {
     if (this.currentStep === 1) {
-      this.currentStep++
+      if (this.validateStep1()) {
+        this.currentStep++
+      }
     } else if (this.currentStep === 2) {
       if (this.validateStep2()) {
         this.currentStep++
@@ -147,11 +161,18 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  validateStep1 () {
+    return this.role_id === 1 || this.role_id === 2
+  }
+
   validateStep2 () {
     return (
       !!this.email.value &&
       !!this.password.value &&
-      !!this.confirmPassword.value
+      !!this.confirmPassword.value &&
+      this.email.errors === null &&
+      this.password.errors === null &&
+      this.confirmPassword.errors === null
     )
   }
 
@@ -160,26 +181,25 @@ export class RegisterComponent implements OnInit {
       !!this.name.value &&
       !!this.lastname.value &&
       !!this.document_type.value &&
-      !!this.document_number.value
+      !!this.document_number.value &&
+      this.name.errors === null &&
+      this.lastname.errors === null &&
+      this.document_number.errors === null
     )
   }
   validateStep4 () {
     let isComplete: Boolean = false
-    if ((this.role_id === 1)) {
+    if (this.role_id === 1) {
       isComplete =
         !!this.birth_city_id.value &&
         !!this.birth_country_id.value &&
         !!this.residence_country_id.value &&
         !!this.residence_city_id.value
-    } else if ((this.role_id === 2)) {
+    } else if (this.role_id === 2) {
       isComplete =
         !!this.residence_country_id.value && !!this.residence_city_id.value
     }
     return isComplete
-  }
-
-  validateStep5 () {
-    return true
   }
 
   backStep () {
@@ -189,6 +209,7 @@ export class RegisterComponent implements OnInit {
   }
 
   setRoleId (value: any) {
+    this.role_id = value
     this.formData['role_id'] = value
   }
 
@@ -203,21 +224,54 @@ export class RegisterComponent implements OnInit {
     }
     this.formData[name] = value
   }
+  handleUpdateResponse (response: any) {
+    if (this.role_id === 1) {
+      this.saveSportMan(response.id)
+    }
+    this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
+      timeOut: 3000
+    })
+  }
+
+  handleError (error: any) {
+    let text = 'Error almacenando el usuario'
+    if (error.status === 409) {
+      if (error.error.detail === 'The document number already exists') {
+        text = 'Ya existe un número de documento'
+      } else if ('The email already exists') {
+        text = 'El correo ya existe'
+      }
+    } else if (error.status === 422) {
+      text = 'Hay un error en uno de los campos'
+    }
+    this.toastr.error(text, 'Major Error', {
+      timeOut: 3000
+    })
+  }
 
   saveUserData () {
-    this.registerUserService.createUser(this.formData).subscribe(
-      response => {
-        this.citiesBirth = response
-        this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
-          timeOut: 3000
-        })
-      },
-      error => {
-        console.error('Error:', error)
-        this.toastr.error('Error almacenando el usuario', 'Major Error', {
-          timeOut: 3000
-        })
-      }
-    )
+    this.registerUserService.createUser(this.formData).subscribe({
+      next: this.handleUpdateResponse.bind(this),
+      error: this.handleError.bind(this)
+    })
+  }
+
+  saveSportMan (id: any) {
+    this.registerUserService
+      .saveInfoSporPlanService({ user_id: id })
+      .subscribe({
+        next: this.handleUpdateResponseSportMan.bind(this),
+        error: this.handleErrorSportMan.bind(this)
+      })
+  }
+  handleUpdateResponseSportMan () {
+    return
+  }
+
+  handleErrorSportMan () {
+    let text = 'Error actualizando el deportista'
+    this.toastr.error(text, 'Major Error', {
+      timeOut: 3000
+    })
   }
 }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs'
 import {
   API_SPORT_PLAN_BASE_URL,
   API_USER_BASE_URL
-} from '../../../../api.constants'
+} from '../../../../api.constants';
 
 @Injectable({ providedIn: 'root' })
 export class RegisterUserService {
@@ -15,12 +15,11 @@ export class RegisterUserService {
   }
 
   createUser (data: any): Observable<any> {
-    return this.http.post(API_USER_BASE_URL
-+'users', data)
+    return this.http.post(API_USER_BASE_URL + 'users', data)
   }
 
-  saveDataUserInfo (user_id: any): Observable<any> {
-    return this.http.post(API_SPORT_PLAN_BASE_URL + 'sport_men', user_id)
+  saveInfoSporPlanService (data: any): Observable<any> {
+    return this.http.post(API_SPORT_PLAN_BASE_URL + 'sport_men/', data)
   }
 
   getCountries (): Observable<any> {
