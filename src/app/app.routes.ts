@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router'
-import { AdditionalserviceComponent } from './components/additionalservice/additionalservice.component'
 import { SportplanComponent } from './components/sportplan/sportplan.component'
 import { HomeComponent } from './components/home/home.component'
 import { RegisterComponent } from './components/register/register.component'
@@ -17,10 +16,6 @@ export const routes: Routes = [
   {
     path: 'nutritional-information',
     component: NutritionalInformationComponent
-  },
-  {
-    path: 'services',
-    component: AdditionalserviceComponent
   },
   {
     path: 'sportplan',

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { Component } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
+import { TranslateModule } from '@ngx-translate/core'
 
 @Component({
   selector: 'app-root',

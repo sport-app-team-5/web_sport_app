@@ -13,7 +13,7 @@ export class NutritionalInformationService {
     this.http = this.injector.get<HttpClient>(HttpClient)
   }
 
-  updateInformation (data: any): Observable<any> {
+  updateInformation(data: any): Observable<any> {
     return this.http.put(API_USER_BASE_URL + 'users', data)
   }
 }
