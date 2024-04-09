@@ -15,7 +15,8 @@ import {
   styleUrls: ['./register.component.css'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, TranslateModule],
-  providers: [RegisterUserService, TranslateService, TranslateStore]
+  // providers: [RegisterUserService, TranslateService, TranslateStore]
+  providers: [RegisterUserService]
 })
 export class RegisterComponent implements OnInit {
   formData: any = {}
@@ -51,7 +52,7 @@ export class RegisterComponent implements OnInit {
   birth_country_id = new FormControl('', [Validators.required])
   residence_country_id = new FormControl('', [Validators.required])
   residence_city_id = new FormControl('', [Validators.required])
-  role_id = 1;
+  role_id = 0
 
   selectedType = new FormControl('')
   currentStep: any = 1
@@ -66,7 +67,7 @@ export class RegisterComponent implements OnInit {
     this.getCountries()
     this.switchLanguage('es')
   }
-  
+
   switchLanguage (language: string): void {
     this.translate.use(language)
   }
@@ -77,7 +78,6 @@ export class RegisterComponent implements OnInit {
         this.countries = response
       },
       error => {
-        console.error('Error:', error)
         this.toastr.error('Error obteniendo los países', 'Error', {
           timeOut: 3000
         })
@@ -162,7 +162,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validateStep1 () {
-    return !!this.role_id
+    return this.role_id === 1 || this.role_id === 2
   }
 
   validateStep2 () {
@@ -202,10 +202,6 @@ export class RegisterComponent implements OnInit {
     return isComplete
   }
 
-  validateStep5 () {
-    return true
-  }
-
   backStep () {
     if (this.currentStep > 1) {
       this.currentStep--
@@ -228,31 +224,54 @@ export class RegisterComponent implements OnInit {
     }
     this.formData[name] = value
   }
+  handleUpdateResponse (response: any) {
+    if (this.role_id === 1) {
+      this.saveSportMan(response.id)
+    }
+    this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
+      timeOut: 3000
+    })
+  }
+
+  handleError (error: any) {
+    let text = 'Error almacenando el usuario'
+    if (error.status === 409) {
+      if (error.error.detail === 'The document number already exists') {
+        text = 'Ya existe un número de documento'
+      } else if ('The email already exists') {
+        text = 'El correo ya existe'
+      }
+    } else if (error.status === 422) {
+      text = 'Hay un error en uno de los campos'
+    }
+    this.toastr.error(text, 'Major Error', {
+      timeOut: 3000
+    })
+  }
 
   saveUserData () {
-    if (!this.registerUserService || !this.formData) {
-      return
-    }
-    this.registerUserService.createUser(this.formData).subscribe(
-      response => {
-        this.registerUserService.saveInfoSporPlanService(response.id)
+    this.registerUserService.createUser(this.formData).subscribe({
+      next: this.handleUpdateResponse.bind(this),
+      error: this.handleError.bind(this)
+    })
+  }
 
-        this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
-          timeOut: 3000
-        })
-      },
-      error => {
-        console.error('Error:', error.status)
-        let text = 'Error almacenando el usuario'
-        if (error.status === 409) {
-          text = 'El correo ya existe'
-        } else if (error.status === 422) {
-          text = 'Hay un error en uno de los campos'
-        }
-        this.toastr.error(text, 'Major Error', {
-          timeOut: 3000
-        })
-      }
-    )
+  saveSportMan (id: any) {
+    this.registerUserService
+      .saveInfoSporPlanService({ user_id: id })
+      .subscribe({
+        next: this.handleUpdateResponseSportMan.bind(this),
+        error: this.handleErrorSportMan.bind(this)
+      })
+  }
+  handleUpdateResponseSportMan () {
+    return
+  }
+  
+  handleErrorSportMan () {
+    let text = 'Error actualizando el deportista'
+    this.toastr.error(text, 'Major Error', {
+      timeOut: 3000
+    })
   }
 }
