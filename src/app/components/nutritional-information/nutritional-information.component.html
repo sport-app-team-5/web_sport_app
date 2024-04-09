@@ -8,25 +8,49 @@
     <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
   </div>
 </header>
+
 <main class="wrapper">
   <div *ngIf="currentStep === 1">
     <div class="question">{{ 'questionNutritionalType' | translate }} </div>
     <div class="container-buttons">
-      <button class="question-button" (click)="setRoleId(1)">
+      <button class="question-button" (click)="setDiet('vegan')">
         {{'vegan'| translate}}
       </button>
-      <button class="question-button" (click)="setRoleId(2)">
+      <button class="question-button" (click)="setDiet('vegetarian')">
         {{ 'vegetarian' | translate}}
       </button>
-      <button class="question-button" (click)="setRoleId(2)">
+      <button class="question-button" (click)="setDiet('keto diet')">
         {{ 'keto diet' | translate}}
       </button>
-      <button class="question-button" (click)="setRoleId(2)">
+      <button class="question-button" (click)="setDiet('carnivorous')">
         {{ 'carnivorous' | translate}}
       </button>
-      <button class="question-button" (click)="setRoleId(2)">
+      <button class="question-button" (click)="setDiet('none')">
         {{ 'none' | translate}}
       </button>
     </div>
+  </div>
+
+  <div *ngIf="currentStep === 2">
+    <div class="question">{{'questionAllergy'| translate}}</div>
+    <div class="container-inputs">
+      <div class="form-group">
+        <input [formControl]="allergy" type="text" name="allergy" placeholder="{{'enterInformation'| translate}}"
+               (change)="changeValueForm($event)">
+        <div class="error-container" *ngIf="allergy.invalid && (allergy.dirty || allergy.touched)">
+          <span class="error" *ngIf="allergy.errors?.['required']">{{'fieldRequired'|translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-buttons">
+    <button class="secondary-button" (click)="backStep()">
+      {{'back'| translate}}
+
+    </button>
+    <button class="primary-button" (click)="nextStep()">
+      {{ currentStep === 2 ? ('registerForm' | translate) : ('next' | translate) }}
+    </button>
   </div>
 </main>

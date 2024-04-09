@@ -65,6 +65,8 @@
 
   <div *ngIf="currentStep === 3">
     <div class="question">{{'register'| translate}}</div>
+
+
     <div class="container-inputs">
       <div class="form-group">
         <label class="label-text" for="input1">{{'name'| translate}}</label>
@@ -74,6 +76,7 @@
           <span class="error" *ngIf="name.errors?.['required']">{{'fieldRequired'|translate}}</span>
         </div>
       </div>
+
       <div class="form-group">
         <label class="label-text" for="input2">{{'lastname'| translate}}</label>
         <input [formControl]="lastname" type="text" name="lastname" placeholder="Ingrese su apellido"
@@ -84,6 +87,9 @@
           <span class="error" *ngIf="lastname.errors?.['maxlength']">{{'less20characters'| translate}}</span>
         </div>
       </div>
+
+
+
       <div class="form-group">
         <label class="label-text" for="input3">{{'typeIdentification'| translate}}</label>
         <select name="document_type" [formControl]="document_type" (change)="changeValueForm($event)">
@@ -95,6 +101,8 @@
           <span class="error" *ngIf="document_type.errors?.['required']">{{'fieldRequired'| translate}}</span>
         </div>
       </div>
+
+
       <div class="form-group">
         <label class="label-text" for="input2">Número de identificación</label>
         <input [formControl]="document_number" type="text" name="document_number"

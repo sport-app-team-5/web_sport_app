@@ -1,32 +1,31 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import { ReactiveFormsModule } from '@angular/forms'
+import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {NutritionalInformationService} from "./nutritional-information.service";
-import {RegisterUserService} from "../register/registeruser.service";
 import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-nutritional-information',
   standalone: true,
-  imports: [
-    NgForOf,
-    NgIf,
-    ReactiveFormsModule,
-    TranslateModule
-  ],
+  imports: [NgForOf, NgIf, ReactiveFormsModule, TranslateModule],
   templateUrl: './nutritional-information.component.html',
   styleUrl: './nutritional-information.component.css',
   providers: [NutritionalInformationService]
 })
 export class NutritionalInformationComponent implements OnInit {
   formData: any = {}
+  currentStep: number = 1
 
-  role_id = 0
-  currentStep: any = 1
+  diet: string = ''
+  allergy: FormControl<string | null> = new FormControl('', [
+    Validators.required,
+    Validators.minLength(3),
+    Validators.maxLength(50)
+  ])
 
   constructor (
-    private registerUserService: RegisterUserService,
+    private nutritionalInformationService: NutritionalInformationService,
     private toastr: ToastrService,
     private translate: TranslateService
   ) {}
@@ -39,9 +38,9 @@ export class NutritionalInformationComponent implements OnInit {
     this.translate.use(language)
   }
 
-  setRoleId (value: any) {
-    this.role_id = value
-    this.formData['role_id'] = value
+  setDiet (value: any) {
+    this.diet = value
+    this.formData['diet'] = value
   }
 
   nextStep () {
@@ -50,7 +49,9 @@ export class NutritionalInformationComponent implements OnInit {
         this.currentStep++
       }
     } else if (this.currentStep === 2) {
-      this.saveUserData()
+      if (this.validateStep2()) {
+        this.saveNutritionalInformationData()
+      }
     }
   }
 
@@ -60,21 +61,27 @@ export class NutritionalInformationComponent implements OnInit {
     }
   }
 
-  validateStep1 () {
-    return this.role_id === 1 || this.role_id === 2
+  changeValueForm (e: any) {
+    const name = e.target.name
+    this.formData[name] = e.target.value
   }
 
-  saveUserData () {
-    this.registerUserService.createUser(this.formData).subscribe({
+  validateStep1 () {
+    return this.diet !== ''
+  }
+
+  validateStep2 () {
+    return !!this.allergy.value && this.allergy.errors === null
+  }
+
+  saveNutritionalInformationData () {
+    this.nutritionalInformationService.updateInformation(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)
     })
   }
 
-  handleUpdateResponse (response: any) {
-    if (this.role_id === 1) {
-      this.saveSportMan(response.id)
-    }
+  handleUpdateResponse () {
     this.toastr.success('Información nutricional guardado éxitosamente', 'Toastr fun!', {
       timeOut: 3000
     })
@@ -82,17 +89,8 @@ export class NutritionalInformationComponent implements OnInit {
 
   handleError () {
     let text = 'Error agregando la información nutricional'
-    this.toastr.error(text, 'Major Error', {
+    this.toastr.error(text, 'Error', {
       timeOut: 3000
     })
-  }
-
-  saveSportMan (id: any) {
-    this.registerUserService
-      .saveInfoSporPlanService({ user_id: id })
-      .subscribe({
-        next: this.handleUpdateResponse.bind(this),
-        error: this.handleError.bind(this)
-      })
   }
 }

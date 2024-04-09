@@ -42,5 +42,7 @@
   "vegetarian":"Vegetariano",
   "keto diet":"Dieta keto",
   "carnivorous":"Carnívoro",
-  "none":"Ninguna"
+  "none":"Ninguna",
+  "questionAllergy":"¿Presentas alguna alergia alimentaria?",
+  "enterInformation":"Ingresa la información"
 }
