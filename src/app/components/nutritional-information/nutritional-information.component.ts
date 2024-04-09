@@ -21,7 +21,7 @@ export class NutritionalInformationComponent implements OnInit {
   allergy: FormControl<string | null> = new FormControl('', [
     Validators.required,
     Validators.minLength(3),
-    Validators.maxLength(50)
+    Validators.maxLength(40)
   ])
 
   constructor (
@@ -51,7 +51,7 @@ export class NutritionalInformationComponent implements OnInit {
     } else if (this.currentStep === 2) {
       if (this.validateStep2()) {
         this.saveNutritionalInformationData()
-      }
+      } else { this.allergy.markAllAsTouched() }
     }
   }
 

@@ -39,13 +39,15 @@
                (change)="changeValueForm($event)">
         <div class="error-container" *ngIf="allergy.invalid && (allergy.dirty || allergy.touched)">
           <span class="error" *ngIf="allergy.errors?.['required']">{{'fieldRequired'|translate}}</span>
+          <span class="error" *ngIf="allergy.errors?.['minlength']">{{'greaterCharacters'| translate}}3</span>
+          <span class="error" *ngIf="allergy.errors?.['maxlength']">{{'lessCharacters'| translate}}40</span>
         </div>
       </div>
     </div>
   </div>
 
   <div class="container-buttons">
-    <button class="secondary-button" (click)="backStep()">
+    <button class="secondary-button" (click)="backStep()" *ngIf="currentStep !== 1">
       {{'back'| translate}}
 
     </button>
