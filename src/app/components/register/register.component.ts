@@ -120,11 +120,6 @@ export class RegisterComponent implements OnInit {
             )
     }
 
-    validateStep1 () {
-        return this.role_id === 1 || this.role_id === 2
-    }
-
-
     passwordValidator (control: FormControl): { [key: string]: boolean } | null {
         const value: string = control.value || ''
         const hasNumber = /\d/.test(value)
@@ -163,7 +158,9 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    
+    validateStep1 () {
+        return this.role_id === 1 || this.role_id === 2
+    }
 
     validateStep2 () {
         return (
@@ -187,6 +184,7 @@ export class RegisterComponent implements OnInit {
             this.document_number.errors === null
         )
     }
+
     validateStep4 () {
         let isComplete: Boolean = false
         if (this.role_id === 1) {
@@ -229,12 +227,24 @@ export class RegisterComponent implements OnInit {
     handleUpdateResponse (response: any) {
         if (this.role_id === 1) {
             this.saveSportMan(response.id)
-        } else {
+        }
+         else {
             this.saveSupplier(response.id)
         }
-        this.toastr.success('Usuario guardado éxitosamente', 'Exito', {
+        this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
             timeOut: 3000
         })
+    }
+
+      saveSupplier (id: any) {
+        this.registerUserService
+            .registerSupplier({
+                user_id: id
+            })
+            .subscribe({
+                next: this.handleUpdateResponseSportMan.bind(this),
+                error: this.handleErrorSportMan.bind(this)
+            })
     }
 
     handleError (error: any) {
@@ -268,27 +278,13 @@ export class RegisterComponent implements OnInit {
                 error: this.handleErrorSportMan.bind(this)
             })
     }
-
-    saveSupplier (id: any) {
-        this.registerUserService
-            .registerSupplier({
-                user_id: id
-            })
-            .subscribe({
-                next: this.handleUpdateResponseSportMan.bind(this),
-                error: this.handleErrorSportMan.bind(this)
-            })
-    }
     handleUpdateResponseSportMan () {
-        let text = 'Proveedor registrado con éxito'
-        this.toastr.error(text, 'Exito', {
-            timeOut: 3000
-        })
+        return
     }
 
     handleErrorSportMan () {
         let text = 'Error actualizando el deportista'
-        this.toastr.error(text, 'Error', {
+        this.toastr.error(text, 'Major Error', {
             timeOut: 3000
         })
     }
