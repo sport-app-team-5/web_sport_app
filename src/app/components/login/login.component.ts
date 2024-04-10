@@ -45,12 +45,14 @@ export class LoginComponent implements OnInit {
             })
         } else {
             this.email.markAsTouched()
-            this.password.markAsTouched()          
+            this.password.markAsTouched()
         }
     }
 
-    handleUpdateResponse () {
-        this.toastr.success('Inicio de sesión éxitoso', 'Toastr fun!', {
+    handleUpdateResponse (response: any) {
+        sessionStorage.setItem('access_token', response.access_token)
+
+        this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
             timeOut: 3000
         })
     }
@@ -63,7 +65,7 @@ export class LoginComponent implements OnInit {
             }
         }
 
-        this.toastr.error(text, 'Major Error', {
+        this.toastr.error(text, 'Error', {
             timeOut: 3000
         })
     }
