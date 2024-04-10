@@ -95,7 +95,7 @@ describe('LoginComponent', () => {
 
         component.handleError(mockResponse)
 
-        expect(spyError).toHaveBeenCalledWith(errorText, 'Major Error', {
+        expect(spyError).toHaveBeenCalledWith(errorText, 'Error', {
             timeOut: 3000
         })
     })
