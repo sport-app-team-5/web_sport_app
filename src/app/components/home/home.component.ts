@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
 import {
   TranslateService
 } from '@ngx-translate/core'
@@ -10,12 +10,10 @@ import { TranslateModule } from '@ngx-translate/core'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-   imports: [TranslateModule],
-  // providers: [TranslateService, TranslateStore]
+   imports: [TranslateModule]
 })
 export class HomeComponent implements OnInit {
   constructor (
-    private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService
   ) {}
