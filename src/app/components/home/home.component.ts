@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import {
-  TranslateService
+  TranslateService,TranslateModule
 } from '@ngx-translate/core'
-import { TranslateModule } from '@ngx-translate/core'
+
 
 @Component({
   selector: 'app-home',
