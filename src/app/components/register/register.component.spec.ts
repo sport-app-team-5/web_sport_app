@@ -30,7 +30,6 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      // declarations: [ RegisterComponent ],
       imports: [
         RegisterComponent,
         HttpClientModule,
@@ -385,7 +384,7 @@ describe('RegisterComponent', () => {
         timeOut: 3000
       })
 
-      // expect(saveSportManSpy).toHaveBeenCalled()
+   
     })
 
     it('should call handleError status 409 el correo ya existe', () => {

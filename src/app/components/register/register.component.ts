@@ -3,11 +3,7 @@ import { Component, OnInit } from '@angular/core'
 import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
 import { RegisterUserService } from './registeruser.service'
 import { ToastrService } from 'ngx-toastr'
-import {
-    TranslateModule,
-    TranslateService,
-    TranslateStore
-} from '@ngx-translate/core'
+import { TranslateModule, TranslateService } from '@ngx-translate/core'
 
 @Component({
     selector: 'app-register',
@@ -15,7 +11,6 @@ import {
     styleUrls: ['./register.component.css'],
     standalone: true,
     imports: [CommonModule, ReactiveFormsModule, TranslateModule],
-    // providers: [RegisterUserService, TranslateService, TranslateStore]
     providers: [RegisterUserService]
 })
 export class RegisterComponent implements OnInit {
@@ -125,6 +120,11 @@ export class RegisterComponent implements OnInit {
             )
     }
 
+    validateStep1 () {
+        return this.role_id === 1 || this.role_id === 2
+    }
+
+
     passwordValidator (control: FormControl): { [key: string]: boolean } | null {
         const value: string = control.value || ''
         const hasNumber = /\d/.test(value)
@@ -163,9 +163,7 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    validateStep1 () {
-        return this.role_id === 1 || this.role_id === 2
-    }
+    
 
     validateStep2 () {
         return (
@@ -255,7 +253,7 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    saveUserData () {    
+    saveUserData () {
         this.registerUserService.createUser(this.formData).subscribe({
             next: this.handleUpdateResponse.bind(this),
             error: this.handleError.bind(this)
