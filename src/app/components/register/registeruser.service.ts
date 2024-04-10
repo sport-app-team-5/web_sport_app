@@ -32,7 +32,7 @@ export class RegisterUserService {
   }
   
   registerSupplier(data:any): Observable<any> {
-    return this.http.post(API_ADDITIONAL_sERVICE_BASE_URL +'aditional_service/third_parties' , data)
+    return this.http.post(API_ADDITIONAL_sERVICE_BASE_URL +'additional_service/third_parties' , data)
   }
 
 }

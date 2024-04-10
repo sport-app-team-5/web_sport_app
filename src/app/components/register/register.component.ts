@@ -227,13 +227,14 @@ export class RegisterComponent implements OnInit {
         }
         this.formData[name] = value
     }
+
     handleUpdateResponse (response: any) {
         if (this.role_id === 1) {
             this.saveSportMan(response.id)
         } else {
             this.saveSupplier(response.id)
         }
-        this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
+        this.toastr.success('Usuario guardado éxitosamente', 'Exito', {
             timeOut: 3000
         })
     }
@@ -254,7 +255,7 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-    saveUserData () {
+    saveUserData () {    
         this.registerUserService.createUser(this.formData).subscribe({
             next: this.handleUpdateResponse.bind(this),
             error: this.handleError.bind(this)
@@ -281,12 +282,15 @@ export class RegisterComponent implements OnInit {
             })
     }
     handleUpdateResponseSportMan () {
-        return
+        let text = 'Proveedor registrado con éxito'
+        this.toastr.error(text, 'Exito', {
+            timeOut: 3000
+        })
     }
 
     handleErrorSportMan () {
         let text = 'Error actualizando el deportista'
-        this.toastr.error(text, 'Major Error', {
+        this.toastr.error(text, 'Error', {
             timeOut: 3000
         })
     }

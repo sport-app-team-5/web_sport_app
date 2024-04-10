@@ -437,7 +437,7 @@ describe('RegisterComponent', () => {
       component.role_id = 1
       component.handleErrorSportMan()
 
-      expect(spyError).toHaveBeenCalledWith(errorText, 'Major Error', {
+      expect(spyError).toHaveBeenCalledWith(errorText, 'Error', {
         timeOut: 3000
       })
     })
