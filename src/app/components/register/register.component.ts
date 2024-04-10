@@ -227,8 +227,7 @@ export class RegisterComponent implements OnInit {
     handleUpdateResponse (response: any) {
         if (this.role_id === 1) {
             this.saveSportMan(response.id)
-        }
-         else {
+        } else {
             this.saveSupplier(response.id)
         }
         this.toastr.success('Usuario guardado éxitosamente', 'Toastr fun!', {
@@ -236,7 +235,7 @@ export class RegisterComponent implements OnInit {
         })
     }
 
-      saveSupplier (id: any) {
+    saveSupplier (id: any) {
         this.registerUserService
             .registerSupplier({
                 user_id: id
