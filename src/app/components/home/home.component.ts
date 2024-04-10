@@ -1,23 +1,19 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, ActivatedRoute } from '@angular/router'
+import { Router } from '@angular/router'
 import {
-  TranslateLoader,
-  TranslateService,
-  TranslateStore
+  TranslateService,TranslateModule
 } from '@ngx-translate/core'
-import { TranslateModule } from '@ngx-translate/core'
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   standalone: true,
-   imports: [TranslateModule],
-  // providers: [TranslateService, TranslateStore]
+   imports: [TranslateModule]
 })
 export class HomeComponent implements OnInit {
   constructor (
-    private route: ActivatedRoute,
     private router: Router,
     private translate: TranslateService
   ) {}
@@ -35,5 +31,8 @@ export class HomeComponent implements OnInit {
 
   goToRegitry () {
     this.router.navigate(['/register'])
+  }
+  goToLogin () {
+    this.router.navigate(['/login'])
   }
 }
