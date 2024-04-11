@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
     role_id = 0
 
     selectedType = new FormControl('')
-    currentStep: any = 1
+    currentStep: any = 1;
 
     constructor (
         private registerUserService: RegisterUserService,
@@ -283,7 +283,7 @@ export class RegisterComponent implements OnInit {
 
     handleErrorSportMan () {
         let text = 'Error actualizando el deportista'
-        this.toastr.error(text, 'Major Error', {
+        this.toastr.error(text, 'Error', {
             timeOut: 3000
         })
     }
