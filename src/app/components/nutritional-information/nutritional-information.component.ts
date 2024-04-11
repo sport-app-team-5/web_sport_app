@@ -17,6 +17,7 @@ export class NutritionalInformationComponent implements OnInit {
   formData: any = {}
   currentStep: number = 1
 
+  allergies: any[] = []
   diet: string = ''
   allergy: FormControl<string | null> = new FormControl('', [
     Validators.required,
@@ -32,7 +33,20 @@ export class NutritionalInformationComponent implements OnInit {
 
   ngOnInit () {
     this.switchLanguage('es')
+    this.getAllergies()
   }
+
+  getAllergies(): void {
+    this.nutritionalInformationService.getAllergies().subscribe({
+      next: (response) => {this.allergies = response },
+      error: (error) => {
+        this.toastr.error('Error obteniendo las alergias', 'Error', {
+          timeOut: 3000
+        });
+      }
+    });
+  }
+
 
   switchLanguage (language: string): void {
     this.translate.use(language)

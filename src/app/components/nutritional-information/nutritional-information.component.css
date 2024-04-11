@@ -139,7 +139,7 @@ button {
   box-sizing: border-box;
 }
 
-input{
+select{
   width: 300px;
   border: 1px solid var(--c-gray-light);
   box-sizing: border-box;
@@ -152,13 +152,13 @@ input{
   line-height: normal;
 }
 
-input {
-  height: 35px;
-  font-size: 16px;
+select {
+  height: 43px;
+  font-size: 15px;
 }
 
-input {
-  padding: 20px;
+select {
+  padding: 5px 5px 5px 20px;
 }
 
 input:focus {

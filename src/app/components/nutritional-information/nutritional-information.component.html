@@ -13,19 +13,16 @@
   <div *ngIf="currentStep === 1">
     <div class="question">{{ 'questionNutritionalType' | translate }} </div>
     <div class="container-buttons">
-      <button class="question-button" (click)="setDiet('vegan')">
+      <button class="question-button" (click)="setDiet('VEGAN')">
         {{'vegan'| translate}}
       </button>
-      <button class="question-button" (click)="setDiet('vegetarian')">
+      <button class="question-button" (click)="setDiet('VEGETARIAN')">
         {{ 'vegetarian' | translate}}
       </button>
-      <button class="question-button" (click)="setDiet('keto diet')">
-        {{ 'keto diet' | translate}}
-      </button>
-      <button class="question-button" (click)="setDiet('carnivorous')">
+      <button class="question-button" (click)="setDiet('CARNIVOROUS')">
         {{ 'carnivorous' | translate}}
       </button>
-      <button class="question-button" (click)="setDiet('none')">
+      <button class="question-button" (click)="setDiet('NONE')">
         {{ 'none' | translate}}
       </button>
     </div>
@@ -35,12 +32,12 @@
     <div class="question">{{'questionAllergy'| translate}}</div>
     <div class="container-inputs">
       <div class="form-group">
-        <input [formControl]="allergy" type="text" name="allergy" placeholder="{{'enterInformation'| translate}}"
-               (change)="changeValueForm($event)">
+        <select [formControl]="allergy" type="text" name="allergy" (change)="changeValueForm($event)">
+          <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
+          <option *ngFor="let allergy of allergies" [value]="allergy.id">{{ allergy.name }}</option>
+        </select>
         <div class="error-container" *ngIf="allergy.invalid && (allergy.dirty || allergy.touched)">
           <span class="error" *ngIf="allergy.errors?.['required']">{{'fieldRequired'|translate}}</span>
-          <span class="error" *ngIf="allergy.errors?.['minlength']">{{'greaterCharacters'| translate}}3</span>
-          <span class="error" *ngIf="allergy.errors?.['maxlength']">{{'lessCharacters'| translate}}40</span>
         </div>
       </div>
     </div>
@@ -49,8 +46,8 @@
   <div class="container-buttons">
     <button class="secondary-button" (click)="backStep()" *ngIf="currentStep !== 1">
       {{'back'| translate}}
-
     </button>
+
     <button class="primary-button" (click)="nextStep()">
       {{ currentStep === 2 ? ('registerForm' | translate) : ('next' | translate) }}
     </button>
