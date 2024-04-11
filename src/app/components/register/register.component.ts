@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
     role_id = 0
 
     selectedType = new FormControl('')
-    currentStep: any = 1;
+    currentStep: any = 1
 
     constructor (
         private registerUserService: RegisterUserService,
@@ -99,25 +99,29 @@ export class RegisterComponent implements OnInit {
                 }
             )
     }
+  
 
     getCitiesBirth () {
         this.registerUserService
             .getCities(this.birth_country_id.value)
-            .subscribe(
-                response => {
-                    this.citiesBirth = response
-                },
-                error => {
-                    console.error('Error:', error)
-                    this.toastr.error(
-                        'Error obteniendo las ciudades de nacimiento',
-                        'Major Error',
-                        {
-                            timeOut: 3000
-                        }
-                    )
-                }
-            )
+            .subscribe({
+                next: this.handleResponseCities.bind(this),
+                error: this.handleErrorCities.bind(this)
+            })
+    }
+
+    handleResponseCities (response: any) {
+        this.citiesBirth = response
+    }
+
+    handleErrorCities (error: any) {
+        this.toastr.error(
+            'Error obteniendo las ciudades de nacimiento',
+            'Major Error',
+            {
+                timeOut: 3000
+            }
+        )
     }
 
     passwordValidator (control: FormControl): { [key: string]: boolean } | null {
