@@ -5,8 +5,7 @@ import { RegisterUserService } from './registeruser.service'
 import { ToastrService } from 'ngx-toastr'
 import {
   TranslateModule,
-  TranslateService,
-  TranslateStore
+  TranslateService
 } from '@ngx-translate/core'
 
 @Component({
@@ -15,7 +14,6 @@ import {
   styleUrls: ['./register.component.css'],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, TranslateModule],
-  // providers: [RegisterUserService, TranslateService, TranslateStore]
   providers: [RegisterUserService]
 })
 export class RegisterComponent implements OnInit {
@@ -187,6 +185,7 @@ export class RegisterComponent implements OnInit {
       this.document_number.errors === null
     )
   }
+
   validateStep4 () {
     let isComplete: Boolean = false
     if (this.role_id === 1) {
@@ -224,6 +223,7 @@ export class RegisterComponent implements OnInit {
     }
     this.formData[name] = value
   }
+  
   handleUpdateResponse (response: any) {
     if (this.role_id === 1) {
       this.saveSportMan(response.id)

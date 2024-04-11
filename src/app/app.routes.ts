@@ -2,12 +2,17 @@ import { Routes } from '@angular/router'
 import { SportplanComponent } from './components/sportplan/sportplan.component'
 import { HomeComponent } from './components/home/home.component'
 import { RegisterComponent } from './components/register/register.component'
+import { LoginComponent } from './components/login/login.component'
 import { NutritionalInformationComponent } from "./components/nutritional-information/nutritional-information.component";
 
 export const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'register',

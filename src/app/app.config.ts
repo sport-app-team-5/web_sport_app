@@ -6,8 +6,7 @@ import { HttpClient, provideHttpClient } from '@angular/common/http'
 import { provideStore } from '@ngrx/store'
 import { provideToastr } from 'ngx-toastr'
 import {
-  BrowserAnimationsModule,
-  provideAnimations
+  BrowserAnimationsModule
 } from '@angular/platform-browser/animations'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
