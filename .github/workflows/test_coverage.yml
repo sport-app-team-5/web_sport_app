@@ -13,7 +13,7 @@ on:
     branches:
         - develop
         - main
-        - release/*
+        - release
 
 jobs:
   test:
