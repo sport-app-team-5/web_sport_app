@@ -21,7 +21,7 @@ export class AdditionalserviceComponent implements OnInit {
     type: any = null
     cost = new FormControl('', [Validators.required])
     description = new FormControl('', [Validators.required])
-    is_active: Boolean = true
+    is_active: boolean = true
 
     constructor (
         private toastr: ToastrService,

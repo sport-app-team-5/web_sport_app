@@ -9,7 +9,13 @@ import { Router } from '@angular/router'
 export class MainComponent implements OnInit {
     constructor (private router: Router) {}
 
-    ngOnInit () {}
+    ngOnInit () {
+        this.start()
+    }
+    
+    start () {
+        return true
+    }
 
     createNewService () {
         this.router.navigate(['/services'])

@@ -165,18 +165,12 @@ select {
 input {
     height: 35px;
     font-size: 16px;
+    padding: 20px;
 }
 
 select {
     height: 43px;
     font-size: 15px;
-}
-
-input {
-    padding: 20px;
-}
-
-select {
     padding: 5px 5px 5px 20px;
 }
 
@@ -198,7 +192,6 @@ select:focus-visible {
 }
 
 .error {
-    color: var(--c-green-ligth);
     font-size: 14px;
     color: var(--c-yellow);
 }

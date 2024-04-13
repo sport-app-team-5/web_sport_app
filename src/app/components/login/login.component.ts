@@ -4,7 +4,7 @@ import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { ToastrService } from 'ngx-toastr'
 import { LoginService } from './login.service'
-import { JwtPayload, jwtDecode } from 'jwt-decode'
+import {  jwtDecode } from 'jwt-decode'
 import { Router } from '@angular/router'
 
 @Component({
