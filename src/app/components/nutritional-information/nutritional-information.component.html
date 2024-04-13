@@ -13,16 +13,16 @@
   <div *ngIf="currentStep === 1">
     <div class="question">{{ 'questionNutritionalType' | translate }} </div>
     <div class="container-buttons">
-      <button class="question-button" (click)="setDiet('VEGAN')">
+      <button class="question-button" (click)="setFoodPreference('VEGAN')">
         {{'vegan'| translate}}
       </button>
-      <button class="question-button" (click)="setDiet('VEGETARIAN')">
+      <button class="question-button" (click)="setFoodPreference('VEGETARIAN')">
         {{ 'vegetarian' | translate}}
       </button>
-      <button class="question-button" (click)="setDiet('CARNIVOROUS')">
+      <button class="question-button" (click)="setFoodPreference('CARNIVOROUS')">
         {{ 'carnivorous' | translate}}
       </button>
-      <button class="question-button" (click)="setDiet('NONE')">
+      <button class="question-button" (click)="setFoodPreference('NONE')">
         {{ 'none' | translate}}
       </button>
     </div>
@@ -34,7 +34,7 @@
       <div class="form-group">
         <select [formControl]="allergy" type="text" name="allergy" (change)="changeValueForm($event)">
           <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
-          <option *ngFor="let allergy of allergies" [value]="allergy.id">{{ allergy.name }}</option>
+          <option *ngFor="let allergy of allergies" [value]="allergy.id">{{ allergy.name | translate }}</option>
         </select>
         <div class="error-container" *ngIf="allergy.invalid && (allergy.dirty || allergy.touched)">
           <span class="error" *ngIf="allergy.errors?.['required']">{{'fieldRequired'|translate}}</span>

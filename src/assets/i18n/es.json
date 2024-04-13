@@ -36,7 +36,6 @@
   "residenceCountry":"País de residencia",
   "residenceCity":"Ciudad de residencia",
 
-
   "questionNutritionalType":"¿Con cuál dieta te identificas más?",
   "vegan":"Vegano",
   "vegetarian":"Vegetariano",
@@ -44,5 +43,15 @@
   "carnivorous":"Carnívoro",
   "none":"Ninguna",
   "questionAllergy":"¿Presentas alguna alergia alimentaria?",
-  "enterInformation":"Ingresa la información"
+  "enterInformation":"Ingresa la información",
+  "Lactose":"Lactosa",
+  "Gluten": "Gluten",
+  "Peanuts": "Maní",
+  "Shellfish": "Mariscos",
+  "Soy": "Soja",
+  "Eggs": "Huevos",
+  "Fish": "Pescado",
+  "Tree nuts": "Frutos secos",
+  "Wheat": "Trigo",
+  "Sesame": "Sésamo"
 }

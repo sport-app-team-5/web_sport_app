@@ -18,7 +18,7 @@ export class NutritionalInformationComponent implements OnInit {
   currentStep: number = 1
 
   allergies: any[] = []
-  diet: string = ''
+  foodPreference: string = ''
   allergy: FormControl<string | null> = new FormControl('', [
     Validators.required,
     Validators.minLength(3),
@@ -52,9 +52,9 @@ export class NutritionalInformationComponent implements OnInit {
     this.translate.use(language)
   }
 
-  setDiet (value: any) {
-    this.diet = value
-    this.formData['diet'] = value
+  setFoodPreference (value: any) {
+    this.foodPreference = value
+    this.formData['foodPreference'] = value
   }
 
   nextStep () {
@@ -81,7 +81,7 @@ export class NutritionalInformationComponent implements OnInit {
   }
 
   validateStep1 () {
-    return this.diet !== ''
+    return this.foodPreference !== ''
   }
 
   validateStep2 () {
@@ -89,7 +89,7 @@ export class NutritionalInformationComponent implements OnInit {
   }
 
   saveNutritionalInformationData () {
-    this.nutritionalInformationService.updateInformation(this.formData).subscribe({
+    this.nutritionalInformationService.createNutritionalInformation(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)
     })

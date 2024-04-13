@@ -43,5 +43,15 @@
   "carnivorous":"Carnívoro",
   "none":"Nenhum",
   "questionAllergy":"Você tem alguma alergia alimentar?",
-  "enterInformation":"Insira as informações"
+  "enterInformation":"Insira as informações",
+  "Lactose":"Lactose",
+  "Gluten":"Glúten",
+  "Peanuts":"Amendoim",
+  "Shellfish":"Mariscos",
+  "Soy":"Soja",
+  "Eggs":"Ovos",
+  "Fish":"Peixe",
+  "Tree nuts":"Nozes",
+  "Wheat":"Trigo",
+  "Sesame":"Gergelim"
 }
