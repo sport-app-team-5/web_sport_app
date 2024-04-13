@@ -35,6 +35,15 @@
   "birthCity":"Ciudad de nacimiento",
   "residenceCountry":"País de residencia",
   "residenceCity":"Ciudad de residencia",
+  "Argentina":"Argentina",
+
+  "questionServiceType":"¿Qué tipo de servicio quieres ofrece?",
+  "transport":"Transporte",
+  "accompaniment":"Acompañamiento",
+  "mechanics":"Mecánica",
+  "serviceCost":"¿Cuál es el costo del servicio?",
+  "writeHere":"Escribe aquí",
+  "writeDescription":"Escribe una descripción del servicio que estás ofreciendo",
 
   "questionNutritionalType":"¿Con cuál dieta te identificas más?",
   "vegan":"Vegano",

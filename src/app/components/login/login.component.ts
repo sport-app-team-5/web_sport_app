@@ -4,6 +4,8 @@ import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { ToastrService } from 'ngx-toastr'
 import { LoginService } from './login.service'
+import {  jwtDecode } from 'jwt-decode'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'app-login',
@@ -13,14 +15,15 @@ import { LoginService } from './login.service'
     imports: [CommonModule, ReactiveFormsModule, TranslateModule]
 })
 export class LoginComponent implements OnInit {
-    email = new FormControl('', [Validators.required])
+    email = new FormControl('', [Validators.required, Validators.email])
     password = new FormControl('', [Validators.required])
     formData: any = {}
 
     constructor (
         private toastr: ToastrService,
         private translate: TranslateService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private router: Router
     ) {}
 
     ngOnInit () {
@@ -31,10 +34,19 @@ export class LoginComponent implements OnInit {
         this.translate.use(language)
     }
 
+    passwordValidator (control: FormControl): { [key: string]: boolean } | null {
+        const value: string = control.value || ''
+        const hasNumber = /\d/.test(value)
+        const hasLetter = /[a-zA-Z]/.test(value)
+        const valid = value && hasNumber && hasLetter
+        return valid ? null : { invalidPassword: true }
+    }
+
     changeValueForm (e: any) {
         const name = e.target.name
         const value = e.target.value
         this.formData[name] = value
+        console.log(this.email.errors)
     }
 
     userLogin () {
@@ -50,11 +62,21 @@ export class LoginComponent implements OnInit {
     }
 
     handleUpdateResponse (response: any) {
-        sessionStorage.setItem('access_token', response.access_token)
+        if (typeof response.access_token !== 'string') {
+            console.error(
+                'Access token is not a string:',
+                response.access_token
+            )
+            return
+        }
 
+        sessionStorage.setItem('access_token', response.access_token)
+        const decoded = jwtDecode<any>(response.access_token)
+        sessionStorage.setItem('role', decoded.role)
         this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
             timeOut: 3000
         })
+        this.router.navigate(['/home'])
     }
 
     handleError (error: any) {

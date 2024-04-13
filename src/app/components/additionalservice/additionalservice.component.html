@@ -1,0 +1,55 @@
+<header class="header">
+  <div class="container-logo">
+    <img src="../../../assets/images/logo.png" alt="logo" />
+    <p>Bienvenido</p>
+  </div>
+  <div class="buttons">
+    <img class="user-image" src="../../../assets/images/user_image.png" alt="usuario-logo" />
+    <button> Luis</button>
+  </div>
+</header>
+<main class="wrapper">
+  <div class="container-question" *ngIf="currentStep === 1">
+    <div class="question">{{'questionServiceType' | translate}} </div>
+    <div class="container-buttons">
+      <button class="question-button" (click)="setServiceType('TRANSPORT')">
+        {{'transport'| translate}}
+      </button>
+      <button class="question-button" (click)="setServiceType('ACCOMPANIMENT')">
+        {{'accompaniment'| translate}}
+      </button>
+      <button class="question-button" (click)="setServiceType('MECANIC')">
+        {{'mechanics'| translate}}
+      </button>
+    </div>
+  </div>
+  <div *ngIf="currentStep == 2" class="container-services">
+    <div class="question">{{'serviceCost'| translate}}</div>
+    <div>
+      <input [formControl]="cost" type="text" name="cost" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="cost.invalid && (cost.dirty || cost.touched)">
+        <span class="error" *ngIf="cost.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 3" class="container-services">
+    <div class="question">{{'writeDescription'| translate}}</div>
+    <div>
+      <input [formControl]="description" type="text" name="description" placeholder="{{'writeHere'| translate}}"
+        (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="description.invalid && (description.dirty || description.touched)">
+        <span class="error" *ngIf="description.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+  <div class="container-buttons">
+    <button *ngIf="currentStep !== 1" class="secondary-button" (click)="backStep()">
+      {{'back'| translate}}
+    </button>
+    <button class="primary-button" (click)="nextStep()">
+      {{ currentStep === 3 ? ('registerForm' | translate) : ('next' | translate) }}
+    </button>
+  </div>
+</main>
