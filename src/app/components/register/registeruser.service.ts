@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable, Injector } from '@angular/core'
 import { Observable } from 'rxjs'
 import {
-  API_ADDITIONAL_sERVICE_BASE_URL,
+  API_ADDITIONAL_SERVICE_BASE_URL,
   API_SPORT_PLAN_BASE_URL,
   API_USER_BASE_URL
 } from '../../../../api.constants';
@@ -32,7 +32,7 @@ export class RegisterUserService {
   }
   
   registerSupplier(data:any): Observable<any> {
-    return this.http.post(API_ADDITIONAL_sERVICE_BASE_URL +'additional_service/third_parties' , data)
+    return this.http.post(API_ADDITIONAL_SERVICE_BASE_URL +'additional_service/third_parties' , data)
   }
 
 }

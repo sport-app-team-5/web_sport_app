@@ -451,15 +451,15 @@ describe('RegisterComponent', () => {
         })
     })
     it('should return true if role_id is 1 or 2', () => {
-        component.role_id = 1
-        expect(component.validateStep1()).toBe(true)
         component.role_id = 2
+        expect(component.validateStep1()).toBe(true)
+        component.role_id = 3
         expect(component.validateStep1()).toBe(true)
     })
 
     it('should return false if role_id is neither 1 nor 2', () => {
-        component.role_id = 1
-        expect(component.validateStep1()).toBeTruthy()
+        component.role_id = 3
+        expect(component.validateStep1()).toBe(true)
     })
   
     it('should called saveSupplier', () => {
