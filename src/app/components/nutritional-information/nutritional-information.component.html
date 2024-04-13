@@ -32,12 +32,17 @@
     <div class="question">{{'questionAllergy'| translate}}</div>
     <div class="container-inputs">
       <div class="form-group">
-        <select [formControl]="allergies" type="text" name="allergies" (change)="changeValueForm($event)">
-          <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
-          <option *ngFor="let allergy of allergies_to_show" [value]="allergy.id">{{ allergy.name | translate }}</option>
-        </select>
-        <div class="error-container" *ngIf="allergies.invalid && (allergies.dirty || allergies.touched)">
-          <span class="error" *ngIf="allergies.errors?.['required']">{{'fieldRequired'|translate}}</span>
+        <div class="other">
+          <ng-multiselect-dropdown
+            [placeholder]="'Seleccione'"
+            [settings]="dropdownSettings"
+            [data]="allergies_list"
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="onItemDeSelect($event)">
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="error-container" *ngIf="this.validateAllergies">
+          <span class="error">{{'fieldRequired'|translate}}</span>
         </div>
       </div>
     </div>

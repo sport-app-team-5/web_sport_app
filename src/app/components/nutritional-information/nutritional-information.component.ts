@@ -4,22 +4,31 @@ import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {NutritionalInformationService} from "./nutritional-information.service";
 import {ToastrService} from "ngx-toastr";
+import {NgMultiSelectDropDownModule,} from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-nutritional-information',
   standalone: true,
-  imports: [NgForOf, NgIf, ReactiveFormsModule, TranslateModule],
+  imports: [NgForOf, NgIf, ReactiveFormsModule, TranslateModule, NgMultiSelectDropDownModule],
   templateUrl: './nutritional-information.component.html',
   styleUrl: './nutritional-information.component.css',
   providers: [NutritionalInformationService]
 })
 export class NutritionalInformationComponent implements OnInit {
+  dropdownSettings = {
+    idField: 'id',
+    textField: 'name',
+    selectAllText: "Seleccionar todo",
+    unSelectAllText: "Deseleccionar todo",
+    allowSearchFilter: true
+  };
   formData: any = {}
   currentStep: number = 1
 
-  allergies_to_show: any[] = []
+  allergies_list: any[] = []
   foodPreference: string = ''
-  allergies: FormControl<number | null> = new FormControl(null, [Validators.required])
+  allergies: Array<number> = [];
+  validateAllergies: boolean = false
 
   constructor (
     private nutritionalInformationService: NutritionalInformationService,
@@ -32,10 +41,19 @@ export class NutritionalInformationComponent implements OnInit {
     this.getAllergies()
   }
 
+  onItemSelect(item: any) {
+    this.allergies.push(item.id);
+    this.validateAllergies = false
+  }
+
+  onItemDeSelect(item: any) {
+    this.allergies = this.allergies.filter((id) => id !== item.id);
+  }
+
   getAllergies(): void {
     this.nutritionalInformationService.getAllergies().subscribe({
-      next: (response) => {this.allergies_to_show = response },
-      error: (error) => {
+      next: (response) => {this.allergies_list = response },
+      error: () => {
         this.toastr.error('Error obteniendo las alergias', 'Error', {
           timeOut: 3000
         });
@@ -49,7 +67,7 @@ export class NutritionalInformationComponent implements OnInit {
 
   setFoodPreference (value: any) {
     this.foodPreference = value
-    this.formData['foodPreference'] = value
+    this.formData['food_preference'] = value
   }
 
   nextStep () {
@@ -58,9 +76,10 @@ export class NutritionalInformationComponent implements OnInit {
         this.currentStep++
       }
     } else if (this.currentStep === 2) {
+      this.changeValueForm({target: {name: 'allergies', value: this.allergies}})
       if (this.validateStep2()) {
         this.saveNutritionalInformationData()
-      } else { this.allergies.markAllAsTouched() }
+      } else { this.validateAllergies = true }
     }
   }
 
@@ -80,11 +99,10 @@ export class NutritionalInformationComponent implements OnInit {
   }
 
   validateStep2 () {
-    return this.allergies.value && this.allergies.errors === null
+    return this.allergies.length > 0
   }
 
   saveNutritionalInformationData () {
-    console.log(this.formData)
     this.nutritionalInformationService.createNutritionalInformation(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)
