@@ -19,7 +19,7 @@ export class NutritionalInformationComponent implements OnInit {
 
   allergies_to_show: any[] = []
   foodPreference: string = ''
-  allergies: FormControl<string | null> = new FormControl('', [Validators.required])
+  allergies: FormControl<number | null> = new FormControl(null, [Validators.required])
 
   constructor (
     private nutritionalInformationService: NutritionalInformationService,
