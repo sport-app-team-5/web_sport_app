@@ -18,6 +18,6 @@ export class NutritionalInformationService {
   }
 
   getAllergies(): Observable<any> {
-    return this.http.get(API_SPORT_PLAN_BASE_URL + 'allergies')
+    return this.http.get(API_SPORT_PLAN_BASE_URL + 'auth/allergies')
   }
 }
