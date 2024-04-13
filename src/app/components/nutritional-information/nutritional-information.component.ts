@@ -17,13 +17,9 @@ export class NutritionalInformationComponent implements OnInit {
   formData: any = {}
   currentStep: number = 1
 
-  allergies: any[] = []
+  allergies_to_show: any[] = []
   foodPreference: string = ''
-  allergy: FormControl<string | null> = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
-    Validators.maxLength(40)
-  ])
+  allergies: FormControl<string | null> = new FormControl('', [Validators.required])
 
   constructor (
     private nutritionalInformationService: NutritionalInformationService,
@@ -38,7 +34,7 @@ export class NutritionalInformationComponent implements OnInit {
 
   getAllergies(): void {
     this.nutritionalInformationService.getAllergies().subscribe({
-      next: (response) => {this.allergies = response },
+      next: (response) => {this.allergies_to_show = response },
       error: (error) => {
         this.toastr.error('Error obteniendo las alergias', 'Error', {
           timeOut: 3000
@@ -46,7 +42,6 @@ export class NutritionalInformationComponent implements OnInit {
       }
     });
   }
-
 
   switchLanguage (language: string): void {
     this.translate.use(language)
@@ -65,7 +60,7 @@ export class NutritionalInformationComponent implements OnInit {
     } else if (this.currentStep === 2) {
       if (this.validateStep2()) {
         this.saveNutritionalInformationData()
-      } else { this.allergy.markAllAsTouched() }
+      } else { this.allergies.markAllAsTouched() }
     }
   }
 
@@ -85,10 +80,11 @@ export class NutritionalInformationComponent implements OnInit {
   }
 
   validateStep2 () {
-    return !!this.allergy.value && this.allergy.errors === null
+    return this.allergies.value && this.allergies.errors === null
   }
 
   saveNutritionalInformationData () {
+    console.log(this.formData)
     this.nutritionalInformationService.createNutritionalInformation(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)
@@ -96,7 +92,7 @@ export class NutritionalInformationComponent implements OnInit {
   }
 
   handleUpdateResponse () {
-    this.toastr.success('Información nutricional guardado éxitosamente', 'Toastr fun!', {
+    this.toastr.success('Información nutricional guardado éxitosamente', 'Exitoso', {
       timeOut: 3000
     })
   }

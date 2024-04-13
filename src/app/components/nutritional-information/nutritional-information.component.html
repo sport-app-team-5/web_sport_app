@@ -32,12 +32,12 @@
     <div class="question">{{'questionAllergy'| translate}}</div>
     <div class="container-inputs">
       <div class="form-group">
-        <select [formControl]="allergy" type="text" name="allergy" (change)="changeValueForm($event)">
+        <select [formControl]="allergies" type="text" name="allergies" (change)="changeValueForm($event)">
           <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
-          <option *ngFor="let allergy of allergies" [value]="allergy.id">{{ allergy.name | translate }}</option>
+          <option *ngFor="let allergy of allergies_to_show" [value]="allergy.id">{{ allergy.name | translate }}</option>
         </select>
-        <div class="error-container" *ngIf="allergy.invalid && (allergy.dirty || allergy.touched)">
-          <span class="error" *ngIf="allergy.errors?.['required']">{{'fieldRequired'|translate}}</span>
+        <div class="error-container" *ngIf="allergies.invalid && (allergies.dirty || allergies.touched)">
+          <span class="error" *ngIf="allergies.errors?.['required']">{{'fieldRequired'|translate}}</span>
         </div>
       </div>
     </div>

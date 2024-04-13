@@ -14,7 +14,7 @@ export class NutritionalInformationService {
   }
 
   createNutritionalInformation(data: any): Observable<any> {
-    return this.http.put(API_SPORT_PLAN_BASE_URL + 'auth/nutritional_information/1', data)
+    return this.http.post(API_SPORT_PLAN_BASE_URL + 'auth/nutritional_information/1', data)
   }
 
   getAllergies(): Observable<any> {
