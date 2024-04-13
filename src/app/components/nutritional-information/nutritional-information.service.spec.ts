@@ -4,7 +4,7 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "../../app.config";
 import {HttpClient} from "@angular/common/http";
-import {API_USER_BASE_URL} from "../../../../api.constants";
+import {API_SPORT_PLAN_BASE_URL, API_USER_BASE_URL} from "../../../../api.constants";
 
 describe('NutritionalInformationService', () => {
   let service: NutritionalInformationService
@@ -40,7 +40,7 @@ describe('NutritionalInformationService', () => {
       expect(data).toEqual(mockData)
     })
 
-    const req = httpMock.expectOne(`${API_USER_BASE_URL}users`)
+    const req = httpMock.expectOne(`${API_SPORT_PLAN_BASE_URL}auth/nutritional_information/1`)
     expect(req.request.method).toBe('POST')
     req.flush(mockData)
   })

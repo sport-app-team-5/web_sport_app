@@ -63,6 +63,7 @@ describe('NutritionalInformationComponent', () => {
 
     it('should call save nutritional information data if current step is 2', () => {
       component.currentStep = 2
+      spyOn(component, 'validateStep2').and.returnValue(true)
       spyOn(component, 'saveNutritionalInformationData')
       component.nextStep()
 
