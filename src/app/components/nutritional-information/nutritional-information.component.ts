@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import {FormControl, ReactiveFormsModule, Validators} from '@angular/forms'
+import {ReactiveFormsModule} from '@angular/forms'
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {NutritionalInformationService} from "./nutritional-information.service";
 import {ToastrService} from "ngx-toastr";
@@ -18,9 +18,7 @@ export class NutritionalInformationComponent implements OnInit {
   dropdownSettings = {
     idField: 'id',
     textField: 'name',
-    selectAllText: "Seleccionar todo",
-    unSelectAllText: "Deseleccionar todo",
-    allowSearchFilter: true
+    enableCheckAll: false
   };
   formData: any = {}
   currentStep: number = 1

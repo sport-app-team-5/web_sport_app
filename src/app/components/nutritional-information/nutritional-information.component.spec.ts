@@ -72,14 +72,12 @@ describe('NutritionalInformationComponent', () => {
 
   describe('Validate step 2', () => {
     it('should return true if all fields have values', () => {
-      component.allergies = new FormControl('Lacteos')
+      component.allergies = [1]
 
       expect(component.validateStep2()).toBeTrue()
     })
 
     it('should return false if any field does not have a value', () => {
-      component.allergies = new FormControl('')
-
       expect(component.validateStep2()).toBeFalse()
     })
   })
@@ -104,7 +102,7 @@ describe('NutritionalInformationComponent', () => {
     it('should set diet in formData', () => {
       component.setFoodPreference('Dieta1')
 
-      expect(component.formData['diet']).toBe('Dieta1')
+      expect(component.formData['food_preference']).toBe('Dieta1')
     })
   })
 
