@@ -5,7 +5,7 @@ import { ToastrModule } from 'ngx-toastr'
 import {NutritionalInformationService} from "./nutritional-information.service";
 import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpLoaderFactory } from '../../app.config'
 
 
@@ -83,6 +83,14 @@ describe('NutritionalInformationComponent', () => {
     })
   })
 
+  describe('Validate step 1', () => {
+    it('should return true if all fields have values', () => {
+      component.setFoodPreference('Dieta1')
+
+      expect(component.validateStep2()).toBeFalse()
+    })
+  })
+
   describe('back step', () => {
     it('should decrement current step if it is greater than 1', () => {
       component.currentStep = 2
@@ -104,6 +112,23 @@ describe('NutritionalInformationComponent', () => {
       component.setFoodPreference('Dieta1')
 
       expect(component.formData['food_preference']).toBe('Dieta1')
+    })
+  })
+
+  describe('select allergies', () => {
+    it('should select allergies in formData', () => {
+      component.onItemSelect({ id: 1 })
+
+      expect(component.allergies).toEqual([1])
+    })
+  })
+
+  describe('de-select allergies', () => {
+    it('should de-select allergies in formData', () => {
+      component.allergies = [1, 2, 3]
+      component.onItemDeSelect({ id: 1 })
+
+      expect(component.allergies).toEqual([2, 3])
     })
   })
 
