@@ -1,7 +1,7 @@
 <header class="header">
   <p>Logo</p>
   <div class="buttons">
-    <button> {{ 'login' | translate }}</button>
+    <button (click)="goToLogin()"> {{ 'login' | translate }}</button>
     <div class="line"></div>
     <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
     <div class="line"></div>
@@ -12,12 +12,15 @@
   <div *ngIf="currentStep === 1">
     <div class="question">{{ 'questionprofiletype' | translate }} </div>
     <div class="container-buttons">
-      <button class="question-button" (click)="setRoleId(3)">
-        {{'sportman'| translate}}
+      <button  [ngClass]="getButtonClasses()" (click)="setRoleId(3)" >
+        {{ 'sportman' | translate }}
       </button>
-      <button class="question-button" (click)="setRoleId(2)">
+      <button [ngClass]=" getButtonClassesProveedor()"class="question-button" (click)="setRoleId(2)" [class.active]="this.role_id == 2">
         {{ 'supplier' | translate}}
       </button>
+    </div>
+    <div class="" *ngIf="activateErrorMessageForRoleId===true">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
     </div>
   </div>
   <div *ngIf="currentStep == 2">
@@ -72,6 +75,7 @@
           placeholder="{{'enterName'| translate}}" (change)="changeValueForm($event)">
         <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
           <span class="error" *ngIf="name.errors?.['required']">{{'fieldRequired'|translate}}</span>
+          <span class="error" *ngIf="name.errors?.['minlength']">{{'greater2characters'| translate}} </span>
         </div>
       </div>
       <div class="form-group">
