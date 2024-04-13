@@ -8,7 +8,6 @@
   "registerForm":"Registrar",
   "spanish":"Español",
   "portugues":"Portugués",
-
   "register": "Registrarse",
   "login":"Iniciar sesión",
   "questionprofiletype":"¿Con cuál perfil te quieres registrar?",
@@ -36,7 +35,6 @@
   "residenceCountry":"País de residencia",
   "residenceCity":"Ciudad de residencia",
   "Argentina":"Argentina",
-
   "questionServiceType":"¿Qué tipo de servicio quieres ofrece?",
   "transport":"Transporte",
   "accompaniment":"Acompañamiento",
@@ -44,7 +42,6 @@
   "serviceCost":"¿Cuál es el costo del servicio?",
   "writeHere":"Escribe aquí",
   "writeDescription":"Escribe una descripción del servicio que estás ofreciendo",
-
   "questionNutritionalType":"¿Con cuál dieta te identificas más?",
   "vegan":"Vegano",
   "vegetarian":"Vegetariano",
@@ -62,5 +59,8 @@
   "Fish": "Pescado",
   "Tree nuts": "Frutos secos",
   "Wheat": "Trigo",
-  "Sesame": "Sésamo"
+  "Sesame": "Sésamo",
+  "greater2characters":"Debe ser mayor de 2"
 }
+
+
