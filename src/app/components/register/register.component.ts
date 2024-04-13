@@ -88,7 +88,6 @@ export class RegisterComponent implements OnInit {
                     this.citiesResidence = response
                 },
                 error => {
-                    console.error('Error:', error)
                     this.toastr.error(
                         'Error obteniendo las ciudades de residencia',
                         'Major Error',
@@ -163,7 +162,7 @@ export class RegisterComponent implements OnInit {
     }
 
     validateStep1 () {
-        return this.role_id === 1 || this.role_id === 2
+        return this.role_id === 2 || this.role_id === 3
     }
 
     validateStep2 () {
