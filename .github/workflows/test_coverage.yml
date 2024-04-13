@@ -5,8 +5,8 @@ on:
     branches:
         - develop
         - main
-        - release/*
-        - feature/*
+        - release/.*
+        - feature/.*
 
   pull_request:
     types: [opened, edited, synchronize, reopened, converted_to_draft, ready_for_review]
