@@ -186,16 +186,9 @@ select:focus-visible {
 
 .other {
   width: 275px;
-  /*border: 1px solid;*/
-  /*box-sizing: border-box;*/
-  /*gap: 10px;*/
-  /*background-color: #111111;*/
   color: var(--c-gray-light);
-  /*border-color: var(--c-gray-light);*/
   font-style: normal;
   font-weight: 400;
-  /*line-height: normal;*/
   height: 43px;
   font-size: 20px;
-  /*padding: 5px 5px 5px 20px;*/
 }
