@@ -5,7 +5,7 @@ import {
   API_ADDITIONAL_SERVICE_BASE_URL,
   API_SPORT_PLAN_BASE_URL,
   API_USER_BASE_URL
-} from '../../../../api.constants';
+} from '../../../../api.constants'
 
 @Injectable({ providedIn: 'root' })
 export class RegisterUserService {
@@ -30,9 +30,11 @@ export class RegisterUserService {
   getCities (country_id: any): Observable<any> {
     return this.http.get(API_USER_BASE_URL + 'locations/cities/' + country_id)
   }
-  
-  registerSupplier(data:any): Observable<any> {
-    return this.http.post(API_ADDITIONAL_SERVICE_BASE_URL +'additional_service/third_parties' , data)
-  }
 
+  registerSupplier (data: any): Observable<any> {
+    return this.http.post(
+      API_ADDITIONAL_SERVICE_BASE_URL + 'third_parties',
+      data
+    )
+  }
 }

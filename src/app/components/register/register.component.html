@@ -1,7 +1,7 @@
 <header class="header">
   <p>Logo</p>
   <div class="buttons">
-    <button> {{ 'login' | translate }}</button>
+    <button (click)="goToLogin()"> {{ 'login' | translate }}</button>
     <div class="line"></div>
     <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
     <div class="line"></div>
@@ -12,12 +12,15 @@
   <div *ngIf="currentStep === 1">
     <div class="question">{{ 'questionprofiletype' | translate }} </div>
     <div class="container-buttons">
-      <button class="question-button" (click)="setRoleId(3)">
-        {{'sportman'| translate}}
+      <button  [ngClass]="getButtonClasses()" (click)="setRoleId(3)" >
+        {{ 'sportman' | translate }}
       </button>
-      <button class="question-button" (click)="setRoleId(2)">
+      <button [ngClass]=" getButtonClassesProveedor()"class="question-button" (click)="setRoleId(2)" [class.active]="this.role_id == 2">
         {{ 'supplier' | translate}}
       </button>
+    </div>
+    <div class="" *ngIf="activateErrorMessageForRoleId===true">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
     </div>
   </div>
   <div *ngIf="currentStep == 2">
@@ -39,8 +42,8 @@
           (change)="changeValueForm($event)">
         <div class="error-container" *ngIf="password.invalid && (password.dirty || password.touched)">
           <span class="error" *ngIf="password.errors?.['required']">{{'fieldRequired'| translate}} </span>
-          <span class="error" *ngIf="password.errors?.['minlength']">{{'greater6characters'| translate}} </span>
-          <span class="error" *ngIf="password.errors?.['maxlength']">{{'less10characters'| translate}}</span>
+          <span class="error" *ngIf="password.errors?.['minlength']">{{'greaterCharacters'| translate}}6</span>
+          <span class="error" *ngIf="password.errors?.['maxlength']">{{'lessCharacters'| translate}}10</span>
           <span class="error" *ngIf="password.errors?.['invalidPassword']">{{'containLettersAndNumbers'|
             translate}}</span>
           <span class="error" *ngIf="password.errors?.['invalidConfirmPassword']">{{'passwordsNotMatch'|
@@ -65,6 +68,8 @@
 
   <div *ngIf="currentStep === 3">
     <div class="question">{{'register'| translate}}</div>
+
+
     <div class="container-inputs">
       <div class="form-group">
         <label class="label-text" for="input1">{{'name'| translate}}</label>
@@ -72,18 +77,23 @@
           placeholder="{{'enterName'| translate}}" (change)="changeValueForm($event)">
         <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
           <span class="error" *ngIf="name.errors?.['required']">{{'fieldRequired'|translate}}</span>
+          <span class="error" *ngIf="name.errors?.['minlength']">{{'greater2characters'| translate}} </span>
         </div>
       </div>
+
       <div class="form-group">
         <label class="label-text" for="input2">{{'lastname'| translate}}</label>
         <input [formControl]="lastname" type="text" name="lastname" placeholder="Ingrese su apellido"
           (change)="changeValueForm($event)">
         <div class="error-container" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
           <span class="error" *ngIf="lastname.errors?.['required']">{{'fieldRequired'|translate}}</span>
-          <span class="error" *ngIf="lastname.errors?.['minlength']">{{'greater6characters'| translate}}</span>
-          <span class="error" *ngIf="lastname.errors?.['maxlength']">{{'less20characters'| translate}}</span>
+          <span class="error" *ngIf="lastname.errors?.['minlength']">{{'greaterCharacters'| translate}}2</span>
+          <span class="error" *ngIf="lastname.errors?.['maxlength']">{{'lessCharacters'| translate}}50</span>
         </div>
       </div>
+
+
+
       <div class="form-group">
         <label class="label-text" for="input3">{{'typeIdentification'| translate}}</label>
         <select name="document_type" [formControl]="document_type" (change)="changeValueForm($event)">
@@ -95,6 +105,8 @@
           <span class="error" *ngIf="document_type.errors?.['required']">{{'fieldRequired'| translate}}</span>
         </div>
       </div>
+
+
       <div class="form-group">
         <label class="label-text" for="input2">Número de identificación</label>
         <input [formControl]="document_number" type="text" name="document_number"
@@ -102,8 +114,8 @@
         <div class="error-container"
           *ngIf="document_number.invalid && (document_number.dirty || document_number.touched)">
           <span class="error" *ngIf="document_number.errors?.['required']">{{'fieldRequired'| translate}}</span>
-          <span class="error" *ngIf="document_number.errors?.['minlength']">{{'greater6characters'| translate}}</span>
-          <span class="error" *ngIf="document_number.errors?.['maxlength']">{{'less20characters'| translate}}</span>
+          <span class="error" *ngIf="document_number.errors?.['minlength']">{{'greaterCharacters'| translate}}6</span>
+          <span class="error" *ngIf="document_number.errors?.['maxlength']">{{'lessCharacters'| translate}}20</span>
         </div>
       </div>
     </div>

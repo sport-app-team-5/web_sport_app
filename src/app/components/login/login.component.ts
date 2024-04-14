@@ -4,7 +4,7 @@ import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { ToastrService } from 'ngx-toastr'
 import { LoginService } from './login.service'
-import {  jwtDecode } from 'jwt-decode'
+import { jwtDecode } from 'jwt-decode'
 import { Router } from '@angular/router'
 
 @Component({
@@ -28,6 +28,9 @@ export class LoginComponent implements OnInit {
 
     ngOnInit () {
         this.switchLanguage('es')
+    }
+    goToRegister () {
+        this.router.navigate(['/register'])
     }
 
     switchLanguage (language: string): void {

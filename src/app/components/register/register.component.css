@@ -73,6 +73,12 @@ button {
     color: var(--c-green-ligth);
 }
 
+.active-button {
+    border-radius: 10px;
+    border: 1px solid var(--c-green-ligth);
+    color: var(--c-green-ligth)
+}
+
 .wrapper {
     min-height: 100%;
     display: flex;
@@ -148,7 +154,7 @@ select {
     border-color: var(--c-gray-light);
     font-style: normal;
     font-weight: 400;
-    line-height: normal;   
+    line-height: normal;
 }
 
 input {
