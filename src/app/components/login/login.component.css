@@ -14,13 +14,13 @@ header {
 
 header img {
     width: 70px;
-    height: 70.809px;
+    height: 71px;
     margin-top: 80px;
     margin-left: 80px;
 
 }
 
-main {    
+main {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -108,7 +108,7 @@ button {
     background: #2C2C2C;
     display: flex;
     height: 40px;
-    padding: 0px 30px;
+    padding: 0 30px;
     align-items: center;
     gap: 20px;
     font-weight: 500;
@@ -119,7 +119,7 @@ button {
     background: var(--c-green-ligth);
     display: flex;
     height: 40px;
-    padding: 0px 30px;
+    padding: 0 30px;
     align-items: center;
     font-weight: 500;
     width: 300px;
@@ -192,7 +192,7 @@ select:focus-visible {
     outline: 1px solid var(--c-green-ligth);
 }
 
-.error { 
+.error {
     font-size: 14px;
     color: var(--c-yellow);
 }

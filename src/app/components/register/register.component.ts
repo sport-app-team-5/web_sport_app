@@ -4,6 +4,7 @@ import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
 import { RegisterUserService } from './registeruser.service'
 import { ToastrService } from 'ngx-toastr'
 import { TranslateModule, TranslateService } from '@ngx-translate/core'
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'app-register',
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
         this.passwordValidator.bind(this),
         this.messagePassworsInvalid.bind(this)
     ])
-    name = new FormControl('', [Validators.required])
+    name = new FormControl('', [Validators.required, Validators.minLength(2)])
     lastname = new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -48,20 +49,48 @@ export class RegisterComponent implements OnInit {
     residence_country_id = new FormControl('', [Validators.required])
     residence_city_id = new FormControl('', [Validators.required])
     role_id = 0
+    activateErrorMessageForRoleId: boolean = false
 
     selectedType = new FormControl('')
     currentStep: any = 1
+    isActive: boolean = false
 
     constructor (
         private registerUserService: RegisterUserService,
         private toastr: ToastrService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private router: Router
     ) {}
 
     ngOnInit () {
         this.getCountries()
         this.switchLanguage('es')
     }
+    goToLogin () {
+        this.router.navigate(['/login'])
+    }
+
+    getButtonClasses () {
+        return {
+            'question-button': true,
+            'active-button': this.role_id === 3
+        }
+    }
+
+    getButtonClassesProveedor () {
+        return {
+            'question-button': true,
+            'active-button': this.role_id === 2
+        }
+    }
+
+    setRoleId (value: any) {
+        this.role_id = value
+        this.formData['role_id'] = value
+        this.activateErrorMessageForRoleId = false
+        this.isActive = true
+    }
+  
 
     switchLanguage (language: string): void {
         this.translate.use(language)
@@ -88,7 +117,6 @@ export class RegisterComponent implements OnInit {
                     this.citiesResidence = response
                 },
                 error => {
-                    console.error('Error:', error)
                     this.toastr.error(
                         'Error obteniendo las ciudades de residencia',
                         'Major Error',
@@ -99,7 +127,6 @@ export class RegisterComponent implements OnInit {
                 }
             )
     }
-  
 
     getCitiesBirth () {
         this.registerUserService
@@ -117,7 +144,7 @@ export class RegisterComponent implements OnInit {
     handleErrorCities (error: any) {
         this.toastr.error(
             'Error obteniendo las ciudades de nacimiento',
-            'Major Error',
+            'Error',
             {
                 timeOut: 3000
             }
@@ -152,18 +179,47 @@ export class RegisterComponent implements OnInit {
         } else if (this.currentStep === 2) {
             if (this.validateStep2()) {
                 this.currentStep++
+            } else {
+                this.email.markAsTouched()
+                this.password.markAsTouched()
+                this.confirmPassword.markAllAsTouched()
             }
         } else if (this.currentStep === 3) {
             if (this.validateStep3()) {
                 this.currentStep++
+            } else {
+                this.name.markAllAsTouched()
+                this.lastname.markAllAsTouched()
+                this.document_type.markAllAsTouched()
+                this.document_number.markAllAsTouched()
             }
         } else if (this.currentStep === 4) {
-            this.saveUserData()
+            if (this.validateStep4()) {
+                this.saveUserData()
+            } else {
+                if (this.role_id === 3) {
+                    this.birth_city_id.markAllAsTouched()
+                    this.birth_country_id.markAllAsTouched()
+                    this.residence_country_id.markAllAsTouched()
+                    this.residence_city_id.markAllAsTouched()
+                } else {
+                    this.residence_country_id.markAllAsTouched()
+                    this.residence_city_id.markAllAsTouched()
+                }
+            }
         }
     }
 
     validateStep1 () {
-        return this.role_id === 1 || this.role_id === 2
+        let valid = false
+        if (this.role_id === 2 || this.role_id === 3) {
+            valid = true
+        } else {
+            this.activateErrorMessageForRoleId = true
+
+            valid = false
+        }
+        return valid
     }
 
     validateStep2 () {
@@ -191,7 +247,7 @@ export class RegisterComponent implements OnInit {
 
     validateStep4 () {
         let isComplete: Boolean = false
-        if (this.role_id === 1) {
+        if (this.role_id === 3) {
             isComplete =
                 !!this.birth_city_id.value &&
                 !!this.birth_country_id.value &&
@@ -211,11 +267,6 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    setRoleId (value: any) {
-        this.role_id = value
-        this.formData['role_id'] = value
-    }
-
     changeValueForm (e: any) {
         const name = e.target.name
         const value = e.target.value
@@ -229,7 +280,7 @@ export class RegisterComponent implements OnInit {
     }
 
     handleUpdateResponse (response: any) {
-        if (this.role_id === 1) {
+        if (this.role_id === 3) {
             this.saveSportMan(response.id)
         } else {
             this.saveSupplier(response.id)

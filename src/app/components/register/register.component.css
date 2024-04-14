@@ -73,6 +73,12 @@ button {
     color: var(--c-green-ligth);
 }
 
+.active-button {
+    border-radius: 10px;
+    border: 1px solid var(--c-green-ligth);
+    color: var(--c-green-ligth)
+}
+
 .wrapper {
     min-height: 100%;
     display: flex;
@@ -148,25 +154,19 @@ select {
     border-color: var(--c-gray-light);
     font-style: normal;
     font-weight: 400;
-    line-height: normal;   
+    line-height: normal;
 }
 
 input {
-    height: 35px;
-    font-size: 16px;
+  height: 35px;
+  font-size: 16px;
+  padding: 20px;
 }
 
 select {
-    height: 43px;
-    font-size: 15px;
-}
-
-input {
-    padding: 20px;
-}
-
-select {
-    padding: 5px 5px 5px 20px;
+  height: 43px;
+  font-size: 15px;
+  padding: 5px 5px 5px 20px;
 }
 
 input:focus {
@@ -187,7 +187,6 @@ select:focus-visible {
 }
 
 .error {
-    color: var(--c-green-ligth);
     font-size: 14px;
     color: var(--c-yellow);
 }

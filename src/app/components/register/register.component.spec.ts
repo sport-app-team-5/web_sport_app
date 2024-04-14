@@ -67,9 +67,9 @@ describe('RegisterComponent', () => {
 
     describe('nextStep', () => {
         it('should increment currentStep if currentStep is 1', () => {
-            component.currentStep = 1 
-            spyOn(component, 'validateStep1').and.returnValue(true)   
-            component.nextStep()      
+            component.currentStep = 1
+            spyOn(component, 'validateStep1').and.returnValue(true)
+            component.nextStep()
             expect(component.currentStep).toBe(2)
         })
 
@@ -109,16 +109,28 @@ describe('RegisterComponent', () => {
             expect(component.currentStep).toBe(3)
         })
 
-        it('should call saveUserData if currentStep is 4', () => {
+        it('should call saveUserData if currentStep is 4 and return true', () => {
             component.currentStep = 4
             spyOn(component, 'saveUserData')
-
+            spyOn(component, 'validateStep4').and.returnValue(true)
             component.nextStep()
-
             expect(component.saveUserData).toHaveBeenCalled()
         })
 
-        // Similar tests for currentStep 3 and 4...
+        it('should call saveUserData if currentStep is 4 and return false and role id is 3', () => {
+            component.currentStep = 4
+            component.role_id = 3
+            spyOn(component, 'saveUserData')
+            spyOn(component, 'validateStep4').and.returnValue(false)
+            component.nextStep()
+        })
+        it('should call saveUserData if currentStep is 4 and return false and role id is 2', () => {
+            component.currentStep = 4
+            component.role_id = 2
+            spyOn(component, 'saveUserData')
+            spyOn(component, 'validateStep4').and.returnValue(false)
+            component.nextStep()
+        })
     })
 
     describe('validateStep3', () => {
@@ -143,7 +155,7 @@ describe('RegisterComponent', () => {
 
     describe('validateStep4', () => {
         it('should return true if role_id is 1 and all fields have values', () => {
-            component.role_id = 1
+            component.role_id = 3
             component.birth_city_id = new FormControl('1')
             component.birth_country_id = new FormControl('1')
             component.residence_country_id = new FormControl('1')
@@ -308,7 +320,7 @@ describe('RegisterComponent', () => {
         it('should handle error response correctly', () => {
             const mock = TestBed.inject(RegisterUserService)
             spyOn(mock, 'getCities').and.returnValue(throwError('error'))
-            spyOn(component['toastr'], 'error') // Access 'toastr' through the component instance
+            spyOn(component['toastr'], 'error')
             component.getCitiesBirth()
             expect(component).toBeTruthy()
         })
@@ -363,12 +375,22 @@ describe('RegisterComponent', () => {
             component.saveUserData()
         })
 
-        it('should call handleResponse', () => {
+        it('should call handleResponse when the role id is 3', () => {
             const mockResponse = { id: '1' }
 
             const saveSportManSpy = spyOn(component, 'saveSportMan')
 
-            component.role_id = 1
+            component.role_id = 3
+            component.handleUpdateResponse({ id: 1 })
+
+            expect(saveSportManSpy).toHaveBeenCalled()
+        })
+        it('should call handleResponse when the role id is different to 1', () => {
+            const mockResponse = { id: '1' }
+
+            const saveSportManSpy = spyOn(component, 'saveSportMan')
+
+            component.role_id = 3
             component.handleUpdateResponse({ id: 1 })
 
             expect(saveSportManSpy).toHaveBeenCalled()
@@ -451,17 +473,22 @@ describe('RegisterComponent', () => {
         })
     })
     it('should return true if role_id is 1 or 2', () => {
-        component.role_id = 1
-        expect(component.validateStep1()).toBe(true)
         component.role_id = 2
+
         expect(component.validateStep1()).toBe(true)
     })
 
-    it('should return false if role_id is neither 1 nor 2', () => {
+    it('should return true if role_id is different to 2 or 3', () => {
         component.role_id = 1
-        expect(component.validateStep1()).toBeTruthy()
+        component.validateStep1()
+        expect(component.activateErrorMessageForRoleId).toBe(true)
     })
-  
+
+    it('should return false if role_id is neither 1 nor 2', () => {
+        component.role_id = 3
+        expect(component.validateStep1()).toBe(true)
+    })
+
     it('should called saveSupplier', () => {
         const mock = TestBed.inject(RegisterUserService)
         const response = [
@@ -472,5 +499,18 @@ describe('RegisterComponent', () => {
 
         component.saveSupplier('1')
         expect(component).toBeTruthy()
+    })
+
+    it('should called handleErrorCities', () => {
+        const mockResponse = {
+            status: 409,
+            error: { detail: 'The document number already exists' }
+        }
+        const toastrService = TestBed.inject(ToastrService)
+        const errorText = 'Error obteniendo las ciudades de nacimiento'
+
+        const spyError = spyOn(toastrService, 'error')
+
+        component.handleErrorCities(mockResponse)
     })
 })

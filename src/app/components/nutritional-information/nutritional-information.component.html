@@ -1,0 +1,63 @@
+<header class="header">
+  <p>Logo</p>
+  <div class="buttons">
+    <button> {{ 'login' | translate }}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
+  </div>
+</header>
+
+<main class="wrapper">
+  <div *ngIf="currentStep === 1">
+    <div class="question">{{ 'questionNutritionalType' | translate }} </div>
+    <div class="container-buttons">
+      <button class="question-button" (click)="setFoodPreference('VEGAN')">
+        {{'vegan'| translate}}
+      </button>
+      <button class="question-button" (click)="setFoodPreference('VEGETARIAN')">
+        {{ 'vegetarian' | translate}}
+      </button>
+      <button class="question-button" (click)="setFoodPreference('CARNIVOROUS')">
+        {{ 'carnivorous' | translate}}
+      </button>
+      <button class="question-button" (click)="setFoodPreference('NONE')">
+        {{ 'none' | translate}}
+      </button>
+    </div>
+    <div *ngIf="activateErrorMessageForFoodPreference">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep === 2">
+    <div class="question">{{'questionAllergy'| translate}}</div>
+    <div class="container-inputs">
+      <div class="form-group">
+        <div class="multi-select">
+          <ng-multiselect-dropdown
+            [placeholder]="'Seleccione'"
+            [settings]="dropdownSettings"
+            [data]="allergies_list"
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="onItemDeSelect($event)">
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="error-container" *ngIf="this.validateAllergies">
+          <span class="error">{{'fieldRequired'|translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-buttons">
+    <button class="secondary-button" (click)="backStep()" *ngIf="currentStep !== 1">
+      {{'back'| translate}}
+    </button>
+
+    <button class="primary-button" (click)="nextStep()">
+      {{ currentStep === 2 ? ('registerForm' | translate) : ('next' | translate) }}
+    </button>
+  </div>
+</main>

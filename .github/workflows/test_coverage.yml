@@ -2,11 +2,10 @@ name: Test coverage
 
 on:
   push:
-    branches:      
+    branches:
         - develop
         - main
-        - release/.*
-        - feature/.*
+        - release
 
   pull_request:
     types: [opened, edited, synchronize, reopened, converted_to_draft, ready_for_review]
