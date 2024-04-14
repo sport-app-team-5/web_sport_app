@@ -11,6 +11,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpLoaderFactory } from '../../app.config'
+import { of } from 'rxjs'
 
 describe('NutritionalInformationComponent', () => {
   let component: NutritionalInformationComponent
@@ -163,6 +164,12 @@ describe('NutritionalInformationComponent', () => {
     it('should call nextStep when  currentStep 1', () => {
       component.validateStep1()
       expect(component.foodPreference).toBe('')
+    })
+
+    it('should call saveNutritionalInformationData', () => {
+      let mock = TestBed.inject(NutritionalInformationService)
+      spyOn(mock, 'createNutritionalInformation').and.returnValue(of([{}]))
+      component.saveNutritionalInformationData()
     })
   })
 })

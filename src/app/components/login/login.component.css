@@ -2,10 +2,9 @@
 
 :host {
     display: block;
-    background-image: url('../../../assets/images/background-login.png');
+    background-image: url('https://cdn-sport-app.s3.amazonaws.com/background_login.png');
     background-size: cover;
     background-repeat: no-repeat;
-
 }
 
 header {

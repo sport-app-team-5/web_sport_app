@@ -165,3 +165,10 @@ input:focus {
   height: 43px;
   font-size: 20px;
 }
+
+.user-image {
+  margin-right: 10px;
+  width: 31px;
+  height: 31px;
+  margin-top: 13px;
+}

@@ -33,12 +33,13 @@ export class NutritionalInformationComponent implements OnInit {
     private nutritionalInformationService: NutritionalInformationService,
     private toastr: ToastrService,
     private translate: TranslateService
+   
   ) {}
 
   ngOnInit () {
     this.switchLanguage('es')
     this.getAllergies()
-  }
+  } 
 
   onItemSelect(item: any) {
     this.allergies.push(item.id);
