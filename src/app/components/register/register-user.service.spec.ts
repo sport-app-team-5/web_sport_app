@@ -57,7 +57,7 @@ describe('RegisterUserService', () => {
       expect(data).toEqual(mockData)
     })
 
-const req = httpMock.expectOne(`${API_SPORT_PLAN_BASE_URL}sport_men/`)
+const req = httpMock.expectOne(`${API_SPORT_PLAN_BASE_URL}sports_men`)
 
     expect(req.request.method).toBe('POST')
     req.flush(mockData)
