@@ -20,7 +20,7 @@ export class RegisterUserService {
   }
 
   saveInfoSporPlanService (data: any): Observable<any> {
-    return this.http.post(API_SPORT_PLAN_BASE_URL + 'sport_men/', data)
+    return this.http.post(API_SPORT_PLAN_BASE_URL + 'sports_men', data)
   }
 
   getCountries (): Observable<any> {
