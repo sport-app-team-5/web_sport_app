@@ -19,7 +19,7 @@
         {{ 'supplier' | translate}}
       </button>
     </div>
-    <div class="" *ngIf="activateErrorMessageForRoleId===true">
+    <div *ngIf="activateErrorMessageForRoleId">
       <span class="error">{{ 'fieldRequired' | translate}}</span>
     </div>
   </div>

@@ -138,35 +138,8 @@ button {
   box-sizing: border-box;
 }
 
-select{
-  width: 300px;
-  border: 1px solid var(--c-gray-light);
-  box-sizing: border-box;
-  gap: 10px;
-  background-color: #111111;
-  color: var(--c-gray-light);
-  border-color: var(--c-gray-light);
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  height: 43px;
-  font-size: 15px;
-  padding: 5px 5px 5px 20px;
-}
-
 input:focus {
   color: var(--c-white);
-  border: 1px solid var(--c-green-ligth);
-  outline: 1px solid var(--c-green-ligth);
-}
-
-select:active,
-select:focus,
-select:focus-visible {
-  border: 1px solid var(--c-green-ligth);
-}
-
-select:focus-visible {
   border: 1px solid var(--c-green-ligth);
   outline: 1px solid var(--c-green-ligth);
 }
@@ -184,7 +157,7 @@ select:focus-visible {
   width: 300px;
 }
 
-.other {
+.multi-select {
   width: 275px;
   color: var(--c-gray-light);
   font-style: normal;
