@@ -96,7 +96,7 @@ button {
     background: #2C2C2C;
     display: flex;
     height: 40px;
-    padding: 0px 30px;
+    padding: 0 30px;
     align-items: center;
     gap: 20px;
     font-weight: 500;
@@ -107,7 +107,7 @@ button {
     background: var(--c-green-ligth);
     display: flex;
     height: 40px;
-    padding: 0px 30px;
+    padding: 0 30px;
     align-items: center;
     gap: 20px;
     font-weight: 500;
