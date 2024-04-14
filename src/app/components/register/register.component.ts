@@ -280,7 +280,6 @@ export class RegisterComponent implements OnInit {
     this.toastr.success('Usuario guardado éxitosamente', 'Exitoso', {
       timeOut: 3000
     })
-    this.router.navigate(['/login'])
   }
 
   saveSupplier (id: any) {
@@ -326,7 +325,7 @@ export class RegisterComponent implements OnInit {
       })
   }
   handleUpdateResponseSportMan () {
-    return
+    this.router.navigate(['/login'])
   }
 
   handleErrorSportMan () {
