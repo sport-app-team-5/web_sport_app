@@ -8,8 +8,8 @@
       "i18n":{
         "sourceLocale":"en-US",
       "locales": {
-        "en": "src/assets/i18n/en.json",
-        "pt": "src/assets/i18n/pt.json"
+        "en": "https://cdn-sport-app.s3.amazonaws.com/background_login.png/en.json",
+        "pt": "https://cdn-sport-app.s3.amazonaws.com/background_login.png/pt.json"
       }
       },
       "projectType": "application",
