@@ -24,7 +24,7 @@ export class AdditionalServiceService {
 
         return this.http.post(
             API_ADDITIONAL_SERVICE_BASE_URL +
-                'additional_service/services',
+                'auth/services',
             data,
             { headers }
         )
