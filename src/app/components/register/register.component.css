@@ -187,7 +187,6 @@ select:focus-visible {
 }
 
 .error {
-    color: var(--c-green-ligth);
     font-size: 14px;
     color: var(--c-yellow);
 }
