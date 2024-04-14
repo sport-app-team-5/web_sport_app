@@ -7,97 +7,136 @@ import { AdditionalServiceService } from './additional-service.service'
 import { Router } from '@angular/router'
 
 @Component({
-    selector: 'app-additionalservice',
-    templateUrl: './additionalservice.component.html',
-    styleUrls: ['./additionalservice.component.css'],
-    standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, TranslateModule],
-    providers: [AdditionalServiceService]
+  selector: 'app-additionalservice',
+  templateUrl: './additionalservice.component.html',
+  styleUrls: ['./additionalservice.component.css'],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  providers: [AdditionalServiceService]
 })
 export class AdditionalserviceComponent implements OnInit {
-    currentStep: any = 1
-    formData: any = {}
+  currentStep: any = 1
+  formData: any = {}
 
-    type: any = null
-    cost = new FormControl('', [Validators.required])
-    description = new FormControl('', [Validators.required])
-    is_active: boolean = true
+  type: any = null
+  cost = new FormControl('', [Validators.required])
+  description = new FormControl('', [Validators.required])
+  is_active: boolean = true
+  activateErrorMessageForTypeService: boolean = false
 
-    constructor (
-        private toastr: ToastrService,
-        private translate: TranslateService,
-        private adittionalService: AdditionalServiceService,
-        private router: Router
-    ) {}
+  constructor (
+    private toastr: ToastrService,
+    private translate: TranslateService,
+    private adittionalService: AdditionalServiceService,
+    private router: Router
+  ) {}
 
-    ngOnInit () {
-        this.switchLanguage('es')
-    }
+  ngOnInit () {
+    this.switchLanguage('es')
+  }
 
-    changeValueForm (e: any) {
-        const name = e.target.name
-        const value = e.target.value
-        this.formData[name] = value
+  getButtonClassesTypeTransport () {
+    return {
+      'question-button': true,
+      'active-button': this.type === 'TRANSPORT'
     }
-    switchLanguage (language: string): void {
-        this.translate.use(language)
-    }
-    setServiceType (value: any) {
-        this.type = value
-        this.formData['type'] = value
-    }
+  }
 
-    backStep () {
-        if (this.currentStep > 1) {
-            this.currentStep--
-        }
+  getButtonClassesTypeAccompanient () {
+    return {
+      'question-button': true,
+      'active-button': this.type === 'ACCOMPANIMENT'
     }
+  }
 
-    nextStep () {
-        if (this.currentStep === 1) {
-            if (this.validateStep1()) {
-                this.currentStep++
-            }
-        } else if (this.currentStep === 2) {
-            if (this.validateStep2()) {
-                this.currentStep++
-            }
-        } else if (this.currentStep === 3) {
-            if (this.validateStep3()) {
-                this.saveServiceData()
-            }
-        }
+  getButtonClassesTypeMecanic () {
+    return {
+      'question-button': true,
+      'active-button': this.type === 'MECANIC'
     }
+  }
 
-    validateStep1 () {
-        return this.type
-    }
+  changeValueForm (e: any) {
+    const name = e.target.name
+    const value = e.target.value
+    this.formData[name] = value
+  }
+  switchLanguage (language: string): void {
+    this.translate.use(language)
+  }
+  setServiceType (value: any) {
+    this.type = value
+    this.formData['type'] = value
+    this.activateErrorMessageForTypeService = false
+  }
 
-    validateStep2 () {
-        return this.cost && this.cost.errors === null
+  backStep () {
+    if (this.currentStep > 1) {
+      this.currentStep--
     }
+  }
 
-    validateStep3 () {
-        return this.description && this.description.errors === null
+  nextStep () {
+    if (this.currentStep === 1) {
+      if (this.validateStep1()) {
+        this.currentStep++
+      }
+    } else if (this.currentStep === 2) {
+      if (this.validateStep2()) {
+        this.currentStep++
+      }
+    } else if (this.currentStep === 3) {
+      if (this.validateStep3()) {
+        this.saveServiceData()
+      }
     }
+  }
 
-    saveServiceData () {
-        this.formData['is_active'] = this.is_active
-        this.adittionalService
-            .registerAdditionalService(this.formData)
-            .subscribe({
-                next: this.handleUpdateResponse.bind(this),
-                error: this.handleError.bind(this)
-            })
+  validateStep1 () {
+    if (this.type) {
+      return true
+    } else {
+      this.activateErrorMessageForTypeService = true
+      return false
     }
+  }
 
-    handleUpdateResponse (response: any) {
-        this.router.navigate(['/home'])
+  validateStep2 () {
+    if (this.cost && this.cost.errors === null) {
+      return true
+    } else {
+      this.cost.markAsTouched()
+      return false
     }
+  }
 
-    handleError (error: any) {
-        this.toastr.error('Error registrando el servicio', 'Error', {
-            timeOut: 3000
-        })
+  validateStep3 () {
+    if (this.description && this.description.errors === null) {
+      return true
+    } else {
+      this.description.markAsTouched()
+      return false
     }
+  }
+
+  saveServiceData () {
+    this.formData['is_active'] = this.is_active
+    this.adittionalService.registerAdditionalService(this.formData).subscribe({
+      next: this.handleUpdateResponse.bind(this),
+      error: this.handleError.bind(this)
+    })
+  }
+
+  handleUpdateResponse (response: any) {
+    this.toastr.success('Registro exitoso del servicio', 'Exito', {
+      timeOut: 3000
+    })
+    this.router.navigate(['/home'])
+  }
+
+  handleError (error: any) {
+    this.toastr.error('Error registrando el servicio', 'Error', {
+      timeOut: 3000
+    })
+  }
 }
