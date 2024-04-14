@@ -1,12 +1,26 @@
-@import './vars.css';
+@import '../register/vars.css';
+
+:host {
+    display: block;
+    background-image: url('../../../assets/images/background-login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
 
 header {
-    background-color: var(--c-black-light);
     box-sizing: border-box;
 }
 
-main {
-    background-color: var(--c-black-main);
+header img {
+    width: 70px;
+    height: 70.809px;
+    margin-top: 80px;
+    margin-left: 80px;
+
+}
+
+main {    
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -51,7 +65,6 @@ button {
 }
 
 .container-buttons {
-    margin-top: 30px;
     display: flex;
     padding: 15px;
     justify-content: center;
@@ -71,12 +84,6 @@ button {
     border-radius: 10px;
     border: 1px solid var(--c-green-ligth);
     color: var(--c-green-ligth);
-}
-
-.active-button {
-    border-radius: 10px;
-    border: 1px solid var(--c-green-ligth);
-    color: var(--c-green-ligth)
 }
 
 .wrapper {
@@ -114,8 +121,9 @@ button {
     height: 40px;
     padding: 0px 30px;
     align-items: center;
-    gap: 20px;
     font-weight: 500;
+    width: 300px;
+    justify-content: center;
 }
 
 .container-inputs {
@@ -149,24 +157,22 @@ select {
     border: 1px solid var(--c-gray-light);
     box-sizing: border-box;
     gap: 10px;
+    height: 35px;
     background-color: #111111;
     color: var(--c-gray-light);
     border-color: var(--c-gray-light);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    font-size: 16px;
 }
 
 input {
-  height: 35px;
-  font-size: 16px;
-  padding: 20px;
+    padding: 20px;
 }
 
 select {
-  height: 43px;
-  font-size: 15px;
-  padding: 5px 5px 5px 20px;
+    padding: 5px 5px 5px 20px;
 }
 
 input:focus {
@@ -186,8 +192,7 @@ select:focus-visible {
     outline: 1px solid var(--c-green-ligth);
 }
 
-.error {
-    color: var(--c-green-ligth);
+.error { 
     font-size: 14px;
     color: var(--c-yellow);
 }

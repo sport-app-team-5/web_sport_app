@@ -1,0 +1,38 @@
+<header class="header">
+  <img src="../../../assets/images/logo.png" alt="Logo sportapp" />
+  <div class="buttons">
+    <button (click)="goToRegister()">{{ 'register' | translate}}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
+  </div>
+</header>
+<main class="wrapper">
+  <div>
+    <div class="container-inputs">
+      <div class="form-group">
+        <label class="label-text" for="input1">{{'email'| translate}}</label>
+        <input type="text" name="email" placeholder="{{'enterEmail'| translate}}" [formControl]="email"
+          (change)="changeValueForm($event)">
+        <div class="error-container" *ngIf="(email.invalid && (email.dirty || email.touched))">
+          <span class="error" *ngIf="email.errors?.['required']">{{'fieldRequired'| translate}}</span>
+          <span class="error" *ngIf="email.errors?.['email']">{{'emailFail' | translate}}</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label-text" for="input2">{{'password'|translate }}</label>
+        <input [formControl]="password" type="password" name="password" placeholder="{{'enterPassword'| translate}}"
+          (change)="changeValueForm($event)">
+        <div class="error-container" *ngIf="password.invalid && (password.dirty || password.touched)">
+          <span class="error" *ngIf="password.errors?.['required']">{{'fieldRequired'| translate}}</span>
+        </div>
+      </div>
+      <div class="container-buttons">
+        <button class="primary-button" (click)="userLogin()">
+          {{'login' | translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

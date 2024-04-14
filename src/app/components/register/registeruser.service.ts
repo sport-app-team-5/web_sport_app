@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable, Injector } from '@angular/core'
 import { Observable } from 'rxjs'
 import {
+  API_ADDITIONAL_SERVICE_BASE_URL,
   API_SPORT_PLAN_BASE_URL,
   API_USER_BASE_URL
 } from '../../../../api.constants'
@@ -15,12 +16,11 @@ export class RegisterUserService {
   }
 
   createUser (data: any): Observable<any> {
-    return this.http.post(API_USER_BASE_URL
-+'users', data)
+    return this.http.post(API_USER_BASE_URL + 'users', data)
   }
 
-  saveDataUserInfo (user_id: any): Observable<any> {
-    return this.http.post(API_SPORT_PLAN_BASE_URL + 'sport_men', user_id)
+  saveInfoSporPlanService (data: any): Observable<any> {
+    return this.http.post(API_SPORT_PLAN_BASE_URL + 'sport_men/', data)
   }
 
   getCountries (): Observable<any> {
@@ -29,5 +29,12 @@ export class RegisterUserService {
 
   getCities (country_id: any): Observable<any> {
     return this.http.get(API_USER_BASE_URL + 'locations/cities/' + country_id)
+  }
+
+  registerSupplier (data: any): Observable<any> {
+    return this.http.post(
+      API_ADDITIONAL_SERVICE_BASE_URL + 'third_parties',
+      data
+    )
   }
 }

@@ -1,0 +1,107 @@
+@import '../register/vars.css';
+
+header {
+    background-color: var(--c-black-light);
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: var(--c-white);
+    height: 50px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-right: 16px;
+}
+
+button {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.sidebar {
+    display: flex;
+    width: 42px;
+    padding: 14px 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    align-self: stretch;
+    background-color: var(--black);
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row
+}
+
+.content {
+    width: 100%;
+    background-color: var(--c-black-bg);
+    display: flex;
+    flex-direction: column;
+    color: var(--c-white);
+}
+
+.user-image {
+    margin-right: 10px;
+    width: 31px;
+    height: 31px;
+    margin-top: 13px;
+}
+
+.container-logo {
+    display: flex;
+    gap: 10px;
+}
+
+.container-logo p {
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.container-logo img {
+    width: 40px;
+    height: 40px;
+    margin-top: 26px;
+}
+
+
+.primary-button {
+    border-radius: 38px;
+    background: var(--c-green-ligth);
+    display: flex;
+    height: 40px;
+    padding: 0px 30px;
+    align-items: center;
+    gap: 20px;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.brand-img {
+    width: 50px;
+    height: 50px;
+}
+
+.button-end {
+    display: flex;
+    justify-content: end;
+    margin: 16px;
+}
+.container-content{
+    margin: 16px;
+}

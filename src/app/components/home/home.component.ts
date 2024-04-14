@@ -1,18 +1,38 @@
 import { Component, OnInit } from '@angular/core'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router'
-import { Observable } from 'rxjs'
+import { Router } from '@angular/router'
+import {
+  TranslateService,TranslateModule
+} from '@ngx-translate/core'
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  standalone: true,
+   imports: [TranslateModule]
 })
 export class HomeComponent implements OnInit {
-  constructor (private route: ActivatedRoute, private router: Router) {}
+  constructor (
+    private router: Router,
+    private translate: TranslateService
+  ) {}
 
-  ngOnInit () {}
+  ngOnInit () {
+    this.switchLanguage('es')
+  }
+
+  switchLanguage (language: string): void {
+    this.translate.use(language)
+  }
+  getLocalizedText (key: string): string {
+    return this.translate.instant(key)
+  }
 
   goToRegitry () {
     this.router.navigate(['/register'])
+  }
+  goToLogin () {
+    this.router.navigate(['/login'])
   }
 }
