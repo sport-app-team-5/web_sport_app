@@ -33,6 +33,10 @@ export const routes: Routes = [
     component: AdditionalserviceComponent
   },
   {
+    path: 'products',
+    component: AdditionalserviceComponent
+  },
+  {
     path: 'sportplan',
     component: SportplanComponent
   },

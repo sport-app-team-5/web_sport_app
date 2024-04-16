@@ -4,6 +4,7 @@ import { Router } from '@angular/router'
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
+  standalone: true,
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
@@ -17,11 +18,15 @@ export class MainComponent implements OnInit {
     return true
   }
 
-  createNewService () {
+  createService () {
     this.router.navigate(['/services'])
   }
 
-  goToNutritionalInfo () {
+  createNutritionalInfo () {
     this.router.navigate(['/nutritional-information'])
+  }
+
+  createProduct () {
+    this.router.navigate(['/products'])
   }
 }
