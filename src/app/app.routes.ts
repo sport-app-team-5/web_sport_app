@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component'
 import { NutritionalInformationComponent } from "./components/nutritional-information/nutritional-information.component";
 import { MainComponent } from './components/main/main.component'
 import {AdditionalserviceComponent} from "./components/additionalservice/additionalservice.component";
+import {ProductComponent} from "./components/product/product.component";
 
 export const routes: Routes = [
   {
@@ -34,7 +35,7 @@ export const routes: Routes = [
   },
   {
     path: 'products',
-    component: AdditionalserviceComponent
+    component: ProductComponent
   },
   {
     path: 'sportplan',
