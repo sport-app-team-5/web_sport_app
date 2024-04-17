@@ -22,4 +22,9 @@ describe('Service: Auth', () => {
     spyOn(sessionStorage, 'getItem').and.returnValue('access_token')
     expect(service.canActivate()).toBe(true)
   }))
+
+  it('should get session storage in null', inject([AuthService], (service: AuthService) => {
+    spyOn(sessionStorage, 'getItem').and.returnValue(null)
+    expect(service.canActivate()).toBe(false)
+  }))
 })
