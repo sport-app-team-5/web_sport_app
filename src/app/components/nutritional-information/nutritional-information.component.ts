@@ -5,11 +5,12 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {NutritionalInformationService} from "./nutritional-information.service";
 import {ToastrService} from "ngx-toastr";
 import {NgMultiSelectDropDownModule,} from 'ng-multiselect-dropdown';
+import { HeaderMainComponent } from '../header-main/header-main.component';
 
 @Component({
   selector: 'app-nutritional-information',
   standalone: true,
-  imports: [NgForOf, NgIf, ReactiveFormsModule, TranslateModule, NgMultiSelectDropDownModule],
+  imports: [NgForOf, NgIf, ReactiveFormsModule, TranslateModule, NgMultiSelectDropDownModule, HeaderMainComponent],
   templateUrl: './nutritional-information.component.html',
   styleUrl: './nutritional-information.component.css',
   providers: [NutritionalInformationService]

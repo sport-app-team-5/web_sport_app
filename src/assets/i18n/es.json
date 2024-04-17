@@ -60,7 +60,14 @@
   "Tree nuts": "Frutos secos",
   "Wheat": "Trigo",
   "Sesame": "Sésamo",
-  "greater2characters":"Debe ser mayor de 2"
+  "greater2characters":"Debe ser mayor de 2",
+  "questionProductCategory":"¿Qué tipo de producto quieres ofrece?",
+  "productCost":"¿Cuál es el costo del producto?",
+  "productName":"¿Cuál es el nombre del producto?",
+  "productDescription":"Escribe una descripción del producto que estás ofreciendo",
+  "supplements":"Suplementos",
+  "sportsEquipment":"Equipo deportivo",
+  "food":"Alimentos"
 }
 
 

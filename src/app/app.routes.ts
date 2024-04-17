@@ -3,10 +3,12 @@ import { SportplanComponent } from './components/sportplan/sportplan.component'
 import { HomeComponent } from './components/home/home.component'
 import { RegisterComponent } from './components/register/register.component'
 import { LoginComponent } from './components/login/login.component'
-import { NutritionalInformationComponent } from "./components/nutritional-information/nutritional-information.component";
+import { NutritionalInformationComponent } from './components/nutritional-information/nutritional-information.component'
 import { MainComponent } from './components/main/main.component'
+import { domainGuard } from './domain'
 import {AdditionalserviceComponent} from "./components/additionalservice/additionalservice.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {ProductComponent} from "./components/product/product.component";
 
 export const routes: Routes = [
   {
@@ -23,19 +25,27 @@ export const routes: Routes = [
   },
   {
     path: 'nutritional-information',
-    component: NutritionalInformationComponent
+    component: NutritionalInformationComponent,
+    canActivate: [domainGuard]
   },
   {
     path: 'sportplan',
-    component: SportplanComponent
+    component: SportplanComponent,
+    canActivate: [domainGuard]
   },
   {
     path: 'services',
-    component: AdditionalserviceComponent
+    component: AdditionalserviceComponent,
+    canActivate: [domainGuard]
+  },
+  {
+    path: 'products',
+    component: ProductComponent
   },
   {
     path: 'sportplan',
-    component: SportplanComponent
+    component: SportplanComponent,
+    canActivate: [domainGuard]
   },
   {
     path: 'dashboard',
@@ -43,6 +53,7 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: MainComponent
+    component: MainComponent,
+    canActivate: [domainGuard]
   }
 ]
