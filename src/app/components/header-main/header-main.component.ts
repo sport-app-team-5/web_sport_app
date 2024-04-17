@@ -13,9 +13,13 @@ export class HeaderMainComponent implements OnInit {
   isOpenMenu: boolean = false
   constructor (private router: Router) {}
 
-  ngOnInit () {}
+  ngOnInit () {
+    this.start()
+  }
 
-  
+  start () {
+    return true
+  }
   openMenuClass () {
     return {
       menu: true,
