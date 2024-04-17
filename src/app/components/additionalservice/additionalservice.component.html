@@ -1,13 +1,4 @@
-<header class="header">
-  <div class="container-logo">
-    <img src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="logo" />
-    <p>Bienvenido</p>
-  </div>
-  <div class="buttons">
-    <img class="user-image" src="https://cdn-sport-app.s3.amazonaws.com/user_image.png" alt="usuario-logo" />
-    <button> Luis</button>
-  </div>
-</header>
+<app-header-main></app-header-main>
 <main class="wrapper">
   <div class="container-question" *ngIf="currentStep === 1">
     <div class="question">{{'questionServiceType' | translate}} </div>
