@@ -22,6 +22,7 @@ export class NutritionalInformationComponent implements OnInit {
   };
   formData: any = {}
   currentStep: number = 1
+  activateErrorMessageForFoodPreference: boolean = false
 
   allergies_list: any[] = []
   foodPreference: string = ''
@@ -32,12 +33,13 @@ export class NutritionalInformationComponent implements OnInit {
     private nutritionalInformationService: NutritionalInformationService,
     private toastr: ToastrService,
     private translate: TranslateService
+   
   ) {}
 
   ngOnInit () {
     this.switchLanguage('es')
     this.getAllergies()
-  }
+  } 
 
   onItemSelect(item: any) {
     this.allergies.push(item.id);
@@ -66,13 +68,14 @@ export class NutritionalInformationComponent implements OnInit {
   setFoodPreference (value: any) {
     this.foodPreference = value
     this.formData['food_preference'] = value
+    this.activateErrorMessageForFoodPreference = false
   }
 
   nextStep () {
     if (this.currentStep === 1) {
       if (this.validateStep1()) {
         this.currentStep++
-      }
+      } else { this.activateErrorMessageForFoodPreference = true }
     } else if (this.currentStep === 2) {
       this.changeValueForm({target: {name: 'allergies', value: this.allergies}})
       if (this.validateStep2()) {

@@ -1,11 +1,10 @@
 <header class="header">
-  <p>Logo</p>
+  <div class="container-logo">
+    <p>Bienvenido</p>
+  </div>
   <div class="buttons">
-    <button> {{ 'login' | translate }}</button>
-    <div class="line"></div>
-    <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
-    <div class="line"></div>
-    <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
+    <img class="user-image" src="https://cdn-sport-app.s3.amazonaws.com/user_image.png" alt="user-logo" />
+    <p> Luis</p>
   </div>
 </header>
 
@@ -26,13 +25,16 @@
         {{ 'none' | translate}}
       </button>
     </div>
+    <div *ngIf="activateErrorMessageForFoodPreference">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
+    </div>
   </div>
 
   <div *ngIf="currentStep === 2">
     <div class="question">{{'questionAllergy'| translate}}</div>
     <div class="container-inputs">
       <div class="form-group">
-        <div class="other">
+        <div class="multi-select">
           <ng-multiselect-dropdown
             [placeholder]="'Seleccione'"
             [settings]="dropdownSettings"

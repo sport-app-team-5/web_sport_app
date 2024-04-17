@@ -1,13 +1,17 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NutritionalInformationComponent } from './nutritional-information.component';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+import { NutritionalInformationComponent } from './nutritional-information.component'
+import {
+  TranslateLoader,
+  TranslateModule,
+  TranslateService
+} from '@ngx-translate/core'
 import { ToastrModule } from 'ngx-toastr'
-import {NutritionalInformationService} from "./nutritional-information.service";
+import { NutritionalInformationService } from './nutritional-information.service'
 import { HttpClient, HttpClientModule } from '@angular/common/http'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpLoaderFactory } from '../../app.config'
-
+import { of } from 'rxjs'
 
 describe('NutritionalInformationComponent', () => {
   let component: NutritionalInformationComponent
@@ -39,7 +43,9 @@ describe('NutritionalInformationComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NutritionalInformationComponent)
     component = fixture.componentInstance
-    nutritionalInformationService = TestBed.inject(NutritionalInformationService)
+    nutritionalInformationService = TestBed.inject(
+      NutritionalInformationService
+    )
 
     translateService = TestBed.inject(TranslateService)
     fixture.detectChanges()
@@ -137,6 +143,33 @@ describe('NutritionalInformationComponent', () => {
       const event = { target: { name: 'test', value: 'value' } }
       component.changeValueForm(event)
       expect(component.formData['test']).toBe('value')
+    })
+  })
+
+  describe('nextStep call', () => {
+    it('should call nextStep when  currentStep 1', () => {
+      component.currentStep = 1
+      spyOn(component, 'validateStep1').and.returnValue(true)
+      component.nextStep()
+      expect(component.currentStep).toBe(2)
+    })
+
+    it('should call nextStep when  currentStep 1', () => {
+      component.currentStep = 1
+      spyOn(component, 'validateStep1').and.returnValue(false)
+      component.nextStep()
+      expect(component.activateErrorMessageForFoodPreference).toBe(true)
+    })
+
+    it('should call nextStep when  currentStep 1', () => {
+      component.validateStep1()
+      expect(component.foodPreference).toBe('')
+    })
+
+    it('should call saveNutritionalInformationData', () => {
+      let mock = TestBed.inject(NutritionalInformationService)
+      spyOn(mock, 'createNutritionalInformation').and.returnValue(of([{}]))
+      component.saveNutritionalInformationData()
     })
   })
 })

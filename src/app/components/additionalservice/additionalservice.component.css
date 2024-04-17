@@ -96,7 +96,7 @@ button {
     background: #2C2C2C;
     display: flex;
     height: 40px;
-    padding: 0px 30px;
+    padding: 0 30px;
     align-items: center;
     gap: 20px;
     font-weight: 500;
@@ -107,7 +107,7 @@ button {
     background: var(--c-green-ligth);
     display: flex;
     height: 40px;
-    padding: 0px 30px;
+    padding: 0 30px;
     align-items: center;
     gap: 20px;
     font-weight: 500;
@@ -224,4 +224,9 @@ select:focus-visible {
     width: 40px;
     height: 40px;
     margin-top: 26px;
+}
+.active-button {
+    border-radius: 10px;
+    border: 1px solid var(--c-green-ligth);
+    color: var(--c-green-ligth)
 }
