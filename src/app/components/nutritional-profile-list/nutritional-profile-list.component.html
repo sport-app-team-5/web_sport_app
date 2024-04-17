@@ -1,0 +1,30 @@
+<p>
+  nutritional-profile-list works!
+</p>
+<h3>Tu información</h3>
+<p>Encontrarás tus datos personales de tu perfil alimenticio</p>
+<div>
+  <table aria-describedby="food profile">
+    <caption>Formulario: Información alimenticia</caption>
+    <thead>
+      <tr>
+        <th class="h5">Tipo</th>
+        <th class="h5">Nombre</th>
+        <th class="h5">Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fooditem of foodList" class="text-black bg-white">
+        <td>
+          <dd class="fw-bold ">{{fooditem.name}}</dd>
+        </td>
+        <td>
+          <dd>{{fooditem.description}}</dd>
+        </td>
+        <td>
+          <dd>{{fooditem.created_at}}</dd>
+        </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
