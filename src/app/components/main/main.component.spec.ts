@@ -11,8 +11,7 @@ describe('MainComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MainComponent],
-      imports: [RouterTestingModule]
+      imports: [MainComponent]
     }).compileComponents()
   }))
 
@@ -38,6 +37,22 @@ describe('MainComponent', () => {
     const navigateSpy = spyOn(router, 'navigate')
     component.createService()
     expect(navigateSpy).toHaveBeenCalledWith(['/services'])
+  })
+  it('should setMenuAtive', () => {
+    const instance = {
+      isOpenMenu: true
+    }
+    component.openMenu()
+    expect(instance.isOpenMenu).toBe(true)
+  })
+
+  it('should setMenuAtive', () => {
+    const instance = {
+      isActiveMenu: true
+    }
+    component.setMenuAtive(false)
+
+    expect(instance.isActiveMenu).toBe(true)
   })
 
   it('should go to create product', () => {
