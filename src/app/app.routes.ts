@@ -5,9 +5,9 @@ import { RegisterComponent } from './components/register/register.component'
 import { LoginComponent } from './components/login/login.component'
 import { NutritionalInformationComponent } from './components/nutritional-information/nutritional-information.component'
 import { MainComponent } from './components/main/main.component'
-import { AdditionalserviceComponent } from './components/additionalservice/additionalservice.component'
 import { domainGuard } from './domain'
-
+import {AdditionalserviceComponent} from "./components/additionalservice/additionalservice.component";
+import {ProductComponent} from "./components/product/product.component";
 
 export const routes: Routes = [
   {
@@ -36,6 +36,10 @@ export const routes: Routes = [
     path: 'services',
     component: AdditionalserviceComponent,
     canActivate: [domainGuard]
+  },
+  {
+    path: 'products',
+    component: ProductComponent
   },
   {
     path: 'sportplan',

@@ -40,11 +40,12 @@ export class MainComponent implements OnInit {
     this.isActiveMenu = value
   }
 
-  createNewService () {
+
+  createService () {
     this.router.navigate(['/services'])
   }
 
-  goToNutritionalInfo () {
+  createNutritionalInfo () {
     this.router.navigate(['/nutritional-information'])
   }
 
@@ -61,5 +62,9 @@ export class MainComponent implements OnInit {
   closeSession () {
     sessionStorage.clear()
     this.router.navigate(['/'])
+  }
+  
+  createProduct () {
+    this.router.navigate(['/products'])
   }
 }
