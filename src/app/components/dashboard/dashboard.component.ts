@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {DashboardService} from "./dashboard.service";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    TranslateModule
+    TranslateModule,
+    NgForOf
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -20,6 +22,11 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   profile: any[] = []
+
+  events= [
+    { name: "Runner", date: "10-12-2024" },
+    { name: "Ciclismo", date: "11-12-2024" }
+  ];
 
   ngOnInit() {
     this.switchLanguage('es')

@@ -73,7 +73,9 @@
   "dedication":"Dedicación en horas por semana",
   "experience":"Experiencia deportiva",
   "yourActivities":"Actividades preferidas",
-  "injuries":"Lesiones"
+  "injuries":"Lesiones",
+  "event":"Evento",
+  "date":"Fecha"
 }
 
 

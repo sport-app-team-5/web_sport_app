@@ -55,13 +55,26 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="column">
-          <div class="row">
-            <span class="text-card-title">Eventos</span>
-            <hr class="separate-top">
-            <span class="text-card-info">Runner</span>
-            <hr class="separate-button">
+      <div class="table">
+        <div class="row">
+          <div>
+            <span class="text-card-title">{{ 'event' | translate}}</span>
+            <hr class="separate-top-table-left">
+          </div>
+          <div>
+            <span class="text-card-title">{{ 'date' | translate}}</span>
+            <hr class="separate-top-table-right">
+          </div>
+        </div>
+
+        <div *ngFor="let event of events" class="row">
+          <div>
+            <span class="text-card-info">{{ event.name }}</span>
+            <hr class="separate-button-table-left">
+          </div>
+          <div>
+            <span class="text-card-info">{{ event.date }}</span>
+            <hr class="separate-button-table-right">
           </div>
         </div>
       </div>

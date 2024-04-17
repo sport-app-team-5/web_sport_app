@@ -139,7 +139,7 @@ button {
 
 .column {
   flex: 1;
-  margin: 16px;
+  margin: 0.8rem;
   border: 1px solid var(--c-green-ligth);
 }
 
@@ -157,4 +157,20 @@ button {
   font-weight: 400;
   line-height: normal;
   margin: 0 0 2rem 5rem;
+}
+
+.table-tittle{
+  line-height: normal;
+  margin: 0 5rem 0 5rem;
+}
+
+.table {
+  margin: 0 10.8rem 0 10.8rem;
+  border: 1px solid var(--c-green-ligth);
+}
+
+.row {
+  display: flex;
+  flex: 1;
+  justify-content: center;
 }
