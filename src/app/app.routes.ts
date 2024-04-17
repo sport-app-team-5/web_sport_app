@@ -6,7 +6,6 @@ import { LoginComponent } from './components/login/login.component'
 import { NutritionalInformationComponent } from "./components/nutritional-information/nutritional-information.component";
 import { MainComponent } from './components/main/main.component'
 import {AdditionalserviceComponent} from "./components/additionalservice/additionalservice.component";
-import { NutritionalProfileListComponent } from './components/nutritional-profile-list/nutritional-profile-list.component'
 
 export const routes: Routes = [
   {
@@ -40,9 +39,5 @@ export const routes: Routes = [
   {
     path: 'home',
     component: MainComponent
-  },
-  {
-    path: 'nutritional-profile',
-    component: NutritionalProfileListComponent
   },
 ]
