@@ -17,11 +17,15 @@ export class MainComponent implements OnInit {
     return true
   }
 
-  createNewService () {
+  createService () {
     this.router.navigate(['/services'])
   }
 
-  goToNutritionalInfo () {
+  createNutritionalInfo () {
     this.router.navigate(['/nutritional-information'])
+  }
+
+  createProduct () {
+    this.router.navigate(['/products'])
   }
 }
