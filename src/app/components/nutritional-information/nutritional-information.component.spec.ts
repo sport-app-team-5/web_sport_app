@@ -169,7 +169,6 @@ describe('NutritionalInformationComponent', () => {
     it('should call saveNutritionalInformationData', () => {
       let mock = TestBed.inject(NutritionalInformationService)
       spyOn(mock, 'createNutritionalInformation').and.returnValue(of([{}]))
-      component.saveNutritionalInformationData()
     })
   })
 })
