@@ -49,36 +49,30 @@ export class LoginComponent implements OnInit {
     const name = e.target.name
     const value = e.target.value
     this.formData[name] = value
+    console.log(this.email.errors)
   }
 
   userLogin () {
-    // sessionStorage.setItem('access_token', 'test')
-    let response={
-        access_token:"test"
-
+    if (this.email.value && this.password.value) {
+      this.loginService.login(this.formData).subscribe({
+        next: this.handleUpdateResponse.bind(this),
+        error: this.handleError.bind(this)
+      })
+    } else {
+      this.email.markAsTouched()
+      this.password.markAsTouched()
     }
-    this.handleUpdateResponse(response)
-
-    // if (this.email.value && this.password.value) {
-    //   this.loginService.login(this.formData).subscribe({
-    //     next: this.handleUpdateResponse.bind(this),
-    //     error: this.handleError.bind(this)
-    //   })
-    // } else {
-    //   this.email.markAsTouched()
-    //   this.password.markAsTouched()
-    // }
   }
 
   handleUpdateResponse (response: any) {
-    // if (typeof response.access_token !== 'string') {
-    //   console.error('Access token is not a string:', response.access_token)
-    //   return
-    // }
+    if (typeof response.access_token !== 'string') {
+      console.error('Access token is not a string:', response.access_token)
+      return
+    }
 
-    sessionStorage.setItem('access_token', 'response.access_token')
-    // const decoded = jwtDecode<any>(response.access_token)
-    // sessionStorage.setItem('role', decoded.role)
+    sessionStorage.setItem('access_token', response.access_token)
+    const decoded = jwtDecode<any>(response.access_token)
+    sessionStorage.setItem('role', decoded.role)
     this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
       timeOut: 3000
     })
