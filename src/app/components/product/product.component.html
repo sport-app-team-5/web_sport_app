@@ -1,0 +1,70 @@
+<header class="header">
+  <div class="container-logo">
+    <img src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="logo" />
+    <p>Bienvenido</p>
+  </div>
+  <div class="buttons">
+    <img class="user-image" src="https://cdn-sport-app.s3.amazonaws.com/user_image.png" alt="usuario-logo" />
+    <button> Luis</button>
+  </div>
+</header>
+
+<main class="wrapper">
+  <div class="container-question" *ngIf="currentStep === 1">
+    <div class="question">{{"questionProductCategory" | translate}} </div>
+    <div class="container-buttons">
+      <button [ngClass]='getButtonClassesSupplements()' (click)="setCategory('Supplements')">
+        {{'supplements'| translate}}
+      </button>
+      <button [ngClass]='getButtonClassesSportsEquipment()' class="question-button" (click)="setCategory('Sports Equipment')">
+        {{'sportsEquipment'| translate}}
+      </button>
+      <button [ngClass]='getButtonClassesFood()'  (click)="setCategory('Food')">
+        {{'food'| translate}}
+      </button>
+    </div>
+    <div *ngIf="activateErrorMessageForCategory">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 2" class="container-services">
+    <div class="question">{{'productName'| translate}}</div>
+    <div>
+      <input [formControl]="name" type="text" name="name" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
+        <span class="error" *ngIf="name.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 3" class="container-services">
+    <div class="question">{{'productCost'| translate}}</div>
+    <div>
+      <input [formControl]="cost" type="number" name="cost" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="cost.invalid && (cost.dirty || cost.touched)">
+        <span class="error" *ngIf="cost.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 4" class="container-services">
+    <div class="question">{{'productDescription'| translate}}</div>
+    <div>
+      <input [formControl]="description" type="text" name="description" placeholder="{{'writeHere'| translate}}"
+             (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="description.invalid && (description.dirty || description.touched)">
+        <span class="error" *ngIf="description.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-buttons">
+    <button *ngIf="currentStep !== 1" class="secondary-button" (click)="backStep()">
+      {{'back'| translate}}
+    </button>
+    <button class="primary-button" (click)="nextStep()">
+      {{ currentStep === 4 ? ('registerForm' | translate) : ('next' | translate) }}
+    </button>
+  </div>
+</main>

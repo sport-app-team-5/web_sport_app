@@ -1,27 +1,40 @@
 <main class="container">
   <div class="sidebar">
     <img class="brand-img" src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="logo" />
-    <p>home</p>
-    <p>hand</p>
-    <p>box</p>
+    <div [ngClass]="getButtonClassesMenuHome()" class="container-home" (click)="setMenuAtive('home')">
+      <svg   [ngClass]="getButtonClassesMenuSvg()"  width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+        <path fill="white"
+          d="M277.4 4.002C283.5-1.334 292.5-1.334 298.6 4.002L570.6 244C577.2 249.8 577.8 259.1 571.1 266.6C566.2 273.2 556 273.8 549.4 267.1L512 234.1V432C512 476.2 476.2 512 432 512H144C99.82 512 64 476.2 64 432V234.1L26.59 267.1C19.96 273.8 9.849 273.2 4.003 266.6C-1.844 259.1-1.212 249.8 5.414 244L277.4 4.002zM96 206.7V432C96 458.5 117.5 480 144 480H432C458.5 480 480 458.5 480 432V206.7L288 37.34L96 206.7z" />
+      </svg>
+    </div>
+    <div class="container-home" (click)="setMenuAtive('traning')">
+      <svg class="cell" width="24" height="24"  xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+        <path fill="white"
+          d="M288 0H96C60.65 0 32 28.65 32 64v384c0 35.35 28.65 64 64 64h192c35.35 0 64-28.65 64-64V64C352 28.65 323.3 0 288 0zM320 448c0 17.64-14.36 32-32 32H96c-17.64 0-32-14.36-32-32V64c0-17.64 14.36-32 32-32h192c17.64 0 32 14.36 32 32V448zM224 400H160c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16h64c8.836 0 16-7.164 16-16C240 407.2 232.8 400 224 400z" />
+      </svg>
+    </div>
+    <div class="container-home" (click)="setMenuAtive('calendar')">
+      <svg class="cell" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+        <path fill="white"
+          d="M112 0C120.8 0 128 7.164 128 16V64H320V16C320 7.164 327.2 0 336 0C344.8 0 352 7.164 352 16V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H96V16C96 7.164 103.2 0 112 0zM416 192H32V448C32 465.7 46.33 480 64 480H384C401.7 480 416 465.7 416 448V192zM384 96H64C46.33 96 32 110.3 32 128V160H416V128C416 110.3 401.7 96 384 96z" />
+      </svg>
+    </div>
+    <img (click)="closeSession()" class="icon-menu" src="../../../assets/images/logout.svg" alt="Logout" />
   </div>
   <div class="content">
-    <header class="header">
-      <div class="container-logo">
-        <p>Bienvenido</p>
-      </div>
-      <div class="buttons">
-        <img class="user-image" src="https://cdn-sport-app.s3.amazonaws.com/user_image.png" alt="user-logo" />
-        <p> Luis</p>
-      </div>
-    </header>
+    <app-header-main></app-header-main>
     <div class="main-content">
       <div class="button-end">
-        <button class="primary-button" (click)="createNewService()"> Agregar servicio</button>
-        <button class="primary-button" (click)="goToNutritionalInfo()"> Agregar información nutricional</button>
+        <button class="primary-button" (click)="createProduct()"> Agregar producto</button>
+        <button class="primary-button" (click)="createService()"> Agregar servicio</button>
+        <button class="primary-button" (click)="createNutritionalInfo()"> Agregar información nutricional</button>
       </div>
       <div class="container-content">
         content
+        <app-nutritional-profile-list></app-nutritional-profile-list>
       </div>
     </div>
   </div>
