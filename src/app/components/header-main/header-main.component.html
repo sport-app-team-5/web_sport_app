@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="container-logo">
+    <p>Bienvenido</p>
+  </div>
+  <div class="buttons">
+    <img class="user-image" src="https://cdn-sport-app.s3.amazonaws.com/user_image.png" alt="user-logo" />
+    <p> Luis</p>
+    <img (click)="openMenu()" class="icon-size" src="https://cdn-sport-app.s3.amazonaws.com/chevron_down.png"
+      alt="icon-size" />
+  </div>
+</header>
+<div *ngIf="isOpenMenu">
+  <ul class="menu" id="menu">
+    <li>
+      <img class="icon-menu" src="../../../assets/images/user.svg" alt="icon-menu" />
+      <a href="">
+        Perfil
+      </a>
+    </li>
+    <li><a href=""><img class="icon-menu" src="../../../assets/images/lenguaje.svg" alt="icon-menu" />
+        Lenguaje</a></li>
+    <li (click)="closeSession()"><a href="">
+        <img class="icon-menu" src="../../../assets/images/logout.svg" alt="icon-menu" />
+        Cerrar sesión
+      </a></li>
+  </ul>
+</div>

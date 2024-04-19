@@ -5,13 +5,14 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core'
 import { ToastrService } from 'ngx-toastr'
 import { AdditionalServiceService } from './additional-service.service'
 import { Router } from '@angular/router'
+import { HeaderMainComponent } from '../header-main/header-main.component'
 
 @Component({
   selector: 'app-additionalservice',
   templateUrl: './additionalservice.component.html',
   styleUrls: ['./additionalservice.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule,HeaderMainComponent],
   providers: [AdditionalServiceService]
 })
 export class AdditionalserviceComponent implements OnInit {
