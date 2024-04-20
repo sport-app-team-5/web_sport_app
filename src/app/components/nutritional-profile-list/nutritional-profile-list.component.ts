@@ -13,9 +13,11 @@ import {ToastrService} from "ngx-toastr";
 })
 export class NutritionalProfileListComponent implements OnInit {
 
-foodList: any = [];
-foodItem: any;
-foodItem2: any;
+foodList: any[] = [];
+questiontype: string = '';
+answerProfile: string = '';
+formTitle: string = '';
+formDescription: string = '';
 
   constructor(
     private toastr: ToastrService,
@@ -24,9 +26,14 @@ foodItem2: any;
 
   ngOnInit() {
     this.switchLanguage('es')
-    this.foodItem = {"name":"Alergia Alimentaria", "description":"Zanahoria", "create_at":"2024/04/01"};
-    this.foodItem2 = {"name":"Dieta", "description":"Carnivora", "create_at":"2024/04/01"}
-    this.foodList = {"foodItems":  [this.foodItem, this.foodItem2]}
+    this.foodList = [{"name":"Alergia Alimentaria", "description":"Zanahoria"},
+    {"name":"Dieta", "description":"Carnivora"}
+    ];
+    this.questiontype = "Tipo";
+    this.answerProfile = "Nombre";
+    this.formTitle = "Tu información";
+    this.formDescription = "Encontrarás tus datos personales de tu perfil alimenticio";
+    console.log(this.foodList)
   }
 
   switchLanguage (language: string): void {

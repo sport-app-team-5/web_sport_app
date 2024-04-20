@@ -1,0 +1,53 @@
+@import '../register/vars.css';
+
+header {
+    background-color: var(--c-black-light);
+    box-sizing: border-box;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: var(--c-white);
+    height: 50px;
+}
+
+.profile-cell {
+  justify-content: center;
+  display: flex;
+  width:30%
+
+}
+
+.footer-buttons {
+  background-color: var(--c-black-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.radio-button{
+  color: rgba(255, 255, 255, 0.60);
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.radio-button::selection{
+  color: var(--c-green-ligth);
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.radio-label {
+  color: rgba(255, 255, 255, 0.60);
+  font-size: 20px;
+  font-style: normal;
+  line-height: normal;
+}

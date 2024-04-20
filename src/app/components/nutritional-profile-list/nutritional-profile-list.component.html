@@ -1,30 +1,32 @@
-<p>
-  nutritional-profile-list works!
-</p>
-<h3>Tu información</h3>
-<p>Encontrarás tus datos personales de tu perfil alimenticio</p>
-<div>
-  <table aria-describedby="food profile">
-    <caption>Formulario: Información alimenticia</caption>
-    <thead>
-      <tr>
-        <th class="h5">Tipo</th>
-        <th class="h5">Nombre</th>
-        <th class="h5">Fecha</th>
+<div class="continer-content">
+  <div class="start">
+    <div class="info-style">{{formTitle | translate}}</div>
+    <div class="description-style">{{formDescription | translate}}</div>
+  </div>
+  <div class="end">
+    <button class="primary-button"> Salir </button>
+  </div>
+</div>
+
+<div class="container-tables">
+  <div class="table">
+    <table aria-describedby="food profile" >
+      <thead>
+        <tr>
+          <th>{{questiontype | translate}}</th>
+          <th>{{answerProfile | translate}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tr" *ngFor="let foodItems of foodList">
+          <td class="td">
+            <dd class="fw-bold ">{{foodItems.name | translate}} </dd>
+          </td>
+          <td>
+            <dd>{{foodItems.description | translate}}</dd>
+          </td>
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let foodList of foodItem" class="text-black bg-white">
-        <td>
-          <dd class="fw-bold ">{{foodItem.name}}</dd>
-        </td>
-        <td>
-          <dd>{{foodItem.description}}</dd>
-        </td>
-        <td>
-          <dd>{{foodItem.created_at}}</dd>
-        </td>
-    </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
