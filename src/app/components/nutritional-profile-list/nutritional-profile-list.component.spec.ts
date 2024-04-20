@@ -2,8 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
-import { NutritionalProfileListComponent } from './NutritionalProfileListComponent';
+import { NutritionalProfileListComponent } from './nutritional-profile-list.component';
 
 describe('NutritionalProfileListComponent', () => {
   let component: NutritionalProfileListComponent;

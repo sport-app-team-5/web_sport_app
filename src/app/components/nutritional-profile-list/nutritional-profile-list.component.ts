@@ -3,6 +3,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule} from '@angular/forms'
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ToastrService} from "ngx-toastr";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nutritional-profile-list',
@@ -21,7 +22,8 @@ formDescription: string = '';
 
   constructor(
     private toastr: ToastrService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -40,4 +42,7 @@ formDescription: string = '';
     this.translate.use(language)
   }
 
+  goToHome() {
+    this.router.navigate(['/'])
+  }
 }

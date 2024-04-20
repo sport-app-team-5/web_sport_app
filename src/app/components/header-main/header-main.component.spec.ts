@@ -33,6 +33,15 @@ describe('HeaderMainComponent', () => {
     expect(instance.isOpenMenu).toBe(true)
   })
 
+  it('should call showProfile', () => {
+    const instance = {
+      isProfileActive: false,
+      showProfile: component.showProfile
+    }
+    instance.showProfile()
+    expect(instance.showProfile).toBe(true)
+  })
+
   it('should return correct class when isOpenMenu is true', async () => {
     let res = component.openMenuClass()
     expect(res.menu).toBe(true)

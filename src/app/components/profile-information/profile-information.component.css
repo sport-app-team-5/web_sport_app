@@ -1,53 +1,64 @@
 @import '../register/vars.css';
 
-header {
-    background-color: var(--c-black-light);
-    box-sizing: border-box;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    color: var(--c-white);
-    height: 50px;
+.container {
+  background: #181818;
+  box-sizing: border-box;
 }
 
 .profile-cell {
   justify-content: center;
-  display: flex;
-  width:30%
+  -webkit-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  align-self: auto;
+}
 
+input[type="radio"] {
+  position: absolute; /* Oculta el input radio */
+  opacity: 0;
+}
+
+input[type="radio"] + label {
+  position: relative; /* Permite el posicionamiento del pseudo-elemento */
+  display: inline-block; /* Para permitir el posicionamiento y espacio */
+  color: rgba(255, 255, 255, 0.6);
+}
+
+input[type="radio"] + label::before {
+  content: ""; /* Contenido vacío del pseudo-elemento */
+  display: inline-block; /* Asegura que el*/
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  border: 2px solid #ffffff;
+  background-color: #000;
+}
+
+input[type="radio"]:checked + label::before {
+  background-color: var(--c-green-ligth); /* Cambia el color del fondo cuando el radio está seleccionado */
+  border-radius: 50px;
+  border: 4px solid black;
+  width: 8px;
+  height: 8px;
+  outline: 2px solid var(--c-green-ligth);
+}
+
+input[type="radio"]:checked + label {
+  color: var(--c-green-ligth);
 }
 
 .footer-buttons {
-  background-color: var(--c-black-light);
   display: flex;
+  height: 20px;
+  padding: 29px 142px;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.radio-button{
-  color: rgba(255, 255, 255, 0.60);
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.radio-button::selection{
-  color: var(--c-green-ligth);
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.radio-label {
-  color: rgba(255, 255, 255, 0.60);
-  font-size: 20px;
-  font-style: normal;
-  line-height: normal;
+  align-content: center;
+  justify-content: space-between;
+  background: #181818;
+  position: fixed;
+  z-index: 500;
+  bottom: 0;
+  width: 80%;
 }
