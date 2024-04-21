@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
+import { HeaderMainService } from './header-main.service'
 
 @Component({
   selector: 'app-header-main',
@@ -10,8 +11,10 @@ import { Router } from '@angular/router'
   imports: [CommonModule]
 })
 export class HeaderMainComponent implements OnInit {
+
   isOpenMenu: boolean = false
-  constructor (private router: Router) {}
+  isActiveProfile: boolean = false
+  constructor (private router: Router, private headerMainService: HeaderMainService) {}
 
   ngOnInit () {
     this.start()
@@ -33,5 +36,10 @@ export class HeaderMainComponent implements OnInit {
   closeSession () {
     sessionStorage.clear()
     this.router.navigate(['/'])
+  }
+
+  showProfile() {
+    this.isActiveProfile = true;
+    this.headerMainService.setIsActiveProfile(true);
   }
 }

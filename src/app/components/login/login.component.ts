@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
     sessionStorage.setItem('access_token', response.access_token)
     const decoded = jwtDecode<any>(response.access_token)
     sessionStorage.setItem('role', decoded.role)
+    sessionStorage.setItem('user_id', decoded.sub)
     this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
       timeOut: 3000
     })

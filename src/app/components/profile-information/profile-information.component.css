@@ -1,0 +1,64 @@
+@import '../register/vars.css';
+
+.container {
+  background: #181818;
+  box-sizing: border-box;
+}
+
+.profile-cell {
+  justify-content: center;
+  -webkit-order: 0;
+  order: 0;
+  -webkit-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-align-self: auto;
+  align-self: auto;
+}
+
+input[type="radio"] {
+  position: absolute; /* Oculta el input radio */
+  opacity: 0;
+}
+
+input[type="radio"] + label {
+  position: relative; /* Permite el posicionamiento del pseudo-elemento */
+  display: inline-block; /* Para permitir el posicionamiento y espacio */
+  color: rgba(255, 255, 255, 0.6);
+}
+
+input[type="radio"] + label::before {
+  content: ""; /* Contenido vacío del pseudo-elemento */
+  display: inline-block; /* Asegura que el*/
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  border: 2px solid #ffffff;
+  background-color: #000;
+}
+
+input[type="radio"]:checked + label::before {
+  background-color: var(--c-green-ligth); /* Cambia el color del fondo cuando el radio está seleccionado */
+  border-radius: 50px;
+  border: 4px solid black;
+  width: 8px;
+  height: 8px;
+  outline: 2px solid var(--c-green-ligth);
+}
+
+input[type="radio"]:checked + label {
+  color: var(--c-green-ligth);
+}
+
+.footer-buttons {
+  display: flex;
+  height: 20px;
+  padding: 29px 142px;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+  background: #181818;
+  position: fixed;
+  z-index: 500;
+  bottom: 0;
+  width: 80%;
+}
