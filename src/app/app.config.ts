@@ -19,31 +19,4 @@ export function HttpLoaderFactory (http: HttpClient) {
   return new TranslateHttpLoader(http, 'https://cdn-sport-app.s3.amazonaws.com/', '.json')
 }
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideClientHydration(),
-    provideHttpClient(),
-    provideStore(),
-    provideToastr({
-      timeOut: 2000,
-      positionClass: 'toast-top-right',
-      preventDuplicates: true
-    }),
-    importProvidersFrom(BrowserAnimationsModule),
-    {
-      provide: TranslateLoader,
-      useFactory: createTranslateLoader,
-      deps: [HttpClient]
-    },
-    importProvidersFrom(
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-        }
-      })
-    )
-  ]
-}
+
