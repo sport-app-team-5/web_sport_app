@@ -2,14 +2,13 @@ import { CommonModule } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { HeaderMainComponent } from '../header-main/header-main.component'
-import {DashboardComponent} from "../dashboard/dashboard.component";
-
+import { ProfileInformationComponent } from '../profile-information/profile-information.component'
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
   standalone: true,
-  imports: [CommonModule, HeaderMainComponent, DashboardComponent]
+  imports: [CommonModule, HeaderMainComponent, ProfileInformationComponent]
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false

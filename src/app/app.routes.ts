@@ -5,11 +5,17 @@ import { RegisterComponent } from './components/register/register.component'
 import { LoginComponent } from './components/login/login.component'
 import { NutritionalInformationComponent } from './components/nutritional-information/nutritional-information.component'
 import { MainComponent } from './components/main/main.component'
-import { domainGuard } from './domain'
 import {AdditionalserviceComponent} from "./components/additionalservice/additionalservice.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {ProductComponent} from "./components/product/product.component";
+import { inject } from '@angular/core'
+import { AuthService } from '../app/services/auth.service'
 
+export const domainGuard = () => {
+  const service = inject(AuthService)
+  return service.canActivate()
+  
+}
 export const routes: Routes = [
   {
     path: '',
