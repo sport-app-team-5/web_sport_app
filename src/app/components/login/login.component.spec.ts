@@ -16,8 +16,8 @@ import {
 } from '@ngx-translate/core'
 import { HttpLoaderFactory } from '../../app.config'
 import { of } from 'rxjs'
-import jwtDecode from 'jwt-decode'
 import { Router } from '@angular/router'
+import { jwtDecode } from 'jwt-decode'
 
 
 describe('LoginComponent', () => {
@@ -29,6 +29,7 @@ describe('LoginComponent', () => {
   let loginServiceSpy: jasmine.SpyObj<LoginService>
 
   let httpMock: HttpTestingController
+  let router: Router
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,9 +57,9 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance
     registerUserService = TestBed.inject(LoginService)
     translateService = TestBed.inject(TranslateService)
-    toastr = TestBed.inject(ToastrService) // Inject ToastrService
+    toastr = TestBed.inject(ToastrService) 
     httpMock = TestBed.inject(HttpTestingController)
-
+    router = TestBed.inject(Router)
     fixture.detectChanges()
   })
 
@@ -121,4 +122,28 @@ describe('LoginComponent', () => {
     component.passwordValidator(event as any)
   })
 
+
+  it('should call toastr.success with correct parameters', () => {
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwicm9sZSI6IkRFUE8iLCJzY29wZXMiOlsiUlVTTyIsIlVVU08iLCJDU0VSIiwiUlNFUiIsIlJQUk8iLCJSRVZFIiwiTUFTRSIsIkNBUyIsIlJBUyIsIk1BQUwiXSwiZXhwIjoxNzE0MzEzMzM4fQ.pcABJ3jD9V-BTOaGppF3AempbkJz0u7D1gL7BgvFUuQ';
+
+    const response = { access_token: token};
+    const decoded = jwtDecode<any>(token)
+
+    component.handleUpdateResponse(response);
+  
+    spyOn(sessionStorage, 'setItem');  
+  
+    const toastrService = TestBed.inject(ToastrService);
+    const errorText = 'Inicio de sesión éxitoso';
+    const spySuccess = spyOn(toastrService, 'success');
+  
+  });
+
+  
+  it('should call go to register', () => { 
+    const navigateSpy = spyOn(router, 'navigate')
+    component.goToRegister()
+    expect(navigateSpy).toHaveBeenCalledWith(['/register'])
+    
+  });
 })
