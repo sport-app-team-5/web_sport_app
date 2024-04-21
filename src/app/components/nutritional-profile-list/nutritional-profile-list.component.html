@@ -1,0 +1,33 @@
+<div class="continer-content">
+  <div>
+    <div class="info-style">{{formTitle | translate}}</div>
+    <div class="description-style">{{formDescription | translate}}</div>
+  </div>
+  <div>
+    <button class="primary-button" (click)="goToHome()">{{'Salir'| translate}}</button>
+
+  </div>
+</div>
+
+<div class="container-tables">
+  <div class="table">
+    <table aria-describedby="food profile" >
+      <thead>
+        <tr>
+          <th>{{questiontype | translate}}</th>
+          <th>{{answerProfile | translate}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="tr" *ngFor="let foodItems of foodList">
+          <td class="td">
+            <dd class="fw-bold ">{{foodItems.name | translate}} </dd>
+          </td>
+          <td>
+            <dd>{{foodItems.description | translate}}</dd>
+          </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
