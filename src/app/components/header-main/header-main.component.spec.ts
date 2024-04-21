@@ -2,6 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { By } from '@angular/platform-browser'
 import { DebugElement } from '@angular/core'
+import { HeaderMainService } from './header-main.service'
 
 import { HeaderMainComponent } from './header-main.component'
 
@@ -35,7 +36,7 @@ describe('HeaderMainComponent', () => {
 
   it('should call showProfile', () => {
     const instance = {
-      isProfileActive: false,
+      isActiveProfile: false,
       showProfile: component.showProfile
     }
     instance.showProfile()
