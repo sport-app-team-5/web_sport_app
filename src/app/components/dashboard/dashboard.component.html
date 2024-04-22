@@ -2,63 +2,62 @@
   <div class="content">
     <div class="main-content">
       <div >
-        <h2 class="title">{{ 'youInformation' | translate}}</h2>
-        <p class="subtitle">{{ 'profileEvent' | translate}}</p>
+        <div class="title">{{ 'youInformation' | translate}}</div>
+        <div class="subtitle">{{ 'profileEvent' | translate}}</div>
       </div>
 
-      <div class="container">
-        <div class="column">
-          <span class="text-card-title">{{ 'dedication' | translate}}</span>
-          <hr class="separate-top">
-          <span class="text-card-info">3 - 5 Horas</span>
-          <hr class="separate-button">
-        </div>
-
-        <div class="column">
-          <span class="text-card-title">{{ 'experience' | translate}}</span>
-          <hr class="separate-top">
-          <span class="text-card-info">Si</span>
-          <hr class="separate-button">
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="column">
-          <span class="text-card-title">{{ 'yourActivities' | translate}}</span>
-          <hr class="separate-top">
-          <span class="text-card-info">Ciclismo</span>
-          <hr class="separate-button">
-        </div>
-
-        <div class="column">
-          <span class="text-card-title">{{ 'injuries' | translate}}</span>
-          <hr class="separate-top">
-          <span class="text-card-info">Tobillo - brazo</span>
-          <hr class="separate-button">
-        </div>
-      </div>
-
-      <div class="table">
-        <div class="row">
-          <div>
-            <span class="text-card-title">{{ 'event' | translate}}</span>
-            <hr class="separate-top-table-left">
+      <div class="all-content">
+        <div class="container">
+          <div class="column">
+            <span class="text-card-title">{{ 'dedication' | translate}}</span>
+            <hr class="separate-top">
+            <span class="text-card-info">3 - 5 Horas</span>
+            <hr class="separate-button">
           </div>
-          <div>
-            <span class="text-card-title">{{ 'date' | translate}}</span>
-            <hr class="separate-top-table-right">
+
+          <div class="column">
+            <span class="text-card-title">{{ 'experience' | translate}}</span>
+            <hr class="separate-top">
+            <span class="text-card-info">Si</span>
+            <hr class="separate-button">
           </div>
         </div>
 
-        <div *ngFor="let event of events" class="row">
-          <div>
-            <span class="text-card-info">{{ event.name }}</span>
-            <hr class="separate-button-table-left">
+        <div class="container">
+          <div class="column">
+            <span class="text-card-title">{{ 'yourActivities' | translate}}</span>
+            <hr class="separate-top">
+            <span class="text-card-info">Ciclismo</span>
+            <hr class="separate-button">
           </div>
-          <div>
-            <span class="text-card-info">{{ event.date }}</span>
-            <hr class="separate-button-table-right">
+
+          <div class="column">
+            <span class="text-card-title">{{ 'injuries' | translate}}</span>
+            <hr class="separate-top">
+            <span class="text-card-info">Tobillo - brazo</span>
+            <hr class="separate-button">
           </div>
+        </div>
+
+        <div class="table">
+          <table aria-describedby="food profile" >
+            <thead>
+              <tr>
+                <th class="thead">{{'event' | translate}}</th>
+                <th class="thead">{{'date' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="tr" *ngFor="let event of events">
+                <td class="td">
+                  <dd class="fw-bold">{{event.name}}</dd>
+                </td>
+                <td>
+                  <dd>{{event.date}}</dd>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

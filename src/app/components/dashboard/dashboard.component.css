@@ -1,19 +1,5 @@
 @import '../register/vars.css';
 
-header {
-  background-color: var(--c-black-light);
-  box-sizing: border-box;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  color: var(--c-white);
-  height: 50px;
-}
-
 .buttons {
   display: flex;
   justify-content: center;
@@ -28,22 +14,17 @@ button {
   font-size: 16px;
 }
 
-.sidebar {
-  display: flex;
-  width: 42px;
-  padding: 14px 15px;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  align-self: stretch;
-  background-color: var(--black);
-  height: 100vh;
-}
-
 .container-main {
   display: flex;
-  flex-direction: row
+  align-items: center;
+  justify-content: space-between;
+  padding: 23px 43px 51px 43px;
+  gap: 19px;
+}
+
+.all-content {
+  -webkit-animation: slide-in-top 0.7s cubic-bezier(0.860, 0.000, 0.070, 1.000) alternate both;
+  animation: slide-in-top 0.7s cubic-bezier(0.860, 0.000, 0.070, 1.000) alternate both;
 }
 
 .content {
@@ -144,19 +125,20 @@ button {
 }
 
 .title{
+  color: #FFF;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin: 2rem 0 0 5rem;
 }
 
 .subtitle{
-  font-size: 20px;
+  color: #FFF;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin: 0 0 2rem 5rem;
+  margin-bottom: 2rem;
 }
 
 .table-tittle{
@@ -164,13 +146,65 @@ button {
   margin: 0 5rem 0 5rem;
 }
 
+table {
+  border-collapse: collapse;
+  width:100%;
+}
+
 .table {
-  margin: 0 10.8rem 0 10.8rem;
+  padding: 23px 43px 51px 43px;
+  display: flex;
+  justify-content: center;
+  margin: 0 10.8rem 4rem 10.8rem;
   border: 1px solid var(--c-green-ligth);
 }
 
-.row {
-  display: flex;
-  flex: 1;
-  justify-content: center;
+.tr {
+  border: solid;
+  border-width: 1px 0;
+  text-align: center;
+  border-color: white;
+  vertical-align: middle;
+  color: #a9a8a8;
+}
+
+.thead {
+  padding: 0.2rem 0 1.2rem 1.7rem;
+  font-style: normal;
+  font-weight: 500;
+}
+
+th {
+  border-width: 2px 0;
+  text-align: center;
+  color: #a9a8a8;
+  font-style: normal;
+}
+
+.tr:hover {
+  border-radius: 10px;
+  border: 1px solid var(--c-green-ligth);
+  color: var(--c-green-ligth);
+}
+
+.td {
+  padding-block-end: 5%;
+  display: inline;
+}
+
+dd{
+  color: white;
+}
+
+@keyframes slide-in-top {
+  0% {
+    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
