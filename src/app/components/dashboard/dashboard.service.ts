@@ -18,6 +18,6 @@ export class DashboardService {
   }
 
   getProfile(): Observable<any> {
-    return this.http.get(API_SPORT_PLAN_BASE_URL + 'auth/profile', { headers: this.headers })
+    return this.http.get(API_SPORT_PLAN_BASE_URL + 'auth/sports_men/profile/sport', { headers: this.headers })
   }
 }

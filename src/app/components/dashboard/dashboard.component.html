@@ -11,14 +11,14 @@
           <div class="column">
             <span class="text-card-title">{{ 'dedication' | translate}}</span>
             <hr class="separate-top">
-            <span class="text-card-info">3 - 5 Horas</span>
+            <span class="text-card-info">{{profile?.time_dedication_sport}}</span>
             <hr class="separate-button">
           </div>
 
           <div class="column">
             <span class="text-card-title">{{ 'experience' | translate}}</span>
             <hr class="separate-top">
-            <span class="text-card-info">Si</span>
+            <span class="text-card-info">{{ profile?.exercise_experience }}</span>
             <hr class="separate-button">
           </div>
         </div>
@@ -27,7 +27,7 @@
           <div class="column">
             <span class="text-card-title">{{ 'yourActivities' | translate}}</span>
             <hr class="separate-top">
-            <span class="text-card-info">Ciclismo</span>
+            <span class="text-card-info">{{ profile?.sport_preference }}</span>
             <hr class="separate-button">
           </div>
 

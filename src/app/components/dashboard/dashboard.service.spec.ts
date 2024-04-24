@@ -40,7 +40,7 @@ describe('DashboardService', () => {
       expect(data).toEqual(mockData)
     })
 
-    const req = httpMock.expectOne(`${API_SPORT_PLAN_BASE_URL}auth/profile`)
+    const req = httpMock.expectOne(`${API_SPORT_PLAN_BASE_URL}auth/sports_men/profile/sport`)
     expect(req.request.method).toBe('GET')
     req.flush(mockData)
   })

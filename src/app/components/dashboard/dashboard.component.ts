@@ -3,6 +3,8 @@ import {ToastrService} from "ngx-toastr";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {DashboardService} from "./dashboard.service";
 import {NgForOf} from "@angular/common";
+import {Dashboard } from './dashboard';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -21,7 +23,7 @@ export class DashboardComponent implements OnInit {
     private translate: TranslateService
   ) {}
 
-  profile: any[] = []
+  profile: Dashboard | undefined
 
   events= [
     { name: "Runner", date: "10-12-2024" },
@@ -39,7 +41,7 @@ export class DashboardComponent implements OnInit {
 
   getProfile(): void {
     this.dashboardService.getProfile().subscribe({
-      next: (response) => {this.profile = response },
+      next: (response) => {this.profile = response},
       error: () => {
         this.toastr.error('Error obteniendo el perfil', 'Error', {
           timeOut: 3000
