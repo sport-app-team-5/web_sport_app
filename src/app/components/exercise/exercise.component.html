@@ -1,0 +1,81 @@
+<header class="header">
+  <div class="container-logo">
+    <img src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="logo" />
+    <p>Bienvenido</p>
+  </div>
+  <div class="buttons">
+    <img class="user-image" src="https://cdn-sport-app.s3.amazonaws.com/user_image.png" alt="usuario-logo" />
+    <button> Luis</button>
+  </div>
+</header>
+
+<main class="wrapper">
+  <div *ngIf="currentStep == 1" class="container-services">
+    <div class="question">{{'productName'| translate}}</div>
+    <div>
+      <input [formControl]="name" type="text" name="name" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
+        <span class="error" *ngIf="name.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 2" class="container-services">
+    <div class="question">{{'productDescription'| translate}}</div>
+    <div>
+      <input [formControl]="description" type="text" name="description" placeholder="{{'writeHere'| translate}}"
+             (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="description.invalid && (description.dirty || description.touched)">
+        <span class="error" *ngIf="description.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 3" class="container-services">
+    <div class="form-group">
+      <label class="label-text" for="input3">{{'typeIdentification'| translate}}</label>
+      <select name="sport" [formControl]="sport" (change)="changeValueForm($event)">
+        <option value="" disabled selected hidden>{{'selectTypeIdentification'| translate}}</option>
+        <option value="Atletismo">{{'cedula'| translate}}</option>
+        <option value="Ciclismo">{{'passPort'| translate}}</option>
+      </select>
+      <div class="error-container" *ngIf="sport.invalid && (sport.dirty || sport.touched)">
+        <span class="error" *ngIf="sport.errors?.['required']">{{'fieldRequired'| translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 4" class="container-services">
+    <div class="question">{{'productCost'| translate}}</div>
+    <div>
+      <input [formControl]="duration" type="number" name="duration" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="duration.invalid && (duration.dirty || duration.touched)">
+        <span class="error" *ngIf="duration.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 5" class="container-services">
+    <div class="form-group">
+      <label class="label-text" for="input3">{{'typeIdentification'| translate}}</label>
+      <select name="intensity" [formControl]="intensity" (change)="changeValueForm($event)">
+        <option value="" disabled selected hidden>{{'selectTypeIdentification'| translate}}</option>
+        <option value="Baja">{{'cedula'| translate}}</option>
+        <option value="Media">{{'passPort'| translate}}</option>
+        <option value="Alta">{{'passPort'| translate}}</option>
+      </select>
+      <div class="error-container" *ngIf="intensity.invalid && (intensity.dirty || intensity.touched)">
+        <span class="error" *ngIf="intensity.errors?.['required']">{{'fieldRequired'| translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-buttons">
+    <button *ngIf="currentStep !== 1" class="secondary-button" (click)="backStep()">
+      {{'back'| translate}}
+    </button>
+    <button class="primary-button" (click)="nextStep()">
+      {{ currentStep === 5 ? ('registerForm' | translate) : ('next' | translate) }}
+    </button>
+  </div>
+</main>
