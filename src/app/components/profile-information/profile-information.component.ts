@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { NutritionalProfileListComponent } from '../nutritional-profile-list/nutritional-profile-list.component';
 import { HeaderMainService } from '../header-main/header-main.service';
+import {DashboardComponent} from "../dashboard/dashboard.component";
 
 @Component({
   selector: 'app-profile-information',
   standalone: true,
-  imports: [CommonModule, TranslateModule, NutritionalProfileListComponent],
+  imports: [CommonModule, TranslateModule, NutritionalProfileListComponent, DashboardComponent],
   templateUrl: './profile-information.component.html',
   styleUrls: ['./profile-information.component.css']
 })

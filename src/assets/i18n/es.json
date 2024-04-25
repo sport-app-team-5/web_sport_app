@@ -67,7 +67,15 @@
   "productDescription":"Escribe una descripción del producto que estás ofreciendo",
   "supplements":"Suplementos",
   "sportsEquipment":"Equipo deportivo",
-  "food":"Alimentos"
+  "food":"Alimentos",
+  "youInformation":"Tu información",
+  "profileEvent":"Encontrarás los datos de tu perfil y eventos",
+  "dedication":"Dedicación en horas por semana",
+  "experience":"Experiencia deportiva",
+  "yourActivities":"Actividades preferidas",
+  "injuries":"Lesiones",
+  "event":"Evento",
+  "date":"Fecha"
 }
 
 
