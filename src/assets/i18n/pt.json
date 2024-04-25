@@ -90,5 +90,15 @@
   "yourActivities":"Atividades favoritas",
   "injuries":"Lesões",
   "event":"Evento",
-  "date":"Data"
+  "date":"Data",
+  "exerciseName": "Nome do exercício",
+  "exerciseDescription": "Descrição do exercício",
+  "exerciseIntensityDown": "Intensidade baixa",
+  "exerciseIntensityMedium": "Intensidade média",
+  "exerciseIntensityHigh": "Intensidade alta",
+  "exerciseSport": "Qual é o esporte associado ao exercício?",
+  "intensity": "Qual é a intensidade do exercício?",
+  "selectSport": "Selecciona un deporte",
+  "selectIntensity": "Selecciona una intensidad",
+  "duration": "Qual é a duração do exercício?"
 }
