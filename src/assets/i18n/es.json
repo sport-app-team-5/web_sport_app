@@ -35,7 +35,7 @@
   "residenceCountry":"País de residencia",
   "residenceCity":"Ciudad de residencia",
   "Argentina":"Argentina",
-  "questionServiceType":"¿Qué tipo de servicio quieres ofrece?",
+  "questionServiceType":"¿Qué tipo de servicio quieres ofrecer?",
   "transport":"Transporte",
   "accompaniment":"Acompañamiento",
   "mechanics":"Mecánica",
@@ -67,7 +67,23 @@
   "productDescription":"Escribe una descripción del producto que estás ofreciendo",
   "supplements":"Suplementos",
   "sportsEquipment":"Equipo deportivo",
-  "food":"Alimentos"
+  "food":"Alimentos",
+  "registerEvent":"Registrar evento",
+  "cancel":"Cancelar",
+  "event":"Evento",
+  "route":"Ruta",
+  "questionSportType":"¿Cuál es el deporte asociado con el servicio ofrecido?",
+  "cycling":"Ciclismo",
+  "running":"Atletismo",
+  "nameEvent":"Nombre del evento",
+  "date":"Fecha",
+  "country":"País",
+  "city":"Ciudad",
+  "quantity":"Aforo",
+  "place":"Lugar",
+  "description":"Descripción"
+
+
 }
 
 

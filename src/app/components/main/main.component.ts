@@ -11,6 +11,7 @@ import { ProfileInformationComponent } from '../profile-information/profile-info
   imports: [CommonModule, HeaderMainComponent, ProfileInformationComponent]
 })
 export class MainComponent implements OnInit {
+
   isOpenMenu: boolean = false
   isActiveMenu = 'home'
   constructor (private router: Router) {}
@@ -66,5 +67,9 @@ export class MainComponent implements OnInit {
 
   createProduct () {
     this.router.navigate(['/products'])
+  }
+
+  createEvent() {
+    this.router.navigate(['/events'])
   }
 }

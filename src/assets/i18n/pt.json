@@ -70,5 +70,20 @@
   "productDescription":"Escreva uma descrição do produto que você está oferecendo",
   "supplements":"Suplementos",
   "sportsEquipment":"Equipe esportiva",
-  "food":"Comida"
+  "food":"Comida",
+  "registerEvent": "Registrar evento",
+  "cancel": "Cancelar",
+  "event": "Evento",
+  "route": "Rota",
+  "questionSportType": "Qual é o esporte associado ao serviço oferecido?",
+  "cycling": "Ciclismo",
+  "running": "Corrida",
+  "nameEvent": "Nome do evento",
+  "date": "Data",
+  "country": "País",
+  "city": "Cidade",
+  "quantity": "Quantidade",
+  "place": "Local",
+  "description": "Descrição"
+
 }
