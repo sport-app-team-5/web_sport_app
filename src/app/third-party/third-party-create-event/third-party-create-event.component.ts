@@ -132,7 +132,6 @@ export class ThirdPartyCreateEventComponent implements OnInit {
 
   changeValueForm (e: any) {
     const name = e.target.name
-    const value = e.target.value
     if (name === 'country_id') {
       this.getCities()
     }
