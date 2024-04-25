@@ -136,14 +136,14 @@ export class ExerciseComponent implements OnInit {
     })
   }
 
-  handleUpdateResponse () {
+  handleUpdateResponse(response: {}) {
     this.toastr.success('Registro exitoso del ejercicio', 'Exito', {
       timeOut: 3000
     })
     this.router.navigate(['/home'])
   }
 
-  handleError () {
+  handleError(errorText: string) {
     this.toastr.error('Error registrando el ejercicio', 'Error', {
       timeOut: 3000
     })
