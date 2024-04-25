@@ -73,17 +73,22 @@
   "food":"Comida",
   "registerEvent": "Registrar evento",
   "cancel": "Cancelar",
-  "event": "Evento",
   "route": "Rota",
   "questionSportType": "Qual é o esporte associado ao serviço oferecido?",
   "cycling": "Ciclismo",
   "running": "Corrida",
   "nameEvent": "Nome do evento",
-  "date": "Data",
   "country": "País",
   "city": "Cidade",
   "quantity": "Quantidade",
   "place": "Local",
-  "description": "Descrição"
-
+  "description": "Descrição",
+  "youInformation":"Suas informações",
+  "profileEvent":"Você encontrará os dados e eventos do seu perfil",
+  "dedication":"Dedicação em horas por semana",
+  "experience":"Experiência esportiva",
+  "yourActivities":"Atividades favoritas",
+  "injuries":"Lesões",
+  "event":"Evento",
+  "date":"Data"
 }

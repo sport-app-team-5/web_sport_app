@@ -37,7 +37,21 @@ export class MainComponent implements OnInit {
     }
   }
 
-  setMenuAtive (value: any) {
+  getButtonClassesMenuProfileSvg () {
+    return {
+      cell: true,
+      'cell-active': this.isActiveMenu === 'profile'
+    }
+  }
+
+  getButtonClassesMenuProfile () {
+    return {
+      'container-home': true,
+      'active-button': this.isActiveMenu === 'profile'
+    }
+  }
+
+  setMenuActive (value: any) {
     this.isActiveMenu = value
   }
 

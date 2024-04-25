@@ -50,7 +50,7 @@ describe('MainComponent', () => {
     const instance = {
       isActiveMenu: true
     }
-    component.setMenuAtive(false)
+    component.setMenuActive(false)
 
     expect(instance.isActiveMenu).toBe(true)
   })
