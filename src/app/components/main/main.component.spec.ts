@@ -60,4 +60,12 @@ describe('MainComponent', () => {
     component.createProduct()
     expect(navigateSpy).toHaveBeenCalledWith(['/products'])
   })
+
+  it('should go to create event', () => {
+    const navigateSpy = spyOn(router, 'navigate')
+    component.createEvent()
+    expect(navigateSpy).toHaveBeenCalledWith(['/events'])
+  })
+
+  
 })
