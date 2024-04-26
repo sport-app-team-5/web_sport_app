@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { HeaderMainComponent } from '../header-main/header-main.component'
 import { ProfileInformationComponent } from '../profile-information/profile-information.component'
+import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component'
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
   standalone: true,
-  imports: [CommonModule, HeaderMainComponent, ProfileInformationComponent]
+  imports: [CommonModule, HeaderMainComponent, ProfileInformationComponent, ClasificationRiskGroupComponent]
 })
 export class MainComponent implements OnInit {
 
