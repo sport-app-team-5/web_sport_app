@@ -132,44 +132,52 @@ export class SportsInformationComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.currentStep === 1) {
-      if (this.validateStep1()) {
-        this.currentStep++;
-      }
-    } else if (this.currentStep === 2) {
-      if (this.validateStep2()) {
-        this.currentStep++;
-      }
-    } else if (this.currentStep === 3) {
-      if (this.validateStep3()) {
-        this.currentStep++;
-      } else {
-        this.birth_year.markAllAsTouched();
-      }
-    } else if (this.currentStep === 4) {
-      if (this.validateStep4()) {
-        this.currentStep++;
-      } else {
-        this.weight.markAllAsTouched();
-      }
-    } else if (this.currentStep === 5) {
-      if (this.validateStep5()) {
-        this.currentStep++;
-      } else {
-        this.height.markAllAsTouched();
-      }
-    } else if (this.currentStep === 6) {
-      if (this.validateStep6()) {
-        this.currentStep++;
-      } else {
-        this.height.markAllAsTouched();
-      }
-    } else {
-      if (this.validateStep7()) {
-        this.saveData();
-      } else {
-        this.height.markAllAsTouched();
-      }
+    switch (this.currentStep) {
+      case 1:
+        if (this.validateStep1()) {
+          this.currentStep++;
+        }
+        break;
+      case 2:
+        if (this.validateStep2()) {
+          this.currentStep++;
+        }
+        break;
+      case 3:
+        if (this.validateStep3()) {
+          this.currentStep++;
+        } else {
+          this.birth_year.markAllAsTouched();
+        }
+        break;
+      case 4:
+        if (this.validateStep4()) {
+          this.currentStep++;
+        } else {
+          this.weight.markAllAsTouched();
+        }
+        break;
+      case 5:
+        if (this.validateStep5()) {
+          this.currentStep++;
+        } else {
+          this.height.markAllAsTouched();
+        }
+        break;
+      case 6:
+        if (this.validateStep6()) {
+          this.currentStep++;
+        } else {
+          this.height.markAllAsTouched();
+        }
+        break;
+      default:
+        if (this.validateStep7()) {
+          this.saveData();
+        } else {
+          this.height.markAllAsTouched();
+        }
+        break;
     }
   }
 
