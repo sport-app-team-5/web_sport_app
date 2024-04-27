@@ -77,7 +77,7 @@ const req = httpMock.expectOne(`${API_SPORT_PLAN_BASE_URL}sports_men`)
   it('should get cities', () => {
     const mockData = { Cities: 'CALI' }
     const country_id = 1
-    service.getCities(country_id).subscribe(data => {
+    service.getCities(country_id).subscribe((data:any) => {
       expect(data).toEqual(mockData)
     })
 
