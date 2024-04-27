@@ -87,9 +87,15 @@
   "city":"Ciudad",
   "quantity":"Aforo",
   "place":"Lugar",
-  "description":"Descripción"
-
-
+  "description":"Descripción",
+  "exerciseName": "Nombre del entrenamiento",
+  "exerciseDescription": "Descripción del entrenamiento",
+  "exerciseIntensityDown": "Intensidad baja",
+  "exerciseIntensityMedium": "Intensidad media",
+  "exerciseIntensityHigh": "Intensidad alta",
+  "exerciseSport": "¿Cuál es el deporte asociado al entrenamiento?",
+  "intensity": "¿Cuál es la intensidad del entrenamiento?",
+  "selectSport": "Selecciona un deporte",
+  "selectIntensity": "Selecciona una intensidad",
+  "duration": "¿Cuál es la duración del entrenamiento en minutos?"
 }
-
-

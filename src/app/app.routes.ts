@@ -9,8 +9,9 @@ import {AdditionalserviceComponent} from "./components/additionalservice/additio
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {ProductComponent} from "./components/product/product.component";
 import { inject } from '@angular/core'
-import { AuthService } from '../app/services/auth.service'
+import { AuthService } from './services/auth.service'
 import { ThirdPartyCreateEventComponent } from './third-party/third-party-create-event/third-party-create-event.component'
+import {ExerciseComponent} from "./components/exercise/exercise.component";
 
 export const domainGuard = () => {
   const service = inject(AuthService)
@@ -61,5 +62,9 @@ export const routes: Routes = [
   {
     path: 'events',
     component: ThirdPartyCreateEventComponent
-  }
+  },
+  {
+    path: 'exercise',
+    component: ExerciseComponent
+  },
 ]
