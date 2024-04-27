@@ -16,19 +16,19 @@
 }
 
 input[type="radio"] {
-  position: absolute; /* Oculta el input radio */
+  position: absolute;
   opacity: 0;
 }
 
 input[type="radio"] + label {
-  position: relative; /* Permite el posicionamiento del pseudo-elemento */
-  display: inline-block; /* Para permitir el posicionamiento y espacio */
+  position: relative; 
+  display: inline-block; 
   color: rgba(255, 255, 255, 0.6);
 }
 
 input[type="radio"] + label::before {
-  content: ""; /* Contenido vacío del pseudo-elemento */
-  display: inline-block; /* Asegura que el*/
+  content: "";
+  display: inline-block; 
   width: 12px;
   height: 12px;
   border-radius: 50px;
@@ -37,7 +37,7 @@ input[type="radio"] + label::before {
 }
 
 input[type="radio"]:checked + label::before {
-  background-color: var(--c-green-ligth); /* Cambia el color del fondo cuando el radio está seleccionado */
+  background-color: var(--c-green-ligth); 
   border-radius: 50px;
   border: 4px solid black;
   width: 8px;

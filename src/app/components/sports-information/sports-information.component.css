@@ -19,7 +19,6 @@
     background: var(--c-green-ligth) !important;
     border-color:var(--c-green-ligth) !important; 
     color: #000!important; 
-    /* border: 2px solid var(--c-green-ligth) !important ; */
 }
 
 :host ::ng-deep  .multiselect-item-checkbox input[type=checkbox] + div:before{
@@ -202,6 +201,9 @@ select {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    height: 43px;
+    font-size: 15px;
+    padding: 5px 5px 5px 20px;
 }
 
 input {
@@ -210,11 +212,7 @@ input {
   padding: 20px;
 }
 
-select {
-  height: 43px;
-  font-size: 15px;
-  padding: 5px 5px 5px 20px;
-}
+
 
 input:focus {
     color: var(--c-white);
