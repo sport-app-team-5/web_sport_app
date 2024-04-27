@@ -88,14 +88,14 @@
   "quantity":"Aforo",
   "place":"Lugar",
   "description":"Descripción",
-  "exerciseName": "Nombre del ejercicio",
-  "exerciseDescription": "Descripción del ejercicio",
+  "exerciseName": "Nombre del entrenamiento",
+  "exerciseDescription": "Descripción del entrenamiento",
   "exerciseIntensityDown": "Intensidad baja",
   "exerciseIntensityMedium": "Intensidad media",
   "exerciseIntensityHigh": "Intensidad alta",
-  "exerciseSport": "¿Cuál es el deporte asociado al ejercicio?",
-  "intensity": "¿Cuál es la intensidad del ejercicio?",
+  "exerciseSport": "¿Cuál es el deporte asociado al entrenamiento?",
+  "intensity": "¿Cuál es la intensidad del entrenamiento?",
   "selectSport": "Selecciona un deporte",
   "selectIntensity": "Selecciona una intensidad",
-  "duration": "¿Cuál es la duración del ejercicio en minutos?"
+  "duration": "¿Cuál es la duración del entrenamiento en minutos?"
 }

@@ -92,13 +92,13 @@
   "event":"Evento",
   "date":"Data",
   "exerciseName": "Nome do exercício",
-  "exerciseDescription": "Descrição do exercício",
+  "exerciseDescription": "Descrição do treinamento",
   "exerciseIntensityDown": "Intensidade baixa",
   "exerciseIntensityMedium": "Intensidade média",
   "exerciseIntensityHigh": "Intensidade alta",
-  "exerciseSport": "Qual é o esporte associado ao exercício?",
-  "intensity": "Qual é a intensidade do exercício?",
+  "exerciseSport": "Qual é o esporte associado ao treinamento?",
+  "intensity": "Qual é a intensidade do treinamento?",
   "selectSport": "Selecciona un deporte",
   "selectIntensity": "Selecciona una intensidad",
-  "duration": "Qual é a duração do exercício em minutos?"
+  "duration": "Qual é a duração do treinamento em minutos?"
 }
