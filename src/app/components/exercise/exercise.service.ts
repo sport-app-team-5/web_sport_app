@@ -1,7 +1,7 @@
 import {Injectable, Injector} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {API_ADDITIONAL_SERVICE_BASE_URL} from "../../../../api.constants";
+import {API_SPORT_PLAN_BASE_URL} from "../../../../api.constants";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,6 @@ export class ExerciseService {
       Authorization: `Bearer ${token}`
     })
 
-    return this.http.post(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/exercises', data, { headers })
+    return this.http.post(API_SPORT_PLAN_BASE_URL + 'auth/trainings', data, { headers })
   }
 }

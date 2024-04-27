@@ -3,7 +3,7 @@ import {HttpClientTestingModule, HttpTestingController} from "@angular/common/ht
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {HttpLoaderFactory} from "../../app.config";
 import {HttpClient} from "@angular/common/http";
-import {API_ADDITIONAL_SERVICE_BASE_URL} from "../../../../api.constants";
+import {API_SPORT_PLAN_BASE_URL} from "../../../../api.constants";
 import {ExerciseService} from "./exercise.service";
 
 describe('ExerciseService', () => {
@@ -43,7 +43,7 @@ describe('ExerciseService', () => {
       expect(response).toEqual(expectedResponse)
     })
 
-    const req = httpMock.expectOne(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/exercises')
+    const req = httpMock.expectOne(API_SPORT_PLAN_BASE_URL + 'auth/trainings')
     const requestBody = new URLSearchParams(req.request.body)
 
     expect(req.request.method).toBe('POST')
