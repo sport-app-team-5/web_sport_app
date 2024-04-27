@@ -1,7 +1,7 @@
 <main class="container">
   <div class="sidebar">
     <img class="brand-img" src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="logo" />
-    <div [ngClass]="getButtonClassesMenuHome()" class="container-home" (click)=" setMenuActive('home')">
+    <div class="container-home" (click)=" setMenuActive('home')">
       <svg [ngClass]="getButtonClassesMenuSvg()"  width="24" height="24" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
         <path fill="white"
@@ -32,7 +32,7 @@
     <div class="container-logout">
       <img (click)="closeSession()" class="icon-menu" src="../../../assets/images/logout.svg" alt="Logout" />
     </div>
-   
+
   </div>
   <div class="content">
     <app-header-main></app-header-main>
@@ -43,6 +43,9 @@
         <button class="primary-button" (click)="createNutritionalInfo()"> Agregar información nutricional</button>
         <button class="primary-button" (click)="createEvent()"> Agregar evento</button>
         <button class="primary-button" (click)="createExercise()"> Agregar entrenamiento</button>
+      </div>
+      <div>
+        <app-clasification-risk-group></app-clasification-risk-group>
       </div>
       <div>
         <app-profile-information></app-profile-information>
