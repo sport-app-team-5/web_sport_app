@@ -14,8 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ClasificationRiskGroupComponent implements OnInit {
 
-
-  risk: any = [];
+  risk: string = '';
   sportManRisk: string = '';
   recommendedPlan: string = '(Recomendado)';
   recommendedBasicPlan: string = '';
@@ -41,7 +40,6 @@ export class ClasificationRiskGroupComponent implements OnInit {
 
     this.switchLanguage('es');
     this.getData();
-    console.log(this.risk);
   }
 
   switchLanguage (language: string): void {
@@ -64,7 +62,7 @@ export class ClasificationRiskGroupComponent implements OnInit {
 
   getData () {
     this.casificationRiskGroupService.getRiskGroupService().subscribe({
-      next: (response) => {this.risk = response; this.sportManRisk = response.risk; console.log(response)},
+      next: (response) => { this.sportManRisk = response.risk;},
       error: () => {
         this.toastr.error('Error obteniendo el riesgo', 'Error', {
           timeOut: 3000
@@ -82,6 +80,10 @@ export class ClasificationRiskGroupComponent implements OnInit {
       'column': true,
       'columnSelected': this.activePlan === value
     }
+  }
+
+  handleKeyDown($event: KeyboardEvent) {
+    this.risk = "Riesgo gourmet";
   }
 
   setBasicPlanList() {
