@@ -219,7 +219,7 @@ describe('ExerciseComponent', () => {
 
   it('should call handleError', () => {
     const toastrProduct = TestBed.inject(ToastrService)
-    const errorText = 'Error registrando el ejercicio'
+    const errorText = 'Error registrando el entrenamiento'
     const spyError = spyOn(toastrProduct, 'error')
     component.handleError(errorText)
 
