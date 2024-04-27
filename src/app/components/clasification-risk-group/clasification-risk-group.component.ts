@@ -77,10 +77,10 @@ export class ClasificationRiskGroupComponent implements OnInit {
     this.activePlan = plan;
   }
 
-  getPlanClassesSelected() {
+  getPlanClassesSelected(value: string) {
     return {
       'column': true,
-      'columnSelected': true
+      'columnSelected': this.activePlan === value
     }
   }
 
