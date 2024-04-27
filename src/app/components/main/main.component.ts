@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HeaderMainComponent } from '../header-main/header-main.component';
 import { ProfileInformationComponent } from '../profile-information/profile-information.component';
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
+import { ThirdPartyCreateEventComponent } from '../../third-party/third-party-create-event/third-party-create-event.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -14,12 +15,14 @@ import { ClasificationRiskGroupComponent } from '../clasification-risk-group/cla
     HeaderMainComponent,
     ProfileInformationComponent,
     ClasificationRiskGroupComponent,
+    ThirdPartyCreateEventComponent
   ],
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
   isActiveMenu = 'home';
   role = sessionStorage.getItem('role');
+  creatingEvent = false;
 
   constructor(private router: Router) {}
 
@@ -44,6 +47,14 @@ export class MainComponent implements OnInit {
       'active-button': this.isActiveMenu === option,
     };
   }
+
+  setClassActiveSport(option:string){
+    return {
+      'container-home': true,
+      'active-button': this.isActiveMenu === option,
+    };
+  }
+
   getButtonClassesMenuSvg() {
     return {
       cell: true,
@@ -73,6 +84,7 @@ export class MainComponent implements OnInit {
   }
 
   setMenuActive(value: any) {
+    console.log(value)
     this.isActiveMenu = value;
   }
 
@@ -108,6 +120,7 @@ export class MainComponent implements OnInit {
   }
 
   createEvent() {
-    this.router.navigate(['/events']);
+    this.creatingEvent=true
+    // this.router.navigate(['/events']);
   }
 }
