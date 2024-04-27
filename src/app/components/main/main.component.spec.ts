@@ -3,6 +3,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 import { RouterTestingModule } from '@angular/router/testing'
 import { MainComponent } from './main.component'
 import { Router } from '@angular/router'
+import { ToastrModule, ToastrService } from 'ngx-toastr'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core'
+import { HttpLoaderFactory } from '../../app.config'
 
 describe('MainComponent', () => {
   let component: MainComponent
@@ -11,7 +17,21 @@ describe('MainComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [MainComponent]
+      imports: [MainComponent,
+        HttpClientModule,
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        ToastrModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        })
+      ],
+      providers: [ToastrService, TranslateService]
     }).compileComponents()
   }))
 

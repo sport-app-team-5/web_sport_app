@@ -1,0 +1,87 @@
+.container {
+
+  justify-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.column {
+  top: 0%;
+  border-radius: 10%;
+  display: inline-block;
+  width: 20%;
+  height: 520px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: black;
+  cursor: pointer;
+}
+
+.columnSelected {
+  top: 0%;
+  border-radius: 10%;
+  display: inline-block;
+  width: 20%;
+  height: 520px;
+  margin: 10px;
+  padding: 10px;
+  border: 3px solid var(--c-green-ligth);
+  background-color: black;
+}
+
+.columnTitle{
+  text-align: center;
+  height: 80px;
+}
+
+.columnTitle p{
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.recomendedPlan {
+  color: var(--c-green-ligth);
+  font-size: 11px;
+  font-weight: 300;
+}
+
+.serviceList {
+  display: flex;
+  flex-wrap: wrap;
+  height: 300px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  display: flex;
+  align-items: center;
+}
+
+li:before {
+  width: 20px;
+  height: 20px;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.primary-button {
+  border-radius: 38px;
+  background: var(--c-green-ligth);
+  height: 40px;
+  padding: 0 30px;
+  align-items: center;
+  color: var(--black);
+  width: 70%;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
