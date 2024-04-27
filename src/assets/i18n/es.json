@@ -67,7 +67,31 @@
   "productDescription":"Escribe una descripción del producto que estás ofreciendo",
   "supplements":"Suplementos",
   "sportsEquipment":"Equipo deportivo",
-  "food":"Alimentos"
+  "food":"Alimentos",
+
+
+  "questionSportType":"¿Qué tipo de deporte practicas?",
+  "questionTimeDedications":"¿Cuántas horas a la semana le dedicarias?",
+  "1_3_horas":"1-3 horas",
+  "3_5_horas":"3-5 horas",
+  "4_6_horas":"4-6 horas",
+  "5_7_horas":"5-7 horas",
+  "7_8_HOURS":"7-8 horas",
+  "MORE_8_HOURS":"+8 horas",
+  "questionSportExperience":"¿Tienes experiencia entrenando?",
+  "yes":"Sí",
+  "no":"No",
+  "questionBirthDate":"¿En que año naciste?",
+  "enterBirthDate":"Ingresa el año de nacimiento",
+  "questionWeight":"¿Cuál es tu peso?",
+  "enterWeight":"Ingresa tu peso en kg",
+  "questioHeight":"¿Cuál es tu estatura?",
+  "enterHeight":"Ingresa tu estatura en cm",
+  "questionSportPrefer":"¿Cuál es tu deporte preferido?",
+  "cyclist":"Ciclismo",
+  "athlete":"Atletismo",
+  "questionInjury":"¿Has tenido alguna lesión?",
+  "selectInjury":"Selecciona una opción"
 }
 
 

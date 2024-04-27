@@ -9,6 +9,7 @@ import {AdditionalserviceComponent} from "./components/additionalservice/additio
 import {ProductComponent} from "./components/product/product.component";
 import { inject } from '@angular/core'
 import { AuthService } from '../app/services/auth.service'
+import { SportsInformationComponent } from './components/sports-information/sports-information.component'
 
 export const domainGuard = () => {
   const service = inject(AuthService)
@@ -34,6 +35,11 @@ export const routes: Routes = [
     canActivate: [domainGuard]
   },
   {
+    path: 'sports-information',
+    component: SportsInformationComponent,
+    canActivate: [domainGuard]
+  },
+  {
     path: 'sportplan',
     component: SportplanComponent,
     canActivate: [domainGuard]
@@ -55,6 +61,6 @@ export const routes: Routes = [
   {
     path: 'home',
     component: MainComponent,
-    canActivate: [domainGuard]
+    // canActivate: [domainGuard]
   }
 ]
