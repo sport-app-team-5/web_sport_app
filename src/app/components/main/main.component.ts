@@ -11,6 +11,7 @@ import { ProfileInformationComponent } from '../profile-information/profile-info
   imports: [CommonModule, HeaderMainComponent, ProfileInformationComponent]
 })
 export class MainComponent implements OnInit {
+
   isOpenMenu: boolean = false
   isActiveMenu = 'home'
   constructor (private router: Router) {}
@@ -36,7 +37,21 @@ export class MainComponent implements OnInit {
     }
   }
 
-  setMenuAtive (value: any) {
+  getButtonClassesMenuProfileSvg () {
+    return {
+      cell: true,
+      'cell-active': this.isActiveMenu === 'profile'
+    }
+  }
+
+  getButtonClassesMenuProfile () {
+    return {
+      'container-home': true,
+      'active-button': this.isActiveMenu === 'profile'
+    }
+  }
+
+  setMenuActive (value: any) {
     this.isActiveMenu = value
   }
 
@@ -47,6 +62,10 @@ export class MainComponent implements OnInit {
 
   createNutritionalInfo () {
     this.router.navigate(['/nutritional-information'])
+  }
+
+  createExercise () {
+    this.router.navigate(['/exercise'])
   }
 
   openMenuClass () {
@@ -66,5 +85,9 @@ export class MainComponent implements OnInit {
 
   createProduct () {
     this.router.navigate(['/products'])
+  }
+
+  createEvent() {
+    this.router.navigate(['/events'])
   }
 }

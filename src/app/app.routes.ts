@@ -6,15 +6,18 @@ import { LoginComponent } from './components/login/login.component'
 import { NutritionalInformationComponent } from './components/nutritional-information/nutritional-information.component'
 import { MainComponent } from './components/main/main.component'
 import {AdditionalserviceComponent} from "./components/additionalservice/additionalservice.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {ProductComponent} from "./components/product/product.component";
 import { inject } from '@angular/core'
 import { AuthService } from '../app/services/auth.service'
 import { SportsInformationComponent } from './components/sports-information/sports-information.component'
+import { ThirdPartyCreateEventComponent } from './third-party/third-party-create-event/third-party-create-event.component'
+import {ExerciseComponent} from "./components/exercise/exercise.component";
 
 export const domainGuard = () => {
   const service = inject(AuthService)
   return service.canActivate()
-  
+
 }
 export const routes: Routes = [
   {
@@ -32,7 +35,6 @@ export const routes: Routes = [
   {
     path: 'nutritional-information',
     component: NutritionalInformationComponent,
-    canActivate: [domainGuard]
   },
   {
     path: 'sports-information',
@@ -42,12 +44,10 @@ export const routes: Routes = [
   {
     path: 'sportplan',
     component: SportplanComponent,
-    canActivate: [domainGuard]
   },
   {
     path: 'services',
-    component: AdditionalserviceComponent,
-    canActivate: [domainGuard]
+    component: AdditionalserviceComponent
   },
   {
     path: 'products',
@@ -55,12 +55,23 @@ export const routes: Routes = [
   },
   {
     path: 'sportplan',
-    component: SportplanComponent,
-    canActivate: [domainGuard]
+    component: SportplanComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   },
   {
     path: 'home',
     component: MainComponent,
-    // canActivate: [domainGuard]
-  }
+    //  canActivate: [domainGuard]
+  }, 
+  {
+    path: 'events',
+    component: ThirdPartyCreateEventComponent
+  },
+  {
+    path: 'exercise',
+    component: ExerciseComponent
+  },
 ]
