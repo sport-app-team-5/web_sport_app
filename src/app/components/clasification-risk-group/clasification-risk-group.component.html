@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Planes</h2>
-  <div  [ngClass]="getPlanClassesSelected('BASIC')" class="column" (click)="selectPlan('BASIC')">
+  <div  [ngClass]="getPlanClassesSelected('BASIC')" (click)="selectPlan('BASIC')">
     <div class="columnTitle">
       <h3>{{'Básico' | translate}} <div class="recomendedPlan">{{recommendedPlan | translate}}</div></h3>
       <p>{{'Plan para principiantes.' | translate}} </p>
@@ -15,7 +15,7 @@
       <button class="primary-button" (click)="selectPlan('BASIC')">Comprar</button>
     </div>
   </div>
-  <div  [ngClass]="getPlanClassesSelected('INTERMETIATE')" class="column" (click)="selectPlan('INTERMETIATE')">
+  <div  [ngClass]="getPlanClassesSelected('INTERMETIATE')"  (click)="selectPlan('INTERMETIATE')">
     <div class="columnTitle">
       <h3>{{'Medio' | translate}}</h3> <div class="recomendedPlan">{{recommendedMediunPlan | translate}}</div>
       <p>{{'Este es tu plan perfecto si ya tienes un nivel.' | translate}} </p>
@@ -30,7 +30,7 @@
       <button class="primary-button" (click)="selectPlan('INTERMETIATE')">Comprar</button>
     </div>
   </div>
-  <div [ngClass]="getPlanClassesSelected('PREMIUM')" class="column" (click)="selectPlan('PREMIUM')">
+  <div [ngClass]="getPlanClassesSelected('PREMIUM')" (click)="selectPlan('PREMIUM')">
     <div class="columnTitle">
       <h3>{{'Avanzado' | translate}}</h3> <div class="recomendedPlan">{{recommendedAdvancePlan | translate}}</div>
       <p>{{'Si tu nivel supera al de los dioses.' | translate}} </p>

@@ -53,8 +53,7 @@
       {{'questionBirthDate'| translate}}
     </div>
     <div class="container-buttons">
-      <div class="form-group">
-        <label class="label-text" for="input_birth_year" ></label>
+      <div class="form-group">  
         <input id="input_birth_year" [formControl]="birth_year" (change)="changeValueForm($event)" type="number" name="birth_year"
           placeholder="{{'enterBirthDate'| translate}}" (change)="changeValueForm($event)">
         <div class="error-container" *ngIf="birth_year.invalid && (birth_year.dirty || birth_year.touched)">
