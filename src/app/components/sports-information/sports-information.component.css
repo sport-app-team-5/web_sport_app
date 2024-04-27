@@ -1,0 +1,306 @@
+@import '../register/vars.css';
+
+
+:host ::ng-deep .multiselect-dropdown .dropdown-btn{
+    color: white !important;
+}
+
+:host ::ng-deep .multiselect-dropdown .dropdown-btn .selected-item-container .selected-item {
+    border: 1px solid var(--c-gray-light) !important;
+    margin-right: 4px;
+    background: var(--c-gray-light) !important;
+    padding: 0 5px;
+    color: #181818;
+    border-radius: 2px;
+    float: left;
+    max-width: 146px !important;
+}
+:host ::ng-deep .multiselect-item-checkbox input[type=checkbox]:checked + div:before {
+    background: var(--c-green-ligth) !important;
+    border-color:var(--c-green-ligth) !important; 
+    color: #000!important; 
+}
+
+:host ::ng-deep  .multiselect-item-checkbox input[type=checkbox] + div:before{
+    border: 2px solid var(--c-gray-light) !important;
+}
+
+:host ::ng-deep .dropdown-list{
+    background: #0000 !important;
+    color: white !important;
+}
+
+:host ::ng-deep  .dropdown-list li:hover {
+    background: var(--c-black-light) !important;
+}
+
+:host ::ng-deep  .dropdown-list li {
+    color: white !important;
+}
+
+:host ::ng-deep .dropdown-list ul{
+    background: #181818 !important;
+}
+
+:host ::ng-deep .multiselect-item-checkbox input[type=checkbox] + div{
+    color: white !important;
+}
+
+header {
+    background-color: var(--c-black-light);
+    box-sizing: border-box;
+}
+
+main {
+    background-color: var(--c-black-main);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    color: var(--c-white);
+    height: 50px;
+}
+
+.line {
+    width: 1px;
+    height: 20px;
+    background-color: var(--c-white);
+    margin: 0 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: transparent;
+    color: inherit;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.question {
+    color: var(--c-white);
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.container-buttons {
+    margin-top: 30px;
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+    gap: 20px;
+}
+
+.question-button {
+    border-radius: 10px;
+    border: 1px solid var(--c-gray-light);
+    padding: 20px;
+    color: var(--c-gray-light);
+}
+
+.question-button:hover,
+.question-button:active,
+.question-button:focus {
+    border-radius: 10px;
+    border: 1px solid var(--c-green-ligth);
+    color: var(--c-green-ligth);
+}
+
+.active-button {
+    border-radius: 10px;
+    border: 1px solid var(--c-green-ligth);
+    color: var(--c-green-ligth)
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+}
+
+.wrapper div .question {
+    justify-content: flex-start;
+}
+
+.wrapper>div {
+    text-align: center;
+}
+
+.secondary-button {
+    color: var(--c-white);
+    border-radius: 38px;
+    background: #2C2C2C;
+    display: flex;
+    height: 40px;
+    padding: 0px 30px;
+    align-items: center;
+    gap: 20px;
+    font-weight: 500;
+}
+
+.primary-button {
+    border-radius: 38px;
+    background: var(--c-green-ligth);
+    display: flex;
+    height: 40px;
+    padding: 0px 30px;
+    align-items: center;
+    gap: 20px;
+    font-weight: 500;
+}
+
+.container-inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.label-text {
+    margin-bottom: 5px;
+    text-align: left;
+    color: var(--c-white);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 33px
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+input,
+select {
+    width: 300px;
+    border: 1px solid var(--c-gray-light);
+    box-sizing: border-box;
+    gap: 10px;
+    background-color: #111111;
+    color: var(--c-gray-light);
+    border-color: var(--c-gray-light);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    height: 43px;
+    font-size: 15px;
+    padding: 5px 5px 5px 20px;
+}
+
+input {
+  height: 35px;
+  font-size: 16px;
+  padding: 20px;
+}
+
+
+
+input:focus {
+    color: var(--c-white);
+    border: 1px solid var(--c-green-ligth);
+    outline: 1px solid var(--c-green-ligth);
+}
+
+select:active,
+select:focus,
+select:focus-visible {
+    border: 1px solid var(--c-green-ligth);
+}
+
+select:focus-visible {
+    border: 1px solid var(--c-green-ligth);
+    outline: 1px solid var(--c-green-ligth);
+}
+
+.error {
+    font-size: 14px;
+    color: var(--c-yellow);
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+    width: 300px;
+}
+.multiselect {
+    width: 200px;
+    margin: 20px auto;
+  }
+  
+  .select-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .options-container {
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .option {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .option:last-child {
+    border-bottom: none;
+  }
+  
+  .checkbox {
+    display: none;
+  }
+  
+  label {
+    display: block;
+    cursor: pointer;
+  }
+  
+  .selected {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ccc;
+  }
+
+
+
+  select {
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow-y: auto;
+  }
+  
+  select option {
+    padding: 5px;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #007bff;
+  }
