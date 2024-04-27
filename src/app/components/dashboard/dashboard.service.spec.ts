@@ -36,7 +36,7 @@ describe('DashboardService', () => {
 
   it('should create nutritional information', () => {
     const mockData = { User: 'Test User' }
-    service.getProfile().subscribe(data => {
+    service.getProfile({}).subscribe(data => { 
       expect(data).toEqual(mockData)
     })
 

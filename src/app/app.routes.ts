@@ -64,7 +64,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: MainComponent,
-    //  canActivate: [domainGuard]
+     canActivate: [domainGuard]
   }, 
   {
     path: 'events',

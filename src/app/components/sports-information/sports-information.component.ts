@@ -198,6 +198,7 @@ export class SportsInformationComponent implements OnInit {
         this.toastr.success('Deportista actualizado éxitosamente', 'Exitoso', {
           timeOut: 3000
         })
+        this.router.navigate(['/nutritional-information']);
       },
       error: (error) => {
         console.log(error)
