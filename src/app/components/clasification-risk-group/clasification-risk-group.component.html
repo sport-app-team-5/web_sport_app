@@ -1,60 +1,48 @@
 <div class="container">
   <h2>Planes</h2>
-  <div class="column">
+  <div  [ngClass]="getPlanClassesSelected()" class="column" (click)="selectPlan('BASIC')">
     <div class="columnTitle">
-      <h3>Básico</h3>
-      <p>Description of the basic plan.</p>
+      <h3>{{'Básico' | translate}} <div class="recomendedPlan">{{recommendedPlan | translate}}</div></h3>
+      <p>{{'Plan para principiantes.' | translate}} </p>
     </div>
     <div class="serviceList">
       <ul>
-        <li><span class="checkmark">&#10003;  </span>  Feature 1</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 2</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 3</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 4</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 5</li>
+        <li *ngFor="let features of basicPlanList"><span class="checkmark">&#10003;</span>  {{ features.feature }}</li>
       </ul>
     </div>
     <div class="footer">
-      <p>Precio: $10</p>
-      <button class="primary-button" (click)="selectPlan('basic')">Comprar</button>
+      <p>Precio: $0 USD</p>
+      <button class="primary-button" (click)="selectPlan('BASIC')">Comprar</button>
     </div>
   </div>
-  <div class="column">
+  <div  [ngClass]="getPlanClassesSelected()" class="column" (click)="selectPlan('INTERMETIATE')">
     <div class="columnTitle">
-      <h3>Medio</h3>
-      <p>Description of the medium plan.</p>
+      <h3>{{'Medio' | translate}}</h3> <div class="recomendedPlan">{{recommendedMediunPlan | translate}}</div>
+      <p>{{'Este es tu plan perfecto si ya tienes un nivel.' | translate}} </p>
     </div>
     <div class="serviceList">
       <ul>
-        <li><span class="checkmark">&#10003;  </span>  Feature 1</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 2</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 3</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 4</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 5</li>
+        <li *ngFor="let features of mediunPlanList"><span class="checkmark">&#10003;  </span>  {{ features.feature }}</li>
       </ul>
     </div>
     <div class="footer">
-      <p>Precio: $20</p>
-      <button class="primary-button" (click)="selectPlan('intermediate')">Comprar</button>
+      <p>Precio: $20 USD</p>
+      <button class="primary-button" (click)="selectPlan('INTERMETIATE')">Comprar</button>
     </div>
   </div>
-  <div class="column">
+  <div [ngClass]="getPlanClassesSelected()" class="column" (click)="selectPlan('PREMIUM')">
     <div class="columnTitle">
-      <h3>Avanzado</h3>
-      <p>Description of the advanced plan.</p>
+      <h3>{{'Avanzado' | translate}}</h3> <div class="recomendedPlan">{{recommendedAdvancePlan | translate}}</div>
+      <p>{{'Si tu nivel supera al de los dioses.' | translate}} </p>
     </div>
     <div class="serviceList">
       <ul>
-        <li><span class="checkmark">&#10003;  </span>  Feature 1</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 2</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 3</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 4</li>
-        <li><span class="checkmark">&#10003;  </span>  Feature 5</li>
+        <li *ngFor="let features of advancePlanList"><span class="checkmark">&#10003;  </span>  {{ features.feature }}</li>
       </ul>
     </div>
     <div class="footer">
-      <p>Precio: $30</p>
-      <button class="primary-button" (click)="selectPlan('premiun')">Comprar</button>
+      <p>Precio: $30 USD</p>
+      <button class="primary-button" (click)="selectPlan('PREMIUM')">Comprar</button>
     </div>
   </div>
 </div>

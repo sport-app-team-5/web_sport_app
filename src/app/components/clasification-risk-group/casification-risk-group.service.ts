@@ -16,17 +16,30 @@ constructor(private injector: Injector) {
   this.http = this.injector.get<HttpClient>(HttpClient)
 }
 
-registerRiskGroupService (data: any): Observable<any> {
+getRiskGroupService (): Observable<any> {
   const token = sessionStorage.getItem('access_token')
   const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
   })
 
-  return this.http.post(
+  return this.http.get(
     API_SPORT_PLAN_BASE_URL +
-          'auth/services',
-      data,
+          'auth/sports_men/profile/sport',
+      { headers }
+  )
+}
+
+setPlanSuscriptionService (suscriptionType: string): Observable<any> {
+  const token = sessionStorage.getItem('access_token')
+  const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+  })
+
+  return this.http.put(
+    API_SPORT_PLAN_BASE_URL +
+        `'auth/sports_men/profile/sport/${suscriptionType}'`,
       { headers }
   )
 }
