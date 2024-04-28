@@ -74,25 +74,27 @@ export class LoginComponent implements OnInit {
     const token = response.access_token;
     sessionStorage.setItem('access_token', token);
     const decoded = jwtDecode<any>(response.access_token);
-    sessionStorage.setItem('role', decoded.role);
+    let role = decoded.role;
+    sessionStorage.setItem('role', role);
     sessionStorage.setItem('user_id', decoded.sub);
     this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
       timeOut: 3000,
     });
-
-    this.dashboardService.getProfile(token).subscribe({
-      next: (res) => {
-        console.log(res)
-        if (res.detail == "Sport man not have risk" ) {
-          this.router.navigate(['/sports-information']);
-        } else {
-          this.router.navigate(['/home']);
-        }
-      },
-      error: () => {
-        console.log('error');
-      },
-    });
+    if (role === 'DEPO') {
+      this.dashboardService.getProfile(token).subscribe({
+        next: (res) => {
+          console.log(res);
+          if (res.detail == 'Sport man not have risk') {
+            this.router.navigate(['/sports-information']);
+          } else {
+            this.router.navigate(['/home']);
+          }
+        },
+        error: () => {
+          console.log('error');
+        },
+      });
+    }
   }
 
   handleError(error: any) {
