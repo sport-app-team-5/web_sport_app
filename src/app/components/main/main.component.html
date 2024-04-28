@@ -93,7 +93,7 @@
         <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && isActiveProfile ===false"></app-clasification-risk-group>
       </div>
       <div>
-        <app-profile-information *ngIf="role === 'DEPO'"></app-profile-information>
+        <app-profile-information *ngIf="role === 'DEPO' && isActiveProfile ===true"></app-profile-information>
       </div>
       <div *ngIf="creatingEvent === true" >
         <app-third-party-create-event></app-third-party-create-event>

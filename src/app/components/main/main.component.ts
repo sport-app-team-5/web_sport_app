@@ -89,6 +89,7 @@ export class MainComponent implements OnInit {
 
   setMenuActive(value: any) {
     this.isActiveMenu = value;
+    this.isActiveProfile=false
   }
 
   createService() {
