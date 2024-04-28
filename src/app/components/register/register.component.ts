@@ -154,8 +154,8 @@ export class RegisterComponent implements OnInit {
   messagePassworsInvalid(
     control: FormControl
   ): { [key: string]: boolean } | null {
-    const value: string = control.value || '';
-    const passwordValue = this.password?.value || '';
+    const value: string = control.value ?? '';
+    const passwordValue = this.password?.value ?? '';
     if (this.password === null || this.password === undefined) {
       return null;
     }
@@ -238,8 +238,6 @@ export class RegisterComponent implements OnInit {
       valid = true;
     } else {
       this.activateErrorMessageForRoleId = true;
-
-      valid = false;
     }
     return valid;
   }
@@ -268,7 +266,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validateStep4() {
-    let isComplete: Boolean = false;
+    let isComplete: boolean = false;
     if (this.role_id === 3) {
       isComplete =
         !!this.birth_city_id.value &&

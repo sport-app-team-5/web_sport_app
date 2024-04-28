@@ -13,14 +13,14 @@
 </header>
 <div *ngIf="isOpenMenu">
   <ul class="menu" id="menu">
-    <li>
+    <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
       <img class="icon-menu" src="../../../assets/images/user.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
       <a (click)="showProfile()">
         Perfil
       </a>
     </li>
 
-    <li (click)="closeSession()">
+    <li (click)="closeSession()" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
       <a>
         <img class="icon-menu" src="../../../assets/images/logout.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
         Cerrar sesión

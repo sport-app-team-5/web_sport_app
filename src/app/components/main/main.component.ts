@@ -66,13 +66,6 @@ export class MainComponent implements OnInit {
     };
   }
 
-  getActiveSvg(option:string){
-    return {
-      cell: true,
-      'cell-active': this.isActiveMenu === option
-    };
-  }
-
   getButtonClassesMenuProfileSvg() {
     return {
       cell: true,
