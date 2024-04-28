@@ -4,8 +4,8 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HeaderMainComponent } from '../../components/header-main/header-main.component';
-import { RegisterUserService } from '../../components/register/registeruser.service';
+import { HeaderMainComponent } from '../header-main/header-main.component';
+import { RegisterUserService } from '../register/registeruser.service';
 import { ThirdPartyService } from './third-party.service';
 
 

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HeaderMainComponent } from '../header-main/header-main.component';
 import { ProfileInformationComponent } from '../profile-information/profile-information.component';
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
-import { ThirdPartyCreateEventComponent } from '../../third-party/third-party-create-event/third-party-create-event.component';
+import { ThirdPartyCreateEventComponent } from '../third-party-create-event/third-party-create-event.component';
 import { HeaderMainService } from '../header-main/header-main.service';
 @Component({
   selector: 'app-main',
