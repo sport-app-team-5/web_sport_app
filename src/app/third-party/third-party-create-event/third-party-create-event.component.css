@@ -59,7 +59,20 @@ button {
   line-height: normal;
 }
 
+.container-buttons {
+  margin-top: 30px;
+  display: flex;
+  padding: 15px;
+  justify-content: center;
+  gap: 20px;
+}
 
+.question-button {
+  border-radius: 10px;
+  border: 1px solid var(--c-gray-light);
+  padding: 20px;
+  color: var(--c-gray-light);
+}
 
 .question-button:hover,
 .question-button:active,
@@ -108,18 +121,27 @@ button {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  border-radius: 10px;
-  border: 1px solid var(--c-gray-light);
-  padding: 20px;
 }
-
 .container-buttons {
   display: flex;
   padding: 15px;
   justify-content: center;
   gap: 20px;
 }
+.question-button {
+  border-radius: 10px;
+  border: 1px solid var(--c-gray-light);
+  padding: 20px;
+  color: var(--c-gray-light);
+}
 
+.question-button:hover,
+.question-button:active,
+.question-button:focus {
+  border-radius: 10px;
+  border: 1px solid var(--c-green-ligth);
+  color: var(--c-green-ligth);
+}
 .active-button {
   border-radius: 10px;
   border: 1px solid var(--c-green-ligth);
