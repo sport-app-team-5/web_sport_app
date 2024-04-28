@@ -14,6 +14,7 @@ export class HeaderMainComponent implements OnInit {
   isOpenMenu: boolean = false
   isActiveProfile: boolean = false
   role: string =''
+  menuKeyDown: boolean = false
 
   constructor (private router: Router, private headerMainService: HeaderMainService) {}
 
@@ -44,5 +45,9 @@ export class HeaderMainComponent implements OnInit {
   showProfile() {
     this.isActiveProfile = true;
     this.headerMainService.setIsActiveProfile(true);
+  }
+
+  handleKeyDown($event: KeyboardEvent) {
+    this.menuKeyDown = true
   }
 }

@@ -96,16 +96,15 @@ export class RegisterComponent implements OnInit {
   }
 
   getCountries(): void {
-    this.registerUserService.getCountries().subscribe(
-      (response) => {
-        this.countries = response;
-      },
-      (error) => {
-        this.toastr.error('Error obteniendo los países', 'Error', {
-          timeOut: 3000,
-        });
-      }
-    );
+    this.registerUserService.getCountries().toPromise()
+      .then((response) => {
+      this.countries = response;
+      })
+      .catch((error) => {
+      this.toastr.error('Error obteniendo los países', 'Error', {
+        timeOut: 3000,
+      });
+      });
   }
 
   getCitiesResidence() {
@@ -155,8 +154,8 @@ export class RegisterComponent implements OnInit {
   messagePassworsInvalid(
     control: FormControl
   ): { [key: string]: boolean } | null {
-    const value: string = control.value || '';
-    const passwordValue = (this.password && this.password.value) || '';
+    const value: string = control.value ?? '';
+    const passwordValue = this.password?.value ?? '';
     if (this.password === null || this.password === undefined) {
       return null;
     }
@@ -166,41 +165,71 @@ export class RegisterComponent implements OnInit {
 
   nextStep() {
     if (this.currentStep === 1) {
-      if (this.validateStep1()) {
-        this.currentStep++;
-      }
+      this.handleStep1();
     } else if (this.currentStep === 2) {
-      if (this.validateStep2()) {
-        this.currentStep++;
-      } else {
-        this.email.markAsTouched();
-        this.password.markAsTouched();
-        this.confirmPassword.markAllAsTouched();
-      }
+      this.handleStep2();
     } else if (this.currentStep === 3) {
-      if (this.validateStep3()) {
-        this.currentStep++;
-      } else {
-        this.name.markAllAsTouched();
-        this.lastname.markAllAsTouched();
-        this.document_type.markAllAsTouched();
-        this.document_number.markAllAsTouched();
-      }
+      this.handleStep3();
     } else if (this.currentStep === 4) {
-      if (this.validateStep4()) {
-        this.saveUserData();
+      this.handleStep4();
+    }
+  }
+
+  handleStep1() {
+    if (this.validateStep1()) {
+      this.currentStep++;
+    }
+  }
+
+  handleStep2() {
+    if (this.validateStep2()) {
+      this.currentStep++;
+    } else {
+      this.markAllAsTouched([
+        this.email,
+        this.password,
+        this.confirmPassword,
+      ]);
+    }
+  }
+
+  handleStep3() {
+    if (this.validateStep3()) {
+      this.currentStep++;
+    } else {
+      this.markAllAsTouched([
+        this.name,
+        this.lastname,
+        this.document_type,
+        this.document_number,
+      ]);
+    }
+  }
+
+  handleStep4() {
+    if (this.validateStep4()) {
+      this.saveUserData();
+    } else {
+      if (this.role_id === 3) {
+        this.markAllAsTouched([
+          this.birth_city_id,
+          this.birth_country_id,
+          this.residence_country_id,
+          this.residence_city_id,
+        ]);
       } else {
-        if (this.role_id === 3) {
-          this.birth_city_id.markAllAsTouched();
-          this.birth_country_id.markAllAsTouched();
-          this.residence_country_id.markAllAsTouched();
-          this.residence_city_id.markAllAsTouched();
-        } else {
-          this.residence_country_id.markAllAsTouched();
-          this.residence_city_id.markAllAsTouched();
-        }
+        this.markAllAsTouched([
+          this.residence_country_id,
+          this.residence_city_id,
+        ]);
       }
     }
+  }
+
+  markAllAsTouched(controls: FormControl[]) {
+    controls.forEach((control) => {
+      control.markAllAsTouched();
+    });
   }
 
   validateStep1() {
@@ -209,8 +238,6 @@ export class RegisterComponent implements OnInit {
       valid = true;
     } else {
       this.activateErrorMessageForRoleId = true;
-
-      valid = false;
     }
     return valid;
   }
@@ -239,7 +266,7 @@ export class RegisterComponent implements OnInit {
   }
 
   validateStep4() {
-    let isComplete: Boolean = false;
+    let isComplete: boolean = false;
     if (this.role_id === 3) {
       isComplete =
         !!this.birth_city_id.value &&

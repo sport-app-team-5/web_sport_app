@@ -67,12 +67,7 @@ button {
   gap: 20px;
 }
 
-.question-button {
-  border-radius: 10px;
-  border: 1px solid var(--c-gray-light);
-  padding: 20px;
-  color: var(--c-gray-light);
-}
+
 
 .question-button:hover,
 .question-button:active,
@@ -115,24 +110,14 @@ button {
   gap: 70px
 }
 
-.question {
-  color: var(--c-white);
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-.container-buttons {
-  display: flex;
-  padding: 15px;
-  justify-content: center;
-  gap: 20px;
-}
+
+
 .question-button {
   border-radius: 10px;
   border: 1px solid var(--c-gray-light);
   padding: 20px;
   color: var(--c-gray-light);
+
 }
 
 .question-button:hover,
