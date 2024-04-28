@@ -82,7 +82,7 @@ export class MainComponent implements OnInit {
   }
 
   createService() {
-    this.creatingEvent==false
+    
     this.router.navigate(['/services']);
   }
 
@@ -91,7 +91,7 @@ export class MainComponent implements OnInit {
   }
 
   createExercise() {
-    this.creatingEvent==false
+    
     this.router.navigate(['/exercise']);
   }
 
@@ -111,7 +111,7 @@ export class MainComponent implements OnInit {
   }
 
   createProduct() {
-    this.creatingEvent==false
+    
     this.router.navigate(['/products']);
   }
 
