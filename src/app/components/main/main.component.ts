@@ -23,7 +23,7 @@ export class MainComponent implements OnInit {
   isActiveMenu = 'home';
   role = sessionStorage.getItem('role');
   creatingEvent = false;
-
+  menuKeyDown: boolean = false
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -84,7 +84,6 @@ export class MainComponent implements OnInit {
   }
 
   setMenuActive(value: any) {
-    console.log(value)
     this.isActiveMenu = value;
   }
 
@@ -122,5 +121,9 @@ export class MainComponent implements OnInit {
   createEvent() {
     this.creatingEvent=true
     // this.router.navigate(['/events']);
+  }
+
+  handleKeyDown($event: KeyboardEvent) {
+    this.menuKeyDown = true
   }
 }

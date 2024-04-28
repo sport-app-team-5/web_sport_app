@@ -55,6 +55,7 @@ table {
   width: 70%;
   -webkit-animation: slide-in-top 0.7s cubic-bezier(0.860, 0.000, 0.070, 1.000) alternate both;
 	animation: slide-in-top 0.7s cubic-bezier(0.860, 0.000, 0.070, 1.000) alternate both;
+
 }
 
 @keyframes slide-in-top {
@@ -75,7 +76,8 @@ table {
   display: flex;
   justify-content: center;
   align-items: left;
- }
+  border: 1px solid var(--c-green-ligth);
+}
 
  .tr {
   border: solid;
