@@ -90,7 +90,7 @@
         <button *ngIf="isActiveMenu === 'profile'"  class="primary-button" (click)="createExercise()"> Agregar entrenamiento</button>
       </div>
       <div>
-        <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home'"></app-clasification-risk-group>
+        <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && isActiveProfile ===false"></app-clasification-risk-group>
       </div>
       <div>
         <app-profile-information *ngIf="role === 'DEPO'"></app-profile-information>
