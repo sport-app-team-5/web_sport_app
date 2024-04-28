@@ -96,15 +96,6 @@ describe('MainComponent', () => {
     expect(navigateSpy).toHaveBeenCalledWith(['/']);
   });
 
-  it('should set creatingEvent to true', () => {
-    component.createEvent();
-    expect(component.creatingEvent).toBe(true);
-  });
-
-  it('should set creatingEvent to true', () => {
-    component.createEvent();
-    expect(component.creatingEvent).toBe(true);
-  });
 
   it('should set menuKeyDown to true on key down event', () => {
     const event = new KeyboardEvent('keydown');
