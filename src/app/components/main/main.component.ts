@@ -5,6 +5,7 @@ import { HeaderMainComponent } from '../header-main/header-main.component';
 import { ProfileInformationComponent } from '../profile-information/profile-information.component';
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
 import { ThirdPartyCreateEventComponent } from '../../third-party/third-party-create-event/third-party-create-event.component';
+import { HeaderMainService } from '../header-main/header-main.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -24,10 +25,18 @@ export class MainComponent implements OnInit {
   role = sessionStorage.getItem('role');
   creatingEvent = false;
   menuKeyDown: boolean = false
-  constructor(private router: Router) {}
+  isActiveProfile:boolean = false;
+  
+  constructor(private router: Router,
+    private headerMainService: HeaderMainService
+  ) {}
 
   ngOnInit() {
     this.start();
+
+    this.headerMainService.getIsActiveProfile().subscribe((profile) => {    
+      this.isActiveProfile = profile;
+    });
   }
 
   start() {
