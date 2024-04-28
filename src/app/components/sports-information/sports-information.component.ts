@@ -210,31 +210,34 @@ export class SportsInformationComponent implements OnInit {
   }
 
   saveData() {
-    const user_id = sessionStorage.getItem('user_id');
-    let data = {
-      birth_year: this.birth_year.value,
-      height: this.height.value,
-      weight: this.weight.value,
-      id: user_id,
-      injuries: this.injuries,
-      sport_preference: this.sport_preference,
-      exercise_experience: this.exercise_experience,
-      time_dedication_sport: this.time_dedication_sport,
-    };
-    this.registerSportInformation.createSportProfile(data, user_id).subscribe({
-      next: () => {
-        this.toastr.success('Deportista actualizado éxitosamente', 'Exitoso', {
-          timeOut: 3000
-        })
-        this.router.navigate(['/nutritional-information']);
-      },
-      error: (error) => {
-        console.log(error)
-        this.toastr.error('Error actualizando la información', 'Error', {
-          timeOut: 3000
-        })
-      },
-    });
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const user_id = sessionStorage.getItem('user_id');
+      let data = {
+        birth_year: this.birth_year.value,
+        height: this.height.value,
+        weight: this.weight.value,
+        id: user_id,
+        injuries: this.injuries,
+        sport_preference: this.sport_preference,
+        exercise_experience: this.exercise_experience,
+        time_dedication_sport: this.time_dedication_sport,
+      };
+      this.registerSportInformation.createSportProfile(data, user_id).subscribe({
+        next: () => {
+          this.toastr.success('Deportista actualizado éxitosamente', 'Exitoso', {
+            timeOut: 3000
+          })
+          this.router.navigate(['/nutritional-information']);
+        },
+        error: (error) => {
+          console.log(error)
+          this.toastr.error('Error actualizando la información', 'Error', {
+            timeOut: 3000
+          })
+        },
+      });
+    }
+
   }
 
   validateStep1() {

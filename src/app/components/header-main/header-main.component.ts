@@ -24,7 +24,10 @@ export class HeaderMainComponent implements OnInit {
   }
 
   start () {
-    this.role = sessionStorage.getItem('role') ?? '';
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      this.role = sessionStorage.getItem('role') ?? '';
+    }
+  
     return true
   }
   openMenuClass () {
