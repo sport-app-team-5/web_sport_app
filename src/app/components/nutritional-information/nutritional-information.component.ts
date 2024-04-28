@@ -54,9 +54,13 @@ export class NutritionalInformationComponent implements OnInit {
   }
 
   getAllergies(): void {
-    this.nutritionalInformationService.getAllergies().subscribe({
+    let token=null
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      token = sessionStorage.getItem('access_token');
+    }
+    this.nutritionalInformationService.getAllergies(token).subscribe({
       next: (response) => {this.allergies_list = response },
-      error: () => {
+      error: (err) => {
         this.toastr.error('Error obteniendo las alergias', 'Error', {
           timeOut: 3000
         });
@@ -107,7 +111,11 @@ export class NutritionalInformationComponent implements OnInit {
   }
 
   saveNutritionalInformationData () {
-    this.nutritionalInformationService.createNutritionalInformation(this.formData).subscribe({
+    let token=null
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      token = sessionStorage.getItem('access_token');
+    }
+    this.nutritionalInformationService.createNutritionalInformation(this.formData,token).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)
     })
