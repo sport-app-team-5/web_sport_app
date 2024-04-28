@@ -3,7 +3,7 @@ import { ThirdPartyCreateEventComponent } from './third-party-create-event.compo
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { RegisterUserService } from '../../components/register/registeruser.service';
+import { RegisterUserService } from '../register/registeruser.service';
 import { ThirdPartyService } from './third-party.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';

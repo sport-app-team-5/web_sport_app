@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { HeaderMainComponent } from '../header-main/header-main.component';
 import { ProfileInformationComponent } from '../profile-information/profile-information.component';
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
-import { ThirdPartyCreateEventComponent } from '../../third-party/third-party-create-event/third-party-create-event.component';
+import { ThirdPartyCreateEventComponent } from '../third-party-create-event/third-party-create-event.component';
 import { HeaderMainService } from '../header-main/header-main.service';
 @Component({
   selector: 'app-main',
@@ -16,27 +16,35 @@ import { HeaderMainService } from '../header-main/header-main.service';
     HeaderMainComponent,
     ProfileInformationComponent,
     ClasificationRiskGroupComponent,
-    ThirdPartyCreateEventComponent
+    ThirdPartyCreateEventComponent,
   ],
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
   isActiveMenu = 'home';
-  role = sessionStorage.getItem('role');
+  role: string | null = null;
   creatingEvent = false;
-  menuKeyDown: boolean = false
-  isActiveProfile:boolean = false;
-  
-  constructor(private router: Router,
+  menuKeyDown: boolean = false;
+  isActiveProfile: boolean = false;
+
+  constructor(
+    private router: Router,
     private headerMainService: HeaderMainService
   ) {}
 
   ngOnInit() {
     this.start();
+    this.getSession();
 
-    this.headerMainService.getIsActiveProfile().subscribe((profile) => {    
+    this.headerMainService.getIsActiveProfile().subscribe((profile) => {
       this.isActiveProfile = profile;
     });
+  }
+
+  getSession() {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      this.role = sessionStorage.getItem('role');
+    }
   }
 
   start() {
@@ -50,19 +58,18 @@ export class MainComponent implements OnInit {
     };
   }
 
-
-  setClassActiveSport(option:string){
-    console.log(option)
+  setClassActiveSport(option: string) {
+    console.log(option);
     return {
       'container-home': true,
       'active-button': this.isActiveMenu === option,
     };
   }
 
-  getButtonClassesMenuSvg(option:string) {
+  getButtonClassesMenuSvg(option: string) {
     return {
       cell: true,
-      'cell-active': this.isActiveMenu === option
+      'cell-active': this.isActiveMenu === option,
     };
   }
 
@@ -82,11 +89,10 @@ export class MainComponent implements OnInit {
 
   setMenuActive(value: any) {
     this.isActiveMenu = value;
-    this.isActiveProfile=false
+    this.isActiveProfile = false;
   }
 
   createService() {
-    
     this.router.navigate(['/services']);
   }
 
@@ -95,7 +101,6 @@ export class MainComponent implements OnInit {
   }
 
   createExercise() {
-    
     this.router.navigate(['/exercise']);
   }
 
@@ -110,20 +115,20 @@ export class MainComponent implements OnInit {
     this.isOpenMenu = !this.isOpenMenu;
   }
   closeSession() {
+    
     sessionStorage.clear();
     this.router.navigate(['/']);
   }
 
   createProduct() {
-    
     this.router.navigate(['/products']);
   }
 
   createEvent() {
-    this.router.navigate(['/events'])
+    this.router.navigate(['/events']);
   }
 
   handleKeyDown($event: KeyboardEvent) {
-    this.menuKeyDown = true
+    this.menuKeyDown = true;
   }
 }

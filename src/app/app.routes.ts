@@ -11,7 +11,7 @@ import {ProductComponent} from "./components/product/product.component";
 import { inject } from '@angular/core'
 import { AuthService } from '../app/services/auth.service'
 import { SportsInformationComponent } from './components/sports-information/sports-information.component'
-import { ThirdPartyCreateEventComponent } from './third-party/third-party-create-event/third-party-create-event.component'
+import { ThirdPartyCreateEventComponent } from './components/third-party-create-event/third-party-create-event.component'
 import {ExerciseComponent} from "./components/exercise/exercise.component";
 
 export const domainGuard = () => {
@@ -39,7 +39,7 @@ export const routes: Routes = [
   {
     path: 'sports-information',
     component: SportsInformationComponent,
-    
+    canActivate: [domainGuard]
   },
   {
     path: 'sportplan',
@@ -64,7 +64,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: MainComponent,
-     
+     canActivate: [domainGuard]
   }, 
   {
     path: 'events',
