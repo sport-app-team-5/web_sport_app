@@ -1,19 +1,24 @@
-import { Injectable } from '@angular/core'
-import { Router } from '@angular/router'
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor (private router: Router) {}
+  constructor(private router: Router) {}
 
-  canActivate (): boolean {
-    const isAuthenticated = sessionStorage?.getItem('access_token') !== null;
-    if (!isAuthenticated) {
-      this.router.navigate(['/login'])
-      return false
+  canActivate(): boolean {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const isAuthenticated =
+        window.sessionStorage.getItem('access_token') !== null;
+      if (!isAuthenticated) {
+        this.router.navigate(['/login']);
+        return false;
+      }
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
     }
-
-    return true
   }
 }
