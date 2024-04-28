@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ToastrService} from "ngx-toastr";
 import { Router } from '@angular/router';
+import { NutritionalProfileListService } from './nutritional-profile-list.service';
 
 @Component({
   selector: 'app-nutritional-profile-list',
@@ -19,27 +20,53 @@ questiontype: string = '';
 answerProfile: string = '';
 formTitle: string = '';
 formDescription: string = '';
+sportManNutritionalProfile: any;
 
   constructor(
+    private nutritionalProfileListService: NutritionalProfileListService,
     private toastr: ToastrService,
     private translate: TranslateService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.switchLanguage('es')
-    this.foodList = [{"name":"Alergia Alimentaria", "description":"Zanahoria"},
-    {"name":"Dieta", "description":"Carnivora"}
-    ];
+    this.switchLanguage('es');
     this.questiontype = "Tipo";
     this.answerProfile = "Nombre";
     this.formTitle = "Tu información";
     this.formDescription = "Encontrarás tus datos personales de tu perfil alimenticio";
-    console.log(this.foodList)
-  }
 
-  switchLanguage (language: string): void {
-    this.translate.use(language)
+    this.getData();
+
+    }
+
+    switchLanguage (language: string): void {
+      this.translate.use(language)
+    }
+
+    getData () {
+      this.nutritionalProfileListService.getNutritionalProfileService().subscribe({
+      next: (response) => { console.log(response);
+        this.sportManNutritionalProfile = response;
+        this.sportManNutritionalProfile.allergies.forEach((element: any) => {
+          this.foodList.push({
+            name: element.name,
+            description: element.description
+          });
+        });
+
+        this.foodList.push({
+          name: "Dieta",
+          description: this.sportManNutritionalProfile.food_preference
+        });
+
+      },
+      error: () => {
+        this.toastr.error('Error obteniendo el perfil nutricional', 'Error', {
+          timeOut: 3000
+        });
+      }
+    })
   }
 
   goToHome() {

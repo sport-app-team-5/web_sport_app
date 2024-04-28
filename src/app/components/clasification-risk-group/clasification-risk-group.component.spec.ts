@@ -48,8 +48,6 @@ describe('ClasificationRiskGroupComponent', () => {
     translateService = TestBed.inject(TranslateService)
     toastr = TestBed.inject(ToastrService)
     fixture.detectChanges();
-
-
   });
 
   it('should create', () => {
