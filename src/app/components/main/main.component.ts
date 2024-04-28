@@ -124,6 +124,7 @@ export class MainComponent implements OnInit {
   }
 
   handleKeyDown($event: KeyboardEvent) {
+    console.log($event)
     this.menuKeyDown = true
   }
 }
