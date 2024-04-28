@@ -40,14 +40,17 @@ export class DashboardComponent implements OnInit {
   }
 
   getProfile(): void {
-    const token= sessionStorage.getItem('acces_token')
-    this.dashboardService.getProfile(token).subscribe({
-      next: (response) => {this.profile = response},
-      error: () => {
-        this.toastr.error('Error obteniendo el perfil', 'Error', {
-          timeOut: 3000
-        });
-      }
-    });
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const token= sessionStorage.getItem('acces_token')
+      this.dashboardService.getProfile(token).subscribe({
+        next: (response) => {this.profile = response},
+        error: () => {
+          this.toastr.error('Error obteniendo el perfil', 'Error', {
+            timeOut: 3000
+          });
+        }
+      });
+    }
+
   }
 }

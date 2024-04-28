@@ -39,7 +39,7 @@ export const routes: Routes = [
   {
     path: 'sports-information',
     component: SportsInformationComponent,
-    
+    canActivate: [domainGuard]
   },
   {
     path: 'sportplan',
@@ -64,7 +64,7 @@ export const routes: Routes = [
   {
     path: 'home',
     component: MainComponent,
-     
+     canActivate: [domainGuard]
   }, 
   {
     path: 'events',

@@ -17,7 +17,11 @@ constructor(private injector: Injector) {
 }
 
 getRiskGroupService (): Observable<any> {
-  const token = sessionStorage.getItem('access_token')
+  let token=null
+  if (typeof window !== 'undefined' && window.sessionStorage) {
+    token = sessionStorage.getItem('access_token');
+  }     
+
   const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
