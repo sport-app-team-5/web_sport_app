@@ -15,7 +15,10 @@ export class DashboardService {
 
   getProfile(token: any): Observable<any> {
     if (!token) {
-      token = sessionStorage.getItem('access_token');
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        token = sessionStorage.getItem('access_token');
+      }
+  
     }
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

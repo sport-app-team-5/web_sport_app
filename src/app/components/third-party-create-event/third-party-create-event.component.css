@@ -1,5 +1,4 @@
-@import '../third-party-create-event/vars.css';
-@import './vars.css';
+@import '../register/vars.css';
 
 .continer-content{
   display: flex;
