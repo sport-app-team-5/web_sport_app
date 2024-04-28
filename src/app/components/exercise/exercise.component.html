@@ -1,0 +1,68 @@
+<app-header-main></app-header-main>
+
+<main class="wrapper">
+  <div *ngIf="currentStep == 1" class="container-services">
+    <div class="question">{{'exerciseName'| translate}}</div>
+    <div>
+      <input [formControl]="name" type="text" name="name" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
+        <span class="error" *ngIf="name.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 2" class="container-services">
+    <div class="question">{{'exerciseDescription'| translate}}</div>
+    <div>
+      <input [formControl]="description" type="text" name="description" placeholder="{{'writeHere'| translate}}"
+             (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="description.invalid && (description.dirty || description.touched)">
+        <span class="error" *ngIf="description.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 3" class="container-services">
+    <div class="question">{{'exerciseSport'| translate}}</div>
+    <select name="sport" [formControl]="sport" (change)="changeValueForm($event)">
+      <option value="" disabled selected hidden>{{'selectSport'| translate}}</option>
+      <option value="Atletismo">{{'running'| translate}}</option>
+      <option value="Ciclismo">{{'cycling'| translate}}</option>
+    </select>
+    <div class="error-container" *ngIf="sport.invalid && (sport.dirty || sport.touched)">
+      <span class="error" *ngIf="sport.errors?.['required']">{{'fieldRequired'| translate}}</span>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 4" class="container-services">
+    <div class="question">{{'duration'| translate}}</div>
+    <div>
+      <input [formControl]="duration" type="number" name="duration" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <div class="error-container" *ngIf="duration.invalid && (duration.dirty || duration.touched)">
+        <span class="error" *ngIf="duration.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 5" class="container-services">
+    <div class="question">{{'intensity'| translate}}</div>
+    <select name="intensity" [formControl]="intensity" (change)="changeValueForm($event)">
+      <option value="" disabled selected hidden>{{'selectIntensity'| translate}}</option>
+      <option value="Baja">{{'exerciseIntensityDown'| translate}}</option>
+      <option value="Media">{{'exerciseIntensityMedium'| translate}}</option>
+      <option value="Alta">{{'exerciseIntensityHigh'| translate}}</option>
+    </select>
+    <div class="error-container" *ngIf="intensity.invalid && (intensity.dirty || intensity.touched)">
+      <span class="error" *ngIf="intensity.errors?.['required']">{{'fieldRequired'| translate}}</span>
+    </div>
+  </div>
+
+  <div class="container-buttons">
+    <button *ngIf="currentStep !== 1" class="secondary-button" (click)="backStep()">
+      {{'back'| translate}}
+    </button>
+    <button class="primary-button" (click)="nextStep()">
+      {{ currentStep === 5 ? ('registerForm' | translate) : ('next' | translate) }}
+    </button>
+  </div>
+</main>

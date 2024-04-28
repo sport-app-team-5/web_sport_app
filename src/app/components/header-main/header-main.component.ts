@@ -11,16 +11,20 @@ import { HeaderMainService } from './header-main.service'
   imports: [CommonModule]
 })
 export class HeaderMainComponent implements OnInit {
-
   isOpenMenu: boolean = false
   isActiveProfile: boolean = false
+  role: string =''
+  menuKeyDown: boolean = false
+
   constructor (private router: Router, private headerMainService: HeaderMainService) {}
 
   ngOnInit () {
     this.start()
+   
   }
 
   start () {
+    this.role = sessionStorage.getItem('role') ?? '';
     return true
   }
   openMenuClass () {
@@ -41,5 +45,9 @@ export class HeaderMainComponent implements OnInit {
   showProfile() {
     this.isActiveProfile = true;
     this.headerMainService.setIsActiveProfile(true);
+  }
+
+  handleKeyDown($event: KeyboardEvent) {
+    this.menuKeyDown = true
   }
 }

@@ -1,46 +1,102 @@
 <main class="container">
-  <div class="sidebar">
+  <div class="sidebar" *ngIf="role === 'DEPO'">
     <img class="brand-img" src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="logo" />
-    <div [ngClass]="getButtonClassesMenuHome()" class="container-home" (click)="setMenuAtive('home')">
-      <svg [ngClass]="getButtonClassesMenuSvg()" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 576 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+    <div [ngClass]="setClassActiveSport('home')" class="container-home" (click)=" setMenuActive('home')"  (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+      <svg [ngClass]="getButtonClassesMenuSvg('home')" class="cell"  width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 576 512">
         <path fill="white"
           d="M277.4 4.002C283.5-1.334 292.5-1.334 298.6 4.002L570.6 244C577.2 249.8 577.8 259.1 571.1 266.6C566.2 273.2 556 273.8 549.4 267.1L512 234.1V432C512 476.2 476.2 512 432 512H144C99.82 512 64 476.2 64 432V234.1L26.59 267.1C19.96 273.8 9.849 273.2 4.003 266.6C-1.844 259.1-1.212 249.8 5.414 244L277.4 4.002zM96 206.7V432C96 458.5 117.5 480 144 480H432C458.5 480 480 458.5 480 432V206.7L288 37.34L96 206.7z" />
       </svg>
     </div>
-    <div class="container-home" (click)="setMenuAtive('traning')">
-      <svg class="cell" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 384 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+    <div  [ngClass]="setClassActiveSport('traning')" class="container-home" (click)=" setMenuActive('traning')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+      <svg  [ngClass]="getButtonClassesMenuSvg('traning')" class="cell" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512">
         <path fill="white"
           d="M288 0H96C60.65 0 32 28.65 32 64v384c0 35.35 28.65 64 64 64h192c35.35 0 64-28.65 64-64V64C352 28.65 323.3 0 288 0zM320 448c0 17.64-14.36 32-32 32H96c-17.64 0-32-14.36-32-32V64c0-17.64 14.36-32 32-32h192c17.64 0 32 14.36 32 32V448zM224 400H160c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16h64c8.836 0 16-7.164 16-16C240 407.2 232.8 400 224 400z" />
       </svg>
     </div>
-    <div class="container-home" (click)="setMenuAtive('calendar')">
-      <svg class="cell" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-        <path fill="white"
-          d="M112 0C120.8 0 128 7.164 128 16V64H320V16C320 7.164 327.2 0 336 0C344.8 0 352 7.164 352 16V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H96V16C96 7.164 103.2 0 112 0zM416 192H32V448C32 465.7 46.33 480 64 480H384C401.7 480 416 465.7 416 448V192zM384 96H64C46.33 96 32 110.3 32 128V160H416V128C416 110.3 401.7 96 384 96z" />
-      </svg>
-    </div>
-    <div class="container-home" (click)="setMenuAtive('sport')">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+    <div [ngClass]="setClassActiveSport('profile')" class="container-home" (click)=" setMenuActive('profile')" (keydown)="handleKeyDown($event)">
+      <svg [ngClass]="getButtonClassesMenuSvg('profile')" class="cell" width="24" height="24"
+        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512">
         <path fill="white"
           d="M296 112C326.9 112 352 86.88 352 56S326.9 0 296 0S240 25.12 240 56S265.1 112 296 112zM296 32C309.2 32 320 42.77 320 56S309.2 80 296 80S272 69.23 272 56S282.8 32 296 32zM151.2 337.7c-7.906-3.906-17.47-.7344-21.47 7.156L118.1 368H32c-8.844 0-16 7.156-16 16s7.156 16 16 16h96c6.062 0 11.59-3.422 14.31-8.844l16-32C162.3 351.3 159.1 341.6 151.2 337.7zM416 240h-60.11c-6.125 0-11.62-3.43-14.34-8.898l-20.52-40.79c-13.62-27.23-36.09-49.73-63.34-63.36C238.1 117.2 216.2 112 194.3 112H154.7c-10.31 0-20.56 3.422-28.78 9.609L70.41 163.2c-7.062 5.297-8.5 15.33-3.219 22.39c5.312 7.094 15.34 8.5 22.41 3.203l55.5-41.59C147.8 145.1 151.2 144 154.7 144h39.69c3.738 0 7.396 .916 11.12 1.301L170.4 215.5C152.8 250.6 163.8 294.2 196.1 316.8l105.4 73.78l-28.84 101c-2.438 8.484 2.469 17.34 10.97 19.78C285.1 511.8 286.6 512 288 512c6.969 0 13.38-4.578 15.38-11.61l32-112c1.875-6.562-.5938-13.58-6.188-17.5L214.4 290.6c-19.38-13.55-26-39.69-15.44-60.8l38.22-76.42c2.014 .8574 4.201 1.25 6.158 2.229c21.09 10.53 38.5 27.95 49.03 49.05l20.44 40.83C321 261.8 337.5 272 355.8 272H416c8.844 0 16-7.156 16-16S424.8 240 416 240z" />
       </svg>
     </div>
-    <img (click)="closeSession()" class="icon-menu" src="../../../assets/images/logout.svg" alt="Logout" />
+    <div [ngClass]="setClassActiveSport('calendar')" class="container-home" (keydown)="handleKeyDown($event)" keypress (keyup)="handleKeyDown($event)" (click)=" setMenuActive('calendar')">
+      <svg [ngClass]="getButtonClassesMenuSvg('calendar')" class="cell" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512">
+        <path fill="white"
+          d="M112 0C120.8 0 128 7.164 128 16V64H320V16C320 7.164 327.2 0 336 0C344.8 0 352 7.164 352 16V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H96V16C96 7.164 103.2 0 112 0zM416 192H32V448C32 465.7 46.33 480 64 480H384C401.7 480 416 465.7 416 448V192zM384 96H64C46.33 96 32 110.3 32 128V160H416V128C416 110.3 401.7 96 384 96z" />
+      </svg>
+    </div>
+    <div class="container-logout">
+      <img (click)="closeSession()" class="icon-menu" src="../../../assets/images/logout.svg" alt="Logout" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
+    </div>
   </div>
+
+  <div class="sidebar" *ngIf="role === 'TECE'">
+    <img class="brand-img" src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="logo" />
+    <div [ngClass]="setClassActiveSport('home')" class="container-home" (click)=" setMenuActive('home')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+      <svg [ngClass]="getButtonClassesMenuSvg('home')" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 576 512">
+        <path fill="white"
+          d="M277.4 4.002C283.5-1.334 292.5-1.334 298.6 4.002L570.6 244C577.2 249.8 577.8 259.1 571.1 266.6C566.2 273.2 556 273.8 549.4 267.1L512 234.1V432C512 476.2 476.2 512 432 512H144C99.82 512 64 476.2 64 432V234.1L26.59 267.1C19.96 273.8 9.849 273.2 4.003 266.6C-1.844 259.1-1.212 249.8 5.414 244L277.4 4.002zM96 206.7V432C96 458.5 117.5 480 144 480H432C458.5 480 480 458.5 480 432V206.7L288 37.34L96 206.7z" />
+      </svg>
+    </div>
+    <div [ngClass]="setClassActiveSport('services')" class="container-home" (click)=" setMenuActive('services')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+      <svg [ngClass]="getButtonClassesMenuSvg('services')" width="24" height="24" viewBox="0 0 34 34" fill="white"
+        xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_252_429)">
+          <path
+            d="M32.9493 21.8108C32.3885 21.2552 31.6507 20.949 30.8763 20.949C30.1384 20.949 29.4076 21.2228 28.8327 21.7302L25.2055 24.9019C25.0916 25.0015 24.9502 25.0557 24.8044 25.0557H22.3476C22.6206 24.4357 22.7313 23.7189 22.628 22.9783C22.3951 21.1727 20.8781 19.903 19.2194 19.903H10.6958C9.47101 19.903 8.32882 20.3378 7.30174 21.143L5.02917 22.9948H0.944444C0.424941 22.9948 0 23.4585 0 24.0254C0 24.5922 0.424882 25.0012 0.89132 25.0012L5.61413 25.0019L8.38017 22.7274C9.03656 22.196 9.83344 21.9062 10.6451 21.9062H19.3044C20.0866 21.9062 20.7211 22.5985 20.7211 23.4525C20.7211 24.3065 20.0866 24.9981 19.3044 24.9981H14.1135C13.597 24.9981 13.1691 25.4651 13.1691 26.0287C13.1691 26.5924 13.597 27.0593 14.1135 27.0593H24.7503C25.3185 27.0593 25.8719 26.8499 26.3217 26.4633L29.959 23.291C30.2098 23.0736 30.5197 22.9527 30.8219 22.9527C31.1171 22.9527 31.4048 23.0655 31.6336 23.291C32.2309 23.8787 32.187 24.8688 31.5819 25.3928L25.6378 30.5864C25.1902 30.9773 24.6338 31.1903 24.0606 31.1903H0.944444C0.424941 31.1903 0 31.6536 0 32.2202C0 32.7868 0.424882 33.3092 0.89132 33.3092H24.0597C25.0632 33.3092 26.0301 32.9308 26.8116 32.2541L32.7675 27.0527C33.4906 26.4247 33.9185 25.4827 33.8949 24.4759C34.0295 23.4672 33.5927 22.494 32.9493 21.8108ZM11.3333 12.6842H13.2222V14.7467C13.2222 15.8856 14.0681 16.8092 15.1111 16.8092H18.8889C19.9319 16.8092 20.7778 15.8856 20.7778 14.7467V12.6842H22.6667C23.7097 12.6842 24.5556 11.7606 24.5556 10.6217V6.4967C24.5556 5.35782 23.7097 4.4342 22.6667 4.4342H20.7778V2.3717C20.7778 1.23282 19.9319 0.309204 18.8889 0.309204H15.1111C14.0663 0.309204 13.2222 1.23282 13.2222 2.3717V4.4342H11.3333C10.2885 4.4342 9.44444 5.35782 9.44444 6.4967V10.6217C9.44444 11.7625 10.2885 12.6842 11.3333 12.6842ZM11.3333 6.4967H15.1111V2.3717H18.8889V6.4967H22.6667V10.6217H18.8889V14.7467H15.1111V10.6217H11.3333V6.4967Z"
+            fill="white" />
+        </g>
+        <defs>
+          <clipPath id="clip0_252_429">
+            <rect width="34" height="33" fill="white" transform="translate(0 0.309204)" />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
+    <div [ngClass]="setClassActiveSport('products')" class="container-home" (click)=" setMenuActive('products')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+      <svg [ngClass]="getButtonClassesMenuSvg('products')" width="24" height="24" viewBox="0 0 30 36" fill="white"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M13.6138 26.2379C13.1987 26.6686 12.5156 26.6686 12.1004 26.2379L8.35045 22.4098C7.92857 21.986 7.92857 21.2887 8.35045 20.8649C8.76562 20.4342 9.44866 20.4342 9.86384 20.8649L12.8571 23.9205L19.6004 17.0367C20.0156 16.6061 20.6987 16.6061 21.1138 17.0367C21.5357 17.4606 21.5357 18.1578 21.1138 18.5817L13.6138 26.2379ZM29.6317 11.4928C29.8728 12.0533 30 12.6549 30 13.2701V28.7467C30 31.1598 28.0781 33.1217 25.7143 33.1217H4.28571C1.91853 33.1217 0 31.1598 0 28.7467V13.2701C0 12.6549 0.125826 12.0533 0.369375 11.4928L3.15469 5.09504C3.84241 3.51458 5.37723 2.4967 7.07143 2.4967H22.9286C24.6228 2.4967 26.1562 3.51526 26.846 5.09504L29.6317 11.4928ZM16.0714 11.2467H27.1808L24.8906 5.98303C24.5424 5.19348 23.779 4.6842 22.9286 4.6842H16.0714V11.2467ZM2.14286 13.4342V28.7467C2.14286 29.9567 3.10246 30.9342 4.28571 30.9342H25.7143C26.8996 30.9342 27.8571 29.9567 27.8571 28.7467V13.4342H2.14286ZM13.9286 4.6842H7.07143C6.22433 4.6842 5.45692 5.19348 5.11272 5.98303L2.82121 11.2467H13.9286V4.6842Z"
+          fill="white" />
+      </svg>
+    </div>
+    <div [ngClass]="setClassActiveSport('events')" class="container-home" (click)=" setMenuActive('events')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+      <svg [ngClass]="getButtonClassesMenuSvg('events')" products width="24" height="24" viewBox="0 0 36 37" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M8.09912 5.3042H20.0991V1.9292C20.0991 1.30792 20.5491 0.804199 21.0991 0.804199C21.6491 0.804199 22.0991 1.30792 22.0991 1.9292V5.3042H24.0991C26.3054 5.3042 28.0991 7.31865 28.0991 9.8042V14.3042H2.09912V32.3042C2.09912 33.5487 2.99475 34.5542 4.09912 34.5542H16.2554L16.1866 34.8495C16.0429 35.5104 16.0804 36.1854 16.2741 36.8042H4.09912C1.88975 36.8042 0.0991211 34.7862 0.0991211 32.3042V9.8042C0.0991211 7.31865 1.88975 5.3042 4.09912 5.3042H6.09912V1.9292C6.09912 1.30792 6.54912 0.804199 7.09912 0.804199C7.64912 0.804199 8.09912 1.30792 8.09912 1.9292V5.3042ZM2.09912 9.8042V12.0542H26.0991V9.8042C26.0991 8.55967 25.2054 7.5542 24.0991 7.5542H4.09912C2.99475 7.5542 2.09912 8.55967 2.09912 9.8042ZM15.0991 25.5542C15.6491 25.5542 16.0991 26.0604 16.0991 26.6792C16.0991 27.2979 15.6491 27.8042 15.0991 27.8042H7.09912C6.54912 27.8042 6.09912 27.2979 6.09912 26.6792C6.09912 26.0604 6.54912 25.5542 7.09912 25.5542H15.0991ZM6.09912 19.9292C6.09912 19.3104 6.54912 18.8042 7.09912 18.8042H21.0991C21.6491 18.8042 22.0991 19.3104 22.0991 19.9292C22.0991 20.5479 21.6491 21.0542 21.0991 21.0542H7.09912C6.54912 21.0542 6.09912 20.5479 6.09912 19.9292ZM29.6929 17.7776C30.8679 16.4558 32.7679 16.4558 33.9366 17.7776L35.0241 18.994C36.1929 20.3159 36.1929 22.4534 35.0241 23.7683L25.4179 34.5753C25.0304 35.0112 24.5491 35.3136 24.0241 35.405L19.3429 36.7831C18.9991 36.8745 18.6429 36.762 18.3929 36.4878C18.1429 36.2065 18.0429 35.7987 18.1304 35.419L19.2991 30.1526C19.4304 29.555 19.7054 29.0136 20.0866 28.5847L29.6929 17.7776ZM32.5241 19.3667C32.1304 18.9308 31.4991 18.9308 31.1116 19.3667L29.5554 21.1104L32.0554 23.9229L33.6116 22.1159C33.9991 21.7362 33.9991 21.0261 33.6116 20.5901L32.5241 19.3667ZM21.2366 30.694L20.4179 34.1464L23.5366 33.2815C23.7116 33.2323 23.8741 33.1339 23.9991 32.9862L30.6429 25.512L28.1429 22.7065L21.5054 30.1737C21.3741 30.3214 21.2804 30.4972 21.2366 30.694Z"
+          fill="white" />
+      </svg>
+    </div>
+    <div class="container-logout">
+      <img (click)="closeSession()" class="icon-menu" src="../../../assets/images/logout.svg" alt="Logout" />
+    </div>
+  </div>
+
   <div class="content">
     <app-header-main></app-header-main>
     <div class="main-content">
       <div class="button-end">
-        <button class="primary-button" (click)="createProduct()"> Agregar producto</button>
-        <button class="primary-button" (click)="createService()"> Agregar servicio</button>
-        <button class="primary-button" (click)="createNutritionalInfo()"> Agregar información nutricional</button>
+        <button *ngIf="isActiveMenu === 'products'"  class="primary-button" (click)="createProduct()"> Agregar producto</button>
+        <button *ngIf="isActiveMenu === 'services'" class="primary-button" (click)="createService()"> Agregar servicio</button>
+        <button *ngIf="isActiveMenu === 'events' && role === 'TECE'" class="primary-button" (click)="createEvent()"> Agregar evento</button>
+        <button *ngIf="isActiveMenu === 'profile'"  class="primary-button" (click)="createExercise()"> Agregar entrenamiento</button>
       </div>
       <div>
-        <app-profile-information></app-profile-information>
+        <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && isActiveProfile ===false"></app-clasification-risk-group>
+      </div>
+      <div>
+        <app-profile-information *ngIf="role === 'DEPO' && isActiveProfile ===true"></app-profile-information>
+      </div>
+      <div *ngIf="creatingEvent === true" >
+        <app-third-party-create-event></app-third-party-create-event>
       </div>
     </div>
   </div>

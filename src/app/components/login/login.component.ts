@@ -1,95 +1,114 @@
-import { CommonModule } from '@angular/common'
-import { Component, OnInit } from '@angular/core'
-import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms'
-import { TranslateModule, TranslateService } from '@ngx-translate/core'
-import { ToastrService } from 'ngx-toastr'
-import { LoginService } from './login.service'
-import { jwtDecode } from 'jwt-decode'
-import { Router } from '@angular/router'
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { LoginService } from './login.service';
+import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
+import { DashboardService } from '../dashboard/dashboard.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule]
+  imports: [CommonModule, ReactiveFormsModule, TranslateModule],
 })
 export class LoginComponent implements OnInit {
-  email = new FormControl('', [Validators.required, Validators.email])
-  password = new FormControl('', [Validators.required])
-  formData: any = {}
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required]);
+  formData: any = {};
 
-  constructor (
+  constructor(
     private toastr: ToastrService,
     private translate: TranslateService,
     private loginService: LoginService,
+    private dashboardService: DashboardService,
     private router: Router
   ) {}
 
-  ngOnInit () {
-    this.switchLanguage('es')
+  ngOnInit() {
+    this.switchLanguage('es');
   }
-  goToRegister () {
-    this.router.navigate(['/register'])
-  }
-
-  switchLanguage (language: string): void {
-    this.translate.use(language)
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 
-  passwordValidator (control: FormControl): { [key: string]: boolean } | null {
-    const value: string = control.value || ''
-    const hasNumber = /\d/.test(value)
-    const hasLetter = /[a-zA-Z]/.test(value)
-    const valid = value && hasNumber && hasLetter
-    return valid ? null : { invalidPassword: true }
+  switchLanguage(language: string): void {
+    this.translate.use(language);
   }
 
-  changeValueForm (e: any) {
-    const name = e.target.name
-    const value = e.target.value
-    this.formData[name] = value
-    console.log(this.email.errors)
+  passwordValidator(control: FormControl): { [key: string]: boolean } | null {
+    const value: string = control.value || '';
+    const hasNumber = /\d/.test(value);
+    const hasLetter = /[a-zA-Z]/.test(value);
+    const valid = value && hasNumber && hasLetter;
+    return valid ? null : { invalidPassword: true };
   }
 
-  userLogin () {
+  changeValueForm(e: any) {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.formData[name] = value;
+    console.log(this.email.errors);
+  }
+
+  userLogin() {
     if (this.email.value && this.password.value) {
       this.loginService.login(this.formData).subscribe({
         next: this.handleUpdateResponse.bind(this),
-        error: this.handleError.bind(this)
-      })
+        error: this.handleError.bind(this),
+      });
     } else {
-      this.email.markAsTouched()
-      this.password.markAsTouched()
+      this.email.markAsTouched();
+      this.password.markAsTouched();
     }
   }
 
-  handleUpdateResponse (response: any) {
+  handleUpdateResponse(response: any) {
     if (typeof response.access_token !== 'string') {
-      console.error('Access token is not a string:', response.access_token)
-      return
+      console.error('Access token is not a string:', response.access_token);
+      return;
     }
-
-    sessionStorage.setItem('access_token', response.access_token)
-    const decoded = jwtDecode<any>(response.access_token)
-    sessionStorage.setItem('role', decoded.role)
-    sessionStorage.setItem('user_id', decoded.sub)
+    const token = response.access_token;
+    sessionStorage.setItem('access_token', token);
+    const decoded = jwtDecode<any>(response.access_token);
+    let role = decoded.role;
+    sessionStorage.setItem('role', role);
+    sessionStorage.setItem('user_id', decoded.sub);
     this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
-      timeOut: 3000
-    })
-    this.router.navigate(['/home'])
+      timeOut: 3000,
+    });
+    if (role === 'DEPO') {
+      this.dashboardService.getProfile(token).subscribe({
+        next: (res) => {
+          console.log(res);
+          if (res.detail == 'Sport man not have risk') {
+            this.router.navigate(['/sports-information']);
+          } else {
+            this.router.navigate(['/home']);
+          }
+        },
+        error: () => {
+          console.log('error');
+        },
+      });
+    }else{
+      this.router.navigate(['/home']);
+    }
   }
 
-  handleError (error: any) {
-    let text = 'Error en el logueo del usuario'
+  handleError(error: any) {
+    let text = 'Error en el logueo del usuario';
     if (error.status === 400) {
       if (error.error.detail === 'Incorrect username or password') {
-        text = 'Usuario o contraseña incorrecto'
+        text = 'Usuario o contraseña incorrecto';
       }
     }
 
     this.toastr.error(text, 'Error', {
-      timeOut: 3000
-    })
+      timeOut: 3000,
+    });
   }
 }

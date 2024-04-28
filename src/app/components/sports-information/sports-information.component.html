@@ -1,0 +1,130 @@
+<header class="header">
+  <p>Logo</p>
+  <div class="buttons">
+    <button (click)="goToLogin()"> {{ 'login' | translate }}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
+    <div class="line"></div>
+    <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
+  </div>
+</header>
+<main class="wrapper">
+  <div *ngIf="currentStep === 1">
+    <div class="question">{{'questionDedicationTime' | translate}} </div>
+    <div class="container-buttons">
+      <button [ngClass]="getClassDedicationTime('1 a 3 horas')" (click)="setDedicationTime('1 a 3 horas')">
+        {{'1-3 horas' | translate}}
+      </button>
+      <button [ngClass]="getClassDedicationTime('3 a 5 horas')" (click)="setDedicationTime('3 a 5 horas')">
+        {{'3_5_horas' | translate}}
+      </button>
+      <button [ngClass]="getClassDedicationTime('5 a 7 horas')" (click)="setDedicationTime('5 a 7 horas')">
+        {{'5_7_horas' | translate}}
+      </button>
+      <button [ngClass]="getClassDedicationTime('7 a 8 horas')" (click)="setDedicationTime('7 a 8 horas')">
+        {{'7_8_HOURS' | translate}}
+      </button>
+      <button [ngClass]="getClassDedicationTime('Mas de 8 horas')" (click)="setDedicationTime('Mas de 8 horas')">
+        {{'MORE_8_HOURS' | translate}}
+      </button>
+    </div>
+    <div *ngIf="activateErrorMessageForTimeDedications">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep === 2">
+    <div class="question">{{'questionSportExperience'| translate}} </div>
+    <div class="container-buttons">
+      <button [ngClass]="getClassExperience('Si')" (click)="setExperience('Si')">
+        {{'yes' | translate}}
+      </button>
+      <button [ngClass]="getClassExperience( 'No')" (click)="setExperience('No')">
+        {{'no' | translate}}
+      </button>
+    </div>
+    <div *ngIf="activateErrorMessageForExperience">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep === 3">
+    <div class="question">
+      {{'questionBirthDate'| translate}}
+    </div>
+    <div class="container-buttons">
+      <div class="form-group">  
+        <input id="input_birth_year" [formControl]="birth_year" (change)="changeValueForm($event)" type="number" name="birth_year"
+          placeholder="{{'enterBirthDate'| translate}}" (change)="changeValueForm($event)">
+        <div class="error-container" *ngIf="birth_year.invalid && (birth_year.dirty || birth_year.touched)">
+          <span class="error" *ngIf="birth_year.errors?.['required']">{{'fieldRequired'|translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep === 4">
+    <div class="question">{{'questionWeight' | translate}}</div>
+    <div class="container-buttons">
+      <div class="form-group">
+        <input [formControl]="weight" (change)="changeValueForm($event)" type="text" name="weight"
+          placeholder="{{'enterWeight'| translate}}" (change)="changeValueForm($event)">
+        <div class="error-container" *ngIf="weight.invalid && (weight.dirty || weight.touched)">
+          <span class="error" *ngIf="weight.errors?.['required']">{{'fieldRequired'| translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="currentStep === 5">
+    <div class="question">{{'questioHeight'| translate}}</div>
+    <div class="container-buttons">
+      <div class="form-group">
+        <input [formControl]="height" (change)="changeValueForm($event)" type="text" name="height"
+          placeholder="{{'enterHeight' | translate}}" (change)="changeValueForm($event)">
+        <div class="error-container" *ngIf="height.invalid && (height.dirty || height.touched)">
+          <span class="error" *ngIf="height.errors?.['required']">{{'fieldRequired'| translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep === 6">
+    <div class="question">{{'questionSportPrefer' | translate}}</div>
+    <div class="container-buttons">
+      <button [ngClass]="getClassSportPreference('Ciclismo')" (click)="setSportPreference('Ciclismo')">
+        {{'cyclist'| translate}}
+      </button>
+      <button [ngClass]="getClassSportPreference( 'Atletismo')" (click)="setSportPreference('Atletismo')">
+        {{'athlete'| translate}}
+      </button>
+    </div>
+    <div *ngIf="activateErrorMessageForSportPreference">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
+    </div>
+  </div>
+
+
+  <div *ngIf="currentStep === 7">
+    <div class="question">{{'questionInjury'| translate}}</div> 
+    <div class="container-buttons">
+      <div class="form-group">       
+        <ng-multiselect-dropdown style="height:50px" class="custom-dropdown"
+          placeholder="{{'selectInjury' | translate}}" [settings]="dropdownSettings" [data]="allergies_list"
+          (onSelect)="onItemSelect($event)" (onDeSelect)="onItemDeSelect($event)">
+        </ng-multiselect-dropdown>
+        <div class="error-container">
+          <span class="error" *ngIf="validateInjuries">{{'fieldRequired'| translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-buttons">
+    <button class="secondary-button" (click)="backStep()">
+      {{'back'| translate}}
+    </button>
+    <button class="primary-button" (click)="nextStep()">
+      {{ 'next' | translate }}
+    </button>
+  </div>
+</main>

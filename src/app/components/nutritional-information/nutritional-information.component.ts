@@ -6,6 +6,7 @@ import {NutritionalInformationService} from "./nutritional-information.service";
 import {ToastrService} from "ngx-toastr";
 import {NgMultiSelectDropDownModule,} from 'ng-multiselect-dropdown';
 import { HeaderMainComponent } from '../header-main/header-main.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nutritional-information',
@@ -33,7 +34,8 @@ export class NutritionalInformationComponent implements OnInit {
   constructor (
     private nutritionalInformationService: NutritionalInformationService,
     private toastr: ToastrService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
    
   ) {}
 
@@ -115,6 +117,8 @@ export class NutritionalInformationComponent implements OnInit {
     this.toastr.success('Información nutricional guardado éxitosamente', 'Exitoso', {
       timeOut: 3000
     })
+    this.router.navigate(['/home']);
+  
   }
 
   handleError () {
