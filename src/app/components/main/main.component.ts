@@ -41,12 +41,6 @@ export class MainComponent implements OnInit {
     };
   }
 
-  getActiveOption(option:string){
-    return {
-      'container-home': true,
-      'active-button': this.isActiveMenu === option,
-    };
-  }
 
   setClassActiveSport(option:string){
     return {
