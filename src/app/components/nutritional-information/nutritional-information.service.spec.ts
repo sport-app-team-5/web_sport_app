@@ -36,7 +36,7 @@ describe('NutritionalInformationService', () => {
 
   it('should create nutritional information', () => {
     const mockData = { User: 'Test User' }
-    service.createNutritionalInformation(mockData).subscribe(data => {
+    service.createNutritionalInformation(mockData,{}).subscribe(data => {
       expect(data).toEqual(mockData)
     })
 
