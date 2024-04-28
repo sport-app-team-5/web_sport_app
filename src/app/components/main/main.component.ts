@@ -12,7 +12,7 @@ import { ClasificationRiskGroupComponent } from '../clasification-risk-group/cla
   imports: [CommonModule, HeaderMainComponent, ProfileInformationComponent, ClasificationRiskGroupComponent]
 })
 export class MainComponent implements OnInit {
-
+  menuKeyDown: boolean = false
   isOpenMenu: boolean = false
   isActiveMenu = 'home'
   constructor (private router: Router) {}
@@ -90,5 +90,9 @@ export class MainComponent implements OnInit {
 
   createEvent() {
     this.router.navigate(['/events'])
+  }
+
+  handleKeyDown($event: KeyboardEvent) {
+    this.menuKeyDown = true
   }
 }
