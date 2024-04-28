@@ -76,7 +76,7 @@
       </svg>
     </div>
     <div class="container-logout">
-      <img (click)="closeSession()" class="icon-menu" src="../../../assets/images/logout.svg" alt="Logout" />
+      <img (click)="closeSession()" class="icon-menu" src="../../../assets/images/logout.svg" alt="Logout" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">/>
     </div>
   </div>
 
