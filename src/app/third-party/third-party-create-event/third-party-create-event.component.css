@@ -1,4 +1,5 @@
 @import '../third-party-create-event/vars.css';
+@import './vars.css';
 
 .continer-content{
   display: flex;
@@ -7,6 +8,80 @@
   padding: 23px 43px 51px 43px;
   gap: 19px;
 }
+
+
+main {
+  background-color: var(--c-black-main);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: var(--c-white);
+  height: 50px;
+}
+header {
+  background-color: var(--c-black-light);
+  box-sizing: border-box;
+}
+
+.line {
+  width: 1px;
+  height: 20px;
+  background-color: var(--c-white);
+  margin: 0 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.question {
+  color: var(--c-white);
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.container-buttons {
+  margin-top: 30px;
+  display: flex;
+  padding: 15px;
+  justify-content: center;
+  gap: 20px;
+}
+
+.question-button {
+  border-radius: 10px;
+  border: 1px solid var(--c-gray-light);
+  padding: 20px;
+  color: var(--c-gray-light);
+}
+
+.question-button:hover,
+.question-button:active,
+.question-button:focus {
+  border-radius: 10px;
+  border: 1px solid var(--c-green-ligth);
+  color: var(--c-green-ligth);
+}
+
 .info-style{
   color: #FFF;
   font-size: 30px;
@@ -117,29 +192,6 @@
   font-weight: 500;
 }
 
-main {
-  background-color: var(--c-black-main);
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  flex: 1;
-  height: 100%;
-
-}
-
-.buttons {
-  display: flex;
-  justify-content: center;
-}
-
-button {
-  background-color: transparent;
-  color: inherit;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-}
-
 textarea,
 input,
 select {
@@ -156,6 +208,14 @@ select {
 }
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
 .wrapper div .question {

@@ -43,16 +43,17 @@ export class MainComponent implements OnInit {
 
 
   setClassActiveSport(option:string){
+    console.log(option)
     return {
       'container-home': true,
       'active-button': this.isActiveMenu === option,
     };
   }
 
-  getButtonClassesMenuSvg() {
+  getButtonClassesMenuSvg(option:string) {
     return {
       cell: true,
-      'cell-active': this.isActiveMenu === 'home',
+      'cell-active': this.isActiveMenu === option
     };
   }
 
