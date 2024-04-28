@@ -134,50 +134,78 @@ export class SportsInformationComponent implements OnInit {
   nextStep() {
     switch (this.currentStep) {
       case 1:
-        if (this.validateStep1()) {
-          this.currentStep++;
-        }
+        this.handleStep1();
         break;
       case 2:
-        if (this.validateStep2()) {
-          this.currentStep++;
-        }
+        this.handleStep2();
         break;
       case 3:
-        if (this.validateStep3()) {
-          this.currentStep++;
-        } else {
-          this.birth_year.markAllAsTouched();
-        }
+        this.handleStep3();
         break;
       case 4:
-        if (this.validateStep4()) {
-          this.currentStep++;
-        } else {
-          this.weight.markAllAsTouched();
-        }
+        this.handleStep4();
         break;
       case 5:
-        if (this.validateStep5()) {
-          this.currentStep++;
-        } else {
-          this.height.markAllAsTouched();
-        }
+        this.handleStep5();
         break;
       case 6:
-        if (this.validateStep6()) {
-          this.currentStep++;
-        } else {
-          this.height.markAllAsTouched();
-        }
+        this.handleStep6();
         break;
       default:
-        if (this.validateStep7()) {
-          this.saveData();
-        } else {
-          this.height.markAllAsTouched();
-        }
+        this.handleStep7();
         break;
+    }
+  }
+
+  handleStep1() {
+    if (this.validateStep1()) {
+      this.currentStep++;
+    }
+  }
+
+  handleStep2() {
+    if (this.validateStep2()) {
+      this.currentStep++;
+    }
+  }
+
+  handleStep3() {
+    if (this.validateStep3()) {
+      this.currentStep++;
+    } else {
+      this.birth_year.markAllAsTouched();
+    }
+  }
+
+  handleStep4() {
+    if (this.validateStep4()) {
+      this.currentStep++;
+    } else {
+      this.weight.markAllAsTouched();
+    }
+  }
+
+  handleStep5() {
+    if (this.validateStep5()) {
+      this.currentStep++;
+    } else {
+      this.height.markAllAsTouched();
+    }
+  }
+
+  handleStep6() {
+    if (this.validateStep6()) {
+      this.currentStep++;
+    } else {
+      this.height.markAllAsTouched();
+    }
+  }
+
+  handleStep7() {
+    if (this.validateStep7()) {
+      this.saveData();
+    } else {
+      this.height.markAllAsTouched();
     }
   }
 
@@ -198,6 +226,7 @@ export class SportsInformationComponent implements OnInit {
         this.toastr.success('Deportista actualizado éxitosamente', 'Exitoso', {
           timeOut: 3000
         })
+        this.router.navigate(['/nutritional-information']);
       },
       error: (error) => {
         console.log(error)

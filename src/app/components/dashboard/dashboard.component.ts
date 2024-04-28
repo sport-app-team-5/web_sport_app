@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.switchLanguage('es')
-    this.getProfile()
+     this.getProfile()
   }
 
   switchLanguage (language: string): void {
@@ -40,7 +40,8 @@ export class DashboardComponent implements OnInit {
   }
 
   getProfile(): void {
-    this.dashboardService.getProfile().subscribe({
+    const token= sessionStorage.getItem('acces_token')
+    this.dashboardService.getProfile(token).subscribe({
       next: (response) => {this.profile = response},
       error: () => {
         this.toastr.error('Error obteniendo el perfil', 'Error', {

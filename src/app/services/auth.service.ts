@@ -8,7 +8,7 @@ export class AuthService {
   constructor (private router: Router) {}
 
   canActivate (): boolean {
-    const isAuthenticated = sessionStorage.getItem('access_token') !== null
+    const isAuthenticated = sessionStorage?.getItem('access_token') !== null;
     if (!isAuthenticated) {
       this.router.navigate(['/login'])
       return false
