@@ -7,20 +7,21 @@
       <span class="letters">JQ</span>
   </div>  
     <img (click)="openMenu()" class="icon-size" src="https://cdn-sport-app.s3.amazonaws.com/chevron_down.png"
-      alt="icon-size" />
+      alt="icon-size"
+      (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)" />
   </div>
 </header>
 <div *ngIf="isOpenMenu">
   <ul class="menu" id="menu">
     <li>
-      <img class="icon-menu" src="../../../assets/images/user.svg" alt="icon-menu" />
+      <img class="icon-menu" src="../../../assets/images/user.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
       <a (click)="showProfile()">
         Perfil
       </a>
     </li>
 
-    <li (click)="closeSession()"><a href="">
-        <img class="icon-menu" src="../../../assets/images/logout.svg" alt="icon-menu" />
+    <li (click)="closeSession()"><a href="" ></a>
+        <img class="icon-menu" src="../../../assets/images/logout.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
         Cerrar sesión
       </a></li>
   </ul>
