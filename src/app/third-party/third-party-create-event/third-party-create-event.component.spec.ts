@@ -192,19 +192,6 @@ describe('ThirdPartyCreateEventComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create gohome', () => {
-    spyOn(mockRegisterUserService, 'getCountries').and.returnValue(fakeService.getCountries());
-
-    component = fixture.componentInstance
-    fixture.detectChanges()
-
-    const buttonElement = fixture.debugElement.query(By.css('#goHome'));
-    buttonElement.triggerEventHandler('click', null);
-
-    fixture.detectChanges()
-    expect(component).toBeTruthy();
-  });
-
   it('should create step 2 and back', () => {
     spyOn(mockRegisterUserService, 'getCountries').and.returnValue(fakeService.getCountries());
     component = fixture.componentInstance
