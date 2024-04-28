@@ -1,10 +1,14 @@
 @import '../third-party-create-event/vars.css';
 @import './vars.css';
 
-header {
-  background-color: var(--c-black-light);
-  box-sizing: border-box;
+.continer-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 23px 43px 51px 43px;
+  gap: 19px;
 }
+
 
 main {
   background-color: var(--c-black-main);
@@ -21,6 +25,10 @@ main {
   padding: 10px 20px;
   color: var(--c-white);
   height: 50px;
+}
+header {
+  background-color: var(--c-black-light);
+  box-sizing: border-box;
 }
 
 .line {
