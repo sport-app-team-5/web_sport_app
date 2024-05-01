@@ -14,7 +14,7 @@
 <div *ngIf="isOpenMenu">
   <ul class="menu" id="menu">
     <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
-      <img class="icon-menu" src="../../../assets/images/user.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
+      <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/user.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
       <a (click)="showProfile()">
         Perfil
       </a>
@@ -22,7 +22,7 @@
 
     <li (click)="closeSession()" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
       <a>
-        <img class="icon-menu" src="../../../assets/images/logout.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
+        <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/logout.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
         Cerrar sesión
       </a>
     </li>
