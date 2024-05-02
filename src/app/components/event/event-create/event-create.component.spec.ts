@@ -1,24 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ThirdPartyCreateEventComponent } from './third-party-create-event.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { RegisterUserService } from '../register/registeruser.service';
-import { ThirdPartyService } from './third-party.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-import { HttpLoaderFactory } from '../../app.config';
 import { By } from '@angular/platform-browser';
 import { Observable, of, throwError } from 'rxjs';
+import {RegisterUserService} from "../../register/registeruser.service";
+import {EventService} from "../event.service";
+import {HttpLoaderFactory} from "../../../app.config";
+import {EventCreateComponent} from "./event-create.component";
 
-describe('ThirdPartyCreateEventComponent', () => {
-  let component: ThirdPartyCreateEventComponent;
-  let fixture: ComponentFixture<ThirdPartyCreateEventComponent>;
+describe('EventCreateComponent', () => {
+  let component: EventCreateComponent;
+  let fixture: ComponentFixture<EventCreateComponent>;
   let mockTranslateService: TranslateService;
   let mockToastrService: ToastrService;
   let mockRouter: Router;
   let mockRegisterUserService: RegisterUserService;
-  let mockThirdPartyService: ThirdPartyService;
+  let mockEventService: EventService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -37,10 +37,10 @@ describe('ThirdPartyCreateEventComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ThirdPartyCreateEventComponent);
+    fixture = TestBed.createComponent(EventCreateComponent);
     mockRegisterUserService = TestBed.inject(RegisterUserService)
     mockTranslateService = TestBed.inject(TranslateService)
-    mockThirdPartyService = TestBed.inject(ThirdPartyService);
+    mockEventService = TestBed.inject(EventService);
     mockToastrService = jasmine.createSpyObj('ToastrService', ['success', 'error']);
 
   })
