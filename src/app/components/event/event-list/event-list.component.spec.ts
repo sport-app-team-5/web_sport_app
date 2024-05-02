@@ -1,23 +1,35 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed, async} from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import {HttpLoaderFactory} from "../../../app.config";
+import {EventService} from "../event.service";
 
-import { EventListComponent } from './event-list.component';
+describe('Service: EventService', () => {
+  let service: EventService
+  let httpMock: HttpTestingController
 
-describe('EventListComponent', () => {
-  let component: EventListComponent;
-  let fixture: ComponentFixture<EventListComponent>;
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [EventListComponent]
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        })
+      ],
+      providers: [EventService,TranslateService]
     })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(EventListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    service = TestBed.inject(EventService)
+    httpMock = TestBed.inject(HttpTestingController)
+  })
+
+  it('should be created', () => {
+    expect(service).toBeTruthy()
+  })
 });
