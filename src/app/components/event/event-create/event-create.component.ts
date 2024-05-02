@@ -280,7 +280,7 @@ export class EventCreateComponent implements OnInit {
     this.toastr.success('Registro exitoso del servicio', 'Exito', {
       timeOut: 3000
     })
-    this.router.navigate(['/events'])
+    this.router.navigate(['/home'])
   }
 
   handleError(error: any) {

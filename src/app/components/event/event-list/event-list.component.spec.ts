@@ -1,35 +1,59 @@
-import { TestBed, async} from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
-import {HttpLoaderFactory} from "../../../app.config";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
+import { of } from 'rxjs';
 import {EventService} from "../event.service";
+import {EventListComponent} from "./event-list.component";
+import {HttpLoaderFactory} from "../../../app.config";
+import {HttpClient} from "@angular/common/http";
 
-describe('Service: EventService', () => {
-  let service: EventService
-  let httpMock: HttpTestingController
+describe('EventListComponent', () => {
+  let component: EventListComponent;
+  let fixture: ComponentFixture<EventListComponent>;
+  let toastrService: ToastrService;
+  let translateService: TranslateService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule,
+        ToastrModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
           }
-        })
-      ],
-      providers: [EventService,TranslateService]
+        })]
     })
+      .compileComponents();
+  });
 
-    service = TestBed.inject(EventService)
-    httpMock = TestBed.inject(HttpTestingController)
-  })
+  beforeEach(() => {
+    fixture = TestBed.createComponent(EventListComponent);
+    component = fixture.componentInstance;
+    toastrService = TestBed.inject(ToastrService);
+    translateService = TestBed.inject(TranslateService);
+    fixture.detectChanges();
+  });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy()
-  })
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should switch language', () => {
+    spyOn(translateService, 'use');
+    component.switchLanguage('en');
+    expect(translateService.use).toHaveBeenCalledWith('en');
+  });
+
+  it('should get events successfully', () => {
+    const mockEvents = [{ id: 1, name: 'Event 1' }, { id: 2, name: 'Event 2' }];
+    const eventService = TestBed.inject(EventService);
+    spyOn(eventService, 'getEvents').and.returnValue(of(mockEvents));
+
+    component.getEvents();
+
+    expect(component.events).toEqual(mockEvents);
+  });
 });

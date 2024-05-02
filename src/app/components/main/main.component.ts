@@ -125,10 +125,6 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/products']);
   }
 
-  eventsView() {
-    this.router.navigate(['/events']);
-  }
-
   handleKeyDown($event: KeyboardEvent) {
     this.menuKeyDown = true;
   }

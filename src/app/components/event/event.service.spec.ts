@@ -54,4 +54,21 @@ describe('Service: EventService', () => {
 
     req.flush(mockResponse);
   });
+
+  it('should get events', () => {
+    const mockResponse = { result: 'success' };
+    const token = 'test_token';
+
+    spyOn(sessionStorage, 'getItem').and.returnValue(token);
+
+    service.getEvents().subscribe(response => {
+      expect(response).toEqual(mockResponse);
+    });
+
+    const req = httpMock.expectOne(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/events/third_parties');
+    expect(req.request.method).toBe('GET');
+    expect(req.request.headers.get('Content-Type')).toBe('application/json');
+    expect(req.request.headers.get('Authorization')).toBe(`Bearer ${token}`);
+    req.flush(mockResponse);
+  });
 })
