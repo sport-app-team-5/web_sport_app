@@ -206,9 +206,7 @@ export class EventCreateComponent implements OnInit {
     } else {
       this.nameEvent.markAsTouched()
       this.datetimecustom.markAsTouched()
-
       this.country_id.markAsTouched()
-
       this.city_id.markAsTouched()
       return false
     }
@@ -222,9 +220,7 @@ export class EventCreateComponent implements OnInit {
     } else {
       this.quantity.markAsTouched()
       this.place.markAsTouched()
-
       this.description.markAsTouched()
-
       return false
     }
   }
@@ -233,10 +229,8 @@ export class EventCreateComponent implements OnInit {
     this.registerUserService.getCountries().subscribe({
       next: (response) => {
         this.countries = response;
-
       },
       error: (error) => {
-
         if (this.currentStep !== 1) {
           this.toastr.error('Error obteniendo los países', 'Error', {
             timeOut: 3000
@@ -273,9 +267,9 @@ export class EventCreateComponent implements OnInit {
       date: this.datetimecustom.value ?? '',
       capacity: parseInt(this.quantity.value ?? ''),
       description: this.description.value ?? '',
-      type: this.type
+      type: this.type,
+      name: this.nameEvent.value ?? ''
     };
-    console.log(eventData)
     this.eventService.registerEvent(eventData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)
@@ -286,7 +280,7 @@ export class EventCreateComponent implements OnInit {
     this.toastr.success('Registro exitoso del servicio', 'Exito', {
       timeOut: 3000
     })
-    this.router.navigate(['/home'])
+    this.router.navigate(['/events'])
   }
 
   handleError(error: any) {
@@ -310,4 +304,5 @@ interface EventData {
   capacity: number;
   description: string;
   type: string;
+  name: string;
 }
