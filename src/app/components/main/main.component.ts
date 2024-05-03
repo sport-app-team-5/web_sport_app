@@ -7,6 +7,7 @@ import { ClasificationRiskGroupComponent } from '../clasification-risk-group/cla
 import { HeaderMainService } from '../header-main/header-main.service';
 import {EventCreateComponent} from "../event/event-create/event-create.component";
 import {EventListComponent} from "../event/event-list/event-list.component";
+import {TrainingListComponent} from "../training/training-list/training-list.component";
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -19,6 +20,7 @@ import {EventListComponent} from "../event/event-list/event-list.component";
     ClasificationRiskGroupComponent,
     EventCreateComponent,
     EventListComponent,
+    TrainingListComponent,
   ],
 })
 export class MainComponent implements OnInit {
@@ -52,13 +54,6 @@ export class MainComponent implements OnInit {
     return true;
   }
 
-  getButtonClassesMenuHome() {
-    return {
-      'container-home': true,
-      'active-button': this.isActiveMenu === 'home',
-    };
-  }
-
   setClassActiveSport(option: string) {
     console.log(option);
     return {
@@ -71,20 +66,6 @@ export class MainComponent implements OnInit {
     return {
       cell: true,
       'cell-active': this.isActiveMenu === option,
-    };
-  }
-
-  getButtonClassesMenuProfileSvg() {
-    return {
-      cell: true,
-      'cell-active': this.isActiveMenu === 'profile',
-    };
-  }
-
-  getButtonClassesMenuProfile() {
-    return {
-      'container-home': true,
-      'active-button': this.isActiveMenu === 'profile',
     };
   }
 
@@ -101,22 +82,10 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/nutritional-information']);
   }
 
-  createTraining() {
-    this.router.navigate(['/trainings']);
-  }
-
-  openMenuClass() {
-    return {
-      menu: true,
-      'show-menu': this.isOpenMenu,
-    };
-  }
-
   openMenu() {
     this.isOpenMenu = !this.isOpenMenu;
   }
   closeSession() {
-
     sessionStorage.clear();
     this.router.navigate(['/']);
   }
