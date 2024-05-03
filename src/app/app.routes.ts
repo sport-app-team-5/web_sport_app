@@ -71,7 +71,7 @@ export const routes: Routes = [
     component: EventListComponent
   },
   {
-    path: 'exercise',
+    path: 'trainings',
     component: TrainingCreateComponent
   },
 ]

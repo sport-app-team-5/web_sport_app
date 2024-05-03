@@ -86,7 +86,7 @@
       <div class="button-end">
         <button *ngIf="isActiveMenu === 'products'"  class="primary-button" (click)="createProduct()"> Agregar producto</button>
         <button *ngIf="isActiveMenu === 'services'" class="primary-button" (click)="createService()"> Agregar servicio</button>
-        <button *ngIf="isActiveMenu === 'profile'"  class="primary-button" (click)="createExercise()"> Agregar entrenamiento</button>
+        <button *ngIf="isActiveMenu === 'profile'"  class="primary-button" (click)="createTraining()"> Agregar entrenamiento</button>
       </div>
       <div>
         <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && !isActiveProfile"></app-clasification-risk-group>

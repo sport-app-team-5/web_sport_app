@@ -101,8 +101,8 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/nutritional-information']);
   }
 
-  createExercise() {
-    this.router.navigate(['/exercise']);
+  createTraining() {
+    this.router.navigate(['/trainings']);
   }
 
   openMenuClass() {
