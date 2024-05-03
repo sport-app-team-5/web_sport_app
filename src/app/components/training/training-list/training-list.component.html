@@ -1,1 +1,44 @@
-<p>training-list works!</p>
+<div class="continer-content">
+  <div>
+    <div class="info-style">{{'eventListTitle' | translate}}</div>
+    <div class="description-style">{{'eventListDescription' | translate}}</div>
+  </div>
+  <div>
+    <button class="primary-button" (click)="createTraining()">{{'eventListButtonCreateEvent'| translate}}</button>
+  </div>
+</div>
+
+<div class="container-tables">
+  <div class="table">
+    <table aria-describedby="food profile" >
+      <thead>
+      <tr>
+        <th>{{'eventListColumnName' | translate}}</th>
+        <th>{{'eventListColumnDate' | translate}}</th>
+        <th>{{'eventListColumnLocation' | translate}}</th>
+        <th>{{'eventListColumnSportName' | translate}}</th>
+        <th>{{'eventListColumnType' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="tr" *ngFor="let training of trainings">
+        <td>
+          <dd>{{training.name| translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.date | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.location | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.name | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.type | translate}}</dd>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
