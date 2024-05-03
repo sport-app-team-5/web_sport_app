@@ -5,17 +5,17 @@ import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angula
 import {Router} from "@angular/router";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {HttpLoaderFactory} from "../../app.config";
 import {of} from "rxjs";
-import {ExerciseComponent} from "./exercise.component";
-import {ExerciseService} from "./exercise.service";
+import {TrainingCreateComponent} from "./training-create.component";
+import {TrainingService} from "../training.service";
+import {HttpLoaderFactory} from "../../../app.config";
 
-describe('ExerciseComponent', () => {
-  let component: ExerciseComponent
-  let fixture: ComponentFixture<ExerciseComponent>
+describe('TrainingCreateComponent', () => {
+  let component: TrainingCreateComponent
+  let fixture: ComponentFixture<TrainingCreateComponent>
   let translateService: TranslateService
   let toastrService: ToastrService
-  let exerciseService: ExerciseService
+  let exerciseService: TrainingService
   let duration: FormControl
   let description: FormControl
   let sport: FormControl
@@ -25,14 +25,14 @@ describe('ExerciseComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers: [
-        ExerciseService,
+        TrainingService,
         {
           provide: Router,
           useValue: jasmine.createSpyObj('Router', ['navigate'])
         }
       ],
       imports: [
-        ExerciseComponent,
+        TrainingCreateComponent,
         HttpClientModule,
         HttpClientTestingModule,
         ReactiveFormsModule,
@@ -50,9 +50,9 @@ describe('ExerciseComponent', () => {
   }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExerciseComponent)
+    fixture = TestBed.createComponent(TrainingCreateComponent)
     component = fixture.componentInstance
-    exerciseService = TestBed.inject(ExerciseService)
+    exerciseService = TestBed.inject(TrainingService)
     translateService = TestBed.inject(TranslateService)
 
     fixture.detectChanges()
@@ -110,10 +110,10 @@ describe('ExerciseComponent', () => {
   it('should call nextStep when currentstep is equal to 5', () => {
     component.currentStep = 5
     spyOn(component, 'validateStep5').and.returnValue(true)
-    spyOn(component, 'saveExerciseData')
+    spyOn(component, 'saveTrainingData')
 
     component.nextStep()
-    expect(component.saveExerciseData).toHaveBeenCalled()
+    expect(component.saveTrainingData).toHaveBeenCalled()
   })
 
   it('should call validateStep4 when duration is true', () => {
@@ -198,16 +198,16 @@ describe('ExerciseComponent', () => {
     expect(result).toEqual(false)
   })
 
-  it('should call saveExerciseData', () => {
-    const mock = TestBed.inject(ExerciseService)
+  it('should call saveTrainingData', () => {
+    const mock = TestBed.inject(TrainingService)
     const response = [
       { id: '1', name: 'City1' },
       { id: '2', name: 'City2' }
     ]
-    spyOn(mock, 'createExercise').and.returnValue(of(response))
+    spyOn(mock, 'createTraining').and.returnValue(of(response))
 
     spyOn(component, 'handleUpdateResponse')
-    component.saveExerciseData()
+    component.saveTrainingData()
     expect(component).toBeTruthy()
   })
 

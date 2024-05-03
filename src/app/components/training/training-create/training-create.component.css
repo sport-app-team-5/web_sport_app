@@ -1,4 +1,4 @@
-@import '../register/vars.css';
+@import '../../../shared/vars.css';
 
 header {
   background-color: var(--c-black-light);

@@ -1,43 +1,33 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderMainComponent} from "../header-main/header-main.component";
-import {NgClass, NgIf} from "@angular/common";
-import {NgMultiSelectDropDownModule} from "ng-multiselect-dropdown";
+import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {HeaderMainComponent} from "../../header-main/header-main.component";
+import {NgIf} from "@angular/common";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ToastrService} from "ngx-toastr";
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ExerciseService} from "./exercise.service";
 import {Router} from "@angular/router";
+import {TrainingService} from "../training.service";
+
 
 @Component({
-  selector: 'app-exercise',
+  selector: 'app-training-create',
   standalone: true,
-  imports: [
-    HeaderMainComponent,
-    NgIf,
-    NgMultiSelectDropDownModule,
-    TranslateModule,
-    FormsModule,
-    NgClass,
-    ReactiveFormsModule
-  ],
-  templateUrl: './exercise.component.html',
-  styleUrl: './exercise.component.css'
+  imports: [FormsModule, HeaderMainComponent, NgIf, TranslateModule, ReactiveFormsModule],
+  templateUrl: './training-create.component.html',
+  styleUrl: './training-create.component.css'
 })
-export class ExerciseComponent implements OnInit {
+export class TrainingCreateComponent implements OnInit {
   currentStep: any = 1
   formData: any = {}
-
   sport = new FormControl('', [Validators.required])
   name: FormControl = new FormControl('', [Validators.required])
   description: FormControl = new FormControl('', [Validators.required])
   duration: FormControl = new FormControl('', [Validators.required])
   intensity = new FormControl('', [Validators.required])
 
-
   constructor (
     private toastr: ToastrService,
     private translate: TranslateService,
-    private exerciseService: ExerciseService,
+    private exerciseService: TrainingService,
     private router: Router
   ) {}
 
@@ -79,7 +69,7 @@ export class ExerciseComponent implements OnInit {
       }
     } else if (this.currentStep === 5) {
       if (this.validateStep5()) {
-        this.saveExerciseData()
+        this.saveTrainingData()
       }
     }
   }
@@ -129,8 +119,8 @@ export class ExerciseComponent implements OnInit {
     }
   }
 
-  saveExerciseData () {
-    this.exerciseService.createExercise(this.formData).subscribe({
+  saveTrainingData () {
+    this.exerciseService.createTraining(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)
     })
