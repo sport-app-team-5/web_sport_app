@@ -1,4 +1,4 @@
-@import '../register/vars.css';
+@import '../../../shared/vars.css';
 
 .continer-content{
   display: flex;

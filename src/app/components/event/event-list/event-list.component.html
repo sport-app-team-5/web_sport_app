@@ -1,0 +1,44 @@
+<div class="continer-content">
+  <div>
+    <div class="info-style">{{'eventListTitle' | translate}}</div>
+    <div class="description-style">{{'eventListDescription' | translate}}</div>
+  </div>
+  <div>
+    <button class="primary-button" (click)="createEvent()">{{'eventListButtonCreateEvent'| translate}}</button>
+  </div>
+</div>
+
+<div class="container-tables">
+  <div class="table">
+    <table aria-describedby="food profile" >
+      <thead>
+      <tr>
+        <th>{{'eventListColumnName' | translate}}</th>
+        <th>{{'eventListColumnDate' | translate}}</th>
+        <th>{{'eventListColumnLocation' | translate}}</th>
+        <th>{{'eventListColumnSportName' | translate}}</th>
+        <th>{{'eventListColumnType' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="tr" *ngFor="let event of events">
+        <td>
+          <dd>{{event.name| translate}}</dd>
+        </td>
+        <td>
+          <dd>{{event.date | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{event.location | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{event.sport.name | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{event.type | translate}}</dd>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
