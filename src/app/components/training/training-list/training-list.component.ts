@@ -42,7 +42,7 @@ export class TrainingListComponent implements OnInit {
     this.trainingService.getTrainings().subscribe({
       next: (response) => {this.trainings = response },
       error: (err) => {
-        this.toastr.error('Error obteniendo los trainingos', 'Error', {
+        this.toastr.error('Error obteniendo los entrenamientos', 'Error', {
           timeOut: 3000
         });
       }

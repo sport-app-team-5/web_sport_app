@@ -1,10 +1,10 @@
 <div class="continer-content">
   <div>
-    <div class="info-style">{{'eventListTitle' | translate}}</div>
-    <div class="description-style">{{'eventListDescription' | translate}}</div>
+    <div class="info-style">{{'trainingListTitle' | translate}}</div>
+    <div class="description-style">{{'trainingListDescription' | translate}}</div>
   </div>
   <div>
-    <button class="primary-button" (click)="createTraining()">{{'eventListButtonCreateEvent'| translate}}</button>
+    <button class="primary-button" (click)="createTraining()">{{'trainingListButtonCreateEvent'| translate}}</button>
   </div>
 </div>
 
@@ -13,11 +13,10 @@
     <table aria-describedby="food profile" >
       <thead>
       <tr>
-        <th>{{'eventListColumnName' | translate}}</th>
-        <th>{{'eventListColumnDate' | translate}}</th>
-        <th>{{'eventListColumnLocation' | translate}}</th>
-        <th>{{'eventListColumnSportName' | translate}}</th>
-        <th>{{'eventListColumnType' | translate}}</th>
+        <th>{{'trainingListColumnName' | translate}}</th>
+        <th>{{'trainingListColumnSport' | translate}}</th>
+        <th>{{'trainingListColumnIntensity' | translate}}</th>
+        <th>{{'trainingListColumnSportDuration' | translate}}</th>
       </tr>
       </thead>
       <tbody>
@@ -26,16 +25,13 @@
           <dd>{{training.name| translate}}</dd>
         </td>
         <td>
-          <dd>{{training.date | translate}}</dd>
+          <dd>{{training.sport | translate}}</dd>
         </td>
         <td>
-          <dd>{{training.location | translate}}</dd>
+          <dd>{{training.intensity | translate}}</dd>
         </td>
         <td>
-          <dd>{{training.name | translate}}</dd>
-        </td>
-        <td>
-          <dd>{{training.type | translate}}</dd>
+          <dd>{{training.duration | translate}}</dd>
         </td>
       </tr>
       </tbody>
