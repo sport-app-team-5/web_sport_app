@@ -1,58 +1,41 @@
-:host {
-
-
-   
-}
-
-:host ::ng-deep igx-prefix{
+:host ::ng-deep igx-prefix {
     color: white;
 }
 
-:host ::ng-deep .igx-input-group__bundle-main input{
+:host ::ng-deep .igx-input-group__bundle-main input {
     color: white;
-    width: 100% ;
+    width: 100%;
 }
-:host ::ng-deep .igx-input-group__bundle{
+
+:host ::ng-deep .igx-input-group__bundle {
     width: 300px;
 }
 
-.info-style{
+.info-style {
     color: #FFF;
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-  }
-  
-  .description-style{
+}
+
+.description-style {
     color: #FFF;
-    font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-  }
+    font-size: 16px;
+}
 
-  .continer-content{
-  
+.continer-content {
     align-items: center;
     justify-content: space-between;
     padding: 23px 43px 51px 43px;
     gap: 19px;
-  }
-
-  .continer-content {
     margin-bottom: 20px;
 }
 
-.info-style {
-    font-size: 24px;
-    font-weight: bold;
-}
 
-.description-style {
-    font-size: 16px;
-    color: gray;
-}
 
 .container-content {
     display: flex;
@@ -62,10 +45,11 @@
 
 .column {
     flex-basis: 50%;
-   
+
     padding: 10px;
 }
-.side-right{
+
+.side-right {
     border-right: 1px solid #282828;
 }
 
@@ -73,7 +57,8 @@ h2 {
     font-size: 20px;
     margin-bottom: 10px;
 }
-.event-list-item{
+
+.event-list-item {
     list-style: none;
     display: flex;
     gap: 5px;
@@ -81,14 +66,16 @@ h2 {
 }
 
 
-.active-item-list{
+.active-item-list {
     border: 5px solid #E3FFA8;
 }
-.event-information{
+
+.event-information {
     display: flex;
     flex-direction: column;
 }
-.event-date{
+
+.event-date {
     align-items: center;
     display: flex;
     justify-content: center;
@@ -100,7 +87,7 @@ h2 {
     position: relative;
 }
 
-.event-image{
+.event-image {
     border-radius: 35px;
 }
 
@@ -109,71 +96,74 @@ h2 {
     bottom: 300px;
     right: 0;
     width: 100%;
-    background-color: transparent;   
+    background-color: transparent;
     padding: 40px;
 }
 
-.event-name-text{
+.event-name-text {
     position: absolute;
     bottom: 270px;
     right: 10;
     width: 100%;
-    background-color: transparent;   
+    background-color: transparent;
     padding: 40px;
 }
-.event-level-title{
+
+.event-level-title {
     position: absolute;
     bottom: 240px;
     right: 10;
     width: 100%;
-    background-color: transparent;  
+    background-color: transparent;
     padding: 40px;
 }
 
-.event-level-text{
+.event-level-text {
     position: absolute;
     bottom: 210px;
     right: 10;
     width: 100%;
-    background-color: transparent;  
+    background-color: transparent;
     padding: 40px;
 }
-.event-time-title{
+
+.event-time-title {
     position: absolute;
     bottom: 180px;
     right: 10;
     width: 100%;
-    background-color: transparent;  
+    background-color: transparent;
     padding: 40px;
 }
-.event-time-text{
+
+.event-time-text {
     position: absolute;
     bottom: 150px;
     right: 10;
     width: 100%;
-    background-color: transparent;  
+    background-color: transparent;
     padding: 40px;
 }
-.event-location-title
-{
+
+.event-location-title {
     position: absolute;
     bottom: 120px;
     right: 10;
     width: 100%;
-    background-color: transparent;  
+    background-color: transparent;
     padding: 40px;
 }
 
-.event-location-text{
+.event-location-text {
     position: absolute;
     bottom: 90px;
     right: 10;
     width: 100%;
-    background-color: transparent;  
+    background-color: transparent;
     padding: 40px;
 }
 
-.event-buttons{
+.event-buttons {
     position: absolute;
     bottom: 550px;
     left: 266px;
@@ -193,25 +183,24 @@ h2 {
 }
 
 
-.month-event{
+.month-event {
     font-size: 30px;
 }
-.container-search{
+
+.container-search {
     display: flex;
     gap: 10px;
 }
 
-.secondary-button{
+.secondary-button {
     background-color: white;
     border: none;
     border-radius: 5px;
     color: #000;
     cursor: pointer;
-    font-size: 16px;    
-    height: 36px;
+    font-size: 16px;
     height: 36px;
     margin-top: 24px;
     padding-left: 13px;
     padding-right: 13px;
 }
-

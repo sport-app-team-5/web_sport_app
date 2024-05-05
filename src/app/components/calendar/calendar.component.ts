@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { DateRange } from 'igniteui-angular';
+import { Component } from '@angular/core';
 import { CalendarService } from './calendar.service';
 import { ToastrService } from 'ngx-toastr';
 import {
@@ -8,7 +7,7 @@ import {
   IgxDatePickerModule,
   IgxDateTimeEditorModule,
   IgxInputGroupModule,
-  IgxIconModule
+  IgxIconModule,DateRange
 } from "igniteui-angular";
 import { FormsModule } from '@angular/forms';
 
@@ -28,13 +27,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './calendar.component.css'
 
 })
-export class CalendarComponent  {
+export class CalendarComponent {
   range: DateRange = { start: new Date(), end: new Date() };
   eventDatails: any = {}
   isEvetActive: any;
   events: any = [];
   suscribedEvents: any = [];
   showButtonToSuscribe: boolean = false;
+  risk: any;
   constructor(private eventsService: CalendarService, private toastr: ToastrService) {
   }
 
@@ -121,4 +121,10 @@ export class CalendarComponent  {
       'active-item-list': this.eventDatails.id === id
     }
   }
+
+  handleKeyDown($event: KeyboardEvent) {
+    this.risk = "Riesgo gourmet";
+  }
+
+
 }

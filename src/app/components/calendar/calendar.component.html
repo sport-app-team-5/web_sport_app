@@ -14,7 +14,8 @@
                 <div>Disponibles</div>
                 <div class="event-list">
                     <div class="event-list-item" *ngFor="let event of events" (click)="getDetails(event,true)"
-                        [class.subscribed]="isSubscribed(event)">
+                        [class.subscribed]="isSubscribed(event)"
+                        (keydown)="handleKeyDown($event)">
                         <div [ngClass]='setClassAcitve(event.id)'></div>
                         <div class="event-date">{{ getDay(event.date) }}</div>
                         <div class="event-information">
@@ -30,7 +31,8 @@
                 <div>Inscritos</div>
                 <div class="event-list">
                     <div class="event-list-item" *ngFor="let event of suscribedEvents" (click)="getDetails(event,false)"
-                        [class.subscribed]="isSubscribed(event)">
+                        [class.subscribed]="isSubscribed(event)"
+                        (keydown)="handleKeyDown($event)">
                         <div [ngClass]='setClassAcitve(event.id)'></div>
                         <div class="event-date">{{ getDay(event.date) }}</div>
                         <div class="event-information">
@@ -45,7 +47,7 @@
             <div class="column">
                 <div class="event-info">
                     <div class="event-image-container">
-                        <img src="https://cdn-sport-app.s3.amazonaws.com/ciclismo-image.png" alt="Event Image"
+                        <img src="https://cdn-sport-app.s3.amazonaws.com/ciclismo-image.png" alt="Event details"
                             class="event-image">
                         <div class="event-buttons" *ngIf="showButtonToSuscribe===true">
                             <button class="primary-button" (click)="subscribeToEvent(eventDatails)">Inscribirse</button>
