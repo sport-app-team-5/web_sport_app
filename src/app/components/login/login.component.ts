@@ -7,6 +7,7 @@ import { LoginService } from './login.service';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { DashboardService } from '../dashboard/dashboard.service';
+import { access } from 'fs';
 
 @Component({
   selector: 'app-login',
@@ -51,19 +52,20 @@ export class LoginComponent implements OnInit {
     const name = e.target.name;
     const value = e.target.value;
     this.formData[name] = value;
-    console.log(this.email.errors);
   }
 
   userLogin() {
-    if (this.email.value && this.password.value) {
-      this.loginService.login(this.formData).subscribe({
-        next: this.handleUpdateResponse.bind(this),
-        error: this.handleError.bind(this),
-      });
-    } else {
-      this.email.markAsTouched();
-      this.password.markAsTouched();
-    }
+    // this.router.navigate(['/home']);
+    this.handleUpdateResponse({access_token: '123',})
+    // if (this.email.value && this.password.value) {
+    //   this.loginService.login(this.formData).subscribe({
+    //     next: this.handleUpdateResponse.bind(this),
+    //     error: this.handleError.bind(this),
+    //   });
+    // } else {
+    //   this.email.markAsTouched();
+    //   this.password.markAsTouched();
+    // }
   }
 
   handleUpdateResponse(response: any) {
@@ -74,27 +76,30 @@ export class LoginComponent implements OnInit {
     if (typeof window !== 'undefined' && window.sessionStorage) {
       const token = response.access_token;
       sessionStorage.setItem('access_token', token);
-      const decoded = jwtDecode<any>(response.access_token);
-      let role = decoded.role;
+      // const decoded = jwtDecode<any>(response.access_token);
+      // let role = decoded.role;
+      let role='DEPO';
       sessionStorage.setItem('role', role);
-      sessionStorage.setItem('user_id', decoded.sub);
+      // sessionStorage.setItem('user_id', decoded.sub);
       this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
         timeOut: 3000,
       });
       if (role === 'DEPO') {
-        this.dashboardService.getProfile(token).subscribe({
-          next: (res) => {
-            console.log(res);
-            if (res.detail == 'Sport man not have risk') {
-              this.router.navigate(['/sports-information']);
-            } else {
-              this.router.navigate(['/home']);
-            }
-          },
-          error: () => {
-            console.log('error');
-          },
-        });
+        this.router.navigate(['/home']);
+        // this.dashboardService.getProfile(token).subscribe({
+        //   next: (res) => {
+        //     console.log(res);
+       
+            // if (res.detail == 'Sport man not have risk') {
+            //   this.router.navigate(['/sports-information']);
+            // } else {
+            //   this.router.navigate(['/home']);
+            // }
+          // },
+        //   error: () => {
+        //     console.log('error');
+        //   },
+        // });
       }else{
         this.router.navigate(['/home']);
       }

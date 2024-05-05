@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { Component } from '@angular/core'
+import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core'
 import { RouterOutlet } from '@angular/router'
 import { TranslateModule } from '@ngx-translate/core'
 
@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core'
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, TranslateModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html'
 })
 export class AppComponent {

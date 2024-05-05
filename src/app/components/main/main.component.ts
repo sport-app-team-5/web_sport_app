@@ -6,6 +6,7 @@ import { ProfileInformationComponent } from '../profile-information/profile-info
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
 import { ThirdPartyCreateEventComponent } from '../third-party-create-event/third-party-create-event.component';
 import { HeaderMainService } from '../header-main/header-main.service';
+import { CalendarComponent } from '../calendar/calendar.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -17,11 +18,12 @@ import { HeaderMainService } from '../header-main/header-main.service';
     ProfileInformationComponent,
     ClasificationRiskGroupComponent,
     ThirdPartyCreateEventComponent,
+    CalendarComponent
   ],
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
-  isActiveMenu = 'home';
+  isActiveMenu = 'calendar';
   role: string | null = null;
   creatingEvent = false;
   menuKeyDown: boolean = false;
@@ -59,7 +61,6 @@ export class MainComponent implements OnInit {
   }
 
   setClassActiveSport(option: string) {
-    console.log(option);
     return {
       'container-home': true,
       'active-button': this.isActiveMenu === option,

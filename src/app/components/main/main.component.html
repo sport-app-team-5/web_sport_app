@@ -98,6 +98,9 @@
       <div *ngIf="creatingEvent === true" >
         <app-third-party-create-event></app-third-party-create-event>
       </div>
+      <div>
+        <app-calendar *ngIf="role === 'DEPO' && isActiveMenu=='calendar' && isActiveProfile ===false"></app-calendar>
+      </div>
     </div>
   </div>
 </main>
