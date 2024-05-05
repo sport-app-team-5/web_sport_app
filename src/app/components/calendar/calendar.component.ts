@@ -32,17 +32,7 @@ export class CalendarComponent implements OnInit {
   range: DateRange = { start: new Date(), end: new Date() };
   eventDatails: any = {}
   events: any = [];
-  suscribedEvents: any = [{
-    "id": 3,
-    "third_party_id": 8,
-    "city_id": 20,
-    "sport_id": 1,
-    "location": "Salto del vino",
-    "date": "2024-05-04",
-    "capacity": 15,
-    "description": "Ciclismo es pasión por el deporte",
-    "type": "ROUTE"
-}];
+  suscribedEvents: any = [];
 
 
   ngOnInit(): void {
