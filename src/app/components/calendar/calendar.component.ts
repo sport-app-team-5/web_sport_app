@@ -34,7 +34,7 @@ export class CalendarComponent  {
   isEvetActive: any;
   events: any = [];
   suscribedEvents: any = [];
-  showButtonToSuscribe: boolean = true;
+  showButtonToSuscribe: boolean = false;
   constructor(private eventsService: CalendarService, private toastr: ToastrService) {
   }
 
