@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private dashboardService: DashboardService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.switchLanguage('es');
@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
     const name = e.target.name;
     const value = e.target.value;
     this.formData[name] = value;
-    console.log(this.email.errors);
   }
 
   userLogin() {
@@ -82,9 +81,11 @@ export class LoginComponent implements OnInit {
         timeOut: 3000,
       });
       if (role === 'DEPO') {
+        this.router.navigate(['/home']);
         this.dashboardService.getProfile(token).subscribe({
           next: (res) => {
             console.log(res);
+
             if (res.detail == 'Sport man not have risk') {
               this.router.navigate(['/sports-information']);
             } else {
@@ -95,11 +96,10 @@ export class LoginComponent implements OnInit {
             console.log('error');
           },
         });
-      }else{
+      } else {
         this.router.navigate(['/home']);
       }
     }
- 
   }
 
   handleError(error: any) {

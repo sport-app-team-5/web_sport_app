@@ -5,6 +5,7 @@ import { HeaderMainComponent } from '../header-main/header-main.component';
 import { ProfileInformationComponent } from '../profile-information/profile-information.component';
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
 import { HeaderMainService } from '../header-main/header-main.service';
+import { CalendarComponent } from '../calendar/calendar.component';
 import {EventCreateComponent} from "../event/event-create/event-create.component";
 import {EventListComponent} from "../event/event-list/event-list.component";
 import {TrainingListComponent} from "../training/training-list/training-list.component";
@@ -18,6 +19,7 @@ import {TrainingListComponent} from "../training/training-list/training-list.com
     HeaderMainComponent,
     ProfileInformationComponent,
     ClasificationRiskGroupComponent,
+    CalendarComponent,
     EventCreateComponent,
     EventListComponent,
     TrainingListComponent,
@@ -55,7 +57,6 @@ export class MainComponent implements OnInit {
   }
 
   setClassActiveSport(option: string) {
-    console.log(option);
     return {
       'container-home': true,
       'active-button': this.isActiveMenu === option,

@@ -99,6 +99,9 @@
       <div *ngIf="role === 'TECE' && isActiveMenu === 'events'">
         <app-event-list></app-event-list>
       </div>
+      <div>
+        <app-calendar *ngIf="role === 'DEPO' && isActiveMenu=='calendar' && isActiveProfile ===false"></app-calendar>
+      </div>
     </div>
   </div>
 </main>

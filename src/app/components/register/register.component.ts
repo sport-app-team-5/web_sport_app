@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
     private toastr: ToastrService,
     private translate: TranslateService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getCountries();
@@ -96,15 +96,15 @@ export class RegisterComponent implements OnInit {
   }
 
   getCountries(): void {
-    this.registerUserService.getCountries().toPromise()
-      .then((response) => {
-      this.countries = response;
-      })
-      .catch((error) => {
-      this.toastr.error('Error obteniendo los países', 'Error', {
-        timeOut: 3000,
-      });
-      });
+    this.registerUserService.getCountries().subscribe({
+      next: (response) => { this.countries = response; },
+      error: () => {
+        this.toastr.error('Error obteniendo los países', 'Error', {
+          timeOut: 3000,
+        });
+      },
+    });
+
   }
 
   getCitiesResidence() {
