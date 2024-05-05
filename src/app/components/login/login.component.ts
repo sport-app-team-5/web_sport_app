@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private dashboardService: DashboardService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.switchLanguage('es');
@@ -55,17 +55,15 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin() {
-    // this.router.navigate(['/home']);
-    this.handleUpdateResponse({access_token: '123',})
-    // if (this.email.value && this.password.value) {
-    //   this.loginService.login(this.formData).subscribe({
-    //     next: this.handleUpdateResponse.bind(this),
-    //     error: this.handleError.bind(this),
-    //   });
-    // } else {
-    //   this.email.markAsTouched();
-    //   this.password.markAsTouched();
-    // }
+    if (this.email.value && this.password.value) {
+      this.loginService.login(this.formData).subscribe({
+        next: this.handleUpdateResponse.bind(this),
+        error: this.handleError.bind(this),
+      });
+    } else {
+      this.email.markAsTouched();
+      this.password.markAsTouched();
+    }
   }
 
   handleUpdateResponse(response: any) {
@@ -76,35 +74,33 @@ export class LoginComponent implements OnInit {
     if (typeof window !== 'undefined' && window.sessionStorage) {
       const token = response.access_token;
       sessionStorage.setItem('access_token', token);
-      // const decoded = jwtDecode<any>(response.access_token);
-      // let role = decoded.role;
-      let role='DEPO';
+      const decoded = jwtDecode<any>(response.access_token);
+      let role = decoded.role;
       sessionStorage.setItem('role', role);
-      // sessionStorage.setItem('user_id', decoded.sub);
+      sessionStorage.setItem('user_id', decoded.sub);
       this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
         timeOut: 3000,
       });
       if (role === 'DEPO') {
         this.router.navigate(['/home']);
-        // this.dashboardService.getProfile(token).subscribe({
-        //   next: (res) => {
-        //     console.log(res);
-       
-            // if (res.detail == 'Sport man not have risk') {
-            //   this.router.navigate(['/sports-information']);
-            // } else {
-            //   this.router.navigate(['/home']);
-            // }
-          // },
-        //   error: () => {
-        //     console.log('error');
-        //   },
-        // });
-      }else{
+        this.dashboardService.getProfile(token).subscribe({
+          next: (res) => {
+            console.log(res);
+
+            if (res.detail == 'Sport man not have risk') {
+              this.router.navigate(['/sports-information']);
+            } else {
+              this.router.navigate(['/home']);
+            }
+          },
+          error: () => {
+            console.log('error');
+          },
+        });
+      } else {
         this.router.navigate(['/home']);
       }
     }
- 
   }
 
   handleError(error: any) {
