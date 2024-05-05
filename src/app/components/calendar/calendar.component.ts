@@ -65,7 +65,7 @@ export class CalendarComponent implements OnInit {
     });
     const sportman_id = sessionStorage.getItem('sportman_id')
     this.eventsService.getAllEventsSuscribed(sportman_id, formattedDateStart, formattedDateEnd).subscribe({
-      next: this.handleResponseEvents.bind(this),
+      next: this.handleResponseSuscribedEvents.bind(this),
       error: this.handleErrorsEvents.bind(this),
     })
   }
