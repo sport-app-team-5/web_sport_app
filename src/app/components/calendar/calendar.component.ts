@@ -85,6 +85,10 @@ export class CalendarComponent {
       next: this.handleResponseSubscribe.bind(this),
       error: this.handleErrorsSubscribe.bind(this),
     });
+    this.eventsService.getAllEvents(this.formatDate(this.range.start), this.formatDate(this.range.end), 0).subscribe({
+      next: this.handleResponseEvents.bind(this),
+      error: this.handleErrorsEvents.bind(this),
+    });
   }
 
   handleResponseSubscribe(response: any) {
