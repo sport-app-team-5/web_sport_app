@@ -28,21 +28,15 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './calendar.component.css'
 
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent  {
   range: DateRange = { start: new Date(), end: new Date() };
   eventDatails: any = {}
-  isEvetActive:any;
+  isEvetActive: any;
   events: any = [];
   suscribedEvents: any = [];
 
-
-  ngOnInit(): void {
-
-  }
   constructor(private eventsService: CalendarService, private toastr: ToastrService) {
   }
-
-
 
   isSubscribed(event: any) {
     return this.events.length > 0;
@@ -93,13 +87,13 @@ export class CalendarComponent implements OnInit {
       next: this.handleResponseSubscribe.bind(this),
       error: this.handleErrorsSubscribe.bind(this),
     });
-    this.searchEvents()
   }
 
   handleResponseSubscribe(response: any) {
     this.toastr.success('Te has inscrito éxitosamente', 'Exito', {
       timeOut: 3000
     })
+    this.searchEvents
   }
 
   handleErrorsSubscribe(error: any) {
@@ -117,9 +111,9 @@ export class CalendarComponent implements OnInit {
     return type === 'ROUTE' ? 'Ruta' : 'Evento'
   }
 
-  
-  
-  setClassAcitve(id:any){
+
+
+  setClassAcitve(id: any) {
     return {
       '': true,
       'active-item-list': this.eventDatails.id === id
