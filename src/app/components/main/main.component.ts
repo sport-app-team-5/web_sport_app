@@ -4,8 +4,11 @@ import { Router } from '@angular/router';
 import { HeaderMainComponent } from '../header-main/header-main.component';
 import { ProfileInformationComponent } from '../profile-information/profile-information.component';
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
-import { ThirdPartyCreateEventComponent } from '../third-party-create-event/third-party-create-event.component';
 import { HeaderMainService } from '../header-main/header-main.service';
+import { CalendarComponent } from '../calendar/calendar.component';
+import {EventCreateComponent} from "../event/event-create/event-create.component";
+import {EventListComponent} from "../event/event-list/event-list.component";
+import {TrainingListComponent} from "../training/training-list/training-list.component";
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -16,14 +19,17 @@ import { HeaderMainService } from '../header-main/header-main.service';
     HeaderMainComponent,
     ProfileInformationComponent,
     ClasificationRiskGroupComponent,
-    ThirdPartyCreateEventComponent,
+    CalendarComponent,
+    EventCreateComponent,
+    EventListComponent,
+    TrainingListComponent,
   ],
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
   isActiveMenu = 'home';
   role: string | null = null;
-  creatingEvent = false;
+  isEventsView = false;
   menuKeyDown: boolean = false;
   isActiveProfile: boolean = false;
 
@@ -35,7 +41,6 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.start();
     this.getSession();
-
     this.headerMainService.getIsActiveProfile().subscribe((profile) => {
       this.isActiveProfile = profile;
     });
@@ -51,15 +56,7 @@ export class MainComponent implements OnInit {
     return true;
   }
 
-  getButtonClassesMenuHome() {
-    return {
-      'container-home': true,
-      'active-button': this.isActiveMenu === 'home',
-    };
-  }
-
   setClassActiveSport(option: string) {
-    console.log(option);
     return {
       'container-home': true,
       'active-button': this.isActiveMenu === option,
@@ -70,20 +67,6 @@ export class MainComponent implements OnInit {
     return {
       cell: true,
       'cell-active': this.isActiveMenu === option,
-    };
-  }
-
-  getButtonClassesMenuProfileSvg() {
-    return {
-      cell: true,
-      'cell-active': this.isActiveMenu === 'profile',
-    };
-  }
-
-  getButtonClassesMenuProfile() {
-    return {
-      'container-home': true,
-      'active-button': this.isActiveMenu === 'profile',
     };
   }
 
@@ -100,32 +83,16 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/nutritional-information']);
   }
 
-  createExercise() {
-    this.router.navigate(['/exercise']);
-  }
-
-  openMenuClass() {
-    return {
-      menu: true,
-      'show-menu': this.isOpenMenu === true,
-    };
-  }
-
   openMenu() {
     this.isOpenMenu = !this.isOpenMenu;
   }
   closeSession() {
-    
     sessionStorage.clear();
     this.router.navigate(['/']);
   }
 
   createProduct() {
     this.router.navigate(['/products']);
-  }
-
-  createEvent() {
-    this.router.navigate(['/events']);
   }
 
   handleKeyDown($event: KeyboardEvent) {

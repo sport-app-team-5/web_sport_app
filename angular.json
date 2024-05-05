@@ -8,8 +8,8 @@
       "i18n":{
         "sourceLocale":"en-US",
       "locales": {
-        "en": "https://cdn-sport-app.s3.amazonaws.com/background_login.png/en.json",
-        "pt": "https://cdn-sport-app.s3.amazonaws.com/background_login.png/pt.json"
+         "en": "https://cdn-sport-app.s3.amazonaws.com/en.json",
+         "pt": "https://cdn-sport-app.s3.amazonaws.com/pt.json"
       }
       },
       "projectType": "application",
@@ -34,13 +34,21 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "./node_modules/hammerjs/hammer.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
               "entry": "server.ts"
+            },
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
             }
           },
           "configurations": {
@@ -102,9 +110,17 @@
               "src/assets/images/png/*" 
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/igniteui-angular/styles/igniteui-angular.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/hammerjs/hammer.min.js"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules"
+              ]
+            }
           }
         }
       }

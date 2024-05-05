@@ -1,4 +1,4 @@
-import { Injectable, Injector, OnInit } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { API_SPORT_PLAN_BASE_URL } from '../../../../api.constants';

@@ -1,4 +1,3 @@
-
 {
     "register": "Registar",
     "login":"Iniciar sessão",
@@ -100,5 +99,20 @@
   "intensity": "Qual é a intensidade do treinamento?",
   "selectSport": "Selecciona un deporte",
   "selectIntensity": "Selecciona una intensidad",
-  "duration": "Qual é a duração do treinamento em minutos?"
+  "duration": "Qual é a duração do treinamento em minutos?",
+  "eventListTitle": "Eventos",
+  "eventListDescription": "Aqui você encontrará todos os eventos disponíveis",
+  "eventListButtonCreateEvent": "Criar evento",
+  "eventListColumnName": "Nome",
+  "eventListColumnDate": "Data",
+  "eventListColumnLocation": "Local",
+  "eventListColumnSportName": "Desporto",
+  "eventListColumnType": "Tipo",
+  "trainingListTitle": "Treinamentos",
+  "trainingListDescription": "Aqui você encontrará todos os treinamentos disponíveis",
+  "trainingListButtonCreateEvent": "Criar treinamento",
+  "trainingListColumnName": "Nome",
+  "trainingListColumnSport": "Desporto",
+  "trainingListColumnIntensity": "Intensidade",
+  "trainingListColumnSportDuration": "Duração"
 }

@@ -1,4 +1,4 @@
-@import '../register/vars.css';
+@import '../../../shared/vars.css';
 
 .continer-content{
   display: flex;
@@ -66,15 +66,6 @@ button {
   gap: 20px;
 }
 
-
-
-.question-button:hover,
-.question-button:active,
-.question-button:focus {
-  border-radius: 10px;
-  border: 1px solid var(--c-green-ligth);
-  color: var(--c-green-ligth);
-}
 
 .info-style{
   color: #FFF;
