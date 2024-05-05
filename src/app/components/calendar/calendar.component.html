@@ -16,9 +16,9 @@
                     <div class="event-list-item" *ngFor="let event of events" (click)="getDetails(event)"
                         [class.subscribed]="isSubscribed(event)">
                         <div class="active-item-list"></div>
-                        <div class="event-date">{{ event.date }}</div>
+                        <div class="event-date">{{ getDay(event.date) }}</div>
                         <div class="event-information">
-                            <span>{{ event.type }}</span>
+                            <span>{{ getType(event.type) }}</span>
                             <div>
                                 {{ event.location }}
                             </div>

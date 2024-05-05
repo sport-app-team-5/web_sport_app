@@ -36,4 +36,13 @@ export class CalendarService {
     })
     return this.http.post(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/events/associate', data, { headers })
   }
+
+  getAllEventsSuscribed(sportmanId: any,startDate:any,endDate:any): Observable<any> {
+    const token = sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    })
+    return this.http.get(API_ADDITIONAL_SERVICE_BASE_URL + `auth/events/sport/event/subscribed?sportman_id=${sportmanId}&initial_date=${startDate}&final_date=${endDate}`, { headers })
+  }
 }

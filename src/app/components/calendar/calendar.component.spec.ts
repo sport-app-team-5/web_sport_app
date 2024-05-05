@@ -1,23 +1,126 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CalendarComponent } from './calendar.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../../app.config';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { CalendarService } from './calendar.service';
+import { of } from 'rxjs';
 
 describe('CalendarComponent', () => {
   let component: CalendarComponent;
   let fixture: ComponentFixture<CalendarComponent>;
+  let eventsService: CalendarService;
+  let toastrService: ToastrService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CalendarComponent]
+      imports: [CalendarComponent,
+        HttpClientModule,
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        ToastrModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient],
+          },
+        }),
+      ],
+      providers: [ToastrService, TranslateService, CalendarService, provideAnimations()]
+
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(CalendarComponent);
     component = fixture.componentInstance;
+    eventsService = TestBed.inject(CalendarService);
+    toastrService = TestBed.inject(ToastrService); 
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should format the date correctly', () => {
+    const dateString = '2022-01-01';
+    const formattedDate = component.formatDate(dateString);
+    expect(formattedDate).toEqual('2021-12-31');
+  });
+
+  it('should search events and handle the response correctly', () => {
+    const formattedDateStart = '2021-01-01';
+    const formattedDateEnd = '2021-01-31';
+    const mockEvents = [{ id: 1, name: 'Event 1' }, { id: 2, name: 'Event 2' }];
+    spyOn(eventsService, 'getAllEvents').and.returnValue(of(mockEvents));
+
+    component.searchEvents();
+
+
+    expect(eventsService.getAllEvents).toHaveBeenCalled();
+    expect(component.events).toEqual(mockEvents);
+
+  });
+
+  it('should handle the response correctly', () => {
+    const mockResponse = [{ id: 1, name: 'Event 1' }, { id: 2, name: 'Event 2' }];
+    component.handleResponseEvents(mockResponse);
+    expect(component.events).toEqual(mockResponse);
+  });
+
+  it('should handle errors when getting events', () => {
+    const mockError = 'Error obteniendo los eventos';
+    spyOn(toastrService, 'error');
+
+    component.handleErrorsEvents(mockError);
+
+    expect(toastrService.error).toHaveBeenCalledWith(mockError, 'Error', {
+      timeOut: 3000
+    });
+  })
+
+
+  it('should handle errors when subscribing', () => {
+    const mockError = 'Algo salió mal, intenta más tarde.';
+    spyOn(toastrService, 'error');
+  
+    component.handleErrorsSubscribe(mockError);
+  
+    expect(toastrService.error).toHaveBeenCalledWith(mockError, 'Error', {
+      timeOut: 3000
+    });
+  });
+
+  it('should handle the response correctly when subscribing', () => {
+    const mockResponse = { message: 'Inscripción exitosa' };
+    spyOn(toastrService, 'success');
+  
+    component.handleResponseSubscribe(mockResponse);
+  
+    expect(toastrService.success).toHaveBeenCalledWith('Te has inscrito éxitosamente', 'Exito', {
+      timeOut: 3000
+    });
+  });
+
+  it('should set the event details correctly', () => {
+    const mockEvent = { id: 1, name: 'Event 1' };
+    component.getDetails(mockEvent);
+    expect(component.eventDatails).toEqual(mockEvent);
+  });
+
+  it('should subscribe to an event and handle the response correctly', () => {
+    
+  });
+  
+  it('should handle errors when subscribing to an event', () => {
+
+
   });
 });

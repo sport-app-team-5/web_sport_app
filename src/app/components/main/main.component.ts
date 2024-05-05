@@ -23,7 +23,7 @@ import { CalendarComponent } from '../calendar/calendar.component';
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
-  isActiveMenu = 'calendar';
+  isActiveMenu = 'home';
   role: string | null = null;
   creatingEvent = false;
   menuKeyDown: boolean = false;

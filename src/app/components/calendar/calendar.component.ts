@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DateRange } from 'igniteui-angular';
 import { CalendarService } from './calendar.service';
 import { ToastrService } from 'ngx-toastr';
@@ -28,20 +28,24 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './calendar.component.css'
 
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
   range: DateRange = { start: new Date(), end: new Date() };
   eventDatails: any = {}
-  events: any = []
+  events: any = [];
+  suscribedEvents: any = [];
 
+
+  ngOnInit(): void {
+
+  }
   constructor(private eventsService: CalendarService, private toastr: ToastrService) {
   }
+
 
 
   isSubscribed(event: any) {
     return this.events.length > 0;
   }
-
-
 
   formatDate(dateString: any) {
     const date = new Date(dateString);
@@ -50,19 +54,24 @@ export class CalendarComponent {
     const day = ('0' + date.getDate()).slice(-2);
     const formattedDate = `${year}-${month}-${day}`;
     return formattedDate;
-
   }
+
   searchEvents() {
     const formattedDateStart = this.formatDate(this.range.start);
     const formattedDateEnd = this.formatDate(this.range.end);
-    console.log(formattedDateStart)
-    console.log(formattedDateEnd)
     this.eventsService.getAllEvents(formattedDateStart, formattedDateEnd, 0).subscribe({
       next: this.handleResponseEvents.bind(this),
       error: this.handleErrorsEvents.bind(this),
     });
+    const sportman_id = sessionStorage.getItem('sportman_id')
+    this.eventsService.getAllEventsSuscribed(sportman_id, formattedDateStart, formattedDateEnd).subscribe({
+      next: this.handleResponseEvents.bind(this),
+      error: this.handleErrorsEvents.bind(this),
+    })
   }
-
+  handleResponseSuscribedEvents(response: any) {
+    this.suscribedEvents = response;
+  }
   handleResponseEvents(response: any) {
     this.events = response;
   }
@@ -74,9 +83,7 @@ export class CalendarComponent {
   }
 
   getDetails(event: any) {
-    console.log(event)
     this.eventDatails = event
-
   }
 
   subscribeToEvent(event: any) {
@@ -102,4 +109,16 @@ export class CalendarComponent {
       timeOut: 3000
     })
   }
+
+  getDay(date: any) {
+    return new Date(date).getDate();
+
+  }
+
+  getType(type: any) {
+    return type === 'ROUTE' ? 'Ruta' : 'Evento'
+
+  }
+
+
 }
