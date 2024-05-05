@@ -111,7 +111,8 @@ export class CalendarComponent implements OnInit {
   }
 
   getDay(date: any) {
-    return new Date(date).getDate();
+    const day=date.split('-')[2]
+    return day;
 
   }
 
