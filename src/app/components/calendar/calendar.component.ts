@@ -93,7 +93,7 @@ export class CalendarComponent  {
     this.toastr.success('Te has inscrito éxitosamente', 'Exito', {
       timeOut: 3000
     })
-    this.searchEvents
+    this.searchEvents()
   }
 
   handleErrorsSubscribe(error: any) {
