@@ -1,0 +1,55 @@
+<div class="continer-content">
+    <div class="info-style">Calendar</div>
+    <div class="description-style">Encontrarás los eventos deportivos a los que te has inscrito</div>
+    <div>
+    </div>
+    <div>
+        <div class="container-search">
+            <igx-date-range-picker [(ngModel)]="range" class="datepicker-custom" >
+            </igx-date-range-picker>
+            <button class="secondary-button" (click)="searchEvents()"> Buscar</button>
+        </div>    
+        <div class="container-content">
+            <div class="column side-right">
+                <div>Disponibles</div>
+                <div class="event-list">
+                    <div class="event-list-item" *ngFor="let event of events" (click)="getDetails(event)"
+                        [class.subscribed]="isSubscribed(event)">
+                        <div class="active-item-list"></div>
+                       
+                        <div class="event-date">{{ event.day }}</div>
+                        <div class="event-information">
+                            <span>{{ event.type }}</span>
+                            <div>
+                                {{ event.place }}
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            <div class="column">
+                <div>Inscritos</div>
+             
+            </div>
+            <div class="column">
+                <div class="event-info">
+                    <div class="event-image-container">
+                        <img src="https://cdn-sport-app.s3.amazonaws.com/ciclismo-image.png" alt="Event Image"
+                            class="event-image">
+                            <div class="container-details">
+                                <div> Nivel </div>
+                                <div class="event-level"> {{eventDatails.type}}</div>
+                                <div> Tiempo </div>
+                                <div class="event-time"> {{eventDatails.type}}</div>
+                                <div> Ubicación </div>
+                                <div class="event-place">{{eventDatails.place}}</div>
+                            </div>
+                       
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
