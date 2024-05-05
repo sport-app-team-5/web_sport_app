@@ -4,15 +4,15 @@ import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate
 import {HttpLoaderFactory} from "../../app.config";
 import {HttpClient} from "@angular/common/http";
 import {API_SPORT_PLAN_BASE_URL} from "../../../../api.constants";
-import {ExerciseService} from "./exercise.service";
+import {TrainingService} from "./training.service";
 
-describe('ExerciseService', () => {
+describe('TrainingService', () => {
   let httpMock: HttpTestingController
-  let service: ExerciseService
+  let service: TrainingService
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ExerciseService, TranslateService],
+      providers: [TrainingService, TranslateService],
       imports: [
         HttpClientTestingModule,
         TranslateModule.forRoot({
@@ -24,13 +24,13 @@ describe('ExerciseService', () => {
         })
       ]
     })
-    service = TestBed.inject(ExerciseService)
+    service = TestBed.inject(TrainingService)
     httpMock = TestBed.inject(HttpTestingController)
   })
 
   it('should use product service', inject(
-    [ExerciseService],
-    (service: ExerciseService) => {
+    [TrainingService],
+    (service: TrainingService) => {
       expect(service).toBeTruthy()
     }
   ))
@@ -39,7 +39,7 @@ describe('ExerciseService', () => {
     const dummyData = { name: 'test', cost: '123' }
     const expectedResponse = { token: 'dummyToken' }
 
-    service.createExercise(dummyData).subscribe(response => {
+    service.createTraining(dummyData).subscribe(response => {
       expect(response).toEqual(expectedResponse)
     })
 

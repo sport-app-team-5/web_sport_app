@@ -1,0 +1,40 @@
+<div class="continer-content">
+  <div>
+    <div class="info-style">{{'trainingListTitle' | translate}}</div>
+    <div class="description-style">{{'trainingListDescription' | translate}}</div>
+  </div>
+  <div>
+    <button class="primary-button" (click)="createTraining()">{{'trainingListButtonCreateEvent'| translate}}</button>
+  </div>
+</div>
+
+<div class="container-tables">
+  <div class="table">
+    <table aria-describedby="food profile" >
+      <thead>
+      <tr>
+        <th>{{'trainingListColumnName' | translate}}</th>
+        <th>{{'trainingListColumnSport' | translate}}</th>
+        <th>{{'trainingListColumnIntensity' | translate}}</th>
+        <th>{{'trainingListColumnSportDuration' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="tr" *ngFor="let training of trainings">
+        <td>
+          <dd>{{training.name| translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.sport | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.intensity | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.duration | translate}}</dd>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

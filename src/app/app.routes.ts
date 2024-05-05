@@ -11,8 +11,10 @@ import {ProductComponent} from "./components/product/product.component";
 import { inject } from '@angular/core'
 import { AuthService } from '../app/services/auth.service'
 import { SportsInformationComponent } from './components/sports-information/sports-information.component'
-import {ExerciseComponent} from "./components/exercise/exercise.component";
 import {EventListComponent} from "./components/event/event-list/event-list.component";
+import {TrainingCreateComponent} from "./components/training/training-create/training-create.component";
+import {TrainingListComponent} from "./components/training/training-list/training-list.component";
+import {EventCreateComponent} from "./components/event/event-create/event-create.component";
 
 export const domainGuard = () => {
   const service = inject(AuthService)
@@ -71,7 +73,15 @@ export const routes: Routes = [
     component: EventListComponent
   },
   {
-    path: 'exercise',
-    component: ExerciseComponent
+    path: 'trainings',
+    component: TrainingListComponent
   },
+  {
+    path: 'create-event',
+    component: EventCreateComponent
+  },
+  {
+    path: 'create-training',
+    component: TrainingCreateComponent
+  }
 ]

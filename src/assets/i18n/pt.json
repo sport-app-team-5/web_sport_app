@@ -107,5 +107,12 @@
   "eventListColumnDate": "Data",
   "eventListColumnLocation": "Local",
   "eventListColumnSportName": "Desporto",
-  "eventListColumnType": "Tipo"
+  "eventListColumnType": "Tipo",
+  "trainingListTitle": "Treinamentos",
+  "trainingListDescription": "Aqui você encontrará todos os treinamentos disponíveis",
+  "trainingListButtonCreateEvent": "Criar treinamento",
+  "trainingListColumnName": "Nome",
+  "trainingListColumnSport": "Desporto",
+  "trainingListColumnIntensity": "Intensidade",
+  "trainingListColumnSportDuration": "Duração"
 }
