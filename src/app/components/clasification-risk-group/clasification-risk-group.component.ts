@@ -42,7 +42,7 @@ export class ClasificationRiskGroupComponent implements OnInit {
     this.getData();
   }
 
-  switchLanguage (language: string): void {
+  switchLanguage(language: string): void {
     this.translate.use(language)
   }
 
@@ -60,9 +60,13 @@ export class ClasificationRiskGroupComponent implements OnInit {
     }
   }
 
-  getData () {
+  getData() {
     this.casificationRiskGroupService.getRiskGroupService().subscribe({
-      next: (response) => { this.sportManRisk = response.risk;},
+      next: (response) => {
+        this.sportManRisk = response.risk;
+        sessionStorage.setItem('sportman_id', response.id);
+        this.setRecommendedPlan();
+      },
       error: () => {
         this.toastr.error('Error obteniendo el riesgo', 'Error', {
           timeOut: 3000
@@ -87,41 +91,41 @@ export class ClasificationRiskGroupComponent implements OnInit {
   }
 
   setBasicPlanList() {
-    this.basicPlanList = [{"feature":"Seleccionar un plan"},
-    {"feature":"Agregar perfil deportivo"},
-    {"feature":"Agregar perfil alimenticio"},
-    {"feature":"Agregar perfil demográfico"},
-    {"feature":"Crear plan de entrenamiento"},
-    {"feature":"Realizar plan de entrenamiento"},
-    {"feature":"Inscribirse a eventos deportivos"}];
+    this.basicPlanList = [{ "feature": "Seleccionar un plan" },
+    { "feature": "Agregar perfil deportivo" },
+    { "feature": "Agregar perfil alimenticio" },
+    { "feature": "Agregar perfil demográfico" },
+    { "feature": "Crear plan de entrenamiento" },
+    { "feature": "Realizar plan de entrenamiento" },
+    { "feature": "Inscribirse a eventos deportivos" }];
   }
 
   setMediunPlanList() {
-    this.mediunPlanList = [{"feature":"Seleccionar un plan"},
-    {"feature":"Agregar perfil deportivo"},
-    {"feature":"Agregar perfil alimenticio"},
-    {"feature":"Agregar perfil demográfico"},
-    {"feature":"Crear plan de entrenamiento"},
-    {"feature":"Realizar plan de entrenamiento"},
-    {"feature":"Inscribirse a eventos deportivos"},
-    {"feature":"Recibir alertas de indicadores"},
-    {"feature":"Recibir sugerencias de eventos"},
-    {"feature":"Pago mensual de membresia"}];
+    this.mediunPlanList = [{ "feature": "Seleccionar un plan" },
+    { "feature": "Agregar perfil deportivo" },
+    { "feature": "Agregar perfil alimenticio" },
+    { "feature": "Agregar perfil demográfico" },
+    { "feature": "Crear plan de entrenamiento" },
+    { "feature": "Realizar plan de entrenamiento" },
+    { "feature": "Inscribirse a eventos deportivos" },
+    { "feature": "Recibir alertas de indicadores" },
+    { "feature": "Recibir sugerencias de eventos" },
+    { "feature": "Pago mensual de membresia" }];
   }
 
   setAdvancePlanList() {
-    this.advancePlanList = [{"feature":"Seleccionar un plan"},
-    {"feature":"Agregar perfil deportivo"},
-    {"feature":"Agregar perfil alimenticio"},
-    {"feature":"Agregar perfil demográfico"},
-    {"feature":"Crear plan de entrenamiento"},
-    {"feature":"Realizar plan de entrenamiento"},
-    {"feature":"Inscribirse a eventos deportivos"},
-    {"feature":"Recibir alertas de indicadores"},
-    {"feature":"Recibir sugerencias de eventos"},
-    {"feature":"Agendar citas con deportologos"},
-    {"feature":"Entrenamiento personalizado"},
-    {"feature":"Pago anual de membresia"}];
+    this.advancePlanList = [{ "feature": "Seleccionar un plan" },
+    { "feature": "Agregar perfil deportivo" },
+    { "feature": "Agregar perfil alimenticio" },
+    { "feature": "Agregar perfil demográfico" },
+    { "feature": "Crear plan de entrenamiento" },
+    { "feature": "Realizar plan de entrenamiento" },
+    { "feature": "Inscribirse a eventos deportivos" },
+    { "feature": "Recibir alertas de indicadores" },
+    { "feature": "Recibir sugerencias de eventos" },
+    { "feature": "Agendar citas con deportologos" },
+    { "feature": "Entrenamiento personalizado" },
+    { "feature": "Pago anual de membresia" }];
   }
 
 }

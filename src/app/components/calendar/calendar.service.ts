@@ -34,6 +34,6 @@ export class CalendarService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     })
-    return this.http.post(API_USER_BASE_URL + 'auth/events/sport', data, { headers })
+    return this.http.post(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/events/associate', data, { headers })
   }
 }
