@@ -92,10 +92,7 @@ export class CalendarComponent implements OnInit {
       next: this.handleResponseSubscribe.bind(this),
       error: this.handleErrorsSubscribe.bind(this),
     });
-    this.eventsService.getAllEvents(this.formatDate(this.range.start), this.formatDate(this.range.end), 0).subscribe({
-      next: this.handleResponseEvents.bind(this),
-      error: this.handleErrorsEvents.bind(this),
-    });
+    this.searchEvents()
   }
 
   handleResponseSubscribe(response: any) {
@@ -113,13 +110,9 @@ export class CalendarComponent implements OnInit {
   getDay(date: any) {
     const day=date.split('-')[2]
     return day;
-
   }
 
   getType(type: any) {
     return type === 'ROUTE' ? 'Ruta' : 'Evento'
-
   }
-
-
 }
