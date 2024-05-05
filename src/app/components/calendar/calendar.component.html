@@ -15,7 +15,7 @@
                 <div class="event-list">
                     <div class="event-list-item" *ngFor="let event of events" (click)="getDetails(event)"
                         [class.subscribed]="isSubscribed(event)">
-                        <div class="active-item-list"></div>
+                        <div [ngClass]='setClassAcitve(event.id)'></div>
                         <div class="event-date">{{ getDay(event.date) }}</div>
                         <div class="event-information">
                             <span>{{ getType(event.type) }}</span>
@@ -31,7 +31,7 @@
                 <div class="event-list">
                     <div class="event-list-item" *ngFor="let event of suscribedEvents" (click)="getDetails(event)"
                         [class.subscribed]="isSubscribed(event)">
-                        <div class="active-item-list"></div>
+                        <div [ngClass]='setClassAcitve(event.id)'></div>
                         <div class="event-date">{{ getDay(event.date) }}</div>
                         <div class="event-information">
                             <span>{{ getType(event.type) }}</span>

@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 export class CalendarComponent implements OnInit {
   range: DateRange = { start: new Date(), end: new Date() };
   eventDatails: any = {}
+  isEvetActive:any;
   events: any = [];
   suscribedEvents: any = [];
 
@@ -108,11 +109,20 @@ export class CalendarComponent implements OnInit {
   }
 
   getDay(date: any) {
-    const day=date.split('-')[2]
+    const day = date.split('-')[2]
     return day;
   }
 
   getType(type: any) {
     return type === 'ROUTE' ? 'Ruta' : 'Evento'
+  }
+
+  
+  
+  setClassAcitve(id:any){
+    return {
+      '': true,
+      'active-item-list': this.eventDatails.id === id
+    }
   }
 }
