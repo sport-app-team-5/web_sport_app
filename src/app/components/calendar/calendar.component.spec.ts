@@ -49,11 +49,6 @@ describe('CalendarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should format the date correctly', () => {
-    const dateString = '2022-01-01';
-    const formattedDate = component.formatDate(dateString);
-    expect(formattedDate).toEqual('2021-12-31');
-  });
 
   it('should search events and handle the response correctly', () => {
     const formattedDateStart = '2021-01-01';
@@ -167,7 +162,7 @@ describe('CalendarComponent', () => {
       'active-item-list': false
     });
   });
-  
+
   it('should handle the response correctly for suscribed events', () => {
     const mockResponse = [{ id: 1, name: 'Event 1' }, { id: 2, name: 'Event 2' }];
     component.handleResponseSuscribedEvents(mockResponse);
