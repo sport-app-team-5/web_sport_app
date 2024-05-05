@@ -131,5 +131,46 @@ describe('CalendarComponent', () => {
     expect(component.handleErrorsSubscribe).not.toHaveBeenCalled();
   });
   
- 
+  it('should get the day correctly', () => {
+    const date = '2022-01-01';
+    const day = component.getDay(date);
+    expect(day).toEqual('01');
+  });
+
+  it('should return "Ruta" when type is "ROUTE"', () => {
+    const type = 'ROUTE';
+    const result = component.getType(type);
+    expect(result).toEqual('Ruta');
+  });
+  
+  it('should return "Evento" when type is not "ROUTE"', () => {
+    const type = 'OTHER';
+    const result = component.getType(type);
+    expect(result).toEqual('Evento');
+  });
+  it('should set the class correctly when eventDatails.id matches the given id', () => {
+    const id = 1;
+    component.eventDatails = { id: 1, name: 'Event 1' };
+    const result = component.setClassAcitve(id);
+    expect(result).toEqual({
+      '': true,
+      'active-item-list': true
+    });
+  });
+  
+  it('should set the class correctly when eventDatails.id does not match the given id', () => {
+    const id = 2;
+    component.eventDatails = { id: 1, name: 'Event 1' };
+    const result = component.setClassAcitve(id);
+    expect(result).toEqual({
+      '': true,
+      'active-item-list': false
+    });
+  });
+  
+  it('should handle the response correctly for suscribed events', () => {
+    const mockResponse = [{ id: 1, name: 'Event 1' }, { id: 2, name: 'Event 2' }];
+    component.handleResponseSuscribedEvents(mockResponse);
+    expect(component.suscribedEvents).toEqual(mockResponse);
+  });
 });
