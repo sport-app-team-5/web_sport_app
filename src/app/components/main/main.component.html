@@ -86,17 +86,16 @@
       <div class="button-end">
         <button *ngIf="isActiveMenu === 'products'"  class="primary-button" (click)="createProduct()"> Agregar producto</button>
         <button *ngIf="isActiveMenu === 'services'" class="primary-button" (click)="createService()"> Agregar servicio</button>
-        <button *ngIf="isActiveMenu === 'events' && role === 'TECE'" class="primary-button" (click)="createEvent()"> Agregar evento</button>
         <button *ngIf="isActiveMenu === 'profile'"  class="primary-button" (click)="createExercise()"> Agregar entrenamiento</button>
       </div>
       <div>
-        <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && isActiveProfile ===false"></app-clasification-risk-group>
+        <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && !isActiveProfile"></app-clasification-risk-group>
       </div>
       <div>
-        <app-profile-information *ngIf="role === 'DEPO' && isActiveProfile ===true"></app-profile-information>
+        <app-profile-information *ngIf="role === 'DEPO' && isActiveProfile"></app-profile-information>
       </div>
-      <div *ngIf="creatingEvent === true" >
-        <app-third-party-create-event></app-third-party-create-event>
+      <div *ngIf="role === 'TECE' && isActiveMenu === 'events'">
+        <app-event-list></app-event-list>
       </div>
     </div>
   </div>

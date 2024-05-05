@@ -3,20 +3,19 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { HeaderMainComponent } from '../header-main/header-main.component';
-import { RegisterUserService } from '../register/registeruser.service';
-import { ThirdPartyService } from './third-party.service';
+import {NgClass, NgForOf, NgIf} from "@angular/common";
+import {RegisterUserService} from "../../register/registeruser.service";
+import {EventService} from "../event.service";
 
 
 @Component({
-  selector: 'app-third-party-create-event',
+  selector: 'app-event-create',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslateModule, HeaderMainComponent],
-  templateUrl: './third-party-create-event.component.html',
-  styleUrl: './third-party-create-event.component.css'
+  imports: [NgForOf, NgIf, ReactiveFormsModule, TranslateModule, NgClass],
+  templateUrl: './event-create.component.html',
+  styleUrl: './event-create.component.css'
 })
-export class ThirdPartyCreateEventComponent implements OnInit {
+export class EventCreateComponent implements OnInit {
   sport: any = null;
 
   getDefaultValue() {
@@ -88,7 +87,7 @@ export class ThirdPartyCreateEventComponent implements OnInit {
     private toastr: ToastrService,
     private translate: TranslateService,
     private registerUserService: RegisterUserService,
-    private thirdPartyService: ThirdPartyService,
+    private eventService: EventService,
     private router: Router
   ) { }
 
@@ -207,9 +206,7 @@ export class ThirdPartyCreateEventComponent implements OnInit {
     } else {
       this.nameEvent.markAsTouched()
       this.datetimecustom.markAsTouched()
-
       this.country_id.markAsTouched()
-
       this.city_id.markAsTouched()
       return false
     }
@@ -223,9 +220,7 @@ export class ThirdPartyCreateEventComponent implements OnInit {
     } else {
       this.quantity.markAsTouched()
       this.place.markAsTouched()
-
       this.description.markAsTouched()
-
       return false
     }
   }
@@ -234,15 +229,13 @@ export class ThirdPartyCreateEventComponent implements OnInit {
     this.registerUserService.getCountries().subscribe({
       next: (response) => {
         this.countries = response;
-
       },
       error: (error) => {
-
-         if (this.currentStep !== 1) {
+        if (this.currentStep !== 1) {
           this.toastr.error('Error obteniendo los países', 'Error', {
             timeOut: 3000
           });
-         }
+        }
       }
     });
   }
@@ -274,10 +267,10 @@ export class ThirdPartyCreateEventComponent implements OnInit {
       date: this.datetimecustom.value ?? '',
       capacity: parseInt(this.quantity.value ?? ''),
       description: this.description.value ?? '',
-      type: this.type
+      type: this.type,
+      name: this.nameEvent.value ?? ''
     };
-    console.log(eventData)
-    this.thirdPartyService.registerEvent(eventData).subscribe({
+    this.eventService.registerEvent(eventData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)
     })
@@ -311,4 +304,5 @@ interface EventData {
   capacity: number;
   description: string;
   type: string;
+  name: string;
 }

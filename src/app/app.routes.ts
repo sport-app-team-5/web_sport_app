@@ -11,8 +11,8 @@ import {ProductComponent} from "./components/product/product.component";
 import { inject } from '@angular/core'
 import { AuthService } from '../app/services/auth.service'
 import { SportsInformationComponent } from './components/sports-information/sports-information.component'
-import { ThirdPartyCreateEventComponent } from './components/third-party-create-event/third-party-create-event.component'
 import {ExerciseComponent} from "./components/exercise/exercise.component";
+import {EventListComponent} from "./components/event/event-list/event-list.component";
 
 export const domainGuard = () => {
   const service = inject(AuthService)
@@ -65,10 +65,10 @@ export const routes: Routes = [
     path: 'home',
     component: MainComponent,
      canActivate: [domainGuard]
-  }, 
+  },
   {
     path: 'events',
-    component: ThirdPartyCreateEventComponent
+    component: EventListComponent
   },
   {
     path: 'exercise',

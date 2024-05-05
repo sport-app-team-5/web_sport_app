@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { HeaderMainComponent } from '../header-main/header-main.component';
 import { ProfileInformationComponent } from '../profile-information/profile-information.component';
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
-import { ThirdPartyCreateEventComponent } from '../third-party-create-event/third-party-create-event.component';
 import { HeaderMainService } from '../header-main/header-main.service';
+import {EventCreateComponent} from "../event/event-create/event-create.component";
+import {EventListComponent} from "../event/event-list/event-list.component";
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -16,14 +17,15 @@ import { HeaderMainService } from '../header-main/header-main.service';
     HeaderMainComponent,
     ProfileInformationComponent,
     ClasificationRiskGroupComponent,
-    ThirdPartyCreateEventComponent,
+    EventCreateComponent,
+    EventListComponent,
   ],
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
   isActiveMenu = 'home';
   role: string | null = null;
-  creatingEvent = false;
+  isEventsView = false;
   menuKeyDown: boolean = false;
   isActiveProfile: boolean = false;
 
@@ -35,7 +37,6 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.start();
     this.getSession();
-
     this.headerMainService.getIsActiveProfile().subscribe((profile) => {
       this.isActiveProfile = profile;
     });
@@ -107,7 +108,7 @@ export class MainComponent implements OnInit {
   openMenuClass() {
     return {
       menu: true,
-      'show-menu': this.isOpenMenu === true,
+      'show-menu': this.isOpenMenu,
     };
   }
 
@@ -115,17 +116,13 @@ export class MainComponent implements OnInit {
     this.isOpenMenu = !this.isOpenMenu;
   }
   closeSession() {
-    
+
     sessionStorage.clear();
     this.router.navigate(['/']);
   }
 
   createProduct() {
     this.router.navigate(['/products']);
-  }
-
-  createEvent() {
-    this.router.navigate(['/events']);
   }
 
   handleKeyDown($event: KeyboardEvent) {
