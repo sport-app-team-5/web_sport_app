@@ -100,6 +100,10 @@ h2 {
     position: relative;
 }
 
+.event-image{
+    border-radius: 35px;
+}
+
 .event-name-title {
     position: absolute;
     bottom: 300px;

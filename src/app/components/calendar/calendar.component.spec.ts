@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CalendarComponent } from './calendar.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
@@ -111,16 +111,25 @@ describe('CalendarComponent', () => {
 
   it('should set the event details correctly', () => {
     const mockEvent = { id: 1, name: 'Event 1' };
-    component.getDetails(mockEvent);
+    component.getDetails(mockEvent,false);
     expect(component.eventDatails).toEqual(mockEvent);
   });
 
   it('should subscribe to an event and handle the response correctly', () => {
-    
+    const mockEvent = { id: 1, name: 'Event 1' };
+    const mockSportmanId = '12345';
+    spyOn(sessionStorage, 'getItem').and.returnValue(mockSportmanId);
+    spyOn(eventsService, 'subscribeToEvent').and.returnValue(of({}));
+    spyOn(component, 'handleResponseSubscribe');
+    spyOn(component, 'handleErrorsSubscribe');
+  
+    component.subscribeToEvent(mockEvent);
+  
+    expect(sessionStorage.getItem).toHaveBeenCalledWith('sportman_id');
+    expect(eventsService.subscribeToEvent).toHaveBeenCalledWith(mockEvent.id, mockSportmanId);
+    expect(component.handleResponseSubscribe).toHaveBeenCalledWith({});
+    expect(component.handleErrorsSubscribe).not.toHaveBeenCalled();
   });
   
-  it('should handle errors when subscribing to an event', () => {
-
-
-  });
+ 
 });

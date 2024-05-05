@@ -77,7 +77,7 @@ export class CalendarComponent  {
     })
   }
 
-  getDetails(event: any,showButtons: boolean) {
+  getDetails(event: any, showButtons: boolean) {
     this.showButtonToSuscribe = showButtons;
     this.eventDatails = event
   }
