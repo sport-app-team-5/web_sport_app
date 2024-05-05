@@ -94,6 +94,7 @@ export class CalendarComponent  {
     this.toastr.success('Te has inscrito éxitosamente', 'Exito', {
       timeOut: 3000
     })
+    this.showButtonToSuscribe = false;
     this.searchEvents()
   }
 
