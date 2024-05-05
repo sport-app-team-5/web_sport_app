@@ -23,4 +23,17 @@ export class CalendarService {
     return this.http.get(API_ADDITIONAL_SERVICE_BASE_URL +
       `auth/events/sport?initial_date=${initial_date}&final_date=${final_date}&city_id=${city_id}`, { headers })
   }
+
+  subscribeToEvent(eventId:any,spormanId: any) {
+    let data={
+      "event_id": eventId,
+      "sportman_id": spormanId
+    }
+    const token = sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    })
+    return this.http.post(API_USER_BASE_URL + '`auth/events/sport', data, { headers })
+  }
 }

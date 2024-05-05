@@ -40,9 +40,7 @@ export class CalendarComponent {
   isSubscribed(event: any) {
     return this.events.length > 0;
   }
-  subscribeToEvent(event: any) {
-    this.events.push(event);
-  }
+
 
 
   formatDate(dateString: any) {
@@ -54,7 +52,7 @@ export class CalendarComponent {
     return formattedDate;
 
   }
-  searchEvents() {   
+  searchEvents() {
     const formattedDateStart = this.formatDate(this.range.start);
     const formattedDateEnd = this.formatDate(this.range.end);
     console.log(formattedDateStart)
@@ -66,7 +64,7 @@ export class CalendarComponent {
   }
 
   handleResponseEvents(response: any) {
-    this.events = this.events.push(response.data);
+    this.events = response;
   }
 
   handleErrorsEvents(error: any) {
@@ -79,5 +77,25 @@ export class CalendarComponent {
     console.log(event)
     this.eventDatails = event
 
+  }
+
+  subscribeToEvent(event: any) {
+    const sportman_id = sessionStorage.getItem('sportman_id')
+    this.eventsService.subscribeToEvent(event.id, sportman_id).subscribe({
+      next: this.handleResponseSubscribe.bind(this),
+      error: this.handleErrorsSubscribe.bind(this),
+    });
+  }
+
+  handleResponseSubscribe(response: any) {
+    this.toastr.success('Te has inscrito éxitosamente', 'Exito', {
+      timeOut: 3000
+    })
+  }
+
+  handleErrorsSubscribe(error: any) {
+    this.toastr.error('Algo salió mal, intenta más tarde.', 'Error', {
+      timeOut: 3000
+    })
   }
 }
