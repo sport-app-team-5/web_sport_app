@@ -47,7 +47,7 @@ export class OfferServiceComponent implements OnInit {
   }
 
   getValueOfInsideHouse(value: any) {
-    if (value == true) {
+    if (value) {
       return 'Si'
     }
     else {
