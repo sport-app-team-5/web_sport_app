@@ -8,14 +8,14 @@
           d="M277.4 4.002C283.5-1.334 292.5-1.334 298.6 4.002L570.6 244C577.2 249.8 577.8 259.1 571.1 266.6C566.2 273.2 556 273.8 549.4 267.1L512 234.1V432C512 476.2 476.2 512 432 512H144C99.82 512 64 476.2 64 432V234.1L26.59 267.1C19.96 273.8 9.849 273.2 4.003 266.6C-1.844 259.1-1.212 249.8 5.414 244L277.4 4.002zM96 206.7V432C96 458.5 117.5 480 144 480H432C458.5 480 480 458.5 480 432V206.7L288 37.34L96 206.7z" />
       </svg>
     </div>
-    <div  [ngClass]="setClassActiveSport('traning')" class="container-home" (click)=" setMenuActive('traning')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+    <div  [ngClass]="setClassActiveSport('traning')" class="container-home" (click)="setMenuActive('traning')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
       <svg  [ngClass]="getButtonClassesMenuSvg('traning')" class="cell" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 384 512">
         <path fill="white"
           d="M288 0H96C60.65 0 32 28.65 32 64v384c0 35.35 28.65 64 64 64h192c35.35 0 64-28.65 64-64V64C352 28.65 323.3 0 288 0zM320 448c0 17.64-14.36 32-32 32H96c-17.64 0-32-14.36-32-32V64c0-17.64 14.36-32 32-32h192c17.64 0 32 14.36 32 32V448zM224 400H160c-8.836 0-16 7.162-16 16c0 8.836 7.164 16 16 16h64c8.836 0 16-7.164 16-16C240 407.2 232.8 400 224 400z" />
       </svg>
     </div>
-    <div [ngClass]="setClassActiveSport('profile')" class="container-home" (click)=" setMenuActive('profile')" (keydown)="handleKeyDown($event)">
+    <div [ngClass]="setClassActiveSport('profile')" class="container-home" (click)="setMenuActive('profile')" (keydown)="handleKeyDown($event)">
       <svg [ngClass]="getButtonClassesMenuSvg('profile')" class="cell" width="24" height="24"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512">
@@ -88,7 +88,11 @@
         <button *ngIf="isActiveMenu === 'services'" class="primary-button" (click)="createService()"> Agregar servicio</button>
       </div>
       <div>
-        <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && !isActiveProfile"></app-clasification-risk-group>
+        <div *ngIf="role === 'DEPO' && isActiveMenu=='home'">
+          <app-offer-service  [isActiveMenu]="isActiveMenu" [setMenuActive]="setMenuActive"></app-offer-service>
+        </div>
+       
+        <!-- <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && !isActiveProfile"></app-clasification-risk-group> -->
       </div>
       <div>
         <app-profile-information *ngIf="role === 'DEPO' && isActiveProfile"></app-profile-information>

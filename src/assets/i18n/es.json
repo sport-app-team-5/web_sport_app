@@ -133,5 +133,14 @@
   "trainingListColumnName": "Nombre",
   "trainingListColumnSport": "Deporte",
   "trainingListColumnIntensity": "Intensidad",
-  "trainingListColumnSportDuration": "Duración"
+  "trainingListColumnSportDuration": "Duración",
+  "type": "Tipo",
+  "cost": "Costo",
+  "outsideHome": "Fuera de casa",
+  "serviceAdditional": "Servicios adicionales",
+  "textServiceAdditional": "De acuerdo a tu selección te recomendamos estos servicios adiciones",
+  "insideHome": "En casa",
+  "textTraining": "Plan de entrenamiento",
+  "knowYourTrainings": " Conoce tus entrenamientos sugeridos",
+  "feeding": "Alimentación"
 }
