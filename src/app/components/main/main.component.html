@@ -90,9 +90,7 @@
       <div>
         <div *ngIf="role === 'DEPO' && isActiveMenu=='home'">
           <app-offer-service  [isActiveMenu]="isActiveMenu" [setMenuActive]="setMenuActive"></app-offer-service>
-        </div>
-       
-        <!-- <app-clasification-risk-group *ngIf="role === 'DEPO' && isActiveMenu=='home' && !isActiveProfile"></app-clasification-risk-group> -->
+        </div>   
       </div>
       <div>
         <app-profile-information *ngIf="role === 'DEPO' && isActiveProfile"></app-profile-information>

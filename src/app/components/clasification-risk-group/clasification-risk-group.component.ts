@@ -77,7 +77,9 @@ export class ClasificationRiskGroupComponent implements OnInit {
 
   selectPlan(plan: string) {
     this.activePlan = plan;
+    this.router.navigate(['/home']);  
   }
+
 
   getPlanClassesSelected(value: string) {
     return {

@@ -33,10 +33,6 @@ export class EventListComponent implements OnInit {
   }
 
   getEvents () {
-    let token=null
-    if (typeof window !== 'undefined' && window.sessionStorage) {
-      token = sessionStorage.getItem('access_token');
-    }
     this.eventService.getEvents().subscribe({
       next: (response) => {this.events = response },
       error: (err) => {

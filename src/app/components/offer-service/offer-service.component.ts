@@ -70,4 +70,7 @@ export class OfferServiceComponent implements OnInit {
     })
   }
 
+  handleKeyDown($event:any){
+    console.log($event)
+  }
 }

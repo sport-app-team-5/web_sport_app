@@ -226,17 +226,7 @@ input:checked+.slider:before {
     cursor: pointer;
     font-size: 16px;
   }
-  
-  .primary-button{
-    border-radius: 38px;
-    background: var(--c-green-ligth);
-    height: 40px;
-    padding: 0 30px;
-    gap: 20px;
-    font-weight: 500;
-    color: var(--black);
-  }
-  
+   
   
   table {
     border-collapse: collapse;

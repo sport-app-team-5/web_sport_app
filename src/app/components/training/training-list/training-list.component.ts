@@ -39,11 +39,7 @@ export class TrainingListComponent implements OnInit {
     this.translate.use(language)
   }
 
-  getTrainings() {
-    let token = null
-    if (typeof window !== 'undefined' && window.sessionStorage) {
-      token = sessionStorage.getItem('access_token');
-    }
+  getTrainings() { 
     this.trainingService.getTrainings().subscribe({
       next: (trainingsBySportMan) => {
         this.trainingService.getTrainingsSugetions(this.isChecked).subscribe({
@@ -71,7 +67,7 @@ export class TrainingListComponent implements OnInit {
   }
 
   getValueOfInsideHouse(value: any) {
-    if (value == true) {
+    if (value) {
       return 'Si'
     }
     else {

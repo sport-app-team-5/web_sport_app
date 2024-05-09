@@ -1,7 +1,7 @@
 <div class="content-main" *ngIf="isAdditionalServiceActive==false">
     <div class="container-header">
         <div class="title-training">
-            <img alt="circle" src="../../../assets/images/yellow_circle.svg" />
+            <img alt="circle" src="https://cdn-sport-app.s3.amazonaws.com/yellow_circle.svg" />
             <div>{{'textTraining'| translate}}</div>
         </div>
         <div class="container-switch">
@@ -17,16 +17,17 @@
     <div class="container-content">
         <div class="container-training">
             <div class="container-image">
-                <img class="image-training" alt="traning" src="../../../assets/images/training-image.png"
-                    (click)="changeMenuOption()">
+                <img class="image-training" alt="traning" src="https://cdn-sport-app.s3.amazonaws.com/training-image.png"
+                    (click)="changeMenuOption()"
+                    (keypress)="handleKeyDown($event)">
                 <div class="text-overlay">
                    {{'knowYourTrainings'| translate}}
                 </div>
             </div>
         </div>
         <div class="container-training">
-            <div class="container-image" (click)="getAdditionalServices()">
-                <img class="image-training" alt="traning" src="../../../assets/images/acompañar.png">
+            <div class="container-image" (click)="getAdditionalServices()"  (keypress)="handleKeyDown($event)">
+                <img class="image-training" alt="traning" src="https://cdn-sport-app.s3.amazonaws.com/acompañar.png"  (keypress)="handleKeyDown($event)">
                 <div class="text-overlay">
                     {{'serviceAdditional'| translate}}
                 </div>
@@ -34,7 +35,7 @@
         </div>
         <div class="container-training">
             <div class="container-image">
-                <img class="image-training" alt="traning" src="../../../assets/images/alimentacion.png">
+                <img class="image-training" alt="traning" src="https://cdn-sport-app.s3.amazonaws.com/alimentacion.png">
                 <div class="text-overlay">
                     {{'feeding'| translate}}
                 </div>
