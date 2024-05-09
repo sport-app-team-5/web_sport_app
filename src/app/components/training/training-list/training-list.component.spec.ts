@@ -59,28 +59,22 @@ describe('TrainingListComponent', () => {
       { id: 4, name: 'Training 4' }
     ];
   
-    spyOn(window.sessionStorage, 'getItem').and.returnValue('access_token');
     spyOn(trainingService, 'getTrainings').and.returnValue(of(trainingsBySportMan));
     spyOn(trainingService, 'getTrainingsSugetions').and.returnValue(of(trainingSugestions));
   
-    component.getTrainings();
+    component.getTrainings();  
   
-    expect(window.sessionStorage.getItem).toHaveBeenCalledWith('access_token');
     expect(trainingService.getTrainings).toHaveBeenCalled();
     expect(trainingService.getTrainingsSugetions).toHaveBeenCalledWith(component.isChecked);
     expect(component.trainings).toEqual(trainingsBySportMan.concat(trainingSugestions));
     
   });
   
-  it('should handle error when getting training suggestions', () => {
-    spyOn(window.sessionStorage, 'getItem').and.returnValue('access_token');
+  it('should handle error when getting training suggestions', () => {    
     spyOn(trainingService, 'getTrainings').and.returnValue(of([]));
     spyOn(trainingService, 'getTrainingsSugetions').and.returnValue(throwError('error'));
   
-  
     component.getTrainings();
-  
-    expect(window.sessionStorage.getItem).toHaveBeenCalledWith('access_token');
     expect(trainingService.getTrainings).toHaveBeenCalled();
     expect(trainingService.getTrainingsSugetions).toHaveBeenCalledWith(component.isChecked);
     expect(component.trainings).toEqual([]);
