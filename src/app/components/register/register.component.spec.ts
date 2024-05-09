@@ -12,6 +12,7 @@ import {
 } from '@ngx-translate/core'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { HttpLoaderFactory } from '../../app.config'
+
 describe('RegisterComponent', () => {
     let component: RegisterComponent
     let fixture: ComponentFixture<RegisterComponent>
@@ -20,7 +21,7 @@ describe('RegisterComponent', () => {
     let registerUserService: RegisterUserService
 
     const fakeService1 = {
-        getCountries (): Observable<any[]> {
+        getCountries(): Observable<any[]> {
             return of([
                 { id: 1, name: 'Country1' },
                 { id: 2, name: 'Country2' }
@@ -331,7 +332,7 @@ describe('RegisterComponent', () => {
             resetComponentState(component)
         })
 
-        function resetComponentState (comp: RegisterComponent): void {
+        function resetComponentState(comp: RegisterComponent): void {
             comp.role_id = 0
             // Reiniciar otros valores según sea necesario
         }

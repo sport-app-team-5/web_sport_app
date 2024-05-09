@@ -9,6 +9,8 @@ import { CalendarComponent } from '../calendar/calendar.component';
 import {EventCreateComponent} from "../event/event-create/event-create.component";
 import {EventListComponent} from "../event/event-list/event-list.component";
 import {TrainingListComponent} from "../training/training-list/training-list.component";
+import { OfferServiceComponent } from '../offer-service/offer-service.component';
+import { MainService } from './main.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -23,6 +25,7 @@ import {TrainingListComponent} from "../training/training-list/training-list.com
     EventCreateComponent,
     EventListComponent,
     TrainingListComponent,
+    OfferServiceComponent
   ],
 })
 export class MainComponent implements OnInit {
@@ -35,7 +38,8 @@ export class MainComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private headerMainService: HeaderMainService
+    private headerMainService: HeaderMainService,
+    private mainService: MainService
   ) {}
 
   ngOnInit() {
@@ -43,6 +47,10 @@ export class MainComponent implements OnInit {
     this.getSession();
     this.headerMainService.getIsActiveProfile().subscribe((profile) => {
       this.isActiveProfile = profile;
+    });
+    this.mainService.activeMenu$.subscribe(value => {
+      this.isActiveMenu = value;
+      this.isActiveProfile = false;
     });
   }
 
@@ -71,6 +79,7 @@ export class MainComponent implements OnInit {
   }
 
   setMenuActive(value: any) {
+    console.log(value);
     this.isActiveMenu = value;
     this.isActiveProfile = false;
   }

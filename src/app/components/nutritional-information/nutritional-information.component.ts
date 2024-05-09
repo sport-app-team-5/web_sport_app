@@ -125,7 +125,7 @@ export class NutritionalInformationComponent implements OnInit {
     this.toastr.success('Información nutricional guardado éxitosamente', 'Exitoso', {
       timeOut: 3000
     })
-    this.router.navigate(['/home']);
+    this.router.navigate(['/plans']);
   
   }
 
