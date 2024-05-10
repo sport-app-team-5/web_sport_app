@@ -31,7 +31,7 @@ export class TrainingListComponent implements OnInit {
   ngOnInit() {
     this.switchLanguage('es');
     this.getTrainings();
-    this.checkService.currentCheck.subscribe(value => this.isChecked = value);
+    // this.isChecked=
 
   }
 
@@ -39,13 +39,21 @@ export class TrainingListComponent implements OnInit {
     this.translate.use(language)
   }
 
-  getTrainings() { 
+  getTrainings() {
+    let checked: any
+    this.checkService.getCheck().subscribe((value) => {
+      checked = (value)
+    });
     this.trainingService.getTrainings().subscribe({
       next: (trainingsBySportMan) => {
-        this.trainingService.getTrainingsSugetions(this.isChecked).subscribe({
+        this.trainingService.getTrainingsSugetions(checked).subscribe({
           next: (trainingSugestions) => {
             this.trainings = trainingsBySportMan
-            this.trainings = this.trainings.concat(trainingSugestions)
+            let trainingRecommended = trainingSugestions.map((training: any) => ({
+              ...training,
+              recommended: "Si"
+            }));
+            this.trainings = this.trainings.concat(trainingRecommended)
           },
           error: (err) => {
             this.toastr.error('Error obteniendo las sugerencias de entrenamiento', 'Error', {

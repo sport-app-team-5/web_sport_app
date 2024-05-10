@@ -37,7 +37,7 @@
 
   <div class="sidebar" *ngIf="role === 'TECE'">
     <img class="brand-img" src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="logo" />
-    <div [ngClass]="setClassActiveSport('home')" class="container-home" (click)=" setMenuActive('home')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+    <div [ngClass]="setClassActiveSport('home')" class="container-home" (click)="setMenuActive('home')" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
       <svg [ngClass]="getButtonClassesMenuSvg('home')" width="24" height="24" xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 576 512">
         <path fill="white"
@@ -88,7 +88,7 @@
         <button *ngIf="isActiveMenu === 'services'" class="primary-button" (click)="createService()"> Agregar servicio</button>
       </div>
       <div>
-        <div *ngIf="role === 'DEPO' && isActiveMenu=='home'">
+        <div *ngIf="role === 'DEPO' && isActiveMenu=='home' && !isActiveProfile">
           <app-offer-service  [isActiveMenu]="isActiveMenu" [setMenuActive]="setMenuActive"></app-offer-service>
         </div>   
       </div>

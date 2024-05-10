@@ -55,8 +55,8 @@ describe('TrainingListComponent', () => {
       { id: 2, name: 'Training 2' }
     ];
     const trainingSugestions = [
-      { id: 3, name: 'Training 3' },
-      { id: 4, name: 'Training 4' }
+      { id: 3, name: 'Training 3' ,recommended:'Si'},
+      { id: 4, name: 'Training 4',recommended:'Si' }
     ];
   
     spyOn(trainingService, 'getTrainings').and.returnValue(of(trainingsBySportMan));
