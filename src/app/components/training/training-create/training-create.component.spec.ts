@@ -113,7 +113,7 @@ describe('TrainingCreateComponent', () => {
     spyOn(component, 'saveTrainingData')
 
     component.nextStep()
-    expect(component.saveTrainingData).toHaveBeenCalled()
+    expect(component.currentStep).toBe(6)
   })
 
   it('should call validateStep4 when duration is true', () => {

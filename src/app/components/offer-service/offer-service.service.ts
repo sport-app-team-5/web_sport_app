@@ -14,5 +14,9 @@ export class OfferServiceService {
   changeCheck(value: boolean) {
     this.checkSource.next(value);
   }
+
+  getCheck() {
+    return this.currentCheck;
+  }
  
 }

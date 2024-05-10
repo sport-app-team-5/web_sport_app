@@ -4,9 +4,13 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.config';
 import { HttpClient } from '@angular/common/http';
+import { AdditionalServiceService } from '../additionalservice/additional-service.service';
+import { AdittionaloffersService } from './adittionaloffers.service';
+import { API_ADDITIONAL_SERVICE_BASE_URL } from '../../../../api.constants';
 
 describe('OfferServiceService', () => {
   let serviceOffer: OfferServiceService;
+  let additionalService:AdittionaloffersService
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -25,10 +29,9 @@ describe('OfferServiceService', () => {
     });
 
     serviceOffer = TestBed.inject(OfferServiceService);
+    additionalService=TestBed.inject(AdittionaloffersService)
     httpMock = TestBed.inject(HttpTestingController);
   });
-
-
 
   it('should be created', () => {
     expect(serviceOffer).toBeTruthy();

@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {HeaderMainComponent} from "../../header-main/header-main.component";
-import {NgIf} from "@angular/common";
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
-import {ToastrService} from "ngx-toastr";
-import {Router} from "@angular/router";
-import {TrainingService} from "../training.service";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { HeaderMainComponent } from "../../header-main/header-main.component";
+import { NgIf } from "@angular/common";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import { ToastrService } from "ngx-toastr";
+import { Router } from "@angular/router";
+import { TrainingService } from "../training.service";
 
 
 @Component({
@@ -23,34 +23,35 @@ export class TrainingCreateComponent implements OnInit {
   description: FormControl = new FormControl('', [Validators.required])
   duration: FormControl = new FormControl('', [Validators.required])
   intensity = new FormControl('', [Validators.required])
+  is_inside_house = new FormControl('Si', [Validators.required])
 
-  constructor (
+  constructor(
     private toastr: ToastrService,
     private translate: TranslateService,
     private exerciseService: TrainingService,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.switchLanguage('es')
   }
 
-  changeValueForm (e: any) {
+  changeValueForm(e: any) {
     const name = e.target.name
     this.formData[name] = e.target.value
   }
 
-  switchLanguage (language: string): void {
+  switchLanguage(language: string): void {
     this.translate.use(language)
   }
 
-  backStep () {
+  backStep() {
     if (this.currentStep > 1) {
       this.currentStep--
     }
   }
 
-  nextStep () {
+  nextStep() {
     if (this.currentStep === 1) {
       if (this.validateStep1()) {
         this.currentStep++
@@ -69,12 +70,15 @@ export class TrainingCreateComponent implements OnInit {
       }
     } else if (this.currentStep === 5) {
       if (this.validateStep5()) {
-        this.saveTrainingData()
+        this.currentStep++
       }
+    }
+    else if (this.currentStep == 6) {
+      this.saveTrainingData()
     }
   }
 
-  validateStep1 () {
+  validateStep1() {
     if (this.name && this.name.errors === null) {
       return true
     } else {
@@ -83,7 +87,7 @@ export class TrainingCreateComponent implements OnInit {
     }
   }
 
-  validateStep2 () {
+  validateStep2() {
     if (this.description && this.description.errors === null) {
       return true
     } else {
@@ -92,7 +96,7 @@ export class TrainingCreateComponent implements OnInit {
     }
   }
 
-  validateStep3 () {
+  validateStep3() {
     if (this.sport && this.sport.errors === null) {
       return true
     } else {
@@ -101,7 +105,7 @@ export class TrainingCreateComponent implements OnInit {
     }
   }
 
-  validateStep4 () {
+  validateStep4() {
     if (this.duration && this.duration.errors === null) {
       return true
     } else {
@@ -110,7 +114,7 @@ export class TrainingCreateComponent implements OnInit {
     }
   }
 
-  validateStep5 () {
+  validateStep5() {
     if (this.intensity && this.intensity.errors === null) {
       return true
     } else {
@@ -119,7 +123,7 @@ export class TrainingCreateComponent implements OnInit {
     }
   }
 
-  saveTrainingData () {
+  saveTrainingData() {
     this.exerciseService.createTraining(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       error: this.handleError.bind(this)

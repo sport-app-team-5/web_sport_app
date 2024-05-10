@@ -18,6 +18,7 @@
         <th>{{'trainingListColumnIntensity' | translate}}</th>
         <th>{{'trainingListColumnSportDuration' | translate}}</th>
         <th>{{'outsideHome' | translate}}</th>
+        <th>Recomendado</th>
       </tr>
       </thead>
       <tbody>
@@ -36,6 +37,9 @@
         </td>
         <td>
           <dd>{{getValueOfInsideHouse(training.is_inside_house)}}</dd>
+        </td>
+        <td>
+          <dd>{{training.recommended}}</dd>
         </td>
       </tr>
       </tbody>
