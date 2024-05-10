@@ -52,6 +52,8 @@ export class MainComponent implements OnInit {
       this.isActiveMenu = value;
       this.isActiveProfile = false;
     });
+    this.setClassActiveSport('home')
+    this.setMenuActive('home');
   }
 
   getSession() {
@@ -79,7 +81,7 @@ export class MainComponent implements OnInit {
   }
 
   setMenuActive(value: any) {
-    console.log(value);
+ 
     this.isActiveMenu = value;
     this.isActiveProfile = false;
   }
