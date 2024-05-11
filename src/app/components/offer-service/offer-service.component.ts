@@ -49,7 +49,7 @@ export class OfferServiceComponent implements OnInit {
 
   changeInsideHome($event: any) {
 
-    this.isChecked = this.isChecked===true ? false : true
+    this.isChecked = !this.isChecked;
     this.checkService.changeCheck(this.isChecked);
   }
 

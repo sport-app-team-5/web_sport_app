@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
@@ -13,12 +13,11 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
 
 })
-export class RecommendationComponent implements OnInit {
+export class RecommendationComponent {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+
   foodData: FoodData[] = [
     {
         Name: "Vegetales",
