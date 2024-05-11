@@ -142,5 +142,10 @@
   "insideHome": "En casa",
   "textTraining": "Plan de entrenamiento",
   "knowYourTrainings": " Conoce tus entrenamientos sugeridos",
-  "feeding": "Alimentación"
+  "feeding": "Alimentación",
+  "demographyProfileSubtitle": "Encontraras datos de tu perfil demografico",
+  "demographyProfileLocation": "Ubicación",
+  "demographyProfileHeight": "Estatura",
+  "demographyProfileWeight": "Peso",
+  "demographyProfileBirthYear": "Año de nacimiento"
 }
