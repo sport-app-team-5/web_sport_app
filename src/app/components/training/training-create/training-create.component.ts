@@ -17,7 +17,7 @@ import { TrainingService } from "../training.service";
 })
 export class TrainingCreateComponent implements OnInit {
   currentStep: any = 1
-  formData: any = { "is_inside_house": true };
+  formData: any = {"is_inside_house":true};
   sport = new FormControl('', [Validators.required])
   name: FormControl = new FormControl('', [Validators.required])
   description: FormControl = new FormControl('', [Validators.required])
@@ -38,12 +38,7 @@ export class TrainingCreateComponent implements OnInit {
 
   changeValueForm(e: any) {
     const name = e.target.name
-    if (name === 'is_inside_house') {
-      this.formData[name] = e.target.value === 'Si' ? true : false
-    } else {
-      this.formData[name] = e.target.value
-    }
-
+    this.formData[name] = e.target.value
   }
 
   switchLanguage(language: string): void {
