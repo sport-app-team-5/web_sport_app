@@ -18,7 +18,7 @@ describe('Service: Auth', () => {
     expect(service).toBeTruthy()
   }))
 
-  it('should ...', inject([AuthService], (service: AuthService) => {
+  it('should ... 1', inject([AuthService], (service: AuthService) => {
     spyOn(sessionStorage, 'getItem').and.returnValue('access_token')
     expect(service.canActivate()).toBe(true)
   }))

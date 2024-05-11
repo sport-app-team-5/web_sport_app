@@ -148,4 +148,11 @@
   "demographyProfileHeight": "Estatura",
   "demographyProfileWeight": "Peso",
   "demographyProfileBirthYear": "Año de nacimiento"
+  "feeding": "Alimentación",
+  "recomendaciones":"Recomendaciones",
+  "descrecomendaciones":"Nos basamos en los resultados de tu entrenamiento para proporcionarte estas opciones:",
+  "porcionesrecomendaciones":"Porciones recomendadas:",
+  "caloriasrecomendaciones":"Calorías recomendadas:",
+  "nutrientes":"Nutrientes:",
+  "beneficios":"Beneficios:"
 }

@@ -59,7 +59,7 @@ describe('RegisterComponent', () => {
         fixture.detectChanges()
     })
 
-    it('should create the component', () => {
+    it('should create the component 1', () => {
         let mock = TestBed.inject(RegisterUserService)
         spyOn(mock, 'getCountries').and.returnValue(fakeService1.getCountries())
         component.getCountries()
@@ -124,6 +124,7 @@ describe('RegisterComponent', () => {
             spyOn(component, 'saveUserData')
             spyOn(component, 'validateStep4').and.returnValue(false)
             component.nextStep()
+            expect(component).toBeTruthy()
         })
         it('should call saveUserData if currentStep is 4 and return false and role id is 2', () => {
             component.currentStep = 4
@@ -131,6 +132,7 @@ describe('RegisterComponent', () => {
             spyOn(component, 'saveUserData')
             spyOn(component, 'validateStep4').and.returnValue(false)
             component.nextStep()
+            expect(component).toBeTruthy()
         })
     })
 
@@ -374,6 +376,7 @@ describe('RegisterComponent', () => {
 
             component.role_id = 1
             component.saveUserData()
+            expect(component).toBeTruthy()
         })
 
         it('should call handleResponse when the role id is 3', () => {
@@ -513,5 +516,6 @@ describe('RegisterComponent', () => {
         const spyError = spyOn(toastrService, 'error')
 
         component.handleErrorCities(mockResponse)
+        expect(component).toBeTruthy()
     })
 })

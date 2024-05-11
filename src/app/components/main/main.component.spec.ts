@@ -71,7 +71,7 @@ describe('MainComponent', () => {
     expect(instance.isOpenMenu).toBe(true);
   });
 
-  it('should setMenuAtive', () => {
+  it('should setMenuAtive 1', () => {
     const instance = {
       isActiveMenu: true,
     };

@@ -16,6 +16,7 @@ import {TrainingCreateComponent} from "./components/training/training-create/tra
 import {TrainingListComponent} from "./components/training/training-list/training-list.component";
 import {EventCreateComponent} from "./components/event/event-create/event-create.component";
 import { ClasificationRiskGroupComponent } from './components/clasification-risk-group/clasification-risk-group.component'
+import { RecommendationComponent } from './components/recommendation/recommendation.component'
 
 export const domainGuard = () => {
   const service = inject(AuthService)
@@ -88,5 +89,10 @@ export const routes: Routes = [
   {
     path:'plans',
     component: ClasificationRiskGroupComponent
+  }
+  ,
+  {
+    path:'recommendations',
+    component: RecommendationComponent
   }
 ]

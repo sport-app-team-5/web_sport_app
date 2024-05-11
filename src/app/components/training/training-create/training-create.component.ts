@@ -52,29 +52,35 @@ export class TrainingCreateComponent implements OnInit {
   }
 
   nextStep() {
-    if (this.currentStep === 1) {
-      if (this.validateStep1()) {
-        this.currentStep++
-      }
-    } else if (this.currentStep === 2) {
-      if (this.validateStep2()) {
-        this.currentStep++
-      }
-    } else if (this.currentStep === 3) {
-      if (this.validateStep3()) {
-        this.currentStep++
-      }
-    } else if (this.currentStep === 4) {
-      if (this.validateStep4()) {
-        this.currentStep++
-      }
-    } else if (this.currentStep === 5) {
-      if (this.validateStep5()) {
-        this.currentStep++
-      }
-    }
-    else if (this.currentStep == 6) {
-      this.saveTrainingData()
+    switch (this.currentStep) {
+      case 1:
+        if (this.validateStep1()) {
+          this.currentStep++;
+        }
+        break;
+      case 2:
+        if (this.validateStep2()) {
+          this.currentStep++;
+        }
+        break;
+      case 3:
+        if (this.validateStep3()) {
+          this.currentStep++;
+        }
+        break;
+      case 4:
+        if (this.validateStep4()) {
+          this.currentStep++;
+        }
+        break;
+      case 5:
+        if (this.validateStep5()) {
+          this.currentStep++;
+        }
+        break;
+      case 6:
+        this.saveTrainingData();
+        break;
     }
   }
 

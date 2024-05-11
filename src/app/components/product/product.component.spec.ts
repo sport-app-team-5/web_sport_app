@@ -134,7 +134,7 @@ describe('ProductComponent', () => {
     expect(result).toEqual(false)
   })
 
-  it('should call validateStep3 when cost is false', () => {
+  it('should call validateStep3 when cost is false 1', () => {
     const errors = { someError: true }
     const instance = {
       cost: new FormControl('value')

@@ -11,6 +11,7 @@ import {EventListComponent} from "../event/event-list/event-list.component";
 import {TrainingListComponent} from "../training/training-list/training-list.component";
 import { OfferServiceComponent } from '../offer-service/offer-service.component';
 import { MainService } from './main.service';
+import { RecommendationComponent } from '../recommendation/recommendation.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -25,7 +26,8 @@ import { MainService } from './main.service';
     EventCreateComponent,
     EventListComponent,
     TrainingListComponent,
-    OfferServiceComponent
+    OfferServiceComponent,
+    RecommendationComponent
   ],
 })
 export class MainComponent implements OnInit {
@@ -81,7 +83,7 @@ export class MainComponent implements OnInit {
   }
 
   setMenuActive(value: any) {
- 
+
     this.isActiveMenu = value;
     this.isActiveProfile = false;
   }

@@ -35,7 +35,7 @@
         </div>
         <div class="container-training">
             <div class="container-image">
-                <img class="image-training" alt="traning" src="https://cdn-sport-app.s3.amazonaws.com/alimentacion.png">
+                <img class="image-training" (click)="getRecommendations()"  (keypress)="handleKeyDown($event)" alt="traning" src="https://cdn-sport-app.s3.amazonaws.com/alimentacion.png">
                 <div class="text-overlay">
                     {{'feeding'| translate}}
                 </div>
@@ -45,7 +45,7 @@
 </div>
 <div  class="content-main" *ngIf="isAdditionalServiceActive">
     <div class="">
-        <div class="title-training">       
+        <div class="title-training">
             <div class="info-style">{{'serviceAdditional'| translate}}</div>
         </div>
         <div class="description-style">{{'textServiceAdditional' | translate}}</div>
