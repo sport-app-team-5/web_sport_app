@@ -26,7 +26,7 @@ describe('CalendarService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy()
   })
-  
+
   it('should return all events', () => {
     const initialDate = '2022-01-01';
     const finalDate = '2022-12-31';
@@ -35,7 +35,7 @@ describe('CalendarService', () => {
 
     service.getAllEvents(initialDate, finalDate, cityId).subscribe((response) => {
       expect(response).toBeTruthy();
-   
+
     });
 
     const req = httpMock.expectOne(API_ADDITIONAL_SERVICE_BASE_URL + expectedUrl);
@@ -45,8 +45,8 @@ describe('CalendarService', () => {
     req.flush({ /* Mock response data */ });
   });
 
-  
-  it('should return all events', () => {
+
+  it('should return all events 1', () => {
     const initialDate = '2022-01-01';
     const finalDate = '2022-12-31';
     const cityId = 1;

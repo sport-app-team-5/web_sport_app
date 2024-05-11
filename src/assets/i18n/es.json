@@ -142,5 +142,11 @@
   "insideHome": "En casa",
   "textTraining": "Plan de entrenamiento",
   "knowYourTrainings": " Conoce tus entrenamientos sugeridos",
-  "feeding": "Alimentación"
+  "feeding": "Alimentación",
+  "recomendaciones":"Recomendaciones",
+  "descrecomendaciones":"Nos basamos en los resultados de tu entrenamiento para proporcionarte estas opciones:",
+  "porcionesrecomendaciones":"Porciones recomendadas:",
+  "caloriasrecomendaciones":"Calorías recomendadas:",
+  "nutrientes":"Nutrientes:",
+  "beneficios":"Beneficios:"
 }

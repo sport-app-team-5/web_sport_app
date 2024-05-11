@@ -1,13 +1,11 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClasificationRiskGroupComponent } from './clasification-risk-group.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.config';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { CasificationRiskGroupService } from './casification-risk-group.service'
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
@@ -101,5 +99,36 @@ describe('ClasificationRiskGroupComponent', () => {
       {"feature":"Pago anual de membresia"}
     ]);
   });
+  it('should set recommendedBasicPlan when sportManRisk is "Sin riesgo"', () => {
+    component.sportManRisk = 'Sin riesgo';
+    component.recommendedPlan = 'Basic Plan';
 
+    component.setRecommendedPlan();
+
+    expect(component.recommendedBasicPlan).toEqual('Basic Plan');
+    expect(component.recommendedMediunPlan).toEqual('');
+    expect(component.recommendedAdvancePlan).toEqual('');
+  });
+
+  it('should set recommendedMediunPlan when sportManRisk is "Riesgo Medio"', () => {
+    component.sportManRisk = 'Riesgo Medio';
+    component.recommendedPlan = 'Medium Plan';
+
+    component.setRecommendedPlan();
+
+    expect(component.recommendedBasicPlan).toEqual('');
+    expect(component.recommendedMediunPlan).toEqual('Medium Plan');
+    expect(component.recommendedAdvancePlan).toEqual('');
+  });
+
+  it('should set recommendedAdvancePlan when sportManRisk is "Riesgo Alto"', () => {
+    component.sportManRisk = 'Riesgo Alto';
+    component.recommendedPlan = 'Advance Plan';
+
+    component.setRecommendedPlan();
+
+    expect(component.recommendedBasicPlan).toEqual('');
+    expect(component.recommendedMediunPlan).toEqual('');
+    expect(component.recommendedAdvancePlan).toEqual('Advance Plan');
+  });
 });

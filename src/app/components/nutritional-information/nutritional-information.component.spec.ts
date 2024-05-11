@@ -147,21 +147,21 @@ describe('NutritionalInformationComponent', () => {
   })
 
   describe('nextStep call', () => {
-    it('should call nextStep when  currentStep 1', () => {
+    it('should call nextStep when  currentStep 1 1', () => {
       component.currentStep = 1
       spyOn(component, 'validateStep1').and.returnValue(true)
       component.nextStep()
       expect(component.currentStep).toBe(2)
     })
 
-    it('should call nextStep when  currentStep 1', () => {
+    it('should call nextStep when  currentStep 1 1 1', () => {
       component.currentStep = 1
       spyOn(component, 'validateStep1').and.returnValue(false)
       component.nextStep()
       expect(component.activateErrorMessageForFoodPreference).toBe(true)
     })
 
-    it('should call nextStep when  currentStep 1', () => {
+    it('should call nextStep when  currentStep 1 1 1 1', () => {
       component.validateStep1()
       expect(component.foodPreference).toBe('')
     })

@@ -90,13 +90,16 @@
       <div>
         <div *ngIf="role === 'DEPO' && isActiveMenu=='home' && !isActiveProfile">
           <app-offer-service  [isActiveMenu]="isActiveMenu" [setMenuActive]="setMenuActive"></app-offer-service>
-        </div>   
+        </div>
       </div>
       <div>
         <app-profile-information *ngIf="role === 'DEPO' && isActiveProfile"></app-profile-information>
       </div>
       <div *ngIf="isActiveMenu === 'profile'">
         <app-training-list></app-training-list>
+      </div>
+      <div *ngIf="role === 'DEPO' && isActiveMenu === 'recommendation'">
+        <app-recommendation></app-recommendation>
       </div>
       <div *ngIf="role === 'TECE' && isActiveMenu === 'events'">
         <app-event-list></app-event-list>
