@@ -1,0 +1,44 @@
+<main class="container-main">
+  <div class="content">
+    <div class="main-content">
+      <div >
+        <div class="title">{{ 'youInformation' | translate}}</div>
+        <div class="subtitle">{{ 'demographyProfileSubtitle' | translate}}</div>
+      </div>
+
+      <div class="all-content">
+        <div class="container">
+          <div class="column">
+            <span class="text-card-title">{{ 'demographyProfileLocation' | translate}}</span>
+            <hr class="separate-top">
+            <span class="text-card-info">{{ user?.residence_city?.name }}</span>
+            <hr class="separate-button">
+          </div>
+
+          <div class="column">
+            <span class="text-card-title">{{ 'demographyProfileHeight' | translate}}</span>
+            <hr class="separate-top">
+            <span class="text-card-info">{{ profile?.height }}</span>
+            <hr class="separate-button">
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="column">
+            <span class="text-card-title">{{ 'demographyProfileWeight' | translate}}</span>
+            <hr class="separate-top">
+            <span class="text-card-info">{{ profile?.weight }}</span>
+            <hr class="separate-button">
+          </div>
+
+          <div class="column">
+            <span class="text-card-title">{{ 'demographyProfileBirthYear' | translate}}</span>
+            <hr class="separate-top">
+            <span class="text-card-info">{{ profile?.birth_year }}</span>
+            <hr class="separate-button">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

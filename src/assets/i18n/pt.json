@@ -124,6 +124,12 @@
   "textTraining": "Plano de treinamento",
   "knowYourTrainings": "Conheça seus treinamentos sugeridos",
   "feeding": "Alimentação",
+  "demographyProfileSubtitle": "Aqui você encontrará informações sobre o seu perfil",
+  "demographyProfileLocation": "Localização",
+  "demographyProfileHeight": "Altura",
+  "demographyProfileWeight": "Peso",
+  "demographyProfileBirthYear": "Ano de nascimento"
+  "feeding": "Alimentação",
   "recomendaciones": "Recomendações",
   "descrecomendaciones": "Baseamo-nos nos resultados do seu treinamento para lhe fornecer estas opções:",
   "porcionesrecomendaciones": "Porções recomendadas:",
