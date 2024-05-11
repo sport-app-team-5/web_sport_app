@@ -14,6 +14,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './offer-service.component.css'
 })
 export class OfferServiceComponent implements OnInit {
+
   @Input() setMenuActive: Function = () => { };
   @Input() isActiveMenu: string = 'home';
   isChecked: boolean = false;
@@ -40,10 +41,15 @@ export class OfferServiceComponent implements OnInit {
     this.mainService.setMenuActive('profile');
   }
 
+  getRecommendations() {
+    this.setMenuActive('recommendation');
+    this.mainService.setMenuActive('recommendation');
+  }
+
 
   changeInsideHome($event: any) {
-    
-    this.isChecked = this.isChecked===true ? false : true
+
+    this.isChecked = !this.isChecked;
     this.checkService.changeCheck(this.isChecked);
   }
 

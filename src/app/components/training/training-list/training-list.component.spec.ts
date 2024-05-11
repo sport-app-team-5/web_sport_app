@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
 import {of, throwError} from "rxjs";
 import {TrainingListComponent} from "./training-list.component";
 import {TrainingService} from "../training.service";
+import { Router } from '@angular/router';
 
 describe('TrainingListComponent', () => {
   let component: TrainingListComponent;
@@ -14,6 +15,7 @@ describe('TrainingListComponent', () => {
   let toastrService: ToastrService;
   let translateService: TranslateService;
   let trainingService: TrainingService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -36,6 +38,8 @@ describe('TrainingListComponent', () => {
     toastrService = TestBed.inject(ToastrService);
     translateService = TestBed.inject(TranslateService);
     trainingService = TestBed.inject(TrainingService);
+    router = TestBed.inject(Router);
+
     fixture.detectChanges();
   });
 
@@ -58,35 +62,49 @@ describe('TrainingListComponent', () => {
       { id: 3, name: 'Training 3' ,recommended:'Si'},
       { id: 4, name: 'Training 4',recommended:'Si' }
     ];
-  
+
     spyOn(trainingService, 'getTrainings').and.returnValue(of(trainingsBySportMan));
     spyOn(trainingService, 'getTrainingsSugetions').and.returnValue(of(trainingSugestions));
-  
-    component.getTrainings();  
-  
+
+    component.getTrainings();
+
     expect(trainingService.getTrainings).toHaveBeenCalled();
     expect(trainingService.getTrainingsSugetions).toHaveBeenCalledWith(component.isChecked);
     expect(component.trainings).toEqual(trainingsBySportMan.concat(trainingSugestions));
-    
+
   });
-  
-  it('should handle error when getting training suggestions', () => {    
+
+  it('should handle error when getting training suggestions', () => {
     spyOn(trainingService, 'getTrainings').and.returnValue(of([]));
     spyOn(trainingService, 'getTrainingsSugetions').and.returnValue(throwError('error'));
-  
+
     component.getTrainings();
     expect(trainingService.getTrainings).toHaveBeenCalled();
     expect(trainingService.getTrainingsSugetions).toHaveBeenCalledWith(component.isChecked);
     expect(component.trainings).toEqual([]);
 
   });
-  
+
   it('should handle error from getTrainings', () => {
     spyOn(trainingService, 'getTrainings').and.returnValue(throwError('Error'));
 
     component.ngOnInit();
 
     expect(trainingService.getTrainings).toHaveBeenCalled();
-    // Aquí puedes agregar más expectativas para verificar que tu componente maneja correctamente el error
+  });
+  it('should navigate to /create-training when createTraining is called', () => {
+    const navigateSpy = spyOn(router, 'navigate');
+    component.createTraining();
+    expect(navigateSpy).toHaveBeenCalledWith(['/create-training']);
+  });
+
+  it('should return "Si" when getValueOfInsideHouse is called with true', () => {
+    const result = component.getValueOfInsideHouse(true);
+    expect(result).toEqual('Si');
+  });
+
+  it('should return "No" when getValueOfInsideHouse is called with false', () => {
+    const result = component.getValueOfInsideHouse(false);
+    expect(result).toEqual('No');
   });
 });

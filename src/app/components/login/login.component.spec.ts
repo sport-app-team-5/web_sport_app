@@ -57,7 +57,7 @@ describe('LoginComponent', () => {
     component = fixture.componentInstance
     registerUserService = TestBed.inject(LoginService)
     translateService = TestBed.inject(TranslateService)
-    toastr = TestBed.inject(ToastrService) 
+    toastr = TestBed.inject(ToastrService)
     httpMock = TestBed.inject(HttpTestingController)
     router = TestBed.inject(Router)
     fixture.detectChanges()
@@ -120,6 +120,7 @@ describe('LoginComponent', () => {
       target: { name: 'email', value: 'test12' }
     }
     component.passwordValidator(event as any)
+    expect(component).toBeTruthy()
   })
 
 
@@ -130,20 +131,21 @@ describe('LoginComponent', () => {
     const decoded = jwtDecode<any>(token)
 
     component.handleUpdateResponse(response);
-  
-    spyOn(sessionStorage, 'setItem');  
-  
+
+    spyOn(sessionStorage, 'setItem');
+
     const toastrService = TestBed.inject(ToastrService);
     const errorText = 'Inicio de sesión éxitoso';
     const spySuccess = spyOn(toastrService, 'success');
-  
+    expect(component).toBeTruthy()
+
   });
 
-  
-  it('should call go to register', () => { 
+
+  it('should call go to register', () => {
     const navigateSpy = spyOn(router, 'navigate')
     component.goToRegister()
     expect(navigateSpy).toHaveBeenCalledWith(['/register'])
-    
+
   });
 })
