@@ -4,11 +4,12 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NutritionalProfileListComponent } from '../nutritional-profile-list/nutritional-profile-list.component';
 import { HeaderMainService } from '../header-main/header-main.service';
 import {DashboardComponent} from "../dashboard/dashboard.component";
+import {DemographyProfileComponent} from "../demography-profile/demography-profile.component";
 
 @Component({
   selector: 'app-profile-information',
   standalone: true,
-  imports: [CommonModule, TranslateModule, NutritionalProfileListComponent, DashboardComponent],
+  imports: [CommonModule, TranslateModule, NutritionalProfileListComponent, DashboardComponent, DemographyProfileComponent],
   templateUrl: './profile-information.component.html',
   styleUrls: ['./profile-information.component.css']
 })
