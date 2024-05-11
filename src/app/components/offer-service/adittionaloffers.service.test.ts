@@ -4,7 +4,6 @@ import { AdittionalOffersService } from './adittionaloffers.service';
 
 describe('AdittionalOffersService', () => {
   let service: AdittionalOffersService;
-  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,7 +11,7 @@ describe('AdittionalOffersService', () => {
       providers: [AdittionalOffersService]
     });
     service = TestBed.inject(AdittionalOffersService);
-    httpMock = TestBed.inject(HttpTestingController);
+  
   });
 
   it('should be created', () => {
