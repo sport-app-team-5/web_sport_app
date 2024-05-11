@@ -23,10 +23,12 @@ export class DemographyProfileComponent implements OnInit {
   ) {}
 
   profile: DemographyProfile | undefined
+  user: any
 
   ngOnInit() {
     this.switchLanguage('es')
     this.getProfile()
+    this.getUser()
   }
 
   switchLanguage (language: string): void {
@@ -35,11 +37,26 @@ export class DemographyProfileComponent implements OnInit {
 
   getProfile(): void {
     if (typeof window !== 'undefined' && window.sessionStorage) {
-      const token= sessionStorage.getItem('acces_token')
+      const token= sessionStorage.getItem('access_token')
       this.demographyProfileService.getProfile(token).subscribe({
         next: (response) => {this.profile = response},
         error: () => {
           this.toastr.error('Error obteniendo el perfil', 'Error', {
+            timeOut: 3000
+          });
+        }
+      });
+    }
+  }
+
+  getUser(): void {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const token= sessionStorage.getItem('access_token')
+      const user_id= sessionStorage.getItem('user_id')
+      this.demographyProfileService.getUser(token, user_id).subscribe({
+        next: (response) => {this.user = response},
+        error: () => {
+          this.toastr.error('Error obteniendo el usurio', 'Error', {
             timeOut: 3000
           });
         }
