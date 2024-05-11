@@ -21,6 +21,13 @@ describe('DemographyProfileComponent', () => {
         { id: 1, name: 'Country1' },
         { id: 2, name: 'Country2' }
       ])
+    },
+
+    getUser (): Observable<any[]> {
+      return of([
+        { id: 1, name: 'Country1' , residence_city: {id: 1, name: 'City1'}},
+        { id: 2, name: 'Country2' , residence_city: {id: 1, name: 'City1'}}
+      ])
     }
   }
 
@@ -58,6 +65,13 @@ describe('DemographyProfileComponent', () => {
       let mock = TestBed.inject(DemographyProfileService)
       spyOn(mock, 'getProfile').and.returnValue(fakeService1.getProfile())
       component.getProfile()
+      expect(component).toBeTruthy()
+    })
+
+    it('should get user info', () => {
+      let mock = TestBed.inject(DemographyProfileService)
+      spyOn(mock, 'getUser').and.returnValue(fakeService1.getUser())
+      component.getUser()
       expect(component).toBeTruthy()
     })
   })
