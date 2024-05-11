@@ -14,7 +14,10 @@ describe('AdittionalOffersService', () => {
     service = TestBed.inject(AdittionalOffersService);
     httpMock = TestBed.inject(HttpTestingController);
   });
-  inter   
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 
 
 });
