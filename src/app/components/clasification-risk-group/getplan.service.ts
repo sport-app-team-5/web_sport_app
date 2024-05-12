@@ -2,9 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import {
-  API_ADDITIONAL_SERVICE_BASE_URL,
-  API_SPORT_PLAN_BASE_URL,
-  API_USER_BASE_URL
+  API_SPORT_PLAN_BASE_URL
 } from '../../../../api.constants'
 @Injectable({
   providedIn: 'root'
@@ -19,7 +17,7 @@ export class GetplanService {
   }
 
   getPlan(suscription_type: any): Observable<any> {
-    
+
     const token = sessionStorage.getItem('access_token')
     const headers = new HttpHeaders({
         'Content-Type': 'application/json',
