@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr'
 import { CasificationRiskGroupService } from './casification-risk-group.service'
 import { Router } from '@angular/router'
 import { CommonModule } from '@angular/common';
+import { GetplanService } from './getplan.service';
 
 @Component({
   selector: 'app-clasification-risk-group',
@@ -30,7 +31,8 @@ export class ClasificationRiskGroupComponent implements OnInit {
     private toastr: ToastrService,
     private translate: TranslateService,
     private casificationRiskGroupService: CasificationRiskGroupService,
-    private router: Router
+    private router: Router,
+    private getPlanService: GetplanService
   ) { }
 
   ngOnInit() {
@@ -76,8 +78,20 @@ export class ClasificationRiskGroupComponent implements OnInit {
   }
 
   selectPlan(plan: string) {
-    this.activePlan = plan;
-    this.router.navigate(['/home']);  
+    this.activePlan = plan;    
+    this.getPlanService.getPlan(plan).subscribe({
+      next: (response) => {
+        this.toastr.success('Exito comprando plan', 'Exito', {
+          timeOut: 3000
+        });
+        this.router.navigate(['/home']);
+      },
+      error: () => {
+        this.toastr.error('Error obteniendo el plan', 'Error', {
+          timeOut: 3000
+        });
+      }
+    })
   }
 
 

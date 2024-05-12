@@ -80,8 +80,7 @@ export class LoginComponent implements OnInit {
       this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
         timeOut: 3000,
       });
-      if (role === 'DEPO') {
-        this.router.navigate(['/home']);
+      if (role === 'DEPO') {       
         this.dashboardService.getProfile(token).subscribe({
           next: (res) => {
             console.log(res);

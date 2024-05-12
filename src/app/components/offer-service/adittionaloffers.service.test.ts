@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { AdittionalOffersService } from './adittionaloffers.service';
+import { AdittionaloffersService } from './adittionaloffers.service';
 
 describe('AdittionalOffersService', () => {
-  let service: AdittionalOffersService;
+  let service: AdittionaloffersService
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [AdittionalOffersService]
+      providers: [AdittionaloffersService]
     });
-    service = TestBed.inject(AdittionalOffersService);
+    service = TestBed.inject(AdittionaloffersService);
   
   });
 
