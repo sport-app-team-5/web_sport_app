@@ -43,30 +43,31 @@ export class TrainingListComponent implements OnInit {
     let checked: any
     this.checkService.getCheck().subscribe((value) => {
       checked = (value)
-    });
-    this.trainingService.getTrainings().subscribe({
-      next: (trainingsBySportMan) => {
-        this.trainingService.getTrainingsSugetions(checked).subscribe({
-          next: (trainingSugestions) => {
-            this.trainings = trainingsBySportMan
-            let trainingRecommended = trainingSugestions.map((training: any) => ({
-              ...training,
-              recommended: "Si"
-            }));
-            this.trainings = this.trainings.concat(trainingRecommended)
-          },
-          error: (err) => {
-            this.toastr.error('Error obteniendo las sugerencias de entrenamiento', 'Error', {
-              timeOut: 3000
-            });
-          }
-        })
-      },
-      error: (err) => {
-        this.toastr.error('Error obteniendo los entrenamientos', 'Error', {
-          timeOut: 3000
-        });
-      }
+
+      this.trainingService.getTrainings().subscribe({
+        next: (trainingsBySportMan) => {
+          this.trainingService.getTrainingsSugetions(checked).subscribe({
+            next: (trainingSugestions) => {
+              this.trainings = trainingsBySportMan
+              let trainingRecommended = trainingSugestions.map((training: any) => ({
+                ...training,
+                recommended: "Si"
+              }));
+              this.trainings = this.trainings.concat(trainingRecommended)
+            },
+            error: (err) => {
+              this.toastr.error('Error obteniendo las sugerencias de entrenamiento', 'Error', {
+                timeOut: 3000
+              });
+            }
+          })
+        },
+        error: (err) => {
+          this.toastr.error('Error obteniendo los entrenamientos', 'Error', {
+            timeOut: 3000
+          });
+        }
+      });
     });
   }
 

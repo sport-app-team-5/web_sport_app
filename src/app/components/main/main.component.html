@@ -95,10 +95,10 @@
       <div>
         <app-profile-information *ngIf="role === 'DEPO' && isActiveProfile"></app-profile-information>
       </div>
-      <div *ngIf="isActiveMenu === 'profile'">
+      <div *ngIf="isActiveMenu === 'profile' && !isActiveProfile">
         <app-training-list></app-training-list>
       </div>
-      <div *ngIf="role === 'DEPO' && isActiveMenu === 'recommendation'">
+      <div *ngIf="role === 'DEPO' && isActiveMenu === 'recommendation' && !isActiveProfile" >
         <app-recommendation></app-recommendation>
       </div>
       <div *ngIf="role === 'TECE' && isActiveMenu === 'events'">

@@ -8,7 +8,7 @@ import { API_ADDITIONAL_SERVICE_BASE_URL } from '../../../../api.constants';
 })
 export class AdittionaloffersService {
   private http: any
-  
+
   constructor (private injector: Injector) {
     this.http = this.injector.get<HttpClient>(HttpClient)
   }
@@ -22,6 +22,6 @@ export class AdittionaloffersService {
       Authorization: `Bearer ${token}`
     })
 
-    return this.http.get(API_ADDITIONAL_SERVICE_BASE_URL +` auth/services?/is_inside_house${inside_house}` , { headers })
+    return this.http.get(API_ADDITIONAL_SERVICE_BASE_URL +`auth/services?/is_inside_house=${inside_house}` , { headers })
   }
 }
