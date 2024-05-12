@@ -17,7 +17,7 @@ import { TrainingService } from "../training.service";
 })
 export class TrainingCreateComponent implements OnInit {
   currentStep: any = 1
-  formData: any = {}
+  formData: any = {"is_inside_house":true};
   sport = new FormControl('', [Validators.required])
   name: FormControl = new FormControl('', [Validators.required])
   description: FormControl = new FormControl('', [Validators.required])

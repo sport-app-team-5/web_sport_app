@@ -3,6 +3,11 @@ main,
 footer {
     background-color: #000000;
     box-sizing: border-box;
+   
+}
+
+main{
+    height: 100vh;
 }
 
 .container {
@@ -39,7 +44,7 @@ button {
 
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 10px 20px;
     color: white;

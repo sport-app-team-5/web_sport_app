@@ -5,6 +5,7 @@ header {
     box-sizing: border-box;
 }
 
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -43,7 +44,7 @@ button {
 
 .container {
     display: flex;
-    flex-direction: row
+    flex-direction: row;   
 }
 
 .content {
