@@ -57,6 +57,20 @@ export class AdditionalserviceComponent implements OnInit {
     }
   }
 
+  getButtonClassesTypeSportSpecialist () {
+    return {
+      'question-button': true,
+      'active-button': this.type === 'SPORT_SPECIALIST'
+    }
+  }
+
+  getButtonClassesTypeNutritional () {
+    return {
+      'question-button': true,
+      'active-button': this.type === 'NUTRITIONAL'
+    }
+  }
+
   changeValueForm (e: any) {
     const name = e.target.name
     const value = e.target.value
