@@ -80,11 +80,10 @@ export class LoginComponent implements OnInit {
       this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
         timeOut: 3000,
       });
-      if (role === 'DEPO') {       
+      if (role === 'DEPO') {
         this.dashboardService.getProfile(token).subscribe({
           next: (res) => {
-            console.log(res);
-
+            sessionStorage.setItem('sportman_id', res.id);
             if (res.detail == 'Sport man not have risk') {
               this.router.navigate(['/sports-information']);
             } else {

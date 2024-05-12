@@ -147,12 +147,13 @@
   "demographyProfileLocation": "Ubicación",
   "demographyProfileHeight": "Estatura",
   "demographyProfileWeight": "Peso",
-  "demographyProfileBirthYear": "Año de nacimiento"
-  "feeding": "Alimentación",
+  "demographyProfileBirthYear": "Año de nacimiento",
   "recomendaciones":"Recomendaciones",
   "descrecomendaciones":"Nos basamos en los resultados de tu entrenamiento para proporcionarte estas opciones:",
   "porcionesrecomendaciones":"Porciones recomendadas:",
   "caloriasrecomendaciones":"Calorías recomendadas:",
   "nutrientes":"Nutrientes:",
-  "beneficios":"Beneficios:"
+  "beneficios":"Beneficios:",
+  "sport specialist": "Deportólogo",
+  "questionDedicationTime": "¿Cuánto tiempo le dedicarías a tu entrenamiento?"
 }
