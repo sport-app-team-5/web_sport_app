@@ -10,6 +10,14 @@
   overflow-y: scroll;
 }
 
+.continer-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 23px 43px 51px 43px;
+  gap: 19px;
+}
+
 .container-home {
   display: flex;
   padding: 10px;
@@ -212,13 +220,12 @@ input:checked+.slider:before {
   line-height: normal;
 }
 
-.description-style {
+.description-style{
   color: #FFF;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  margin-left: 18px;
 }
 
 button {
@@ -242,7 +249,6 @@ table {
   width: 70%;
   -webkit-animation: slide-in-top 0.7s cubic-bezier(0.860, 0.000, 0.070, 1.000) alternate both;
   animation: slide-in-top 0.7s cubic-bezier(0.860, 0.000, 0.070, 1.000) alternate both;
-
 }
 
 @keyframes slide-in-top {
@@ -294,4 +300,12 @@ th {
 
 dd {
   margin: 0.8rem 0.8rem;
+}
+
+.list-style {
+  padding: 23px 43px 51px 43px;
+}
+
+.table-list {
+  margin-top: 45px;
 }

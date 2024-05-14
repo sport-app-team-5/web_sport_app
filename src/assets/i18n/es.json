@@ -155,5 +155,7 @@
   "nutrientes":"Nutrientes:",
   "beneficios":"Beneficios:",
   "sport specialist": "Deportólogo",
-  "questionDedicationTime": "¿Cuánto tiempo le dedicarías a tu entrenamiento?"
+  "questionDedicationTime": "¿Cuánto tiempo le dedicarías a tu entrenamiento?",
+  "trainingListSuggestedTitle": "Entrenamientos sugeridos",
+  "trainingListSuggestedDescription": "Aquí encontrarás los entrenamientos sugeridos para ti"
 }
