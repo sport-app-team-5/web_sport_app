@@ -18,7 +18,6 @@ import { OfferServiceService } from '../../offer-service/offer-service.service';
 })
 export class TrainingListComponent implements OnInit {
   trainings: any[] = [];
-  isChecked: boolean = false;
 
   constructor(
     private trainingService: TrainingService,
