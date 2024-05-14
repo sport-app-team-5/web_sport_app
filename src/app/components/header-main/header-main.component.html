@@ -1,23 +1,26 @@
 <header class="header">
-  <div class="container-logo">
-    <p>Bienvenido</p>
-  </div>
-  <div class="buttons">
-    <div class="circle">
-      <span class="letters">JQ</span>
-  </div>  
-    <img (click)="openMenu()" class="icon-size" src="https://cdn-sport-app.s3.amazonaws.com/chevron_down.png"
-      alt="icon-size"
-      (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)" />
+  <div class="buttons" (click)="openMenu()">
+    <a class="profile-ball">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfvWW4r98sfhEqdK826pwQKwr4iQ2QBFRP6fnDr0gypNwY82nrZdVNulMSWIIXAJj9bRc&usqp=CAU" alt="Imagen de Perfil">
+    </a>
   </div>
 </header>
+
 <div *ngIf="isOpenMenu">
   <ul class="menu" id="menu">
-    <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+    <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)" (click)="showProfile()">
       <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/user.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
-      <a (click)="showProfile()">
+      <a>
         Perfil
       </a>
+    </li>
+
+    <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
+      <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/languages.png" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
+      <select id="select-language" (change)="switchLanguage($event)">
+        <option value="es">{{ 'spanish' | translate }}</option>
+        <option value="pt">{{ 'portuguese' | translate }}</option>
+      </select>
     </li>
 
     <li (click)="closeSession()" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
