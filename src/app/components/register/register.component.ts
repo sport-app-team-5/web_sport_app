@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.getCountries();
-    this.switchLanguage('es');
+    this.translate.setDefaultLang('es');
   }
   goToLogin() {
     this.router.navigate(['/login']);
@@ -91,8 +91,9 @@ export class RegisterComponent implements OnInit {
     this.isActive = true;
   }
 
-  switchLanguage(language: string): void {
-    this.translate.use(language);
+  switchLanguage (event: any): void {
+    const value = event.target.value;
+    this.translate.use(value)
   }
 
   getCountries(): void {

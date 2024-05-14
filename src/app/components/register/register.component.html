@@ -1,13 +1,20 @@
-<header class="header">
-  <p>Logo</p>
-  <div class="buttons">
-    <button (click)="goToLogin()"> {{ 'login' | translate }}</button>
+<header>
+  <div class="logo">
+    <a href="/">
+      <img src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="Logo de la empresa">
+    </a>
+  </div>
+  <div class="right-section">
+    <a href="/login">Iniciar sesión</a>
     <div class="line"></div>
-    <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
-    <div class="line"></div>
-    <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
+    <a href="/register" class="register">{{ 'register' | translate }}</a>
+    <select id="select-language" (change)="switchLanguage($event)">
+      <option value="es">{{ 'spanish' | translate }}</option>
+      <option value="pt">{{ 'portuguese' | translate }}</option>
+    </select>
   </div>
 </header>
+
 <main class="wrapper">
   <div *ngIf="currentStep === 1">
     <div class="question">{{ 'questionprofiletype' | translate }} </div>
@@ -96,7 +103,7 @@
 
       <div class="form-group">
         <label class="label-text" for="input3">{{'typeIdentification'| translate}}</label>
-        <select name="document_type" [formControl]="document_type" (change)="changeValueForm($event)">
+        <select name="document_type" [formControl]="document_type" (change)="changeValueForm($event)" class="select-form">
           <option value="" disabled selected hidden>{{'selectTypeIdentification'| translate}}</option>
           <option value="CC">{{'cedula'| translate}}</option>
           <option value="PP">{{'passPort'| translate}}</option>
@@ -126,7 +133,7 @@
     <div class="container-inputs">
       <div class="form-group" *ngIf="role_id == 3">
         <label class="label-text" for="input3">{{'birthCountry'| translate}}</label>
-        <select [formControl]="birth_country_id" type="text" name="birth_country_id" (change)="changeValueForm($event)">
+        <select [formControl]="birth_country_id" type="text" name="birth_country_id" (change)="changeValueForm($event)" class="select-form">
           <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
           <option *ngFor="let country of countries" [value]="country.id">{{ country.name | translate }}</option>
         </select>
@@ -138,7 +145,7 @@
 
       <div class="form-group" *ngIf="role_id ==3">
         <label class="label-text" for="input3">{{'birthCity' | translate}}</label>
-        <select [formControl]="birth_city_id" type="text" name="birth_city_id" (change)="changeValueForm($event)">
+        <select [formControl]="birth_city_id" type="text" name="birth_city_id" (change)="changeValueForm($event)" class="select-form">
           <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
           <option *ngFor="let city of citiesBirth" [value]="city.id">{{ city.name }}</option>
 
@@ -152,7 +159,7 @@
       <div class="form-group">
         <label class="label-text" for="input3">{{'residenceCountry'| translate}}</label>
         <select ngDefaultControl [formControl]="residence_country_id" type="text" name="residence_country_id"
-          (change)="changeValueForm($event)">
+          (change)="changeValueForm($event)" class="select-form">
           <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
           <option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</option>
         </select>
@@ -164,7 +171,7 @@
       <div class="form-group">
         <label class="label-text" for="input3">{{'residenceCity'| translate}}</label>
         <select [formControl]="residence_city_id" type="text" name="residence_city_id"
-          (change)="changeValueForm($event)">
+          (change)="changeValueForm($event)" class="select-form">
           <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
           <option *ngFor="let city of citiesResidence" [value]="city.country_id">{{ city.name }}</option>
         </select>

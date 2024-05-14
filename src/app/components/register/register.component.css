@@ -1,32 +1,11 @@
 @import './vars.css';
 
-header {
-    background-color: var(--c-black-light);
-    box-sizing: border-box;
-}
-
 main {
     background-color: var(--c-black-main);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     flex: 1;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    color: var(--c-white);
-    height: 50px;
-}
-
-.line {
-    width: 1px;
-    height: 20px;
-    background-color: var(--c-white);
-    margin: 0 10px;
 }
 
 .buttons {
@@ -143,8 +122,7 @@ button {
     box-sizing: border-box;
 }
 
-input,
-select {
+input {
     width: 300px;
     border: 1px solid var(--c-gray-light);
     box-sizing: border-box;
@@ -157,16 +135,26 @@ select {
     line-height: normal;
 }
 
+.select-form {
+  width: 300px;
+  border: 1px solid var(--c-gray-light);
+  box-sizing: border-box;
+  gap: 10px;
+  background-color: #111111;
+  color: var(--c-gray-light);
+  border-color: var(--c-gray-light);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  height: 43px;
+  font-size: 15px;
+  padding: 5px 5px 5px 20px;
+}
+
 input {
   height: 35px;
   font-size: 16px;
   padding: 20px;
-}
-
-select {
-  height: 43px;
-  font-size: 15px;
-  padding: 5px 5px 5px 20px;
 }
 
 input:focus {
@@ -175,13 +163,13 @@ input:focus {
     outline: 1px solid var(--c-green-ligth);
 }
 
-select:active,
-select:focus,
-select:focus-visible {
+.select-form:active,
+.select-form:focus,
+.select-form:focus-visible {
     border: 1px solid var(--c-green-ligth);
 }
 
-select:focus-visible {
+.select-form:focus-visible {
     border: 1px solid var(--c-green-ligth);
     outline: 1px solid var(--c-green-ligth);
 }
@@ -197,4 +185,47 @@ select:focus-visible {
     text-align: left;
     align-items: flex-start;
     width: 300px;
+}
+
+.line {
+  width: 1px;
+  height: 20px;
+  background-color: white;
+  margin: 0 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #181818;
+  color: #fff;
+  padding: 2px 20px 0 15px;
+}
+
+.logo img {
+  width: 40px;
+  margin: 8px 0 0 0;
+}
+
+.right-section {
+  display: flex;
+  align-items: center;
+}
+
+.right-section a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.register {
+  margin-right: 20px;
+}
+
+#select-language {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #555;
+  color: #fff;
 }
