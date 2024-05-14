@@ -57,13 +57,4 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
-
-  it('should navigate to /register when goToRegistry is called', () => {
-    const navigateSpy = spyOn(router, 'navigate')
-    component.goToRegitry()
-    expect(navigateSpy).toHaveBeenCalledWith(['/register'])
-  })
-
- 
-
 })

@@ -1,12 +1,22 @@
+<header>
+  <div class="logo">
+    <a href="/">
+      <img src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="Logo de la empresa">
+    </a>
+  </div>
+  <div class="right-section">
+    <a href="/login">Iniciar sesión</a>
+    <div class="line"></div>
+    <a href="/register" class="register">{{ 'register' | translate }}</a>
+    <select id="select-language" (change)="switchLanguage($event)">
+      <option value="es">{{ 'spanish' | translate }}</option>
+      <option value="pt">{{ 'portuguese' | translate }}</option>
+    </select>
+  </div>
+</header>
 
-  <header class="header">
-    <div class="buttons">
-      <button  (click)="goToRegitry()"> {{ 'register' | translate }} </button>  
-      <div class="line"></div>
-      <button (click)="goToLogin()">Iniciar sesión</button>
-    </div>
-  </header>
-  <main class="main">
+
+<main class="main">
   <div class="container">
     <div class="column">
       <img src="https://cdn-sport-app.s3.amazonaws.com/home_1.png" alt="home">
@@ -18,9 +28,9 @@
       <img src="https://cdn-sport-app.s3.amazonaws.com/home_3.png" alt="home_3">
     </div>
   </div>
-  </main>
-  <footer>
-    <i>F</i>
-    <i>I</i>
-    <i>T</i>
-  </footer>
+</main>
+<footer>
+  <i>F</i>
+  <i>I</i>
+  <i>T</i>
+</footer>

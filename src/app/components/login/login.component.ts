@@ -29,14 +29,12 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.switchLanguage('es');
-  }
-  goToRegister() {
-    this.router.navigate(['/register']);
+    this.translate.setDefaultLang('es');
   }
 
-  switchLanguage(language: string): void {
-    this.translate.use(language);
+  switchLanguage (event: any): void {
+    const value = event.target.value;
+    this.translate.use(value)
   }
 
   passwordValidator(control: FormControl): { [key: string]: boolean } | null {

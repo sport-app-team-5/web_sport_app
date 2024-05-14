@@ -140,12 +140,4 @@ describe('LoginComponent', () => {
     expect(component).toBeTruthy()
 
   });
-
-
-  it('should call go to register', () => {
-    const navigateSpy = spyOn(router, 'navigate')
-    component.goToRegister()
-    expect(navigateSpy).toHaveBeenCalledWith(['/register'])
-
-  });
 })
