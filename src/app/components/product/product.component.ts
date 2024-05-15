@@ -114,7 +114,6 @@ getButtonClassesMeal(): any {
 
   changeValueForm (e: any) {
     const name = e.target.name
-    console.log(name)
     this.formData[name] = e.target.value
   }
 
@@ -269,9 +268,6 @@ getButtonClassesMeal(): any {
   }
 
   saveProductData () {
-    console.log(this.formData)
-    console.log(this.allergies)
-    console.log(this.allergies_list)
     this.productService.createProduct(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       complete: this.cleanData.bind(this),
