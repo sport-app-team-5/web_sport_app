@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
+import {Router} from "@angular/router";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {HttpLoaderFactory} from "../../../app.config";
 import {HttpClient} from "@angular/common/http";
 import {of, throwError} from "rxjs";
-import {TrainingListComponent} from "./training-list.component";
-import {TrainingService} from "../training.service";
-import { Router } from '@angular/router';
+import {SuggestedTrainingListComponent} from "./suggested-training-list.component";
+import {SuggestedTrainingService} from "../suggested-training.service";
 
-describe('TrainingListComponent', () => {
-  let component: TrainingListComponent;
-  let fixture: ComponentFixture<TrainingListComponent>;
+describe('SuggestedSuggestedTrainingListComponent', () => {
+  let component: SuggestedTrainingListComponent;
+  let fixture: ComponentFixture<SuggestedTrainingListComponent>;
   let toastrService: ToastrService;
   let translateService: TranslateService;
-  let trainingService: TrainingService;
+  let trainingService: SuggestedTrainingService;
   let router: Router;
 
   beforeEach(async () => {
@@ -33,11 +33,11 @@ describe('TrainingListComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TrainingListComponent);
+    fixture = TestBed.createComponent(SuggestedTrainingListComponent);
     component = fixture.componentInstance;
     toastrService = TestBed.inject(ToastrService);
     translateService = TestBed.inject(TranslateService);
-    trainingService = TestBed.inject(TrainingService);
+    trainingService = TestBed.inject(SuggestedTrainingService);
     router = TestBed.inject(Router);
 
     fixture.detectChanges();
@@ -59,32 +59,27 @@ describe('TrainingListComponent', () => {
       { id: 2, name: 'Training 2' }
     ];
 
-    spyOn(trainingService, 'getTrainings').and.returnValue(of(trainingsBySportMan));
+    spyOn(trainingService, 'getSuggestedTrainings').and.returnValue(of(trainingsBySportMan));
 
-    component.getTrainings();
+    component.getSuggestedTrainings();
 
-    expect(trainingService.getTrainings).toHaveBeenCalled();
+    expect(trainingService.getSuggestedTrainings).toHaveBeenCalled();
   });
 
   it('should handle error when getting training suggestions', () => {
-    spyOn(trainingService, 'getTrainings').and.returnValue(of([]));
+    spyOn(trainingService, 'getSuggestedTrainings').and.returnValue(of([]));
 
-    component.getTrainings();
-    expect(trainingService.getTrainings).toHaveBeenCalled();
-    expect(component.trainings).toEqual([]);
+    component.getSuggestedTrainings();
+    expect(trainingService.getSuggestedTrainings).toHaveBeenCalled();
+    expect(component.suggestedTrainings).toEqual([]);
   });
 
-  it('should handle error from getTrainings', () => {
-    spyOn(trainingService, 'getTrainings').and.returnValue(throwError('Error'));
+  it('should handle error from getSuggestedTrainings', () => {
+    spyOn(trainingService, 'getSuggestedTrainings').and.returnValue(throwError('Error'));
 
     component.ngOnInit();
 
-    expect(trainingService.getTrainings).toHaveBeenCalled();
-  });
-  it('should navigate to /create-training when createTraining is called', () => {
-    const navigateSpy = spyOn(router, 'navigate');
-    component.createTraining();
-    expect(navigateSpy).toHaveBeenCalledWith(['/create-training']);
+    expect(trainingService.getSuggestedTrainings).toHaveBeenCalled();
   });
 
   it('should return "Si" when getValueOfInsideHouse is called with true', () => {
@@ -97,3 +92,4 @@ describe('TrainingListComponent', () => {
     expect(result).toEqual('No');
   });
 });
+

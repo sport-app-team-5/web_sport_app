@@ -1,7 +1,7 @@
 <header class="header">
   <div class="buttons" (click)="openMenu()" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
     <a class="profile-ball">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfvWW4r98sfhEqdK826pwQKwr4iQ2QBFRP6fnDr0gypNwY82nrZdVNulMSWIIXAJj9bRc&usqp=CAU" alt="Imagen de Perfil">
+      <img alt="profile-example" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfvWW4r98sfhEqdK826pwQKwr4iQ2QBFRP6fnDr0gypNwY82nrZdVNulMSWIIXAJj9bRc&usqp=CAU">
     </a>
   </div>
 </header>
@@ -9,14 +9,14 @@
 <div *ngIf="isOpenMenu">
   <ul class="menu" id="menu">
     <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)" (click)="showProfile()">
-      <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/user.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
+      <img alt="icon-menu-profile" class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/user.svg" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
       <a>
         Perfil
       </a>
     </li>
 
     <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
-      <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/languages.png" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
+      <img alt="icon-menu-language" class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/languages.png" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
       <select id="select-language" (change)="switchLanguage($event)">
         <option value="es">{{ 'spanish' | translate }}</option>
         <option value="pt">{{ 'portuguese' | translate }}</option>
@@ -25,7 +25,7 @@
 
     <li (click)="closeSession()" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
       <a>
-        <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/logout.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
+        <img alt="icon-menu-session" class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/logout.svg" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
         Cerrar sesión
       </a>
     </li>

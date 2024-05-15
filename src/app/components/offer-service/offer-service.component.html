@@ -1,4 +1,4 @@
-<div class="content-main" *ngIf="isAdditionalServiceActive==false">
+<div class="content-main" *ngIf="!isSuggestedTrainingActive && !isAdditionalServiceActive">
     <div class="container-header">
         <div class="title-training">
             <img alt="circle" src="https://cdn-sport-app.s3.amazonaws.com/yellow_circle.svg" />
@@ -18,7 +18,7 @@
         <div class="container-training">
             <div class="container-image">
                 <img class="image-training" alt="traning" src="https://cdn-sport-app.s3.amazonaws.com/training-image.png"
-                    (click)="changeMenuOption()"
+                    (click)="getSuggestedTrainings()"
                     (keypress)="handleKeyDown($event)">
                 <div class="text-overlay">
                    {{'knowYourTrainings'| translate}}
@@ -43,14 +43,18 @@
         </div>
     </div>
 </div>
-<div  class="content-main" *ngIf="isAdditionalServiceActive">
-    <div class="">
-        <div class="title-training">
-            <div class="info-style">{{'serviceAdditional'| translate}}</div>
-        </div>
-        <div class="description-style">{{'textServiceAdditional' | translate}}</div>
-    </div>
-    <div class="container-tables">
+
+<div class="content-main"  *ngIf="isSuggestedTrainingActive">
+    <app-suggested-training-list></app-suggested-training-list>
+</div>
+
+<div class="content-main list-style" *ngIf="isAdditionalServiceActive">
+  <div>
+    <div class="info-style">{{'serviceAdditional'| translate}}</div>
+    <div class="description-style">{{'textServiceAdditional' | translate}}</div>
+  </div>
+
+    <div class="container-tables table-list">
         <div class="table">
             <table aria-describedby="food profile">
                 <thead>
