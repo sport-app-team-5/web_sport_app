@@ -10,14 +10,6 @@
   overflow-y: scroll;
 }
 
-.continer-content{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 23px 43px 51px 43px;
-  gap: 19px;
-}
-
 .container-home {
   display: flex;
   padding: 10px;
@@ -210,7 +202,6 @@ input:checked+.slider:before {
   padding: 23px 43px 51px 43px;
   gap: 19px;
 }
-
 
 .info-style {
   color: #FFF;
