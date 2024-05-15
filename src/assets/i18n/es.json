@@ -155,5 +155,12 @@
   "nutrientes":"Nutrientes:",
   "beneficios":"Beneficios:",
   "sport specialist": "Deportólogo",
-  "questionDedicationTime": "¿Cuánto tiempo le dedicarías a tu entrenamiento?"
+  "questionDedicationTime": "¿Cuánto tiempo le dedicarías a tu entrenamiento?",
+  "carne": "Aves de carne",
+  "legumbres": "Legumbres",
+  "lacteos": "Productos lácteos",
+  "horneados": "Productos Horneados",
+  "vegetales": "Vegetales",
+  "questionProductCategoryFood": "¿A qué categoría pertenece el producto ofrecido?",
+  "questionAllergyFood": "¿Cuáles alergias están asociadas con el producto ofrecido?"
 }

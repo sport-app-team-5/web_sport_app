@@ -136,5 +136,12 @@
   "nutrientes": "Nutrientes:",
   "beneficios": "Benefícios:",
   "sport specialist": "Esportista",
-  "questionDedicationTime": "Quanto tempo você dedicaria ao seu treinamento?"
+  "questionDedicationTime": "Quanto tempo você dedicaria ao seu treinamento?",
+  "carne": "Carnes",
+  "legumbres": "Legumes",
+  "lacteos": "Laticínios",
+  "horneados": "Produtos Assados",
+  "vegetales": "Vegetais",
+  "questionProductCategoryFood": "A qual categoria o produto oferecido pertence?",
+  "questionAllergyFood": "Quais alergias estão associadas ao produto oferecido?"
 }
