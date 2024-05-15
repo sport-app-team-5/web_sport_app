@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Injectable, Injector } from '@angular/core'
 import { Observable } from 'rxjs'
 import {
@@ -14,6 +14,11 @@ export class RecommendationService {
   }
 
   getProducts (category: any): Observable<any> {
-    return this.http.get(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/products/' + category)
+    const token = sessionStorage.getItem('access_token')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    })
+    return this.http.get(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/products/' + category, { headers })
   }
 }
