@@ -1,5 +1,11 @@
 @import '../register/vars.css';
 
+.product-container {
+  overflow-y: auto;
+  height: 100vh;
+  padding: 20px;
+}
+
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -18,11 +24,11 @@
   align-items: center;
 }
 
-.food-image {
-  width: 800px;
-  height: 400px;
+.food-image-desktop {
+  width: 400px;
+  height: auto;
   object-fit: cover;
-  border-radius: 8px 0 0 8px;
+  border-radius: 8px;
 }
 
 .info {
@@ -56,6 +62,7 @@
   padding: 17px;
   gap: 10px;
 }
+
 .title1desc {
   color: #fff;
   font-size: 22px;
@@ -67,4 +74,33 @@
   gap: 10px;
 }
 
+.product-list-desktop {
+  margin-top: 20px;
+}
 
+.contact-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.primary-button {
+  border-radius: 38px;
+  background: var(--c-green-ligth);
+  display: flex;
+  height: 40px;
+  padding: 0px 30px;
+  align-items: center;
+  gap: 20px;
+  font-weight: 500;
+  color: black;
+}
+.primary-button:hover {
+    border: 1px solid var(--c-green-ligth);
+    color: black;
+}

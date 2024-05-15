@@ -143,5 +143,8 @@
   "horneados": "Produtos Assados",
   "vegetales": "Vegetais",
   "questionProductCategoryFood": "A qual categoria o produto oferecido pertence?",
-  "questionAllergyFood": "Quais alergias estão associadas ao produto oferecido?"
+  "questionAllergyFood": "Quais alergias estão associadas ao produto oferecido?",
+  "contactarme": "Entrar em contato",
+  "sugerenciasenvioalimentacion" : "Sugerimos enviar sua alimentação:"
+
 }
