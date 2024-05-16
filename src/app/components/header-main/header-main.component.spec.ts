@@ -35,6 +35,7 @@ describe('HeaderMainComponent', () => {
     fixture = TestBed.createComponent(HeaderMainComponent)
     component = fixture.componentInstance
     translateService = TestBed.inject(TranslateService)
+
     fixture.detectChanges()
 
   })
