@@ -1,3 +1,7 @@
+
+
+<div style="overflow-y: auto; height: 100vh;">
+
 <div class="continer-content">
   <div>
     <div class="info-style">{{ 'recomendaciones' | translate }}</div>
@@ -6,6 +10,7 @@
 </div>
 
 <div class="continer-content container-food">
+
   <section class="content-list">
     <article *ngFor="let food of foodData" class="card">
       <div class="card-header">
@@ -25,6 +30,22 @@
           </ul>
         </div>
       </div>
+
+      <section class="product-list-desktop" *ngIf="food.Productos.length > 0">
+        <p class="title1">{{ 'sugerenciasenvioalimentacion' | translate }}</p>
+        <article *ngFor="let product of food.Productos" class="card">
+          <div class="card-header">
+            <p class="title1"><strong>{{ 'name' | translate }}:</strong> {{ product.Name }}</p>
+          </div>
+          <div class="card-content">
+            <div class="info">
+              <p><strong>{{ 'description' | translate }}:</strong> {{ product.Description }}</p>
+              <p><strong>{{ 'cost' | translate }}:</strong> {{ product.Cost }}</p>
+              <button class="primary-button" (click)="callContactarme()">{{ 'contactarme' | translate }} </button>
+            </div>
+          </div>
+        </article>
+      </section>
     </article>
   </section>
 </div>

@@ -1,5 +1,11 @@
 @import '../../shared/vars.css';
 
+.product-container {
+  overflow-y: auto;
+  height: 100vh;
+  padding: 20px;
+}
+
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -18,6 +24,12 @@
   align-items: center;
 }
 
+.food-image-desktop {
+  width: 400px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
 .food-image {
   width: 600px;
   height: 320px;
@@ -56,6 +68,7 @@
   display: flex;
 }
 
+
 .info-style{
   color: #FFF;
   font-size: 30px;
@@ -72,6 +85,38 @@
   line-height: normal;
 }
 
+
+.product-list-desktop {
+  margin-top: 20px;
+}
+
+.contact-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.primary-button {
+  border-radius: 38px;
+  background: var(--c-green-ligth);
+  display: flex;
+  height: 40px;
+  padding: 0px 30px;
+  align-items: center;
+  gap: 20px;
+  font-weight: 500;
+  color: black;
+}
+.primary-button:hover {
+    border: 1px solid var(--c-green-ligth);
+    color: black;
+}
+
 .continer-content{
   display: flex;
   align-items: center;
@@ -82,4 +127,5 @@
 
 .container-food{
   margin: 0 7rem 0 7rem;
+
 }

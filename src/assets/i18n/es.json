@@ -170,6 +170,15 @@
   "search" : "Buscar",
   "profile":"Perfil",
   "closeSession":"Cerrar sesión",
+  "carne": "Aves de carne",
+  "legumbres": "Legumbres",
+  "lacteos": "Productos lácteos",
+  "horneados": "Productos Horneados",
+  "vegetales": "Vegetales",
+  "questionProductCategoryFood": "¿A qué categoría pertenece el producto ofrecido?",
+  "questionAllergyFood": "¿Cuáles alergias están asociadas con el producto ofrecido?",
+  "contactarme": "Contactarme",
+  "sugerenciasenvioalimentacion" : "Te sugerimos enviar tu alimentación:",
   "trainingListSuggestedTitle": "Entrenamientos sugeridos",
   "trainingListSuggestedDescription": "Aquí encontrarás los entrenamientos sugeridos para ti"
 }
