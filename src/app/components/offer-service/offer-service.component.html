@@ -5,13 +5,13 @@
             <div>{{'textTraining'| translate}}</div>
         </div>
         <div class="container-switch">
-            <label for="home">{{'insideHome'| translate}}</label>
-            <label for="e" class="switch">.
+            <p >{{'insideHome'| translate}}</p>
+            <label for="e" class="switch">
                 <input id="e" name="e" type="checkbox" [checked]="isChecked" (change)="changeInsideHome($event)">
 
                 <span class="slider round"></span>
             </label>
-            <label for="out">{{'outsideHome'| translate}}</label>
+            <p>{{'outsideHome'| translate}}</p>
         </div>
     </div>
     <div class="container-content">

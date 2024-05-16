@@ -45,7 +45,6 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.start();
     this.getSession();
     this.headerMainService.getIsActiveProfile().subscribe((profile) => {
       this.isActiveProfile = profile;
@@ -64,9 +63,6 @@ export class MainComponent implements OnInit {
     }
   }
 
-  start() {
-    return true;
-  }
 
   setClassActiveSport(option: string) {
     return {

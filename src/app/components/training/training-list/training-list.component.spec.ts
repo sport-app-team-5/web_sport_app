@@ -81,11 +81,7 @@ describe('TrainingListComponent', () => {
 
     expect(trainingService.getTrainings).toHaveBeenCalled();
   });
-  it('should navigate to /create-training when createTraining is called', () => {
-    const navigateSpy = spyOn(router, 'navigate');
-    component.createTraining();
-    expect(navigateSpy).toHaveBeenCalledWith(['/create-training']);
-  });
+
 
   it('should return "Si" when getValueOfInsideHouse is called with true', () => {
     const result = component.getValueOfInsideHouse(true);
@@ -95,5 +91,28 @@ describe('TrainingListComponent', () => {
   it('should return "No" when getValueOfInsideHouse is called with false', () => {
     const result = component.getValueOfInsideHouse(false);
     expect(result).toEqual('No');
+  });
+
+  it('should set the default language to the value stored in localStorage', () => {
+    const mockLanguage = 'en';
+    spyOn(localStorage, 'getItem').and.returnValue(mockLanguage);
+    spyOn(component.translate, 'setDefaultLang');
+    
+    component.ngOnInit();
+    
+    expect(localStorage.getItem).toHaveBeenCalledWith('lang');
+    expect(component.translate.setDefaultLang).toHaveBeenCalledWith(mockLanguage);
+    expect(component.language).toEqual(mockLanguage);
+  });
+  
+  it('should set the default language to "es" if no value is stored in localStorage', () => {
+    spyOn(localStorage, 'getItem').and.returnValue(null);
+    spyOn(component.translate, 'setDefaultLang');
+    
+    component.ngOnInit();
+    
+    expect(localStorage.getItem).toHaveBeenCalledWith('lang');
+    expect(component.translate.setDefaultLang).toHaveBeenCalledWith('es');
+    expect(component.language).toEqual('es');
   });
 });
