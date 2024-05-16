@@ -61,8 +61,6 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin() {
-     this.handleUpdateResponse({ access_token:'token'})
-  
     if (this.email.value && this.password.value) {
       this.loginService.login(this.formData).subscribe({
         next: this.handleUpdateResponse.bind(this),
@@ -82,16 +80,14 @@ export class LoginComponent implements OnInit {
     if (typeof window !== 'undefined' && window.sessionStorage) {
       const token = response.access_token;
       sessionStorage.setItem('access_token', token);
-      // const decoded = jwtDecode<any>(response.access_token);
-      // let role = decoded.role;
-      let role = 'DEPO'
+      const decoded = jwtDecode<any>(response.access_token);
+      let role = decoded.role;
       sessionStorage.setItem('role', role);
-      sessionStorage.setItem('user_id', '1');
+      sessionStorage.setItem('user_id', decoded.sub);
       this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
         timeOut: 3000,
       });
       if (role === 'DEPO') {
-        this.router.navigate(['/home']);
         this.dashboardService.getProfile(token).subscribe({
           next: (res) => {
             sessionStorage.setItem('sportman_id', res.id);
