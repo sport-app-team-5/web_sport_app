@@ -57,11 +57,13 @@ describe('HomeComponent', () => {
   })
 
   it('should switch the language', () => {
-    const event = { target: { value: 'en' } };
+    const event = { target: { value: 'es' } };
+
     spyOn(translateService, 'use');
 
     component.switchLanguage(event);
 
-    expect(translateService.use).toHaveBeenCalledWith('en');
+
+    expect(translateService.use).toHaveBeenCalledWith('es');
   });
 })

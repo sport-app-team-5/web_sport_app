@@ -34,6 +34,8 @@ describe('HeaderMainComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderMainComponent)
     component = fixture.componentInstance
+    translateService = TestBed.inject(TranslateService)
+
     fixture.detectChanges()
 
   })
@@ -61,4 +63,22 @@ describe('HeaderMainComponent', () => {
     let res = component.openMenuClass()
     expect(res.menu).toBe(true)
   })
+
+  it('should switch the language', () => {
+    const event = { target: { value: 'es' } };
+    spyOn(translateService, 'use');
+
+    component.switchLanguage(event);
+
+    expect(translateService.use).toHaveBeenCalledWith('es');
+  });
+
+  it('should close the session', () => {
+    spyOn(sessionStorage, 'clear');
+
+    component.closeSession();
+
+    expect(component.isOpenMenu).toBe(true);
+    expect(sessionStorage.clear).toHaveBeenCalled();
+  });
 })
