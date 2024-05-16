@@ -1,4 +1,4 @@
-@import '../register/vars.css';
+@import '../../shared/vars.css';
 
 .product-container {
   overflow-y: auto;
@@ -30,6 +30,13 @@
   object-fit: cover;
   border-radius: 8px;
 }
+.food-image {
+  width: 600px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 8px 0 0 8px;
+  margin-left: 10px;
+}
 
 .info {
   padding: 20px;
@@ -54,25 +61,30 @@
 
 .title1 {
   color: #fff;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  display: flex;
+}
+
+
+.info-style{
+  color: #FFF;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
-  line-height: 29px;
-  display: flex;
-  padding: 17px;
-  gap: 10px;
+  line-height: normal;
 }
 
-.title1desc {
-  color: #fff;
-  font-size: 22px;
+.description-style{
+  color: #FFF;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 29px;
-  display: flex;
-  padding: 17px;
-  gap: 10px;
+  line-height: normal;
 }
+
 
 .product-list-desktop {
   margin-top: 20px;
@@ -103,4 +115,16 @@
 .primary-button:hover {
     border: 1px solid var(--c-green-ligth);
     color: black;
+
+.continer-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 23px 43px 51px 43px;
+  gap: 19px;
+}
+
+.container-food{
+  margin: 0 7rem 0 7rem;
+
 }

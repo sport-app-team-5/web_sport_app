@@ -1,9 +1,16 @@
-<div>
-  <p class="title1">{{ 'recomendaciones' | translate }}</p>
-  <p class="title1desc">{{ 'descrecomendaciones' | translate }}</p>
-</div>
+
 
 <div style="overflow-y: auto; height: 100vh;">
+
+<div class="continer-content">
+  <div>
+    <div class="info-style">{{ 'recomendaciones' | translate }}</div>
+    <div class="description-style">{{ 'descrecomendaciones' | translate }}</div>
+  </div>
+</div>
+
+<div class="continer-content container-food">
+
   <section class="content-list">
     <article *ngFor="let food of foodData" class="card">
       <div class="card-header">
@@ -11,7 +18,7 @@
       </div>
 
       <div class="card-content">
-        <img alt="Silhouette of mountains" [src]="food.Imagen" class="food-image-desktop" />
+        <img alt="Silhouette of mountains" [src]="food.Imagen" class="food-image" />
 
         <div class="info">
           <p><strong>{{ 'porcionesrecomendaciones' | translate }}</strong> {{ food.PorcionesRecomendadas }}</p>

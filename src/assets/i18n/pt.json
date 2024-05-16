@@ -145,6 +145,7 @@
   "questionProductCategoryFood": "A qual categoria o produto oferecido pertence?",
   "questionAllergyFood": "Quais alergias estão associadas ao produto oferecido?",
   "contactarme": "Entrar em contato",
-  "sugerenciasenvioalimentacion" : "Sugerimos enviar sua alimentação:"
-
+  "sugerenciasenvioalimentacion" : "Sugerimos enviar sua alimentação:",
+  "trainingListSuggestedTitle": "Treinamentos sugeridos",
+  "trainingListSuggestedDescription": "Aqui você encontrará todos os treinamentos sugeridos"
 }
