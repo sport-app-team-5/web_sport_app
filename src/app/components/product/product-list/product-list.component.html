@@ -1,0 +1,49 @@
+<div *ngIf="creatingProduct===false">
+  <div class="continer-content">
+    <div>
+      <div class="info-style">{{'productListTitle' | translate}}</div>
+      <div class="description-style">{{'productListDescription' | translate}}</div>
+    </div>
+    <div>
+      <button class="primary-button" (click)="createProduct()">{{'productListButtonCreateProduct'| translate}}</button>
+    </div>
+  </div>
+
+  <div class="container-tables">
+    <div class="table">
+      <table aria-describedby="products offer">
+        <thead>
+          <tr>
+            <th>{{'productListColumnName' | translate}}</th>
+            <th>{{'productListColumnDescription' | translate}}</th>
+            <th>{{'productListColumnCost' | translate}}</th>
+            <th>{{'productListColumnCategory' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr" *ngFor="let product of products">
+            <td>
+              <dd>{{product.name| translate}}</dd>
+            </td>
+            <td>
+              <dd>{{product.description | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{product.cost | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{product.category | translate}}</dd>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="creatingProduct===true">
+  <div class="close-screen">
+    <button (click)="closeWindow()" class="close-button">{{'close'| translate }}</button>
+  </div>
+  <app-product></app-product>
+</div>
