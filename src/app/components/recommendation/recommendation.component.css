@@ -115,6 +115,7 @@
 .primary-button:hover {
     border: 1px solid var(--c-green-ligth);
     color: black;
+}
 
 .continer-content{
   display: flex;
