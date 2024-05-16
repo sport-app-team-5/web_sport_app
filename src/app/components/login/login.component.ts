@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
   formData: any = {};
+  language: string = 'es';
 
   constructor(
     private toastr: ToastrService,
@@ -29,9 +30,17 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.translate.setDefaultLang('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
-
   switchLanguage (event: any): void {
     const value = event.target.value;
     this.translate.use(value)
@@ -51,7 +60,7 @@ export class LoginComponent implements OnInit {
     this.formData[name] = value;
   }
 
-  userLogin() {
+  userLogin() { 
     if (this.email.value && this.password.value) {
       this.loginService.login(this.formData).subscribe({
         next: this.handleUpdateResponse.bind(this),
@@ -72,13 +81,13 @@ export class LoginComponent implements OnInit {
       const token = response.access_token;
       sessionStorage.setItem('access_token', token);
       const decoded = jwtDecode<any>(response.access_token);
-      let role = decoded.role;
+      let role = decoded.role;      
       sessionStorage.setItem('role', role);
-      sessionStorage.setItem('user_id', decoded.sub);
+      sessionStorage.setItem('user_id', '1');
       this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
         timeOut: 3000,
       });
-      if (role === 'DEPO') {
+      if (role === 'DEPO') {       
         this.dashboardService.getProfile(token).subscribe({
           next: (res) => {
             sessionStorage.setItem('sportman_id', res.id);

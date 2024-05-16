@@ -27,8 +27,50 @@
       <span class="error">{{ 'fieldRequired' | translate}}</span>
     </div>
   </div>
-
   <div *ngIf="currentStep == 2" class="container-services">
+    <div class="question">{{"questionProductCategoryFood" | translate}} </div>
+    <div class="container-buttons">
+      <button [ngClass]='getButtonClassesMeal()' id="meal" (click)="setCategoryFood('Aves de carne')">
+        {{'carne'| translate}}
+      </button>
+      <button [ngClass]='getButtonClassesLegumes()' id="legumes" class="question-button" (click)="setCategoryFood('Legumbres')">
+        {{'legumbres'| translate}}
+      </button>
+      <button [ngClass]='getButtonClassesDairy()'  id="dairy"  (click)="setCategoryFood('Productos lácteos')">
+        {{'lacteos'| translate}}
+      </button>
+      <button [ngClass]='getButtonClassesBaked()'  id="baked"  (click)="setCategoryFood('Productos Horneados')">
+        {{'horneados'| translate}}
+      </button>
+      <button [ngClass]='getButtonClassesVegetables()'  id="vegetables"  class="question-button" (click)="setCategoryFood('Vegetales')">
+        {{'vegetales'| translate}}
+      </button>
+    </div>
+    <div *ngIf="activateErrorMessageForCategoryFood">
+      <span class="error">{{ 'fieldRequired' | translate}}</span>
+    </div>
+  </div>
+  <div *ngIf="currentStep == 3">
+    <div class="question">{{'questionAllergyFood'| translate}}</div>
+    <div class="container-inputs">
+      <div class="form-group">
+        <div class="multi-select">
+          <ng-multiselect-dropdown
+            [placeholder]="'Seleccione'"
+            [settings]="dropdownSettings"
+            [data]="allergies_list"
+            (onSelect)="onItemSelect($event)"
+            (onDeSelect)="onItemDeSelect($event)">
+          </ng-multiselect-dropdown>
+        </div>
+        <div class="error-container" *ngIf="this.validateAllergies">
+          <span class="error">{{'fieldRequired'|translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 4" class="container-services">
     <div class="question">{{'productName'| translate}}</div>
     <div>
       <input [formControl]="name" type="text" name="name" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
@@ -38,7 +80,7 @@
     </div>
   </div>
 
-  <div *ngIf="currentStep == 3" class="container-services">
+  <div *ngIf="currentStep == 5" class="container-services">
     <div class="question">{{'productCost'| translate}}</div>
     <div>
       <input [formControl]="cost" type="number" name="cost" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
@@ -48,7 +90,7 @@
     </div>
   </div>
 
-  <div *ngIf="currentStep == 4" class="container-services">
+  <div *ngIf="currentStep == 6" class="container-services">
     <div class="question">{{'productDescription'| translate}}</div>
     <div>
       <input [formControl]="description" type="text" name="description" placeholder="{{'writeHere'| translate}}"
@@ -63,8 +105,8 @@
     <button *ngIf="currentStep !== 1" class="secondary-button" (click)="backStep()">
       {{'back'| translate}}
     </button>
-    <button class="primary-button" (click)="nextStep()">
-      {{ currentStep === 4 ? ('registerForm' | translate) : ('next' | translate) }}
+    <button class="primary-button" id="buttonNext"  (click)="nextStep()">
+      {{ currentStep === 6 ? ('registerForm' | translate) : ('next' | translate) }}
     </button>
   </div>
 </main>

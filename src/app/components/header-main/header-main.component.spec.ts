@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { HeaderMainService } from './header-main.service'
 import { HeaderMainComponent } from './header-main.component'
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
@@ -14,7 +14,7 @@ describe('HeaderMainComponent', () => {
   let translateService: TranslateService
   let httpMock: HttpTestingController
 
-  beforeEach(async(() => {
+  beforeEach(async() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
@@ -29,15 +29,14 @@ describe('HeaderMainComponent', () => {
         })],
       providers:[HeaderMainService, TranslateService],
     }).compileComponents()
-  }))
+  })
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderMainComponent)
     component = fixture.componentInstance
     translateService = TestBed.inject(TranslateService)
-    headerMainService = TestBed.inject(HeaderMainService);
+
     fixture.detectChanges()
-    httpMock = TestBed.inject(HttpTestingController)
 
   })
 
@@ -64,4 +63,22 @@ describe('HeaderMainComponent', () => {
     let res = component.openMenuClass()
     expect(res.menu).toBe(true)
   })
+
+  it('should switch the language', () => {
+    const event = { target: { value: 'es' } };
+    spyOn(translateService, 'use');
+
+    component.switchLanguage(event);
+
+    expect(translateService.use).toHaveBeenCalledWith('es');
+  });
+
+  it('should close the session', () => {
+    spyOn(sessionStorage, 'clear');
+
+    component.closeSession();
+
+    expect(component.isOpenMenu).toBe(true);
+    expect(sessionStorage.clear).toHaveBeenCalled();
+  });
 })

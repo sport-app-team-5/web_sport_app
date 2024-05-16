@@ -23,6 +23,7 @@ export class OfferServiceComponent implements OnInit {
   isChecked: boolean = false;
   services: any[] = [];
   isAdditionalServiceActive: boolean = false;
+  language: string = 'es';
   isSuggestedTrainingActive: boolean = false;
 
   constructor(private mainService: MainService,
@@ -33,7 +34,16 @@ export class OfferServiceComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
 
   switchLanguage(language: string): void {

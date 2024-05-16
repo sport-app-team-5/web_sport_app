@@ -24,7 +24,8 @@ export class TrainingCreateComponent implements OnInit {
   duration: FormControl = new FormControl('', [Validators.required])
   intensity = new FormControl('', [Validators.required])
   is_inside_house = new FormControl('Si', [Validators.required])
-
+  language: string = 'es';
+  
   constructor(
     private toastr: ToastrService,
     private translate: TranslateService,
@@ -33,7 +34,16 @@ export class TrainingCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.switchLanguage('es')
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
 
   changeValueForm(e: any) {
@@ -147,5 +157,9 @@ export class TrainingCreateComponent implements OnInit {
     this.toastr.error('Error registrando el entrenamiento', 'Error', {
       timeOut: 3000
     })
+  }
+
+  closeWindow(){
+    this.router.navigate(['/home'])
   }
 }

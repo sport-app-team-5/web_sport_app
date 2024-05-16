@@ -17,6 +17,7 @@ export class HeaderMainComponent implements OnInit {
   isActiveProfile: boolean = false
   role: string =''
   menuKeyDown: boolean = false
+  language:string = 'es';
 
   constructor (
     private router: Router,
@@ -26,7 +27,17 @@ export class HeaderMainComponent implements OnInit {
 
   ngOnInit () {
     this.start()
-    this.translate.setDefaultLang('es');
+  
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
 
   start () {
@@ -67,5 +78,7 @@ export class HeaderMainComponent implements OnInit {
     const value = event.target.value;
     this.translate.use(value);
     this.isOpenMenu = !this.isOpenMenu
+    this.language = value;
+    localStorage.setItem('lang', value);
   }
 }
