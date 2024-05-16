@@ -149,5 +149,7 @@
   "inscribeds": "Inscritos",
   "search": "Buscar",
   "profile": "Perfil",
-  "closeSession": "Sair"
+  "closeSession": "Sair",
+  "trainingListSuggestedTitle": "Treinamentos sugeridos",
+  "trainingListSuggestedDescription": "Aqui você encontrará todos os treinamentos sugeridos"
 }

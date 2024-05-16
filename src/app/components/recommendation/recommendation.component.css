@@ -1,4 +1,4 @@
-@import '../register/vars.css';
+@import '../../shared/vars.css';
 
 .card {
   border: 1px solid #ccc;
@@ -19,10 +19,11 @@
 }
 
 .food-image {
-  width: 800px;
-  height: 400px;
+  width: 600px;
+  height: 320px;
   object-fit: cover;
   border-radius: 8px 0 0 8px;
+  margin-left: 10px;
 }
 
 .info {
@@ -48,23 +49,37 @@
 
 .title1 {
   color: #fff;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 29px;
+  display: flex;
+}
+
+.info-style{
+  color: #FFF;
   font-size: 30px;
   font-style: normal;
   font-weight: 400;
-  line-height: 29px;
-  display: flex;
-  padding: 17px;
-  gap: 10px;
+  line-height: normal;
 }
-.title1desc {
-  color: #fff;
-  font-size: 22px;
+
+.description-style{
+  color: #FFF;
+  font-size: 15px;
   font-style: normal;
   font-weight: 400;
-  line-height: 29px;
-  display: flex;
-  padding: 17px;
-  gap: 10px;
+  line-height: normal;
 }
 
+.continer-content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 23px 43px 51px 43px;
+  gap: 19px;
+}
 
+.container-food{
+  margin: 0 7rem 0 7rem;
+}

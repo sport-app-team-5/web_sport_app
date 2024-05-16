@@ -5,11 +5,14 @@ import { OfferServiceService } from './offer-service.service';
 import { AdittionaloffersService } from './adittionaloffers.service';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import {
+  SuggestedTrainingListComponent
+} from "../suggested-training/suggested-training-list/suggested-training-list.component";
 
 @Component({
   selector: 'app-offer-service',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, SuggestedTrainingListComponent],
   templateUrl: './offer-service.component.html',
   styleUrl: './offer-service.component.css'
 })
@@ -21,6 +24,7 @@ export class OfferServiceComponent implements OnInit {
   services: any[] = [];
   isAdditionalServiceActive: boolean = false;
   language: string = 'es';
+  isSuggestedTrainingActive: boolean = false;
 
   constructor(private mainService: MainService,
     private checkService: OfferServiceService,
@@ -56,9 +60,7 @@ export class OfferServiceComponent implements OnInit {
     this.mainService.setMenuActive('recommendation');
   }
 
-
   changeInsideHome($event: any) {
-
     this.isChecked = !this.isChecked;
     this.checkService.changeCheck(this.isChecked);
   }
@@ -89,5 +91,9 @@ export class OfferServiceComponent implements OnInit {
 
   handleKeyDown($event:any){
     console.log($event)
+  }
+
+  getSuggestedTrainings() {
+    this.isSuggestedTrainingActive = true;
   }
 }

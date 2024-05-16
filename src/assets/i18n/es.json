@@ -168,7 +168,8 @@
   "available" : "Disponible",
   "inscribeds" : "Inscritos",
   "search" : "Buscar",
-
   "profile":"Perfil",
-  "closeSession":"Cerrar sesión"
+  "closeSession":"Cerrar sesión",
+  "trainingListSuggestedTitle": "Entrenamientos sugeridos",
+  "trainingListSuggestedDescription": "Aquí encontrarás los entrenamientos sugeridos para ti"
 }

@@ -1,0 +1,41 @@
+<div class="continer-content">
+  <div>
+    <div class="info-style">{{'trainingListSuggestedTitle' | translate}}</div>
+    <div class="description-style">{{'trainingListSuggestedDescription' | translate}}</div>
+  </div>
+</div>
+
+<div class="container-tables">
+  <div class="table">
+    <table aria-describedby="food profile" >
+      <thead>
+      <tr>
+        <th>{{'trainingListColumnName' | translate}}</th>
+        <th>{{'trainingListColumnSport' | translate}}</th>
+        <th>{{'trainingListColumnIntensity' | translate}}</th>
+        <th>{{'trainingListColumnSportDuration' | translate}}</th>
+        <th>{{'outsideHome' | translate}}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="tr" *ngFor="let training of suggestedTrainings">
+        <td>
+          <dd>{{training.name| translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.sport | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.intensity | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{training.duration | translate}}</dd>
+        </td>
+        <td>
+          <dd>{{getValueOfInsideHouse(training.is_inside_house)}}</dd>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
