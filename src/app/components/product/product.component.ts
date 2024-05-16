@@ -63,7 +63,7 @@ getButtonClassesMeal(): any {
   allergies: Array<string> = [];
   validateAllergies: boolean = false
   language: string = 'es';
-	
+
 
   dropdownSettings = {
     idField: 'id',
@@ -306,7 +306,7 @@ getButtonClassesMeal(): any {
     this.toastr.success('Registro exitoso del producto', 'Exito', {
       timeOut: 3000
     })
-    this.router.navigate(['/home'])
+    this.router.navigate(['/products-list'])
   }
 
   handleError (error: any) {
