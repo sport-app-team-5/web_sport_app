@@ -136,5 +136,18 @@
   "nutrientes": "Nutrientes:",
   "beneficios": "Benefícios:",
   "sport specialist": "Esportista",
-  "questionDedicationTime": "Quanto tempo você dedicaria ao seu treinamento?"
+  "questionDedicationTime": "Quanto tempo você dedicaria ao seu treinamento?",
+  "trainingEvents": "Eventos esportivos",
+  "scheduleAppointments": "Agende seu acompanhamento durante os eventos",
+  "findCalendarText": "Você encontrará os eventos esportivos aos quais se inscreveu",
+  "level": "Nível",
+  "intermediate": "Intermediário",
+  "time": "Tempo",
+  "twoHours": "2 horas",
+  "calendar": "Calendário",
+  "available": "Disponível",
+  "inscribeds": "Inscritos",
+  "search": "Buscar",
+  "profile": "Perfil",
+  "closeSession": "Sair"
 }

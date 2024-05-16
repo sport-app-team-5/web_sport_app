@@ -106,3 +106,16 @@ th {
 dd {
   margin: 0.8rem 0.8rem;
 }
+
+.close-screen {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: end;
+  padding-right: 37px;
+  padding-top: 15px;
+}
+
+.close-button{
+  border-bottom: 1px solid white;
+}

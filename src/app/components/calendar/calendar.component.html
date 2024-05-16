@@ -1,21 +1,18 @@
 <div class="continer-content">
-    <div class="info-style">Calendar</div>
-    <div class="description-style">Encontrarás los eventos deportivos a los que te has inscrito</div>
-    <div>
-    </div>
+    <div class="info-style">{{'calendar'| translate}}</div>
+    <div class="description-style">{{'findCalendarText'| translate }}</div> 
     <div>
         <div class="container-search">
             <igx-date-range-picker [(ngModel)]="range" class="datepicker-custom">
             </igx-date-range-picker>
-            <button class="secondary-button" (click)="searchEvents()"> Buscar</button>
+            <button class="secondary-button" (click)="searchEvents()"> {{'search'| translate}} </button>
         </div>
         <div class="container-content">
             <div class="column side-right">
-                <div>Disponibles</div>
+                <div>{{'available'| translate}} </div>
                 <div class="event-list">
                     <div class="event-list-item" *ngFor="let event of events" (click)="getDetails(event,true)"
-                        [class.subscribed]="isSubscribed(event)"
-                        (keydown)="handleKeyDown($event)">
+                        [class.subscribed]="isSubscribed(event)" (keydown)="handleKeyDown($event)">
                         <div [ngClass]='setClassAcitve(event.id)'></div>
                         <div class="event-date">{{ getDay(event.date) }}</div>
                         <div class="event-information">
@@ -28,11 +25,10 @@
                 </div>
             </div>
             <div class="column">
-                <div>Inscritos</div>
+                <div>{{'inscribeds'| translate}} </div>
                 <div class="event-list">
                     <div class="event-list-item" *ngFor="let event of suscribedEvents" (click)="getDetails(event,false)"
-                        [class.subscribed]="isSubscribed(event)"
-                        (keydown)="handleKeyDown($event)">
+                        [class.subscribed]="isSubscribed(event)" (keydown)="handleKeyDown($event)">
                         <div [ngClass]='setClassAcitve(event.id)'></div>
                         <div class="event-date">{{ getDay(event.date) }}</div>
                         <div class="event-information">
@@ -52,13 +48,13 @@
                         <div class="event-buttons" *ngIf="showButtonToSuscribe===true">
                             <button class="primary-button" (click)="subscribeToEvent(eventDatails)">Inscribirse</button>
                         </div>
-                        <div class="event-name-title">Nombre</div>
+                        <div class="event-name-title">{{'name'| translate}}</div>
                         <div class="event-name-text"> {{eventDatails.name}}</div>
-                        <div class="event-level-title"> Nivel </div>
-                        <div class="event-level-text"> Intermedio</div>
-                        <div class="event-time-title"> Tiempo </div>
-                        <div class="event-time-text"> 2 horas</div>
-                        <div class="event-location-title"> Ubicación </div>
+                        <div class="event-level-title"> {{'level'| translate}} </div>
+                        <div class="event-level-text"> {{'intermdiate' | translate}}</div>
+                        <div class="event-time-title"> {{'time'| translate}} </div>
+                        <div class="event-time-text"> {{'twoHours'| translate}}</div>
+                        <div class="event-location-title"> {{'eventListColumnLocation' | translate}} </div>
                         <div class="event-location-text">{{eventDatails.location}}</div>
                     </div>
                 </div>

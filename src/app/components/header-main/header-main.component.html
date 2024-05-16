@@ -11,22 +11,22 @@
     <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)" (click)="showProfile()">
       <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/user.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
       <a>
-        Perfil
+        {{'profile'| translate}}
       </a>
     </li>
 
     <li (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
       <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/languages.png" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
       <select id="select-language" (change)="switchLanguage($event)">
-        <option value="es">{{ 'spanish' | translate }}</option>
-        <option value="pt">{{ 'portuguese' | translate }}</option>
+        <option value="es" [attr.selected]="language === 'es' ? true : null"> {{ 'spanish' | translate }}</option>
+        <option value="pt" [attr.selected]="language === 'pt' ? true : null"> {{ 'portuguese' | translate }}</option>
       </select>
     </li>
 
     <li (click)="closeSession()" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
       <a>
         <img class="icon-menu" src="https://cdn-sport-app.s3.amazonaws.com/logout.svg" alt="icon-menu" (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)"/>
-        Cerrar sesión
+        {{'closeSession'| translate}}
       </a>
     </li>
   </ul>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { CalendarService } from './calendar.service';
 import { ToastrService } from 'ngx-toastr';
 import {
@@ -7,9 +7,10 @@ import {
   IgxDatePickerModule,
   IgxDateTimeEditorModule,
   IgxInputGroupModule,
-  IgxIconModule,DateRange
+  IgxIconModule, DateRange
 } from "igniteui-angular";
 import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-calendar',
@@ -22,12 +23,12 @@ import { FormsModule } from '@angular/forms';
     IgxDatePickerModule,
     IgxDateTimeEditorModule,
     IgxInputGroupModule,
-    IgxIconModule],
+    IgxIconModule,TranslateModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.css'
 
 })
-export class CalendarComponent {
+export class CalendarComponent implements OnInit {
   range: DateRange = { start: new Date(), end: new Date() };
   eventDatails: any = {}
   isEvetActive: any;
@@ -35,7 +36,25 @@ export class CalendarComponent {
   suscribedEvents: any = [];
   showButtonToSuscribe: boolean = false;
   risk: any;
-  constructor(private eventsService: CalendarService, private toastr: ToastrService) {
+  language: string = 'es';
+
+  constructor(
+    private eventsService: CalendarService,
+    private toastr: ToastrService,
+    public translate: TranslateService
+  ) { }
+
+  ngOnInit(): void {
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
 
   isSubscribed(event: any) {

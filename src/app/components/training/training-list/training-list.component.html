@@ -1,48 +1,58 @@
-<div class="continer-content">
-  <div>
-    <div class="info-style">{{'trainingListTitle' | translate}}</div>
-    <div class="description-style">{{'trainingListDescription' | translate}}</div>
+
+
+<div *ngIf="creatingTraining==false">
+  <div class="continer-content">
+    <div>
+      <div class="info-style">{{'trainingListTitle' | translate}}</div>
+      <div class="description-style">{{'trainingListDescription' | translate}}</div>
+    </div>
+    <div>
+      <button class="primary-button" (click)="createTraining()">{{'trainingListButtonCreateEvent'| translate}}</button>
+    </div>
   </div>
-  <div>
-    <button class="primary-button" (click)="createTraining()">{{'trainingListButtonCreateEvent'| translate}}</button>
+  <div class="container-tables">
+    <div class="table">
+      <table aria-describedby="food profile">
+        <thead>
+          <tr>
+            <th>{{'trainingListColumnName' | translate}}</th>
+            <th>{{'trainingListColumnSport' | translate}}</th>
+            <th>{{'trainingListColumnIntensity' | translate}}</th>
+            <th>{{'trainingListColumnSportDuration' | translate}}</th>
+            <th>{{'outsideHome' | translate}}</th>
+            <th>Recomendado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr" *ngFor="let training of trainings">
+            <td>
+              <dd>{{training.name| translate}}</dd>
+            </td>
+            <td>
+              <dd>{{training.sport | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{training.intensity | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{training.duration | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{getValueOfInsideHouse(training.is_inside_house)}}</dd>
+            </td>
+            <td>
+              <dd>{{training.recommended}}</dd>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
-<div class="container-tables">
-  <div class="table">
-    <table aria-describedby="food profile" >
-      <thead>
-      <tr>
-        <th>{{'trainingListColumnName' | translate}}</th>
-        <th>{{'trainingListColumnSport' | translate}}</th>
-        <th>{{'trainingListColumnIntensity' | translate}}</th>
-        <th>{{'trainingListColumnSportDuration' | translate}}</th>
-        <th>{{'outsideHome' | translate}}</th>
-        <th>Recomendado</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="tr" *ngFor="let training of trainings">
-        <td>
-          <dd>{{training.name| translate}}</dd>
-        </td>
-        <td>
-          <dd>{{training.sport | translate}}</dd>
-        </td>
-        <td>
-          <dd>{{training.intensity | translate}}</dd>
-        </td>
-        <td>
-          <dd>{{training.duration | translate}}</dd>
-        </td>
-        <td>
-          <dd>{{getValueOfInsideHouse(training.is_inside_house)}}</dd>
-        </td>
-        <td>
-          <dd>{{training.recommended}}</dd>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+<div class="close-screen" *ngIf="creatingTraining==true">
+  <button (click)="closeWindow()" class="close-button">Cerrar</button>
+</div>
+<div *ngIf="creatingTraining==true">
+  <app-training-create></app-training-create>
 </div>
