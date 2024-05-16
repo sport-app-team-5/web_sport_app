@@ -147,5 +147,9 @@
   "contactarme": "Entrar em contato",
   "sugerenciasenvioalimentacion" : "Sugerimos enviar sua alimentação:",
   "trainingListSuggestedTitle": "Treinamentos sugeridos",
-  "trainingListSuggestedDescription": "Aqui você encontrará todos os treinamentos sugeridos"
+  "trainingListSuggestedDescription": "Aqui você encontrará todos os treinamentos sugeridos",
+  "questionAppointmentSport": "Que tipo de consulta você deseja agendar?",
+  "questionAppointmentDate": "Em que data deseja agendar a consulta?",
+  "questionAppointmentService": "Que tipo de serviço você deseja agendar?",
+  "questionAppointmentInjury":  "Que tipo de desconforto você sente?"
 }

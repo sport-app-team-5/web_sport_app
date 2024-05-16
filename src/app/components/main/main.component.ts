@@ -12,23 +12,25 @@ import {TrainingListComponent} from "../training/training-list/training-list.com
 import { OfferServiceComponent } from '../offer-service/offer-service.component';
 import { MainService } from './main.service';
 import { RecommendationComponent } from '../recommendation/recommendation.component';
+import { ScheduleAppointmentComponent } from "../schedule-appointment/schedule-appointment.component";
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    HeaderMainComponent,
-    ProfileInformationComponent,
-    ClasificationRiskGroupComponent,
-    CalendarComponent,
-    EventCreateComponent,
-    EventListComponent,
-    TrainingListComponent,
-    OfferServiceComponent,
-    RecommendationComponent
-  ],
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.css'],
+    standalone: true,
+    imports: [
+        CommonModule,
+        HeaderMainComponent,
+        ProfileInformationComponent,
+        ClasificationRiskGroupComponent,
+        CalendarComponent,
+        EventCreateComponent,
+        EventListComponent,
+        TrainingListComponent,
+        OfferServiceComponent,
+        RecommendationComponent,
+        ScheduleAppointmentComponent
+    ]
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
@@ -54,8 +56,14 @@ export class MainComponent implements OnInit {
       this.isActiveMenu = value;
       this.isActiveProfile = false;
     });
-    this.setClassActiveSport('home')
-    this.setMenuActive('home');
+
+    if(this.role==="DEPO"){
+      this.setClassActiveSport('home');
+      this.setMenuActive('home');
+    }else{
+      this.setClassActiveSport('events');
+      this.setMenuActive('events');
+    }
   }
 
   getSession() {
@@ -83,7 +91,6 @@ export class MainComponent implements OnInit {
   }
 
   setMenuActive(value: any) {
-
     this.isActiveMenu = value;
     this.isActiveProfile = false;
   }
