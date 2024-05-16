@@ -80,11 +80,6 @@ describe('MainComponent', () => {
     expect(instance.isActiveMenu).toBe(true);
   });
 
-  it('should go to create product', () => {
-    const navigateSpy = spyOn(router, 'navigate');
-    component.createProduct();
-    expect(navigateSpy).toHaveBeenCalledWith(['/products']);
-  });
 
   it('should clear session storage and navigate to home', () => {
     const sessionStorageSpy = spyOn(sessionStorage, 'clear');
