@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgForOf } from "@angular/common";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { ToastrService } from "ngx-toastr";
-import { Router } from "@angular/router";
 import { TrainingService } from "../training.service";
 import { OfferServiceService } from '../../offer-service/offer-service.service';
 import { TrainingCreateComponent } from '../training-create/training-create.component';
