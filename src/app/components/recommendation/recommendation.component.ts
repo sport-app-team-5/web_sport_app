@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { RecommendationService } from './recommendation.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-recommendation',
@@ -11,12 +13,55 @@ import { TranslateModule } from '@ngx-translate/core';
     CommonModule,
     TranslateModule
   ],
-
+  providers: [RecommendationService],
 })
-export class RecommendationComponent {
 
-  constructor() { }
 
+
+export class RecommendationComponent implements OnInit {
+
+
+  constructor(private recommendationService: RecommendationService,  private toastr: ToastrService) { }
+
+  ngOnInit(): void {
+    this.getData();
+
+  }
+  getData() {
+    this.recommendationService.getProducts('Food').subscribe((data) => {
+      data.forEach((product: any) => {
+        this.processProduct(product);
+      });
+    });
+  }
+
+  processProduct(product: any): void {
+    this.foodData.forEach((food) => {
+      if (food.Name === product.category_food) {
+        if (product.allergies) {
+          this.addProduct(food, product);
+        }
+      }
+    });
+  }
+
+  addProduct(food: FoodData, product: any) {
+    const productAllergies = product.allergies.split(',').map((allergy: string) => allergy.trim());
+    const hasAllergy = food.Alergias.some((allergy: string) => productAllergies.includes(allergy));
+    if (!hasAllergy) {
+      food.Productos.push({
+        Name: product.name,
+        Description: product.description,
+        Cost: product.cost,
+        Allergies: productAllergies
+      });
+    }
+  }
+
+  callContactarme() {
+    this.toastr.success('Gracias por confiar en nosotros, pronto sera contactado por un agente', 'Contacto', {
+      timeOut: 3000
+    })  }
 
   foodData: FoodData[] = [
     {
@@ -31,7 +76,8 @@ export class RecommendationComponent {
             "Contribuyen a la hidratación y la rehidratación después del ejercicio debido a su alto contenido de agua."
         ],
         Alergias: [],
-        Imagen: "https://media.istockphoto.com/id/1318478175/es/foto/verduras-crudas-veganas-sobre-fondo-de-mesa-de-madera-verde.jpg?s=612x612&w=0&k=20&c=DQsf_t6jkIrt4x8Q5xFn-4p_TqAdXNTKh6CgVscrYQk="
+        Imagen: "https://media.istockphoto.com/id/1318478175/es/foto/verduras-crudas-veganas-sobre-fondo-de-mesa-de-madera-verde.jpg?s=612x612&w=0&k=20&c=DQsf_t6jkIrt4x8Q5xFn-4p_TqAdXNTKh6CgVscrYQk=",
+        Productos: []
 
     },
     {
@@ -46,7 +92,8 @@ export class RecommendationComponent {
             "Son una fuente conveniente de nutrientes esenciales para la recuperación y el crecimiento muscular."
         ],
         Alergias: ["Gluten"],
-        Imagen: "https://media.istockphoto.com/id/496564915/es/foto/pan-y-buns.jpg?s=612x612&w=0&k=20&c=v8SzuZIitjFLG8QCJosYOTBC8pD1U_FAiHSPI5MuuLg="
+        Imagen: "https://media.istockphoto.com/id/496564915/es/foto/pan-y-buns.jpg?s=612x612&w=0&k=20&c=v8SzuZIitjFLG8QCJosYOTBC8pD1U_FAiHSPI5MuuLg=",
+        Productos: []
 
     },
     {
@@ -61,7 +108,8 @@ export class RecommendationComponent {
             "La vitamina B12 es esencial para la producción de glóbulos rojos y la salud del sistema nervioso."
         ],
         Alergias: ["Lactose"],
-        Imagen: "https://media.istockphoto.com/id/544807136/es/foto/varios-productos-l%C3%A1cteos-frescos.jpg?s=2048x2048&w=is&k=20&c=vF5RhgZCZ70ygW6D_J6iveWYHb6PN-BZyw96YgvHhtI="
+        Imagen: "https://media.istockphoto.com/id/544807136/es/foto/varios-productos-l%C3%A1cteos-frescos.jpg?s=2048x2048&w=is&k=20&c=vF5RhgZCZ70ygW6D_J6iveWYHb6PN-BZyw96YgvHhtI=",
+        Productos: []
     },
     {
         Name: "Legumbres",
@@ -75,7 +123,8 @@ export class RecommendationComponent {
             "Contienen nutrientes esenciales para la salud cardiovascular y el mantenimiento de niveles de energía estables."
         ],
         Alergias: ["Soy"],
-        Imagen: "https://media.istockphoto.com/id/589415708/es/foto/frescos-de-frutas-y-verduras.jpg?s=1024x1024&w=is&k=20&c=KsR2LhK6Wo461aua3zZQvBIvlXZBTGWL97_rTSHw7Y0="
+        Imagen: "https://media.istockphoto.com/id/589415708/es/foto/frescos-de-frutas-y-verduras.jpg?s=1024x1024&w=is&k=20&c=KsR2LhK6Wo461aua3zZQvBIvlXZBTGWL97_rTSHw7Y0=",
+        Productos: []
     },
     {
         Name: "Aves de carne",
@@ -89,7 +138,8 @@ export class RecommendationComponent {
             "Las vitaminas del grupo B presentes en las aves de carne son esenciales para el metabolismo de la energía y la función nerviosa."
         ],
         Alergias: ["Peanuts", "Soy"],
-        Imagen: "https://media.istockphoto.com/id/1474105026/es/foto/carne-cruda-de-pato-lista-para-cocinar-filete-de-pechuga-patas-alas-fondo-negro-vista-superior.jpg?s=2048x2048&w=is&k=20&c=WFuS_iWqOclIGBQl2D7BZeiOfYioOmnNPC9Vw0w2fok="
+        Imagen: "https://media.istockphoto.com/id/1474105026/es/foto/carne-cruda-de-pato-lista-para-cocinar-filete-de-pechuga-patas-alas-fondo-negro-vista-superior.jpg?s=2048x2048&w=is&k=20&c=WFuS_iWqOclIGBQl2D7BZeiOfYioOmnNPC9Vw0w2fok=",
+        Productos: []
     }
 ];
 }
@@ -102,4 +152,12 @@ export interface FoodData {
   Alergias: string[];
   Imagen: string;
   Name: string;
+  Productos: OfferProducts[];
+}
+
+export interface OfferProducts {
+  Name: string;
+  Description: string;
+  Cost: number;
+  Allergies: string[];
 }

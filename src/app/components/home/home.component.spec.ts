@@ -17,7 +17,6 @@ describe('HomeComponent', () => {
   let translateService: TranslateService
 
   beforeEach(async () => {
-    const translateSpy = jasmine.createSpyObj('TranslateService', ['instant'])
     await TestBed.configureTestingModule({
       imports: [
         HomeComponent,
@@ -44,7 +43,6 @@ describe('HomeComponent', () => {
       ]
     }).compileComponents()
 
-    router = TestBed.inject(Router)
     fixture = TestBed.createComponent(HomeComponent)
 
     component = fixture.componentInstance
@@ -57,4 +55,13 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should switch the language', () => {
+    const event = { target: { value: 'en' } };
+    spyOn(translateService, 'use');
+
+    component.switchLanguage(event);
+
+    expect(translateService.use).toHaveBeenCalledWith('en');
+  });
 })

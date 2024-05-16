@@ -156,6 +156,15 @@
   "beneficios":"Beneficios:",
   "sport specialist": "Deportólogo",
   "questionDedicationTime": "¿Cuánto tiempo le dedicarías a tu entrenamiento?",
+  "carne": "Aves de carne",
+  "legumbres": "Legumbres",
+  "lacteos": "Productos lácteos",
+  "horneados": "Productos Horneados",
+  "vegetales": "Vegetales",
+  "questionProductCategoryFood": "¿A qué categoría pertenece el producto ofrecido?",
+  "questionAllergyFood": "¿Cuáles alergias están asociadas con el producto ofrecido?",
+  "contactarme": "Contactarme",
+  "sugerenciasenvioalimentacion" : "Te sugerimos enviar tu alimentación:",
   "trainingListSuggestedTitle": "Entrenamientos sugeridos",
   "trainingListSuggestedDescription": "Aquí encontrarás los entrenamientos sugeridos para ti"
 }
