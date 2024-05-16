@@ -48,6 +48,7 @@ export class OfferServiceComponent implements OnInit {
 
   switchLanguage(language: string): void {
     this.translate.use(language)
+    localStorage.setItem('lang', language);
   }
 
   changeMenuOption() {

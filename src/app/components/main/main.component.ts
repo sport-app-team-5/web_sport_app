@@ -14,6 +14,7 @@ import { MainService } from './main.service';
 import { RecommendationComponent } from '../recommendation/recommendation.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProductComponent } from '../product/product.component';
+import { AdditionalserviceComponent } from '../additionalservice/additionalservice.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -31,7 +32,8 @@ import { ProductComponent } from '../product/product.component';
     OfferServiceComponent,
     RecommendationComponent,
     TranslateModule,
-    ProductComponent
+    ProductComponent,
+    AdditionalserviceComponent
   ],
 })
 export class MainComponent implements OnInit {
@@ -43,6 +45,7 @@ export class MainComponent implements OnInit {
   isActiveProfile: boolean = false;
   language: string = '';
   isCreatingProduct: boolean = false;
+  creatingService: boolean = false;
 
   constructor(
     private router: Router,
@@ -103,7 +106,7 @@ export class MainComponent implements OnInit {
   }
 
   createService() {
-    this.router.navigate(['/services']);
+    this.creatingService = true;
   }
 
   createNutritionalInfo() {
@@ -113,6 +116,7 @@ export class MainComponent implements OnInit {
   openMenu() {
     this.isOpenMenu = !this.isOpenMenu;
   }
+
   closeSession() {
     sessionStorage.clear();
     this.router.navigate(['/']);
@@ -127,7 +131,12 @@ export class MainComponent implements OnInit {
     this.menuKeyDown = true;
   }
 
-  closeWindow(){
-    this.isCreatingProduct=false;
+  closeWindow() {
+    this.isCreatingProduct = false;
   }
+  
+  closeWindowService() {
+    this.creatingService = false;
+  }
+    
 }

@@ -53,6 +53,7 @@ export class SportsInformationComponent implements OnInit {
     itemsShowLimit: 2,
   };
   selectedOptions: any;
+  language: string = 'es';
 
   onItemSelect(item: any) {
     this.injuries.push(item.id);
@@ -71,11 +72,21 @@ export class SportsInformationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
 
   switchLanguage(language: string): void {
     this.translate.use(language);
+    localStorage.setItem('lang', language);
   }
 
   goToLogin() {

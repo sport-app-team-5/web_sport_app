@@ -8,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { DashboardService } from '../dashboard/dashboard.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -81,11 +82,10 @@ export class LoginComponent implements OnInit {
     if (typeof window !== 'undefined' && window.sessionStorage) {
       const token = response.access_token;
       sessionStorage.setItem('access_token', token);
-      // const decoded = jwtDecode<any>(response.access_token);
-      // let role = decoded.role;
-      let role='TECE'
+      const decoded = jwtDecode<any>(response.access_token);
+      let role = decoded.role;
       sessionStorage.setItem('role', role);
-      sessionStorage.setItem('user_id', '1');
+      sessionStorage.setItem('user_id', decoded.sub);
       this.toastr.success('Inicio de sesión éxitoso', 'Éxito', {
         timeOut: 3000,
       });

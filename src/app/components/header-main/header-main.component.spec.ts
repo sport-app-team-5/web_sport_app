@@ -61,4 +61,26 @@ describe('HeaderMainComponent', () => {
     let res = component.openMenuClass()
     expect(res.menu).toBe(true)
   })
+
+  it('should switch language and update isOpenMenu, language, and localStorage', () => {
+
+    const event = { target: { value: 'en' } };
+    spyOn(component.translate, 'use');
+    spyOn(localStorage, 'setItem');
+    component.switchLanguage(event);
+    expect(component.translate.use).toHaveBeenCalledWith('en');
+    expect(component.isOpenMenu).toBe(true);
+    expect(component.language).toBe('en');
+    expect(localStorage.setItem).toHaveBeenCalledWith('lang', 'en');
+  });
+it('should close session', () => {
+  spyOn(sessionStorage, 'clear');
+  spyOn(component.router, 'navigate');
+
+  component.closeSession();
+
+  expect(component.isOpenMenu).toBe(true);
+  expect(sessionStorage.clear).toHaveBeenCalled();
+  expect(component.router.navigate).toHaveBeenCalledWith(['/']);
+});
 })

@@ -86,7 +86,7 @@ export class EventCreateComponent implements OnInit {
   }
   constructor(
     private toastr: ToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private registerUserService: RegisterUserService,
     private eventService: EventService,
     private router: Router

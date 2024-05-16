@@ -22,7 +22,7 @@ export class EventListComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private toastr: ToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private router: Router
   ) { }
 
