@@ -58,11 +58,7 @@ describe('MainComponent', () => {
     expect(navigateSpy).toHaveBeenCalledWith(['/nutritional-information']);
   });
 
-  it('should go to create services', () => {
-    const navigateSpy = spyOn(router, 'navigate');
-    component.createService();
-    expect(navigateSpy).toHaveBeenCalledWith(['/services']);
-  });
+
   it('should setMenuAtive', () => {
     const instance = {
       isOpenMenu: true,
@@ -80,11 +76,6 @@ describe('MainComponent', () => {
     expect(instance.isActiveMenu).toBe(true);
   });
 
-  it('should go to create product', () => {
-    const navigateSpy = spyOn(router, 'navigate');
-    component.createProduct();
-    expect(navigateSpy).toHaveBeenCalledWith(['/products']);
-  });
 
   it('should clear session storage and navigate to home', () => {
     const sessionStorageSpy = spyOn(sessionStorage, 'clear');

@@ -6,12 +6,15 @@ import { ProfileInformationComponent } from '../profile-information/profile-info
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
 import { HeaderMainService } from '../header-main/header-main.service';
 import { CalendarComponent } from '../calendar/calendar.component';
-import {EventCreateComponent} from "../event/event-create/event-create.component";
-import {EventListComponent} from "../event/event-list/event-list.component";
-import {TrainingListComponent} from "../training/training-list/training-list.component";
+import { EventCreateComponent } from "../event/event-create/event-create.component";
+import { EventListComponent } from "../event/event-list/event-list.component";
+import { TrainingListComponent } from "../training/training-list/training-list.component";
 import { OfferServiceComponent } from '../offer-service/offer-service.component';
 import { MainService } from './main.service';
 import { RecommendationComponent } from '../recommendation/recommendation.component';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ProductComponent } from '../product/product.component';
+import { AdditionalserviceComponent } from '../additionalservice/additionalservice.component';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -27,24 +30,42 @@ import { RecommendationComponent } from '../recommendation/recommendation.compon
     EventListComponent,
     TrainingListComponent,
     OfferServiceComponent,
-    RecommendationComponent
+    RecommendationComponent,
+    TranslateModule,
+    ProductComponent,
+    AdditionalserviceComponent
   ],
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
-  isActiveMenu = 'home';
+  isActiveMenu = '';
   role: string | null = null;
   isEventsView = false;
   menuKeyDown: boolean = false;
   isActiveProfile: boolean = false;
+  language: string = '';
+  isCreatingProduct: boolean = false;
+  creatingService: boolean = false;
 
   constructor(
     private router: Router,
     private headerMainService: HeaderMainService,
-    private mainService: MainService
-  ) {}
+    private mainService: MainService,
+    public translate: TranslateService
+  ) { }
 
   ngOnInit() {
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
+
     this.getSession();
     this.headerMainService.getIsActiveProfile().subscribe((profile) => {
       this.isActiveProfile = profile;
@@ -55,6 +76,7 @@ export class MainComponent implements OnInit {
     });
     this.setClassActiveSport('home')
     this.setMenuActive('home');
+
   }
 
   getSession() {
@@ -79,13 +101,12 @@ export class MainComponent implements OnInit {
   }
 
   setMenuActive(value: any) {
-
     this.isActiveMenu = value;
     this.isActiveProfile = false;
   }
 
   createService() {
-    this.router.navigate(['/services']);
+    this.creatingService = true;
   }
 
   createNutritionalInfo() {
@@ -95,16 +116,27 @@ export class MainComponent implements OnInit {
   openMenu() {
     this.isOpenMenu = !this.isOpenMenu;
   }
+
   closeSession() {
     sessionStorage.clear();
     this.router.navigate(['/']);
   }
 
   createProduct() {
-    this.router.navigate(['/products']);
+    this.isCreatingProduct = true;
+
   }
 
   handleKeyDown($event: KeyboardEvent) {
     this.menuKeyDown = true;
   }
+
+  closeWindow() {
+    this.isCreatingProduct = false;
+  }
+  
+  closeWindowService() {
+    this.creatingService = false;
+  }
+    
 }

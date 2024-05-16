@@ -104,6 +104,7 @@ export class RegisterComponent implements OnInit {
   switchLanguage (event: any): void {
     const value = event.target.value;
     this.translate.use(value)
+    localStorage.setItem('lang', value)
   }
 
   getCountries(): void {

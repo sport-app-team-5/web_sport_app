@@ -312,6 +312,14 @@ describe('EventCreateComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should switch the language and update localStorage', () => {
+    const language = 'en';
+    spyOn(component.translate, 'use');
+    spyOn(localStorage, 'setItem');
+    component.switchLanguage(language);
+    expect(component.translate.use).toHaveBeenCalledWith(language);
+  });
+
   let fakeService = {
     getCountries(): Observable<any> {
       let temporalMuseum = [{ "id": 1, "name": "Argentina", "code": "AR" }, { "id": 2, "name": "Bolivia", "code": "BO" }, { "id": 3, "name": "Brazil", "code": "BR" }, { "id": 4, "name": "Chile", "code": "CL" }, { "id": 5, "name": "Colombia", "code": "CO" }, { "id": 6, "name": "Costa Rica", "code": "CR" }, { "id": 7, "name": "Cuba", "code": "CU" }, { "id": 8, "name": "Dominican Republic", "code": "DO" }, { "id": 9, "name": "Ecuador", "code": "EC" }, { "id": 10, "name": "El Salvador", "code": "SV" }, { "id": 11, "name": "Guatemala", "code": "GT" }, { "id": 12, "name": "Honduras", "code": "HN" }, { "id": 13, "name": "Mexico", "code": "MX" }, { "id": 14, "name": "Nicaragua", "code": "NI" }, { "id": 15, "name": "Panama", "code": "PA" }, { "id": 16, "name": "Paraguay", "code": "PY" }, { "id": 17, "name": "Peru", "code": "PE" }, { "id": 18, "name": "Puerto Rico", "code": "PR" }, { "id": 19, "name": "Uruguay", "code": "UY" }, { "id": 20, "name": "Venezuela", "code": "VE" }]

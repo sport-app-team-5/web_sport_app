@@ -62,6 +62,8 @@ getButtonClassesMeal(): any {
   foodPreference: string = ''
   allergies: Array<string> = [];
   validateAllergies: boolean = false
+  language: string = 'es';
+	
 
   dropdownSettings = {
     idField: 'id',
@@ -78,7 +80,16 @@ getButtonClassesMeal(): any {
   ) {}
 
   ngOnInit () {
-    this.switchLanguage('es')
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
     this.getAllergies()
   }
 
@@ -118,7 +129,8 @@ getButtonClassesMeal(): any {
   }
 
   switchLanguage (language: string): void {
-    this.translate.use(language)
+    this.translate.use(language);
+    localStorage.setItem('lang', language);
   }
 
   setCategory (value: any) {

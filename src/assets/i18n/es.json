@@ -180,5 +180,9 @@
   "contactarme": "Contactarme",
   "sugerenciasenvioalimentacion" : "Te sugerimos enviar tu alimentación:",
   "trainingListSuggestedTitle": "Entrenamientos sugeridos",
-  "trainingListSuggestedDescription": "Aquí encontrarás los entrenamientos sugeridos para ti"
+  "trainingListSuggestedDescription": "Aquí encontrarás los entrenamientos sugeridos para ti",
+  
+  "addService": "Agregar servicio",
+  "addProduct": "Agregar producto",
+  "numberGreaterThan1":"El número debe ser mayor o igual a 1"
 }

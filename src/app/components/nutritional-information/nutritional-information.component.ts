@@ -30,6 +30,7 @@ export class NutritionalInformationComponent implements OnInit {
   foodPreference: string = ''
   allergies: Array<number> = [];
   validateAllergies: boolean = false
+  language: string = 'es';
 
   constructor (
     private nutritionalInformationService: NutritionalInformationService,
@@ -40,7 +41,17 @@ export class NutritionalInformationComponent implements OnInit {
   ) {}
 
   ngOnInit () {
-    this.switchLanguage('es')
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
+
     this.getAllergies()
   } 
 
@@ -70,6 +81,7 @@ export class NutritionalInformationComponent implements OnInit {
 
   switchLanguage (language: string): void {
     this.translate.use(language)
+    localStorage.setItem('lang', language);
   }
 
   setFoodPreference (value: any) {

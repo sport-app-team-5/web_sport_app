@@ -111,6 +111,7 @@ button {
   align-items: center;
   gap: 20px;
   font-weight: 500;
+  color: var(--c-black-main);
 }
 
 .container-inputs {

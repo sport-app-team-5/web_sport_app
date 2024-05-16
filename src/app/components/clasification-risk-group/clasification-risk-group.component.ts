@@ -26,13 +26,14 @@ export class ClasificationRiskGroupComponent implements OnInit {
   basicPlanList: any = [];
   mediunPlanList: any = [];
   advancePlanList: any = [];
+  language: string = 'es';
 
   constructor(
-    private toastr: ToastrService,
-    private translate: TranslateService,
-    private casificationRiskGroupService: CasificationRiskGroupService,
-    private router: Router,
-    private getPlanService: GetplanService
+    public toastr: ToastrService,
+    public translate: TranslateService,
+    public casificationRiskGroupService: CasificationRiskGroupService,
+    public router: Router,
+    public getPlanService: GetplanService
   ) { }
 
   ngOnInit() {
@@ -40,12 +41,22 @@ export class ClasificationRiskGroupComponent implements OnInit {
     this.setMediunPlanList();
     this.setAdvancePlanList();
 
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
     this.getData();
   }
 
   switchLanguage(language: string): void {
     this.translate.use(language)
+    localStorage.setItem('lang', language);
   }
 
   setRecommendedPlan() {
@@ -78,7 +89,7 @@ export class ClasificationRiskGroupComponent implements OnInit {
   }
 
   selectPlan(plan: string) {
-    this.activePlan = plan;    
+    this.activePlan = plan;
     this.getPlanService.getPlan(plan).subscribe({
       next: (response) => {
         this.toastr.success('Exito comprando plan', 'Exito', {

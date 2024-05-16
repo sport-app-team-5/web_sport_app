@@ -8,6 +8,7 @@ import { HttpLoaderFactory } from '../../app.config';
 import { HttpClient } from '@angular/common/http';
 import { CasificationRiskGroupService } from './casification-risk-group.service'
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { of } from 'rxjs';
 
 describe('ClasificationRiskGroupComponent', () => {
   let component: ClasificationRiskGroupComponent;
@@ -31,9 +32,9 @@ describe('ClasificationRiskGroupComponent', () => {
           }
         })
       ],
-      providers: [CasificationRiskGroupService,TranslateService]
+      providers: [CasificationRiskGroupService, TranslateService]
     })
-
+    toastr = TestBed.inject(ToastrService);
     service = TestBed.inject(CasificationRiskGroupService)
     httpMock = TestBed.inject(HttpTestingController)
   });
@@ -55,29 +56,29 @@ describe('ClasificationRiskGroupComponent', () => {
   it('should set basicPlanList correctly', () => {
     component.setBasicPlanList();
     expect(component.basicPlanList).toEqual([
-      {"feature":"Seleccionar un plan"},
-      {"feature":"Agregar perfil deportivo"},
-      {"feature":"Agregar perfil alimenticio"},
-      {"feature":"Agregar perfil demográfico"},
-      {"feature":"Crear plan de entrenamiento"},
-      {"feature":"Realizar plan de entrenamiento"},
-      {"feature":"Inscribirse a eventos deportivos"}
+      { "feature": "Seleccionar un plan" },
+      { "feature": "Agregar perfil deportivo" },
+      { "feature": "Agregar perfil alimenticio" },
+      { "feature": "Agregar perfil demográfico" },
+      { "feature": "Crear plan de entrenamiento" },
+      { "feature": "Realizar plan de entrenamiento" },
+      { "feature": "Inscribirse a eventos deportivos" }
     ]);
   });
 
   it('should set mediunPlanList correctly', () => {
     component.setMediunPlanList();
     expect(component.mediunPlanList).toEqual([
-      {"feature":"Seleccionar un plan"},
-      {"feature":"Agregar perfil deportivo"},
-      {"feature":"Agregar perfil alimenticio"},
-      {"feature":"Agregar perfil demográfico"},
-      {"feature":"Crear plan de entrenamiento"},
-      {"feature":"Realizar plan de entrenamiento"},
-      {"feature":"Inscribirse a eventos deportivos"},
-      {"feature":"Recibir alertas de indicadores"},
-      {"feature":"Recibir sugerencias de eventos"},
-      {"feature":"Pago mensual de membresia"}
+      { "feature": "Seleccionar un plan" },
+      { "feature": "Agregar perfil deportivo" },
+      { "feature": "Agregar perfil alimenticio" },
+      { "feature": "Agregar perfil demográfico" },
+      { "feature": "Crear plan de entrenamiento" },
+      { "feature": "Realizar plan de entrenamiento" },
+      { "feature": "Inscribirse a eventos deportivos" },
+      { "feature": "Recibir alertas de indicadores" },
+      { "feature": "Recibir sugerencias de eventos" },
+      { "feature": "Pago mensual de membresia" }
     ]);
   });
 
@@ -85,18 +86,18 @@ describe('ClasificationRiskGroupComponent', () => {
   it('should set advancePlanList correctly', () => {
     component.setAdvancePlanList();
     expect(component.advancePlanList).toEqual([
-      {"feature":"Seleccionar un plan"},
-      {"feature":"Agregar perfil deportivo"},
-      {"feature":"Agregar perfil alimenticio"},
-      {"feature":"Agregar perfil demográfico"},
-      {"feature":"Crear plan de entrenamiento"},
-      {"feature":"Realizar plan de entrenamiento"},
-      {"feature":"Inscribirse a eventos deportivos"},
-      {"feature":"Recibir alertas de indicadores"},
-      {"feature":"Recibir sugerencias de eventos"},
-      {"feature":"Agendar citas con deportologos"},
-      {"feature":"Entrenamiento personalizado"},
-      {"feature":"Pago anual de membresia"}
+      { "feature": "Seleccionar un plan" },
+      { "feature": "Agregar perfil deportivo" },
+      { "feature": "Agregar perfil alimenticio" },
+      { "feature": "Agregar perfil demográfico" },
+      { "feature": "Crear plan de entrenamiento" },
+      { "feature": "Realizar plan de entrenamiento" },
+      { "feature": "Inscribirse a eventos deportivos" },
+      { "feature": "Recibir alertas de indicadores" },
+      { "feature": "Recibir sugerencias de eventos" },
+      { "feature": "Agendar citas con deportologos" },
+      { "feature": "Entrenamiento personalizado" },
+      { "feature": "Pago anual de membresia" }
     ]);
   });
   it('should set recommendedBasicPlan when sportManRisk is "Sin riesgo"', () => {
@@ -130,5 +131,75 @@ describe('ClasificationRiskGroupComponent', () => {
     expect(component.recommendedBasicPlan).toEqual('');
     expect(component.recommendedMediunPlan).toEqual('');
     expect(component.recommendedAdvancePlan).toEqual('Advance Plan');
+  });
+
+  it('should switch language and update localStorage', () => {
+    const language = 'en';
+    spyOn(component.translate, 'use');
+    spyOn(localStorage, 'setItem');
+
+    component.switchLanguage(language);
+
+    expect(component.translate.use).toHaveBeenCalledWith(language);
+    expect(localStorage.setItem).toHaveBeenCalledWith('lang', language);
+  });
+
+  it('should get data and set sportManRisk, sessionStorage and call setRecommendedPlan', () => {
+    const response = {
+      risk: 'Riesgo Medio',
+      id: '12345'
+    };
+    spyOn(component.casificationRiskGroupService, 'getRiskGroupService').and.returnValue(of(response));
+    spyOn(sessionStorage, 'setItem');
+    spyOn(component, 'setRecommendedPlan');
+    component.getData();
+    expect(component.sportManRisk).toEqual(response.risk);
+    expect(sessionStorage.setItem).toHaveBeenCalledWith('sportman_id', response.id);
+    expect(component.setRecommendedPlan).toHaveBeenCalled();
+  });
+
+  it('should show error toastr when getting risk group service fails', () => {
+    spyOn(component.casificationRiskGroupService, 'getRiskGroupService').and.returnValue(of('Error'));
+    spyOn(component.toastr, 'error');
+    component.getData();    
+  });
+
+
+  it('should select plan and navigate to home on success', () => {
+    // Arrange
+    const plan = 'Basic Plan';
+    spyOn(component.getPlanService, 'getPlan').and.returnValue(of({}));
+    spyOn(component.toastr, 'success');
+    spyOn(component.router, 'navigate');
+
+    // Act
+    component.selectPlan(plan);
+
+    // Assert
+    expect(component.activePlan).toEqual(plan);
+    expect(component.getPlanService.getPlan).toHaveBeenCalledWith(plan);
+    expect(component.toastr.success).toHaveBeenCalledWith('Exito comprando plan', 'Exito', {
+      timeOut: 3000
+    });
+    expect(component.router.navigate).toHaveBeenCalledWith(['/home']);
+  });
+
+  it('should show error toastr when getting plan fails', () => {
+
+    const plan = 'Basic Plan';
+    spyOn(component.getPlanService, 'getPlan').and.returnValue(of('Error obteniendo el plan'));
+
+    const spy = spyOn(toastr, 'error');
+
+    component.selectPlan(plan);
+
+    expect(component.activePlan).toEqual(plan);
+    expect(component.getPlanService.getPlan).toHaveBeenCalledWith(plan);    
+  });
+
+  it('should set risk to "Riesgo gourmet" when handleKeyDown is called with a KeyboardEvent', () => {
+    const event = new KeyboardEvent('keydown');
+    component.handleKeyDown(event);
+    expect(component.risk).toEqual('Riesgo gourmet');
   });
 });
