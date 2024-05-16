@@ -16,23 +16,34 @@ import {DemographyProfile} from "./demography-profile";
   styleUrl: './demography-profile.component.css'
 })
 export class DemographyProfileComponent implements OnInit {
+  language: string = 'es';
   constructor (
     private demographyProfileService: DemographyProfileService,
     private toastr: ToastrService,
-    private translate: TranslateService
+    public translate: TranslateService
   ) {}
 
   profile: DemographyProfile | undefined
   user: any
 
   ngOnInit() {
-    this.switchLanguage('es')
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
     this.getProfile()
     this.getUser()
   }
 
   switchLanguage (language: string): void {
-    this.translate.use(language)
+    this.translate.use(language);
+    localStorage.setItem('lang', language);
   }
 
   getProfile(): void {

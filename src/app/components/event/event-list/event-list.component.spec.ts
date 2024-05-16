@@ -56,4 +56,12 @@ describe('EventListComponent', () => {
 
     expect(component.events).toEqual(mockEvents);
   });
+  it('should switch the language and update localStorage', () => {
+    const language = 'en';
+    spyOn(component.translate, 'use');
+    spyOn(localStorage, 'setItem');
+    component.switchLanguage(language);
+    expect(component.translate.use).toHaveBeenCalledWith(language);
+
+  });
 });

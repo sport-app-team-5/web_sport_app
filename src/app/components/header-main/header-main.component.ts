@@ -2,32 +2,31 @@ import { CommonModule } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { HeaderMainService } from './header-main.service'
-import {FormsModule} from "@angular/forms";
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import { FormsModule } from "@angular/forms";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-header-main',
   templateUrl: './header-main.component.html',
   styleUrls: ['./header-main.component.css'],
   standalone: true,
-    imports: [CommonModule, FormsModule, TranslateModule]
+  imports: [CommonModule, FormsModule, TranslateModule]
 })
 export class HeaderMainComponent implements OnInit {
   isOpenMenu: boolean = false
   isActiveProfile: boolean = false
-  role: string =''
+  role: string = ''
   menuKeyDown: boolean = false
-  language:string = 'es';
+  language: string = 'es';
 
-  constructor (
-    private router: Router,
+  constructor(
+    public router: Router,
     private headerMainService: HeaderMainService,
-    private translate: TranslateService
-  ) {}
+    public translate: TranslateService
+  ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     this.start()
-  
     if (typeof localStorage !== 'undefined') {
       let idioma = localStorage.getItem('lang');
       if (idioma != null) {
@@ -40,25 +39,25 @@ export class HeaderMainComponent implements OnInit {
     }
   }
 
-  start () {
+  start() {
     if (typeof window !== 'undefined' && window.sessionStorage) {
       this.role = sessionStorage.getItem('role') ?? '';
     }
     return true
   }
 
-  openMenuClass () {
+  openMenuClass() {
     return {
       menu: true,
       'show-menu': this.isOpenMenu
     }
   }
 
-  openMenu () {
+  openMenu() {
     this.isOpenMenu = !this.isOpenMenu
   }
 
-  closeSession () {
+  closeSession() {
     this.isOpenMenu = !this.isOpenMenu
     sessionStorage.clear()
     this.router.navigate(['/'])
@@ -74,7 +73,7 @@ export class HeaderMainComponent implements OnInit {
     this.menuKeyDown = true
   }
 
-  switchLanguage (event: any): void {
+  switchLanguage(event: any): void {
     const value = event.target.value;
     this.translate.use(value);
     this.isOpenMenu = !this.isOpenMenu

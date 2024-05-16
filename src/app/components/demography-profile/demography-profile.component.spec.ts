@@ -74,6 +74,16 @@ describe('DemographyProfileComponent', () => {
       component.getUser()
       expect(component).toBeTruthy()
     })
+
+    it('should switch the language and update localStorage', () => {
+      const language = 'en';
+      spyOn(component.translate, 'use');
+      spyOn(localStorage, 'setItem');
+      component.switchLanguage(language);
+      expect(component.translate.use).toHaveBeenCalledWith(language);
+      expect(localStorage.setItem).toHaveBeenCalledWith('lang', language);
+    });
   })
+
 })
 

@@ -89,8 +89,9 @@
       <div class="button-end">
         <button *ngIf="isActiveMenu === 'products' && isCreatingProduct==false" class="primary-button"
           (click)="createProduct()">{{'addProduct'| translate}} </button>
-        <button *ngIf="isActiveMenu === 'services'" class="primary-button" (click)="createService()"> {{'addService'|
-          translate}} </button>
+        <button *ngIf="isActiveMenu === 'services' && creatingService===false" class="primary-button"
+         (click)="createService()"> {{'addService'| translate}}
+        </button>
       </div>
       <div>
         <div *ngIf="role === 'DEPO' && isActiveMenu=='home' && !isActiveProfile">
@@ -122,7 +123,12 @@
           <button (click)="closeWindow()" class="close-button">Cerrar</button>
         </div>
         <app-product></app-product>
-
+      </div>
+      <div *ngIf="creatingService===true">
+        <div class="close-screen">
+          <button (click)="closeWindowService()" class="close-button">Cerrar</button>
+        </div>
+        <app-additionalservice></app-additionalservice>
       </div>
       <div *ngIf="role === 'DEPO' && isActiveMenu === 'appointmetnts' && !isActiveProfile">
         <app-schedule-appointment></app-schedule-appointment>

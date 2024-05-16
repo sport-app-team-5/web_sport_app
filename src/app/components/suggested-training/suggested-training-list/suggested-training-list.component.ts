@@ -18,7 +18,7 @@ import {OfferServiceService} from "../../offer-service/offer-service.service";
 export class SuggestedTrainingListComponent implements OnInit {
   suggestedTrainings: any[] = [];
   isChecked: boolean = false;
-
+  language: string = 'es';
   constructor(
     private suggestedTrainingService: SuggestedTrainingService,
     private toastr: ToastrService,
@@ -27,12 +27,22 @@ export class SuggestedTrainingListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
     this.getSuggestedTrainings();
   }
 
   switchLanguage(language: string): void {
     this.translate.use(language)
+    localStorage.setItem('lang', language);
   }
 
   getSuggestedTrainings() {
