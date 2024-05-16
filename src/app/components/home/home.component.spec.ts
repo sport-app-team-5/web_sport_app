@@ -57,4 +57,13 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy()
   })
+
+  it('should switch the language', () => {
+    const event = { target: { value: 'es' } };
+    spyOn(translateService, 'use');
+
+    component.switchLanguage(event);
+
+    expect(translateService.use).toHaveBeenCalledWith('es');
+  });
 })
