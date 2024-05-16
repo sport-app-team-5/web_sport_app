@@ -1,25 +1,37 @@
 import { Component, OnInit } from '@angular/core'
-import { TranslateService,TranslateModule } from '@ngx-translate/core'
+import { TranslateService, TranslateModule } from '@ngx-translate/core'
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.css', '../offer-service/offer-service.component.css'],
   standalone: true,
-   imports: [TranslateModule]
+  imports: [TranslateModule]
 })
 export class HomeComponent implements OnInit {
-  constructor (
-    private translate: TranslateService
-  ) {}
+  language: string = 'es';
 
-  ngOnInit () {
-    this.translate.setDefaultLang('es');
+  constructor(
+    private translate: TranslateService
+  ) { }
+
+  ngOnInit() {
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
 
-  switchLanguage (event: any): void {
+  switchLanguage(event: any): void {
     const value = event.target.value;
     this.translate.use(value)
+    localStorage.setItem('lang', value);
   }
 }

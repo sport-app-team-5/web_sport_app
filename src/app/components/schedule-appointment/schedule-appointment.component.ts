@@ -14,14 +14,15 @@ import {ToastrService} from "ngx-toastr";
 export class ScheduleAppointmentComponent implements OnInit {
 
 
+  formData: any = {}
   currentStep: number = 1;
-  cost: FormControl = new FormControl('', [Validators.required])
-  name: FormControl = new FormControl('', [Validators.required])
-  description: FormControl = new FormControl('', [Validators.required])
+  service: FormControl = new FormControl('', [Validators.required])
+  injury: FormControl = new FormControl('', [Validators.required])
+  sport: FormControl = new FormControl('', [Validators.required])
+  datetimecustom = new FormControl(this.getDefaultValue(), [Validators.required, this.validateDate])
   activateErrorMessageForCategory: boolean = false
   sportSpecialist: any = [];
   injuries: any = [];
-  sport: string = '';
 
   constructor(
     private toastr: ToastrService,
@@ -67,23 +68,18 @@ export class ScheduleAppointmentComponent implements OnInit {
       }
     } else if (this.currentStep === 3) {
       if (this.validateStep3()) {
+        this.currentStep++
+      }
+    }
+    else if (this.currentStep === 4) {
+      if (this.validateStep4()) {
         // this.saveProductData()
       }
     }
   }
 
-  getButtonClassesSports(value: string) {
-    return {
-      'question-button': true,
-      'active-button': this.sport === value
-    }
-  }
-  setSport(arg0: string) {
-  throw new Error('Method not implemented.');
-  }
-
   validateStep1 () {
-    if (this.description) {
+    if (this.sport) {
       return true
     } else {
       this.activateErrorMessageForCategory = true
@@ -92,21 +88,86 @@ export class ScheduleAppointmentComponent implements OnInit {
   }
 
   validateStep2 () {
-    if (this.name && this.name.errors === null) {
+    if (this.service && this.service.errors === null) {
       return true
     } else {
-      this.name.markAsTouched()
+      this.service.markAsTouched()
+      return false;
     }
-    return true
   }
 
   validateStep3 () {
-    if (this.cost && this.cost.errors === null) {
+    if (this.injury && this.injury.errors === null) {
       return true
     } else {
-      this.cost.markAsTouched()
+      this.injury.markAsTouched()
       return false
     }
   }
 
+  validateStep4 () {
+    if (this.datetimecustom && this.datetimecustom.errors === null) {
+      return true
+    } else {
+      this.datetimecustom.markAsTouched()
+      return false
+    }
+  }
+
+  validateDate(control: { value: string | number | Date; }) {
+    const fechaIngresada = new Date(control.value);
+    return fechaIngresada && isNaN(fechaIngresada.getTime()) ? { 'fechaInvalida': true } : null;
+  }
+
+  getDefaultValue() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 2);
+    return tomorrow.toISOString().slice(0, 16);
+  }
+
+  getMinValue() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().slice(0, 16);
+  }
+  getMaxValue() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 365);
+    return tomorrow.toISOString().slice(0, 16);
+  }
+
+  getButtonClassesSports(value: string) {
+    return {
+      'question-button': true,
+      //'active-button': this.sport === value
+    }
+  }
+  setSport(arg0: string) {
+  throw new Error('Method not implemented.');
+  }
+
+  changeValueForm (e: any) {
+    const name = e.target.name
+    this.formData[name] = e.target.value
+  }
+
+  // saveProductData () {
+  //   this.productService.createProduct(this.formData).subscribe({
+  //     next: this.handleUpdateResponse.bind(this),
+  //     complete: this.cleanData.bind(this),
+  //     error: this.handleError.bind(this)
+  //   })
+  // }
+
+  cleanData(){
+    this.formData = {}
+    this.sport = new FormControl('', [Validators.required])
+    this.service = new FormControl('', [Validators.required])
+    this.injuries = new FormControl('', [Validators.required])
+    this.datetimecustom = new FormControl('', [Validators.required])
+    this.activateErrorMessageForCategory = false
+  }
 }

@@ -6,48 +6,65 @@ import { ProfileInformationComponent } from '../profile-information/profile-info
 import { ClasificationRiskGroupComponent } from '../clasification-risk-group/clasification-risk-group.component';
 import { HeaderMainService } from '../header-main/header-main.service';
 import { CalendarComponent } from '../calendar/calendar.component';
-import {EventCreateComponent} from "../event/event-create/event-create.component";
-import {EventListComponent} from "../event/event-list/event-list.component";
-import {TrainingListComponent} from "../training/training-list/training-list.component";
+import { EventCreateComponent } from "../event/event-create/event-create.component";
+import { EventListComponent } from "../event/event-list/event-list.component";
+import { TrainingListComponent } from "../training/training-list/training-list.component";
 import { OfferServiceComponent } from '../offer-service/offer-service.component';
 import { MainService } from './main.service';
 import { RecommendationComponent } from '../recommendation/recommendation.component';
-import { ScheduleAppointmentComponent } from "../schedule-appointment/schedule-appointment.component";
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ProductComponent } from '../product/product.component';
+import { ScheduleAppointmentComponent } from '../schedule-appointment/schedule-appointment.component';
 @Component({
-    selector: 'app-main',
-    templateUrl: './main.component.html',
-    styleUrls: ['./main.component.css'],
-    standalone: true,
-    imports: [
-        CommonModule,
-        HeaderMainComponent,
-        ProfileInformationComponent,
-        ClasificationRiskGroupComponent,
-        CalendarComponent,
-        EventCreateComponent,
-        EventListComponent,
-        TrainingListComponent,
-        OfferServiceComponent,
-        RecommendationComponent,
-        ScheduleAppointmentComponent
-    ]
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    HeaderMainComponent,
+    ProfileInformationComponent,
+    ClasificationRiskGroupComponent,
+    CalendarComponent,
+    EventCreateComponent,
+    EventListComponent,
+    TrainingListComponent,
+    OfferServiceComponent,
+    RecommendationComponent,
+    TranslateModule,
+    ProductComponent,
+    ScheduleAppointmentComponent
+  ],
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
-  isActiveMenu = 'home';
+  isActiveMenu = '';
   role: string | null = null;
   isEventsView = false;
   menuKeyDown: boolean = false;
   isActiveProfile: boolean = false;
+  language: string = '';
+  isCreatingProduct: boolean = false;
 
   constructor(
     private router: Router,
     private headerMainService: HeaderMainService,
-    private mainService: MainService
-  ) {}
+    private mainService: MainService,
+    public translate: TranslateService
+  ) { }
 
   ngOnInit() {
-    this.start();
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
+
     this.getSession();
     this.headerMainService.getIsActiveProfile().subscribe((profile) => {
       this.isActiveProfile = profile;
@@ -72,9 +89,6 @@ export class MainComponent implements OnInit {
     }
   }
 
-  start() {
-    return true;
-  }
 
   setClassActiveSport(option: string) {
     return {
@@ -112,10 +126,15 @@ export class MainComponent implements OnInit {
   }
 
   createProduct() {
-    this.router.navigate(['/products']);
+    this.isCreatingProduct = true;
+
   }
 
   handleKeyDown($event: KeyboardEvent) {
     this.menuKeyDown = true;
+  }
+
+  closeWindow(){
+    this.isCreatingProduct=false;
   }
 }

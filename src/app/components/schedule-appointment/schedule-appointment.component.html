@@ -1,7 +1,7 @@
 <main class="wrapper">
   <div  class="container-services" *ngIf="currentStep === 1">
     <div class="question">{{"questionAppointmentSport" | translate}} </div>
-    <select>
+    <select [formControl]="sport" id="selectSportSpecialist">
       <option value="Athletics">{{'Athletics' | translate}}</option>
       <option value="Cycling">{{'Cycling' | translate}}</option>
       <div class="container-buttons">
@@ -20,7 +20,7 @@
 
   <div *ngIf="currentStep == 2" class="container-services">
     <div class="question">{{"questionAppointmentService" | translate}} </div>
-    <select id="selectSportSpecialist">
+    <select [formControl]="service" id="selectSportSpecialist">
       <option *ngFor="let item of sportSpecialist" [value]="item.name">{{item.name}}</option>
     </select>
     <div *ngIf="activateErrorMessageForCategory">
@@ -30,11 +30,21 @@
 
   <div *ngIf="currentStep == 3" class="container-services">
     <div class="question">{{"questionAppointmentInjury" | translate}} </div>
-    <select id="selectInjuries">
+    <select [formControl]="injury" id="selectInjuries">
       <option *ngFor="let item of injuries" [value]="item.name">{{item.name}}</option>
     </select>
     <div *ngIf="activateErrorMessageForCategory">
       <span class="error">{{ 'fieldRequired' | translate}}</span>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 4" class="container-services">
+    <div class="question">{{"date" | translate}} </div>
+    <input type="datetime-local" id="datetimecustom" name="datetimecustom" [min]="getMinValue()"
+           [max]="getMaxValue()" [formControl]="datetimecustom" />
+
+    <div *ngIf="datetimecustom.invalid && (datetimecustom.dirty || datetimecustom.touched)">
+      <span class="error" *ngIf="datetimecustom.errors?.['required']">{{'fieldRequired'| translate}} </span>
     </div>
   </div>
 
@@ -43,7 +53,7 @@
       {{'back'| translate}}
     </button>
     <button class="primary-button" (click)="nextStep()">
-      {{ currentStep === 3 ? ('registerForm' | translate) : ('next' | translate) }}
+      {{ currentStep === 4 ? ('registerForm' | translate) : ('next' | translate) }}
     </button>
   </div>
 </main>

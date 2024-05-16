@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
   formData: any = {};
+  language: string = 'es';
 
   constructor(
     private toastr: ToastrService,
@@ -29,9 +30,17 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.translate.setDefaultLang('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
-
   switchLanguage (event: any): void {
     const value = event.target.value;
     this.translate.use(value)

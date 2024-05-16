@@ -103,6 +103,7 @@ button {
 }
 
 .primary-button {
+  color: var(--c-black);
   border-radius: 38px;
   background: var(--c-green-ligth);
   display: flex;

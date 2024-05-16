@@ -168,4 +168,46 @@ describe('CalendarComponent', () => {
     component.handleResponseSuscribedEvents(mockResponse);
     expect(component.suscribedEvents).toEqual(mockResponse);
   });
+
+  it('should set the default language to the value stored in localStorage', () => {
+    const mockLanguage = 'en';
+    spyOn(localStorage, 'getItem').and.returnValue(mockLanguage);
+    spyOn(component.translate, 'setDefaultLang');
+    
+    component.ngOnInit();
+    
+    expect(localStorage.getItem).toHaveBeenCalledWith('lang');
+    expect(component.translate.setDefaultLang).toHaveBeenCalledWith(mockLanguage);
+    expect(component.language).toEqual(mockLanguage);
+  });
+  
+  it('should set the default language to "es" if no value is stored in localStorage', () => {
+    spyOn(localStorage, 'getItem').and.returnValue(null);
+    spyOn(component.translate, 'setDefaultLang');
+    
+    component.ngOnInit();
+    
+    expect(localStorage.getItem).toHaveBeenCalledWith('lang');
+    expect(component.translate.setDefaultLang).toHaveBeenCalledWith('es');
+    expect(component.language).toEqual('es');
+  });
+
+  it('should return true if events array is not empty', () => {
+    component.events = [{ id: 1, name: 'Event 1' }];
+    const result = component.isSubscribed({});
+    expect(result).toBe(true);
+  });
+  
+  it('should return false if events array is empty', () => {
+    component.events = [];
+    const result = component.isSubscribed({});
+    expect(result).toBe(false);
+  });
+
+  it('should set the risk to "Riesgo gourmet" when a key is pressed', () => {
+    const event = new KeyboardEvent('keydown');
+    component.handleKeyDown(event);
+    expect(component.risk).toEqual('Riesgo gourmet');
+  });
+  
 });
