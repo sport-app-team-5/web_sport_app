@@ -160,5 +160,8 @@
   "contactarme": "Entrar em contato",
   "sugerenciasenvioalimentacion" : "Sugerimos enviar sua alimentação:",
   "trainingListSuggestedTitle": "Treinamentos sugeridos",
-  "trainingListSuggestedDescription": "Aqui você encontrará todos os treinamentos sugeridos"
+  "trainingListSuggestedDescription": "Aqui você encontrará todos os treinamentos sugeridos",
+  "addService": "Adicionar serviço",
+  "addProduct": "Adicionar produto",
+  "numberGreaterThan1": "O número deve ser maior ou igual a 1"
 }

@@ -185,9 +185,22 @@ button {
 
 .container-logout {
     margin-top: auto;
-    padding-bottom: 36px;
+    padding-bottom: 5px;
 }
 
 .main-content {
     overflow-y: auto;
 }
+
+.close-screen {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: end;
+    padding-right: 37px;
+    padding-top: 15px;
+  }
+  
+  .close-button{
+    border-bottom: 1px solid white;
+  }
