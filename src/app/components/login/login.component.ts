@@ -61,8 +61,7 @@ export class LoginComponent implements OnInit {
     this.formData[name] = value;
   }
 
-  userLogin() {
-    this.handleUpdateResponse({access_token: 'token' })
+  userLogin() {   
     if (this.email.value && this.password.value) {
       this.loginService.login(this.formData).subscribe({
         next: this.handleUpdateResponse.bind(this),

@@ -108,6 +108,11 @@
       <div *ngIf="role === 'DEPO' && isActiveMenu === 'recommendation' && !isActiveProfile">
         <app-recommendation></app-recommendation>
       </div>
+      <div>
+        <div *ngIf="role === 'TECE' && isActiveMenu=='home' && !isActiveProfile">
+          <app-event-list></app-event-list>
+        </div>
+      </div>
       <div *ngIf="role === 'TECE' && isActiveMenu === 'events'">
         <app-event-list></app-event-list>
       </div>
