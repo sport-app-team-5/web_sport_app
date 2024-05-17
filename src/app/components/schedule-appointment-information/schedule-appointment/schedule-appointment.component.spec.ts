@@ -3,11 +3,11 @@ import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
-import {HttpLoaderFactory} from "../../app.config";
+import {HttpLoaderFactory} from "../../../app.config";
 import {ScheduleAppointmentComponent} from "./schedule-appointment.component";
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
-import {ScheduleAppointmentService} from "./schedule-appointment.service";
+import {ScheduleAppointmentService} from "../schedule-appointment.service";
 
 describe('ScheduleAppointmentComponent', () => {
   let component: ScheduleAppointmentComponent

@@ -3,7 +3,7 @@ import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angula
 import {CommonModule} from "@angular/common";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ToastrService} from "ngx-toastr";
-import {ScheduleAppointmentService} from "./schedule-appointment.service";
+import {ScheduleAppointmentService} from "../schedule-appointment.service";
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,6 +26,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   sportSpecialist: any = [];
   sportSelected: string = '';
   injuries: any = [];
+  appoinmentDate: string = '';
 
   constructor(
     private toastr: ToastrService,
@@ -36,6 +37,7 @@ export class ScheduleAppointmentComponent implements OnInit {
 
   ngOnInit() {
     this.switchLanguage('es');
+
     this.sportSpecialist = [
       { id:"1", name: 'Especialista en rodilla', sport: 'Basketball' },
       { id:"2", name: 'Especialista en miembros superiores', sport: 'Tennis' },
@@ -78,16 +80,17 @@ export class ScheduleAppointmentComponent implements OnInit {
     }
     else if (this.currentStep === 4) {
       if (this.validateStep4()) {
-        // this.saveProductData()
+         this.saveAppointmentData()
       }
     }
   }
 
   validateStep1 () {
-    if (this.sport) {
+    if (this.sport && this.sport.errors === null) {
       return true
     } else {
       this.activateErrorMessageForCategory = true
+      this.service.markAsTouched()
       return false
     }
   }
@@ -96,15 +99,18 @@ export class ScheduleAppointmentComponent implements OnInit {
     if (this.service && this.service.errors === null) {
       return true
     } else {
+      this.activateErrorMessageForCategory = true
       this.service.markAsTouched()
       return false;
     }
   }
 
   validateStep3 () {
+
     if (this.injury && this.injury.errors === null) {
       return true
     } else {
+      this.activateErrorMessageForCategory = true
       this.injury.markAsTouched()
       return false
     }
@@ -114,6 +120,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     if (this.datetimecustom && this.datetimecustom.errors === null) {
       return true
     } else {
+      this.activateErrorMessageForCategory = true
       this.datetimecustom.markAsTouched()
       return false
     }
@@ -144,22 +151,25 @@ export class ScheduleAppointmentComponent implements OnInit {
     return tomorrow.toISOString().slice(0, 16);
   }
 
-  getButtonClassesSports(value: string) {
-    return {
-      'question-button': true,
-      'active-button': this.sportSelected === value
-    }
-  }
-  setSport(arg0: string) {
-  throw new Error('Method not implemented.');
-  }
-
   changeValueForm (e: any) {
+    console.log("Antes", this.formData)
     const name = e.target.name
     this.formData[name] = e.target.value
+    console.log("Después", this.formData)
+  }
+
+  setAppointmentDate () {
+    this.formData['appointment_date'] = this.datetimecustom.value ?? ''
+    this.activateErrorMessageForCategory = false
   }
 
   saveAppointmentData () {
+    const sportman_id = sessionStorage.getItem('sportman_id')
+    this.formData['sportman_id'] = sportman_id;
+    this.setAppointmentDate()
+
+    console.log("Final", this.formData);
+
     this.scheduleAppointmentService.createScheduleAppointment(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       complete: this.cleanData.bind(this),

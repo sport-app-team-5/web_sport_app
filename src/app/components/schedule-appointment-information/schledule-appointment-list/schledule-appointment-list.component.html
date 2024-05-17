@@ -1,0 +1,53 @@
+<div *ngIf="creatingSchedule===false">
+  <div class="continer-content">
+    <div>
+      <div class="info-style">{{'appointmentListTitle' | translate}}</div>
+      <div class="description-style">{{'appointmentListDescription' | translate}}</div>
+    </div>
+    <div>
+      <button class="primary-button" (click)="createAppointment()">{{'appointmentListButtonCreateEvent'| translate}}</button>
+    </div>
+  </div>
+
+  <div class="container-tables">
+    <div class="table">
+      <table aria-describedby="food profile">
+        <thead>
+          <tr>
+            <th>{{'appointmentListColumnName' | translate}}</th>
+            <th>{{'appointmentListColumnDate' | translate}}</th>
+            <th>{{'appointmentListColumnInjury' | translate}}</th>
+            <th>{{'appointmentListColumnService' | translate}}</th>
+            <th>{{'appointmentListColumnSport' | translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr" *ngFor="let appointment of appointments">
+            <td>
+              <dd>{{appointment.name| translate}}</dd>
+            </td>
+            <td>
+              <dd>{{appointment.date | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{appointment.injury | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{appointment.Service | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{appointment.sport | translate}}</dd>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="creatingSchedule===true">
+  <div class="close-screen">
+    <button (click)="closeWindow()" class="close-button">Cerrar</button>
+  </div>
+  <app-schedule-appointment></app-schedule-appointment>
+</div>

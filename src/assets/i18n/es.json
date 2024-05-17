@@ -187,5 +187,16 @@
   "questionAppointmentInjury":  "¿Qué tipo molestias tienes?",
   "addService": "Agregar servicio",
   "addProduct": "Agregar producto",
-  "numberGreaterThan1":"El número debe ser mayor o igual a 1"
+  "numberGreaterThan1":"El número debe ser mayor o igual a 1",
+  "close": "Cerrar",
+  "productListTitle": "Lista de productos",
+  "productListDescription": "Aquí encontrarás los productos creados",
+  "productListButtonCreateProduct": "Crear producto",
+  "productListColumnName" : "Nombre",
+  "productListColumnCategory" : "Categoría",
+  "productListColumnCost" : "Costo",
+  "productListColumnDescription" : "Descripción",
+  "Supplements": "Suplementos",
+  "SportsEquipment": "Equipo deportivo",
+  "Food": "Alimentos"
 }

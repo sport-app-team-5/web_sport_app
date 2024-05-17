@@ -22,4 +22,16 @@ export class ProductService {
 
     return this.http.post(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/products', data, { headers })
   }
+
+  getProducts(): Observable<any> {
+    let token = null
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      token = sessionStorage.getItem('access_token')
+    }
+
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    })
+    return this.http.get(API_ADDITIONAL_SERVICE_BASE_URL + 'auth/products/get', { headers })
+  }
 }

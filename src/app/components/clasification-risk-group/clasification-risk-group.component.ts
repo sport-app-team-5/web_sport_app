@@ -4,7 +4,6 @@ import { ToastrService } from 'ngx-toastr'
 import { CasificationRiskGroupService } from './casification-risk-group.service'
 import { Router } from '@angular/router'
 import { CommonModule } from '@angular/common';
-import { GetplanService } from './getplan.service';
 
 @Component({
   selector: 'app-clasification-risk-group',
@@ -15,6 +14,7 @@ import { GetplanService } from './getplan.service';
 })
 export class ClasificationRiskGroupComponent implements OnInit {
 
+
   risk: string = '';
   sportManRisk: string = '';
   recommendedPlan: string = '(Recomendado)';
@@ -23,6 +23,7 @@ export class ClasificationRiskGroupComponent implements OnInit {
   recommendedAdvancePlan: string = '';
 
   activePlan: string = '';
+  planSelected : string = '';
   basicPlanList: any = [];
   mediunPlanList: any = [];
   advancePlanList: any = [];
@@ -33,7 +34,6 @@ export class ClasificationRiskGroupComponent implements OnInit {
     public translate: TranslateService,
     public casificationRiskGroupService: CasificationRiskGroupService,
     public router: Router,
-    public getPlanService: GetplanService
   ) { }
 
   ngOnInit() {
@@ -57,6 +57,10 @@ export class ClasificationRiskGroupComponent implements OnInit {
   switchLanguage(language: string): void {
     this.translate.use(language)
     localStorage.setItem('lang', language);
+  }
+
+  setPlan(plan: string) {
+    this.planSelected = plan;
   }
 
   setRecommendedPlan() {
@@ -90,7 +94,7 @@ export class ClasificationRiskGroupComponent implements OnInit {
 
   selectPlan(plan: string) {
     this.activePlan = plan;
-    this.getPlanService.getPlan(plan).subscribe({
+    this.casificationRiskGroupService.setPlanSuscriptionService(plan).subscribe({
       next: (response) => {
         this.toastr.success('Exito comprando plan', 'Exito', {
           timeOut: 3000

@@ -59,9 +59,9 @@
         </defs>
       </svg>
     </div>
-    <div [ngClass]="setClassActiveSport('products')" class="container-home" (click)=" setMenuActive('products')"
+    <div [ngClass]="setClassActiveSport('products-list')" class="container-home" (click)=" setMenuActive('products-list')"
       (keydown)="handleKeyDown($event)" (keypress)="handleKeyDown($event)" (keyup)="handleKeyDown($event)">
-      <svg [ngClass]="getButtonClassesMenuSvg('products')" width="24" height="24" viewBox="0 0 30 36" fill="white"
+      <svg [ngClass]="getButtonClassesMenuSvg('products-list')" width="24" height="24" viewBox="0 0 30 36" fill="white"
         xmlns="http://www.w3.org/2000/svg">
         <path
           d="M13.6138 26.2379C13.1987 26.6686 12.5156 26.6686 12.1004 26.2379L8.35045 22.4098C7.92857 21.986 7.92857 21.2887 8.35045 20.8649C8.76562 20.4342 9.44866 20.4342 9.86384 20.8649L12.8571 23.9205L19.6004 17.0367C20.0156 16.6061 20.6987 16.6061 21.1138 17.0367C21.5357 17.4606 21.5357 18.1578 21.1138 18.5817L13.6138 26.2379ZM29.6317 11.4928C29.8728 12.0533 30 12.6549 30 13.2701V28.7467C30 31.1598 28.0781 33.1217 25.7143 33.1217H4.28571C1.91853 33.1217 0 31.1598 0 28.7467V13.2701C0 12.6549 0.125826 12.0533 0.369375 11.4928L3.15469 5.09504C3.84241 3.51458 5.37723 2.4967 7.07143 2.4967H22.9286C24.6228 2.4967 26.1562 3.51526 26.846 5.09504L29.6317 11.4928ZM16.0714 11.2467H27.1808L24.8906 5.98303C24.5424 5.19348 23.779 4.6842 22.9286 4.6842H16.0714V11.2467ZM2.14286 13.4342V28.7467C2.14286 29.9567 3.10246 30.9342 4.28571 30.9342H25.7143C26.8996 30.9342 27.8571 29.9567 27.8571 28.7467V13.4342H2.14286ZM13.9286 4.6842H7.07143C6.22433 4.6842 5.45692 5.19348 5.11272 5.98303L2.82121 11.2467H13.9286V4.6842Z"
@@ -87,8 +87,6 @@
     <app-header-main></app-header-main>
     <div class="main-content">
       <div class="button-end">
-        <button *ngIf="isActiveMenu === 'products' && isCreatingProduct==false" class="primary-button"
-          (click)="createProduct()">{{'addProduct'| translate}} </button>
         <button *ngIf="isActiveMenu === 'services' && creatingService===false" class="primary-button"
          (click)="createService()"> {{'addService'| translate}}
         </button>
@@ -118,11 +116,8 @@
       <div>
         <app-calendar *ngIf="role === 'DEPO' && isActiveMenu=='calendar' && isActiveProfile ===false"></app-calendar>
       </div>
-      <div *ngIf="role === 'TECE' && isActiveMenu === 'products' && isCreatingProduct==true">
-        <div class="close-screen">
-          <button (click)="closeWindow()" class="close-button">Cerrar</button>
-        </div>
-        <app-product></app-product>
+      <div *ngIf="role === 'TECE' && isActiveMenu === 'products-list'">
+        <app-product-list></app-product-list>
       </div>
       <div *ngIf="creatingService===true">
         <div class="close-screen">
@@ -131,7 +126,7 @@
         <app-additionalservice></app-additionalservice>
       </div>
       <div *ngIf="role === 'DEPO' && isActiveMenu === 'appointmetnts' && !isActiveProfile">
-        <app-schedule-appointment></app-schedule-appointment>
+        <app-schledule-appointment-list></app-schledule-appointment-list>
       </div>
     </div>
   </div>

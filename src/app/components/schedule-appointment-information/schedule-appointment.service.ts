@@ -31,7 +31,7 @@ export class ScheduleAppointmentService {
       Authorization: `Bearer ${token}`
     })
 
-    const url = `${API_ADDITIONAL_SERVICE_BASE_URL}/api/v1/auth/appointment`;
+    const url = `${API_ADDITIONAL_SERVICE_BASE_URL}auth/services/appointment`;
     return this.http.post(url, data, { headers });
   }
 }
