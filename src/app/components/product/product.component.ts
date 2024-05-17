@@ -324,7 +324,8 @@ getButtonClassesMeal(): any {
       next: (response) => {this.allergies_list = response },
       error: (err) => {
         this.toastr.error('Error obteniendo las alergias', 'Error', {
-          timeOut: 3000
+          timeOut: 3000,
+          tapToDismiss: true
         });
       }
     });
