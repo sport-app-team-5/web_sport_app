@@ -161,14 +161,14 @@ describe('ClasificationRiskGroupComponent', () => {
   it('should show error toastr when getting risk group service fails', () => {
     spyOn(component.casificationRiskGroupService, 'getRiskGroupService').and.returnValue(of('Error'));
     spyOn(component.toastr, 'error');
-    component.getData();    
+    component.getData();
   });
 
 
   it('should select plan and navigate to home on success', () => {
     // Arrange
     const plan = 'Basic Plan';
-    spyOn(component.getPlanService, 'getPlan').and.returnValue(of({}));
+    spyOn(component.casificationRiskGroupService, 'setPlanSuscriptionService').and.returnValue(of({}));
     spyOn(component.toastr, 'success');
     spyOn(component.router, 'navigate');
 
@@ -177,7 +177,7 @@ describe('ClasificationRiskGroupComponent', () => {
 
     // Assert
     expect(component.activePlan).toEqual(plan);
-    expect(component.getPlanService.getPlan).toHaveBeenCalledWith(plan);
+    expect(component.casificationRiskGroupService.setPlanSuscriptionService).toHaveBeenCalledWith(plan);
     expect(component.toastr.success).toHaveBeenCalledWith('Exito comprando plan', 'Exito', {
       timeOut: 3000
     });
@@ -187,14 +187,14 @@ describe('ClasificationRiskGroupComponent', () => {
   it('should show error toastr when getting plan fails', () => {
 
     const plan = 'Basic Plan';
-    spyOn(component.getPlanService, 'getPlan').and.returnValue(of('Error obteniendo el plan'));
+    spyOn(component.casificationRiskGroupService, 'setPlanSuscriptionService').and.returnValue(of('Error obteniendo el plan'));
 
     const spy = spyOn(toastr, 'error');
 
     component.selectPlan(plan);
 
     expect(component.activePlan).toEqual(plan);
-    expect(component.getPlanService.getPlan).toHaveBeenCalledWith(plan);    
+    expect(component.casificationRiskGroupService.setPlanSuscriptionService).toHaveBeenCalledWith(plan);
   });
 
   it('should set risk to "Riesgo gourmet" when handleKeyDown is called with a KeyboardEvent', () => {
