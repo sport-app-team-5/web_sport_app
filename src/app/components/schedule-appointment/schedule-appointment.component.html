@@ -31,7 +31,7 @@
   <div *ngIf="currentStep == 3" class="container-services">
     <div class="question">{{"questionAppointmentInjury" | translate}} </div>
     <select [formControl]="injury" id="selectInjuries">
-      <option *ngFor="let item of injuries" [value]="item.name">{{item.name}}</option>
+      <option *ngFor="let item of injuries" [value]="item.id">{{item.name}}</option>
     </select>
     <div *ngIf="activateErrorMessageForCategory">
       <span class="error">{{ 'fieldRequired' | translate}}</span>

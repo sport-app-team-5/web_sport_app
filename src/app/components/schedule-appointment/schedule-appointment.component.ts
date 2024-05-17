@@ -3,6 +3,8 @@ import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angula
 import {CommonModule} from "@angular/common";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ToastrService} from "ngx-toastr";
+import {ScheduleAppointmentService} from "./schedule-appointment.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedule-appointment',
@@ -22,29 +24,32 @@ export class ScheduleAppointmentComponent implements OnInit {
   datetimecustom = new FormControl(this.getDefaultValue(), [Validators.required, this.validateDate])
   activateErrorMessageForCategory: boolean = false
   sportSpecialist: any = [];
+  sportSelected: string = '';
   injuries: any = [];
 
   constructor(
     private toastr: ToastrService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private scheduleAppointmentService: ScheduleAppointmentService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.switchLanguage('es');
     this.sportSpecialist = [
-      { name: 'Especialista en rodilla', sport: 'Basketball' },
-      { name: 'Especialista en miembros superiores', sport: 'Tennis' },
-      { name: 'Especialista en miembros inferiores', sport: 'Soccer' }
+      { id:"1", name: 'Especialista en rodilla', sport: 'Basketball' },
+      { id:"2", name: 'Especialista en miembros superiores', sport: 'Tennis' },
+      { id:"3", name: 'Especialista en miembros inferiores', sport: 'Soccer' }
     ];
 
-    this.injuries = [{"name":"Fractuas miembro superior",	    "description":"Fractuas miembro superior"  },
-    {name:"Fracturas miembro inferiores",	description:"Fracturas miembro inferiores"   },
-    {name:"Dolor en miembros superiores",	description:"Dolor en miembros superiores"   },
-    {name:"Dolor en miembros inferiores",	description:"Dolor en miembros inferiores"   },
-    {name:"Dolor en la espalda",	        description:"Dolor en la espalda"            },
-    {name:"Quemaduras en la espalda",	    description:"Quemaduras en la espalda"       },
-    {name:"Ampollas miembros inferiores",	description:"Ampollas en miembros inferiores"},
-    {name:"Ampollas miembros superiores",	description:"Ampollas en miembros superiores"}];
+    this.injuries = [{id:"1", name:"Fractuas miembro superior",	  description:"Fractuas miembro superior"  },
+    {id:"2", name:"Fracturas miembro inferiores",	description:"Fracturas miembro inferiores"   },
+    {id:"3", name:"Dolor en miembros superiores",	description:"Dolor en miembros superiores"   },
+    {id:"4", name:"Dolor en miembros inferiores",	description:"Dolor en miembros inferiores"   },
+    {id:"5", name:"Dolor en la espalda",	        description:"Dolor en la espalda"            },
+    {id:"6", name:"Quemaduras en la espalda",	    description:"Quemaduras en la espalda"       },
+    {id:"7", name:"Ampollas miembros inferiores",	description:"Ampollas en miembros inferiores"},
+    {id:"8", name:"Ampollas miembros superiores",	description:"Ampollas en miembros superiores"}];
   }
 
   switchLanguage (language: string): void {
@@ -142,7 +147,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   getButtonClassesSports(value: string) {
     return {
       'question-button': true,
-      //'active-button': this.sport === value
+      'active-button': this.sportSelected === value
     }
   }
   setSport(arg0: string) {
@@ -154,13 +159,13 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.formData[name] = e.target.value
   }
 
-  // saveProductData () {
-  //   this.productService.createProduct(this.formData).subscribe({
-  //     next: this.handleUpdateResponse.bind(this),
-  //     complete: this.cleanData.bind(this),
-  //     error: this.handleError.bind(this)
-  //   })
-  // }
+  saveAppointmentData () {
+    this.scheduleAppointmentService.createScheduleAppointment(this.formData).subscribe({
+      next: this.handleUpdateResponse.bind(this),
+      complete: this.cleanData.bind(this),
+      error: this.handleError.bind(this)
+    })
+  }
 
   cleanData(){
     this.formData = {}
@@ -169,5 +174,18 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.injuries = new FormControl('', [Validators.required])
     this.datetimecustom = new FormControl('', [Validators.required])
     this.activateErrorMessageForCategory = false
+  }
+
+  handleUpdateResponse (response: any) {
+    this.toastr.success('Registro exitoso de la cita con el deportológo', 'Exito', {
+      timeOut: 3000
+    })
+    this.router.navigate(['/home'])
+  }
+
+  handleError (error: any) {
+    this.toastr.error('Error registrando cita con el deportólogo', 'Error', {
+      timeOut: 3000
+    })
   }
 }
