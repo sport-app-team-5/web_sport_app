@@ -74,6 +74,7 @@ export class NutritionalProfileListComponent implements OnInit {
         this.toastr.error('Error obteniendo el perfil nutricional', 'Error', {
           timeOut: 3000
         });
+     
       }
     })
   }

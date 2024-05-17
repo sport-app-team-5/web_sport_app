@@ -84,11 +84,13 @@ export class SportsInformationComponent implements OnInit {
     }
   }
 
-  switchLanguage(language: string): void {
-    this.translate.use(language);
-    localStorage.setItem('lang', language);
-  }
 
+
+  switchLanguage (event: any): void {
+    const value = event.target.value;
+    this.translate.use(value)
+    localStorage.setItem('lang', value)
+  }
   goToLogin() {
     this.router.navigate(['/login']);
   }

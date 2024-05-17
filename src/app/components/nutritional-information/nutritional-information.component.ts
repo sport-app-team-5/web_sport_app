@@ -72,16 +72,24 @@ export class NutritionalInformationComponent implements OnInit {
     this.nutritionalInformationService.getAllergies(token).subscribe({
       next: (response) => {this.allergies_list = response },
       error: (err) => {
-        this.toastr.error('Error obteniendo las alergias', 'Error', {
-          timeOut: 3000
+        const toast = this.toastr.error('Error obteniendo el perfil nutricional', 'Error', {
+          timeOut: 3000,
+          closeButton: true
+        });
+
+       
+        toast.onTap.subscribe(() => {
+          this.toastr.clear(toast.toastId);
         });
       }
     });
   }
 
-  switchLanguage (language: string): void {
-    this.translate.use(language)
-    localStorage.setItem('lang', language);
+  switchLanguage(event: any): void {
+    const value = event.target.value;
+    this.translate.use(value); 
+    this.language = value;
+    localStorage.setItem('lang', value);
   }
 
   setFoodPreference (value: any) {
