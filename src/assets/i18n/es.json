@@ -181,10 +181,13 @@
   "sugerenciasenvioalimentacion" : "Te sugerimos enviar tu alimentación:",
   "trainingListSuggestedTitle": "Entrenamientos sugeridos",
   "trainingListSuggestedDescription": "Aquí encontrarás los entrenamientos sugeridos para ti",
-  
+
   "addService": "Agregar servicio",
   "addProduct": "Agregar producto",
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
   "numberGreaterThan1":"El número debe ser mayor o igual a 1",
   "close": "Cerrar",
   "productListTitle": "Lista de productos",
@@ -196,10 +199,14 @@
   "productListColumnDescription" : "Descripción",
   "Supplements": "Suplementos",
   "SportsEquipment": "Equipo deportivo",
+<<<<<<< HEAD
   "Food": "Alimentos",
 
   "sportProfile":"Perfil Deportivo",
   "demographyProfile":"Perfil Demográfico",
   "foodProfile":"Perfil Alimenticio",
   "sport_specialist":"Deportólogo"
+=======
+  "Food": "Alimentos"
+>>>>>>> develop
 }

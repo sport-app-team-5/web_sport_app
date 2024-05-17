@@ -17,11 +17,7 @@ constructor(private injector: Injector) {
 }
 
 getRiskGroupService (): Observable<any> {
-  let token=null
-  if (typeof window !== 'undefined' && window.sessionStorage) {
-    token = sessionStorage.getItem('access_token');
-  }     
-
+  const token = sessionStorage.getItem('access_token');
   const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
@@ -35,16 +31,22 @@ getRiskGroupService (): Observable<any> {
 }
 
 setPlanSuscriptionService (suscriptionType: string): Observable<any> {
-  const token = sessionStorage.getItem('access_token')
+  const token = sessionStorage.getItem('access_token');
   const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
   })
 
+  const data = {
+    "id":"1",
+    "subscription_id":suscriptionType
+  };
+
   return this.http.put(
     API_SPORT_PLAN_BASE_URL +
-        `'auth/sports_men/profile/sport/${suscriptionType}'`,
-      { headers }
+        `auth/sports_men/profile/set_suscription/${suscriptionType}`,
+        data,
+        { headers }
   )
 }
 

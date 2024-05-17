@@ -164,7 +164,6 @@
   "addService": "Adicionar serviço",
   "addProduct": "Adicionar produto",
 
-
   "numberGreaterThan1": "O número deve ser maior ou igual a 1",
   "close": "Fechar",
   "productListTitle": "Lista de produtos",
@@ -180,8 +179,7 @@
   "questionSportExperience": "Você tem experiência de treinamento?",
   "sportProfile": "Perfil Esportivo",
   "demographyProfile": "Perfil Demográfico",
-  "foodProfile": "Perfil Alimentar",
-  
+  "foodProfile": "Perfil Alimentar",  
   "questionBirthDate": "Em que ano você nasceu?",
   "enterBirthDate": "Digite o ano de nascimento",
   "questionWeight": "Qual é o seu peso?",
@@ -199,5 +197,6 @@
   "4_6_horas": "4-6 horas",
   "5_7_horas": "5-7 horas",
   "7_8_HOURS": "7-8 horas",
-  "MORE_8_HOURS": "+8 horas"
+  "MORE_8_HOURS": "+8 horas",
+
 }

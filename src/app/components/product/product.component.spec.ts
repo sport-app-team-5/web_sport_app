@@ -4,12 +4,13 @@ import {Router} from "@angular/router";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {HttpLoaderFactory} from "../../app.config";
-import {of} from "rxjs";
+import {of, throwError} from "rxjs";
 import {ProductComponent} from "./product.component";
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ProductService} from "./product.service";
 import { By } from '@angular/platform-browser';
+import { NutritionalInformationService } from '../nutritional-information/nutritional-information.service';
 
 describe('ProductComponent', () => {
   let component: ProductComponent
@@ -279,7 +280,7 @@ describe('ProductComponent', () => {
   it('should call handleUpdateResponse', () => {
     const response = {}
     component.handleUpdateResponse(response)
-    expect(router.navigate).toHaveBeenCalledWith(['/home'])
+    expect(router.navigate).toHaveBeenCalledWith(['/products-list'])
   })
 
   it('should call handleError', () => {
@@ -293,6 +294,22 @@ describe('ProductComponent', () => {
     })
   })
 
+  it('should switch language', () => {
+    spyOn(translateService, 'use');
+    component.switchLanguage('en');
+    expect(translateService.use).toHaveBeenCalledWith('en');
+  });
+
+
+
+  it('should handle error from getTrainings', () => {
+    const productService = TestBed.inject(NutritionalInformationService);
+
+    spyOn(productService, 'getAllergies').and.returnValue(throwError('Error'));
+    component.ngOnInit();
+
+    expect(productService.getAllergies).toHaveBeenCalled();
+  });
 
   describe('select allergies', () => {
     it('should select allergies in formData', () => {
