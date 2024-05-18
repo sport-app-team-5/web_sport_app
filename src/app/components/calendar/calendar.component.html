@@ -45,7 +45,7 @@
                     <div class="event-image-container">
                         <img src="https://cdn-sport-app.s3.amazonaws.com/ciclismo-image.png" alt="Event details"
                             class="event-image">
-                        <div class="event-buttons" *ngIf="showButtonToSuscribe===true">
+                        <div class="event-buttons" *ngIf="showButtonToSuscribe">
                             <button class="primary-button" (click)="subscribeToEvent(eventDatails)">Inscribirse</button>
                         </div>
                         <div class="event-name-title">{{'name'| translate}}</div>
@@ -61,3 +61,4 @@
             </div>
         </div>
     </div>
+</div>
