@@ -21,7 +21,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   service: FormControl = new FormControl('', [Validators.required])
   injury: FormControl = new FormControl('', [Validators.required])
   sport: FormControl = new FormControl('', [Validators.required])
-  datetimecustom = new FormControl(this.getDefaultValue(), [Validators.required, this.validateDate])
+  datetimecustom: FormControl = new FormControl(this.getDefaultValue(), [Validators.required, this.validateDate])
   activateErrorMessageForCategory: boolean = false
   sportSpecialist: any = [];
   sportSelected: string = '';
