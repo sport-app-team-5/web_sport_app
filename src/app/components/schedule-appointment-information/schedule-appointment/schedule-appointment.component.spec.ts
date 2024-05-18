@@ -8,7 +8,6 @@ import {ScheduleAppointmentComponent} from "./schedule-appointment.component";
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ScheduleAppointmentService} from "../schedule-appointment.service";
-import { of } from 'rxjs';
 
 describe('ScheduleAppointmentComponent', () => {
   let component: ScheduleAppointmentComponent
