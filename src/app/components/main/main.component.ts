@@ -13,28 +13,32 @@ import { OfferServiceComponent } from '../offer-service/offer-service.component'
 import { MainService } from './main.service';
 import { RecommendationComponent } from '../recommendation/recommendation.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ProductComponent } from '../product/product.component';
 import { AdditionalserviceComponent } from '../additionalservice/additionalservice.component';
 import { ProductListComponent } from '../product/product-list/product-list.component';
+import { SchleduleAppointmentListComponent } from "../schedule-appointment-information/schledule-appointment-list/schledule-appointment-list.component";
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    HeaderMainComponent,
-    ProfileInformationComponent,
-    ClasificationRiskGroupComponent,
-    CalendarComponent,
-    EventCreateComponent,
-    EventListComponent,
-    TrainingListComponent,
-    OfferServiceComponent,
-    RecommendationComponent,
-    TranslateModule,
-    AdditionalserviceComponent,
-    ProductListComponent
-  ],
+    selector: 'app-main',
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.component.css'],
+    standalone: true,
+    imports: [
+        CommonModule,
+        HeaderMainComponent,
+        ProfileInformationComponent,
+        ClasificationRiskGroupComponent,
+        CalendarComponent,
+        EventCreateComponent,
+        EventListComponent,
+        TrainingListComponent,
+        OfferServiceComponent,
+        RecommendationComponent,
+        TranslateModule,
+        ProductComponent,
+        AdditionalserviceComponent,
+        ProductListComponent,
+        SchleduleAppointmentListComponent
+    ]
 })
 export class MainComponent implements OnInit {
   isOpenMenu: boolean = false;
@@ -74,9 +78,14 @@ export class MainComponent implements OnInit {
       this.isActiveMenu = value;
       this.isActiveProfile = false;
     });
-    this.setClassActiveSport('home')
-    this.setMenuActive('home');
 
+    if(this.role==="DEPO"){
+      this.setClassActiveSport('home');
+      this.setMenuActive('home');
+    }else{
+      this.setClassActiveSport('events');
+      this.setMenuActive('events');
+    }
   }
 
   getSession() {

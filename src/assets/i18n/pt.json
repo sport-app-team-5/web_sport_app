@@ -161,6 +161,10 @@
   "sugerenciasenvioalimentacion": "Sugerimos enviar sua alimentação:",
   "trainingListSuggestedTitle": "Treinamentos sugeridos",
   "trainingListSuggestedDescription": "Aqui você encontrará todos os treinamentos sugeridos",
+  "questionAppointmentSport": "Que tipo de consulta você deseja agendar?",
+  "questionAppointmentDate": "Em que data deseja agendar a consulta?",
+  "questionAppointmentService": "Que tipo de serviço você deseja agendar?",
+  "questionAppointmentInjury":  "Que tipo de desconforto você sente?",
   "addService": "Adicionar serviço",
   "addProduct": "Adicionar produto",
 
@@ -176,10 +180,17 @@
   "Supplements": "Suplementos",
   "SportsEquipment": "Equipe esportiva",
   "Food": "Comida",
+  "appointmentListTitle":"Lista de compromissos agendados",
+  "appointmentListDescription":"Aqui você encontrará suas consultas agendadas com o especialista",
+  "appointmentListButtonCreateSchedule":"Agendar consulta",
+  "appointmentListColumnService":"Serviço",
+  "appointmentListColumnDate":"Data",
+  "appointmentListColumnInjury":"Inconveniência",
+  "appointmentListColumnSport":"Esporte",
   "questionSportExperience": "Você tem experiência de treinamento?",
   "sportProfile": "Perfil Esportivo",
   "demographyProfile": "Perfil Demográfico",
-  "foodProfile": "Perfil Alimentar",  
+  "foodProfile": "Perfil Alimentar",
   "questionBirthDate": "Em que ano você nasceu?",
   "enterBirthDate": "Digite o ano de nascimento",
   "questionWeight": "Qual é o seu peso?",
@@ -198,5 +209,4 @@
   "5_7_horas": "5-7 horas",
   "7_8_HOURS": "7-8 horas",
   "MORE_8_HOURS": "+8 horas"
-
 }
