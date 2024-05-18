@@ -9,6 +9,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../../app.config';
+import { of } from 'rxjs';
 
 describe('SchleduleAppointmentListComponent', () => {
   let component: SchleduleAppointmentListComponent;
@@ -52,9 +53,6 @@ describe('SchleduleAppointmentListComponent', () => {
     fixture = TestBed.createComponent(SchleduleAppointmentListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-
-
   });
 
   it('should create', () => {
@@ -86,6 +84,16 @@ describe('SchleduleAppointmentListComponent', () => {
     component.ngOnInit();
     expect(component.getInjuries).toHaveBeenCalled();
     expect(component.getAppointmentsServices).toHaveBeenCalled();
+  });
+
+  it('should get appointments successfully', () => {
+    const mockAppointments = [{ id: 1, name: 'Event 1' }, { id: 2, name: 'Event 2' }];
+    const appointmentsService = TestBed.inject(ScheduleAppointmentService);
+    spyOn(appointmentsService, 'getScheduleAppointment').and.returnValue(of(mockAppointments));
+
+    component.getAppointmentsServices("1");
+
+    expect(component.appointments).toEqual(mockAppointments);
   });
 
   it('should set creatingSchedule to true on createAppointment', () => {

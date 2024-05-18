@@ -8,6 +8,7 @@ import {ScheduleAppointmentComponent} from "./schedule-appointment.component";
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ScheduleAppointmentService} from "../schedule-appointment.service";
+import { of } from 'rxjs';
 
 describe('ScheduleAppointmentComponent', () => {
   let component: ScheduleAppointmentComponent
@@ -75,6 +76,16 @@ describe('ScheduleAppointmentComponent', () => {
     component.ngOnInit();
     spyOn(component.translate, 'setDefaultLang');
     expect(component.language).toBe('en');
+  });
+
+  it('should get sport specialist services successfully', () => {
+    const mockAppointments = [{ id: 1, name: 'Event 1' }, { id: 2, name: 'Event 2' }];
+    const appointmentsService = TestBed.inject(ScheduleAppointmentService);
+    spyOn(appointmentsService, 'getServiceByType').and.returnValue(of(mockAppointments));
+
+    component.getSportSpecialistServices();
+
+    expect(component.sportSpecialist).toEqual(mockAppointments);
   });
 
   it('should validate step 1', () => {
