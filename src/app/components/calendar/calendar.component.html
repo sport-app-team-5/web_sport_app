@@ -1,6 +1,6 @@
 <div class="continer-content">
     <div class="info-style">{{'calendar'| translate}}</div>
-    <div class="description-style">{{'findCalendarText'| translate }}</div> 
+    <div class="description-style">{{'findCalendarText'| translate }}</div>
     <div>
         <div class="container-search">
             <igx-date-range-picker [(ngModel)]="range" class="datepicker-custom">
@@ -49,11 +49,11 @@
                             <button class="primary-button" (click)="subscribeToEvent(eventDatails)">Inscribirse</button>
                         </div>
                         <div class="event-name-title">{{'name'| translate}}</div>
-                        <div class="event-name-text"> {{eventDatails.name}}</div>
+                        <div class="event-name-text"> {{eventDatails.name }}</div>
                         <div class="event-level-title"> {{'level'| translate}} </div>
-                        <div class="event-level-text"> {{'intermdiate' | translate}}</div>
+                        <div class="event-level-text"> {{ eventDatails.level | translate}}</div>
                         <div class="event-time-title"> {{'time'| translate}} </div>
-                        <div class="event-time-text"> {{'twoHours'| translate}}</div>
+                        <div class="event-time-text"> {{eventDatails.time| translate}}</div>
                         <div class="event-location-title"> {{'eventListColumnLocation' | translate}} </div>
                         <div class="event-location-text">{{eventDatails.location}}</div>
                     </div>

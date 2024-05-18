@@ -56,7 +56,6 @@ export class SchleduleAppointmentListComponent implements OnInit {
     return dateFormatted
   }
 
-
   getAppointmentsServices(sportman_id: string | null) {
 
     this.scheduleAppointmentService.getScheduleAppointment(sportman_id).subscribe({

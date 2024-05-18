@@ -1,0 +1,50 @@
+<div *ngIf="creatingAdditionalService===false">
+  <div class="continer-content">
+    <div>
+      <div class="info-style">{{'serviceListTitle' | translate}}</div>
+      <div class="description-style">{{'serviceListDescription' | translate}}</div>
+    </div>
+    <div>
+      <button class="primary-button" (click)="createService()">{{'serviceListButtonCreateService'| translate}}</button>
+    </div>
+  </div>
+
+  <div class="container-tables">
+    <div class="table">
+      <table aria-describedby="Additional Services">
+        <thead>
+          <tr>
+            <th>{{'type'| translate }}</th>
+            <th>{{ 'description' | translate}}</th>
+            <th>{{'cost'| translate}}</th>
+            <th>{{'outsideHome'| translate}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr" *ngFor="let additionalService of additionalServices">
+            <td>
+              <dd>{{additionalService.type| translate}}</dd>
+            </td>
+            <td>
+              <dd>{{ additionalService.description| translate}}</dd>
+            </td>
+            <td>
+              <dd>{{ additionalService.cost | translate}}</dd>
+            </td>
+            <td>
+              <dd>{{additionalService.is_inside_house | translate}}</dd>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="creatingAdditionalService===true">
+  <div class="close-screen">
+    <button (click)="closeWindow()" class="close-button">{{'close'| translate}}</button>
+  </div>
+    <app-additionalservice></app-additionalservice>
+</div>
+

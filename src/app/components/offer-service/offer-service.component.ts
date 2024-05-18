@@ -46,6 +46,13 @@ export class OfferServiceComponent implements OnInit {
     }
   }
 
+  callCongrats() {
+    this.toastr.success('Gracias por confiar en nosotros, pronto sera contactado por un agente', 'Contacto', {
+      timeOut: 3000
+    })
+  }
+
+
   switchLanguage(language: string): void {
     this.translate.use(language)
     localStorage.setItem('lang', language);

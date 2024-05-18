@@ -63,6 +63,7 @@
                         <th>{{ 'description' | translate}}</th>
                         <th>{{'cost'| translate}}</th>
                         <th>{{'outsideHome'| translate}}</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,6 +80,9 @@
                         <td>
                             <dd>{{getValueOfInsideHouse(service.is_inside_house)}}</dd>
                         </td>
+                        <td>
+                          <dd><button class="primary-button" (click)="callCongrats()">{{ 'solicitar' | translate }} </button></dd>
+                      </td>
                     </tr>
                 </tbody>
             </table>
