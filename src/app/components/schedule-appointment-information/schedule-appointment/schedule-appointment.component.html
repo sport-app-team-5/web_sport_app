@@ -3,6 +3,7 @@
     <div class="question">{{"questionAppointmentSport" | translate}} </div>
     <div>
       <select [formControl]="sport" id="selectSport" name="sport" (change)="changeValueForm($event)">
+        <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
         <option value="Athletics">{{'Athletics' | translate}}</option>
         <option value="Cycling">{{'Cycling' | translate}}</option>
       </select>
@@ -16,7 +17,8 @@
     <div class="question">{{"questionAppointmentService" | translate}} </div>
     <div>
       <select [formControl]="service" id="selectService" name="service_id" (change)="changeValueForm($event)">
-        <option *ngFor="let item of sportSpecialist" [value]="item.id">{{item.name}}</option>
+        <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
+        <option *ngFor="let item of sportSpecialist" [value]="item.id">{{item.description}}</option>
       </select>
       <div class="error-container" *ngIf="service.invalid && (service.dirty || service.touched)">
         <span class="error">{{ 'fieldRequired' | translate}}</span>
@@ -28,6 +30,7 @@
     <div class="question">{{"questionAppointmentInjury" | translate}} </div>
     <div>
       <select [formControl]="injury" id="selectInjuries" name="injury_id" (change)="changeValueForm($event)">
+        <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
         <option *ngFor="let item of injuries" [value]="item.id">{{item.name}}</option>
       </select>
       <div class="error-container" *ngIf="injury.invalid && (injury.dirty || injury.touched)">

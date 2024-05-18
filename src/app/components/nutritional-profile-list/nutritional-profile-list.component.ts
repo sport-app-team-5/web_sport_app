@@ -55,7 +55,6 @@ export class NutritionalProfileListComponent implements OnInit {
   getData() {
     this.nutritionalProfileListService.getNutritionalProfileService().subscribe({
       next: (response) => {
-        console.log(response);
         this.sportManNutritionalProfile = response;
         this.sportManNutritionalProfile.allergies.forEach((element: any) => {
           this.foodList.push({

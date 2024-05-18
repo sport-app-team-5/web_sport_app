@@ -198,5 +198,12 @@
   "productListColumnDescription" : "Descripción",
   "Supplements": "Suplementos",
   "SportsEquipment": "Equipo deportivo",
-  "Food": "Alimentos"
+  "Food": "Alimentos",
+  "appointmentListTitle":"Lista de citas agendadas",
+  "appointmentListDescription":"Aquí encontrarás tus citas agendadas con el especialista",
+  "appointmentListButtonCreateSchedule":"Agendar Cita",
+  "appointmentListColumnService":"Servicio",
+  "appointmentListColumnDate":"Fecha",
+  "appointmentListColumnInjury":"Molestias",
+  "appointmentListColumnSport":"Deporte"
 }

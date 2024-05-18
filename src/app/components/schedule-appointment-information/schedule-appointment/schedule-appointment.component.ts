@@ -27,6 +27,7 @@ export class ScheduleAppointmentComponent implements OnInit {
   sportSelected: string = '';
   injuries: any = [];
   appoinmentDate: string = '';
+  language: string = 'es';
 
   constructor(
     private toastr: ToastrService,
@@ -36,22 +37,20 @@ export class ScheduleAppointmentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.switchLanguage('es');
 
-    this.sportSpecialist = [
-      { id:"1", name: 'Especialista en rodilla', sport: 'Basketball' },
-      { id:"2", name: 'Especialista en miembros superiores', sport: 'Tennis' },
-      { id:"3", name: 'Especialista en miembros inferiores', sport: 'Soccer' }
-    ];
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
 
-    this.injuries = [{id:"1", name:"Fractuas miembro superior",	  description:"Fractuas miembro superior"  },
-    {id:"2", name:"Fracturas miembro inferiores",	description:"Fracturas miembro inferiores"   },
-    {id:"3", name:"Dolor en miembros superiores",	description:"Dolor en miembros superiores"   },
-    {id:"4", name:"Dolor en miembros inferiores",	description:"Dolor en miembros inferiores"   },
-    {id:"5", name:"Dolor en la espalda",	        description:"Dolor en la espalda"            },
-    {id:"6", name:"Quemaduras en la espalda",	    description:"Quemaduras en la espalda"       },
-    {id:"7", name:"Ampollas miembros inferiores",	description:"Ampollas en miembros inferiores"},
-    {id:"8", name:"Ampollas miembros superiores",	description:"Ampollas en miembros superiores"}];
+    this.getSportSpecialistServices();
+    this.getInjuries();
   }
 
   switchLanguage (language: string): void {
@@ -152,10 +151,8 @@ export class ScheduleAppointmentComponent implements OnInit {
   }
 
   changeValueForm (e: any) {
-    console.log("Antes", this.formData)
     const name = e.target.name
     this.formData[name] = e.target.value
-    console.log("Después", this.formData)
   }
 
   setAppointmentDate () {
@@ -167,8 +164,6 @@ export class ScheduleAppointmentComponent implements OnInit {
     const sportman_id = sessionStorage.getItem('sportman_id')
     this.formData['sportman_id'] = sportman_id;
     this.setAppointmentDate()
-
-    console.log("Final", this.formData);
 
     this.scheduleAppointmentService.createScheduleAppointment(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
@@ -198,4 +193,37 @@ export class ScheduleAppointmentComponent implements OnInit {
       timeOut: 3000
     })
   }
+
+  getInjuries() {
+    this.injuries =
+    [{id:"1", name:"Fractuas miembro superior",	description:"Fractuas miembro superior"},
+     {id:"2", name:"Fracturas miembro inferiores", description:"Fracturas miembro inferiores"},
+     {id:"3", name:"Dolor en miembros superiores", description:"Dolor en miembros superiores"},
+     {id:"4", name:"Dolor en miembros inferiores", description:"Dolor en miembros inferiores"},
+     {id:"5", name:"Dolor en la espalda", description:"Dolor en la espalda"},
+     {id:"6", name:"Quemaduras en la espalda", description:"Quemaduras en la espalda"},
+     {id:"7", name:"Ampollas miembros inferiores", description:"Ampollas en miembros inferiores"},
+     {id:"8", name:"Ampollas miembros superiores", description:"Ampollas en miembros superiores"}];
+  }
+
+  getSportSpecialistServices(): void {
+    const serviceType: string = "SPORT_SPECIALIST"
+    this.scheduleAppointmentService.getServiceByType(serviceType).subscribe({
+      next: (response) => {this.sportSpecialist = response;},
+      error: this.handleGetAppointmentError.bind(this)
+    })
+  }
+
+  handleGetAppointmentsResponse (response: any) {
+    this.toastr.success('Datos de servicios', 'Exito', {
+      timeOut: 3000
+    })
+  }
+
+  handleGetAppointmentError (error: any) {
+    this.toastr.error('Error obteniendo datos de servicios', 'Error', {
+      timeOut: 3000
+    })
+  }
+
 }

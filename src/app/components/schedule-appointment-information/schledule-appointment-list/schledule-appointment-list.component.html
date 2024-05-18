@@ -11,29 +11,25 @@
 
   <div class="container-tables">
     <div class="table">
-      <table aria-describedby="food profile">
+      <table aria-describedby="Schedule Appointments">
         <thead>
           <tr>
-            <th>{{'appointmentListColumnName' | translate}}</th>
+            <th>{{'appointmentListColumnService' | translate}}</th>
             <th>{{'appointmentListColumnDate' | translate}}</th>
             <th>{{'appointmentListColumnInjury' | translate}}</th>
-            <th>{{'appointmentListColumnService' | translate}}</th>
             <th>{{'appointmentListColumnSport' | translate}}</th>
           </tr>
         </thead>
         <tbody>
           <tr class="tr" *ngFor="let appointment of appointments">
             <td>
-              <dd>{{appointment.name| translate}}</dd>
+              <dd>{{appointment.service_name| translate}}</dd>
             </td>
             <td>
-              <dd>{{appointment.date | translate}}</dd>
+              <dd>{{ setFormatDate(appointment.appointment_date)}}</dd>
             </td>
             <td>
-              <dd>{{appointment.injury | translate}}</dd>
-            </td>
-            <td>
-              <dd>{{appointment.Service | translate}}</dd>
+              <dd>{{ getInjuryName(appointment.injury_id) | translate}}</dd>
             </td>
             <td>
               <dd>{{appointment.sport | translate}}</dd>

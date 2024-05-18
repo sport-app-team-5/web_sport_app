@@ -13,14 +13,14 @@ export class ScheduleAppointmentService {
     this.http = this.injector.get<HttpClient>(HttpClient)
   }
 
-  getProductsByType(serviceType: string): Observable<any> {
+  getServiceByType(serviceType: string): Observable<any> {
     const token = sessionStorage.getItem('access_token')
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
     })
 
-    const url = `${API_ADDITIONAL_SERVICE_BASE_URL}/api/v1/auth/services/type/${serviceType}`;
+    const url = `${API_ADDITIONAL_SERVICE_BASE_URL}auth/services/type/${serviceType}`;
     return this.http.get(url, { headers });
   }
 
@@ -33,6 +33,18 @@ export class ScheduleAppointmentService {
 
     const url = `${API_ADDITIONAL_SERVICE_BASE_URL}auth/services/appointment`;
     return this.http.post(url, data, { headers });
+  }
+
+  getScheduleAppointment(): Observable<any> {
+    const token = sessionStorage.getItem('access_token')
+    const sportman_id = sessionStorage.getItem('sportman_id')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    })
+
+    const url = `${API_ADDITIONAL_SERVICE_BASE_URL}auth/services/appointment/${sportman_id}`;
+    return this.http.get(url, { headers });
   }
 }
 
