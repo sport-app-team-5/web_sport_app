@@ -24,9 +24,9 @@ export class SchleduleAppointmentListComponent implements OnInit {
 
 
   constructor(
-    private toastr: ToastrService,
-    private translate: TranslateService,
-    private scheduleAppointmentService: ScheduleAppointmentService,
+    public toastr: ToastrService,
+    public translate: TranslateService,
+    public scheduleAppointmentService: ScheduleAppointmentService,
     private router: Router
   ) { }
 
@@ -43,8 +43,10 @@ export class SchleduleAppointmentListComponent implements OnInit {
       }
     }
 
+    const sportman_id: string | null = sessionStorage.getItem('sportman_id')
+
     this.getInjuries();
-    this.getAppointmentsServices();
+    this.getAppointmentsServices(sportman_id);
   }
 
   setFormatDate(value: string)
@@ -55,8 +57,9 @@ export class SchleduleAppointmentListComponent implements OnInit {
   }
 
 
-  getAppointmentsServices() {
-    this.scheduleAppointmentService.getScheduleAppointment().subscribe({
+  getAppointmentsServices(sportman_id: string | null) {
+
+    this.scheduleAppointmentService.getScheduleAppointment(sportman_id).subscribe({
       next: (response) => {
         this.appointments = response;
       } ,

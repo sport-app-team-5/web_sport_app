@@ -30,10 +30,10 @@ export class ScheduleAppointmentComponent implements OnInit {
   language: string = 'es';
 
   constructor(
-    private toastr: ToastrService,
-    private translate: TranslateService,
-    private scheduleAppointmentService: ScheduleAppointmentService,
-    private router: Router
+    public toastr: ToastrService,
+    public translate: TranslateService,
+    public scheduleAppointmentService: ScheduleAppointmentService,
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -176,7 +176,7 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.formData = {}
     this.sport = new FormControl('', [Validators.required])
     this.service = new FormControl('', [Validators.required])
-    this.injuries = new FormControl('', [Validators.required])
+    this.injury = new FormControl('', [Validators.required])
     this.datetimecustom = new FormControl('', [Validators.required])
     this.activateErrorMessageForCategory = false
   }

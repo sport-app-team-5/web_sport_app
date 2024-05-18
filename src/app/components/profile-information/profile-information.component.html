@@ -14,15 +14,15 @@
   <div class="footer-buttons">
     <div class="profile-cell">
       <input id="sport_profile" type="radio" name="profileControl" checked="checked" formControlName="profileControl" value="sport" (click)="changeValueForm('sport')"/>
-      <label class="radio-label" for="sport_profile"> Perfil Deportivo </label>
+      <label class="radio-label" for="sport_profile"> {{'sportProfile'| translate}} </label>
     </div>
     <div class="profile-cell">
       <input id="demography_profile" type="radio" name="profileControl" formControlName="profileControl" value="demography" (click)="changeValueForm('demography')"/>
-      <label class="radio-label" for="demography_profile"> Perfil Demográfico </label>
+      <label class="radio-label" for="demography_profile"> {{'demographyProfile'| translate}} </label>
     </div>
     <div class="profile-cell">
       <input id="nutritional_profile" type="radio" name="profileControl" formControlName="profileControl" value="nutritional" (click)="changeValueForm('nutritional')"/>
-      <label class="radio-label" for="nutritional_profile"> Perfil Alimenticio </label>
+      <label class="radio-label" for="nutritional_profile"> {{'foodProfile'| translate}} </label>
     </div>
   </div>
 </div>

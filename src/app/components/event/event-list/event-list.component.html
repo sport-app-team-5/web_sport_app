@@ -47,7 +47,7 @@
 
 <div *ngIf="creatingEvent===true">
   <div class="close-screen">
-    <button (click)="closeWindow()" class="close-button">Cerrar</button>
+    <button (click)="closeWindow()" class="close-button"> {{'close'| translate}} </button>
   </div>
   <app-event-create></app-event-create>
 </div>

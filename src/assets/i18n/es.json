@@ -205,5 +205,10 @@
   "appointmentListColumnService":"Servicio",
   "appointmentListColumnDate":"Fecha",
   "appointmentListColumnInjury":"Molestias",
-  "appointmentListColumnSport":"Deporte"
+  "appointmentListColumnSport":"Deporte",
+  "sportProfile":"Perfil Deportivo",
+  "demographyProfile":"Perfil Demográfico",
+  "foodProfile":"Perfil Alimenticio",
+  "sport_specialist":"Deportólogo"
+
 }

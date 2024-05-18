@@ -102,3 +102,16 @@ th {
   padding-block-end: 5%;
   display: inline;
 }
+
+#select-language {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #555;
+  color: #fff;
+  height: 36px;
+}
+
+#select-language:hover {
+  background-color: gray;
+}

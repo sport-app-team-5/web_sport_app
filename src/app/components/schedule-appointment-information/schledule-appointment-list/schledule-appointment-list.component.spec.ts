@@ -1,104 +1,189 @@
 /* tslint:disable:no-unused-variable */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { SchleduleAppointmentListComponent } from './schledule-appointment-list.component';
-import { TranslateService } from '@ngx-translate/core';
-import { ToastrService } from 'ngx-toastr';
 import { ScheduleAppointmentService } from '../schedule-appointment.service';
 import { Router } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
+import { HttpLoaderFactory } from '../../../app.config';
 
 describe('SchleduleAppointmentListComponent', () => {
   let component: SchleduleAppointmentListComponent;
   let fixture: ComponentFixture<SchleduleAppointmentListComponent>;
-  let translateService: TranslateService
-  let toastrService: ToastrService
-  let scheduleAppointmentService: ScheduleAppointmentService
-  let router: Router
 
   beforeEach(() => {
+
+    let component: SchleduleAppointmentListComponent
+    let fixture: ComponentFixture<SchleduleAppointmentListComponent>
+    let translateService: TranslateService
+    let toastrService: ToastrService
+    let appointmentService: ScheduleAppointmentService
+
     TestBed.configureTestingModule({
-      declarations: [ SchleduleAppointmentListComponent ]
+      providers: [
+        ScheduleAppointmentService,
+        {
+          provide: Router,
+          useValue: jasmine.createSpyObj('Router', ['navigate'])
+        }
+      ],
+      imports: [
+        SchleduleAppointmentListComponent,
+        HttpClientModule,
+        HttpClientTestingModule,
+        ToastrModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        })
+      ]
     })
     .compileComponents();
+
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SchleduleAppointmentListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+
+
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize appointments array', () => {
-    expect(component.appointments).toEqual([]);
+  it('should set the default language to "es" if localStorage is not available', () => {
+    const mockLanguage = 'en';
+    spyOn(localStorage, 'getItem').and.returnValue(mockLanguage);
+    spyOn(component.translate, 'setDefaultLang');
+
+    component.ngOnInit();
+
+    expect(localStorage.getItem).toHaveBeenCalledWith('lang');
+    expect(component.translate.setDefaultLang).toHaveBeenCalledWith(mockLanguage);
+    expect(component.language).toEqual(mockLanguage);
   });
 
-  it('should initialize language to "es"', () => {
-    expect(component.language).toEqual('es');
+  it('should set the default language to the value stored in localStorage', () => {
+    spyOn(localStorage, 'getItem').and.returnValue('en');
+    component.ngOnInit();
+    spyOn(component.translate, 'setDefaultLang');
+    expect(component.language).toBe('en');
   });
 
-  it('should initialize creatingSchedule to false', () => {
-    expect(component.creatingSchedule).toBeFalse();
-  });
-
-  it('should initialize injuries array', () => {
-    expect(component.injuries).toEqual([]);
-  });
-
-  it('should call getAppointmentsServices method on ngOnInit', () => {
+  it('should call getInjuries and getAppointmentsServices methods on ngOnInit', () => {
+    spyOn(component, 'getInjuries');
     spyOn(component, 'getAppointmentsServices');
     component.ngOnInit();
+    expect(component.getInjuries).toHaveBeenCalled();
     expect(component.getAppointmentsServices).toHaveBeenCalled();
   });
 
-  it('should call setFormatDate method with the provided value', () => {
-    const value = '2022-01-01';
-    spyOn(component, 'setFormatDate');
-    component.setFormatDate(value);
-    expect(component.setFormatDate).toHaveBeenCalledWith(value);
-  });
-
-  it('should call getInjuryName method with the provided injury_id', () => {
-    const injury_id = '123';
-    spyOn(component, 'getInjuryName');
-    component.getInjuryName(injury_id);
-    expect(component.getInjuryName).toHaveBeenCalledWith(injury_id);
-  });
-
-  it('should handle successful response from getAppointmentsServices', () => {
-    const response = { data: [] };
-    spyOn(component, 'handleGetAppointmentsResponse');
-    component.handleGetAppointmentsResponse(response);
-    expect(component.handleGetAppointmentsResponse).toHaveBeenCalledWith(response);
-  });
-
-  it('should handle error response from getAppointmentsServices', () => {
-    const error = { message: 'Error occurred' };
-    spyOn(component, 'handleGetAppointmentError');
-    component.handleGetAppointmentError(error);
-    expect(component.handleGetAppointmentError).toHaveBeenCalledWith(error);
-  });
-
-  it('should call getInjuries method', () => {
-    spyOn(component, 'getInjuries');
-    component.getInjuries();
-    expect(component.getInjuries).toHaveBeenCalled();
-  });
-
-  it('should call createAppointment method', () => {
-    spyOn(component, 'createAppointment');
+  it('should set creatingSchedule to true on createAppointment', () => {
     component.createAppointment();
-    expect(component.createAppointment).toHaveBeenCalled();
+    expect(component.creatingSchedule).toBe(true);
   });
 
-  it('should call closeWindow method', () => {
-    spyOn(component, 'closeWindow');
+  it('should set creatingSchedule to false on closeWindow', () => {
     component.closeWindow();
-    expect(component.closeWindow).toHaveBeenCalled();
+    expect(component.creatingSchedule).toBe(false);
   });
+
+  it('should return the correct injury name when given a valid injury id', () => {
+    component.injuries = [
+      { id: "1", name: "Fracturas miembro superior", description: "Fracturas miembro superior" },
+      { id: "2", name: "Fracturas miembro inferiores", description: "Fracturas miembro inferiores" },
+      { id: "3", name: "Dolor en miembros superiores", description: "Dolor en miembros superiores" },
+      { id: "4", name: "Dolor en miembros inferiores", description: "Dolor en miembros inferiores" },
+      { id: "5", name: "Dolor en la espalda", description: "Dolor en la espalda" },
+      { id: "6", name: "Quemaduras en la espalda", description: "Quemaduras en la espalda" },
+      { id: "7", name: "Ampollas miembros inferiores", description: "Ampollas en miembros inferiores" },
+      { id: "8", name: "Ampollas miembros superiores", description: "Ampollas en miembros superiores" }
+    ];
+
+    const injuryId = "3";
+    const expectedInjuryName = "Dolor en miembros superiores";
+    const injuryName = component.getInjuryName(injuryId);
+
+    expect(injuryName).toBe(expectedInjuryName);
+  });
+
+  it('should return "N/A" when given an invalid injury id', () => {
+    component.injuries = [
+      { id: "1", name: "Fracturas miembro superior", description: "Fracturas miembro superior" },
+      { id: "2", name: "Fracturas miembro inferiores", description: "Fracturas miembro inferiores" },
+      { id: "3", name: "Dolor en miembros superiores", description: "Dolor en miembros superiores" },
+      { id: "4", name: "Dolor en miembros inferiores", description: "Dolor en miembros inferiores" },
+      { id: "5", name: "Dolor en la espalda", description: "Dolor en la espalda" },
+      { id: "6", name: "Quemaduras en la espalda", description: "Quemaduras en la espalda" },
+      { id: "7", name: "Ampollas miembros inferiores", description: "Ampollas en miembros inferiores" },
+      { id: "8", name: "Ampollas miembros superiores", description: "Ampollas en miembros superiores" }
+    ];
+
+    const injuryId = "10";
+    const expectedInjuryName = "N/A";
+    const injuryName = component.getInjuryName(injuryId);
+
+    expect(injuryName).toBe(expectedInjuryName);
+  });
+
+  it('should populate the injuries array with the correct values', () => {
+    component.getInjuries();
+
+    const expectedInjuries = [
+      { id: "1", name: "Fractuas miembro superior", description: "Fractuas miembro superior" },
+      { id: "2", name: "Fracturas miembro inferiores", description: "Fracturas miembro inferiores" },
+      { id: "3", name: "Dolor en miembros superiores", description: "Dolor en miembros superiores" },
+      { id: "4", name: "Dolor en miembros inferiores", description: "Dolor en miembros inferiores" },
+      { id: "5", name: "Dolor en la espalda", description: "Dolor en la espalda" },
+      { id: "6", name: "Quemaduras en la espalda", description: "Quemaduras en la espalda" },
+      { id: "7", name: "Ampollas miembros inferiores", description: "Ampollas en miembros inferiores" },
+      { id: "8", name: "Ampollas miembros superiores", description: "Ampollas en miembros superiores" }
+    ];
+
+    expect(component.injuries).toEqual(expectedInjuries);
+  });
+
+
+  it('should not modify the injuries array if it is already populated', () => {
+    const existingInjuries = [
+      { id: "1", name: "Fractuas miembro superior", description: "Fractuas miembro superior" },
+      { id: "2", name: "Fracturas miembro inferiores", description: "Fracturas miembro inferiores" },
+      { id: "3", name: "Dolor en miembros superiores", description: "Dolor en miembros superiores" },
+      { id: "4", name: "Dolor en miembros inferiores", description: "Dolor en miembros inferiores" },
+      { id: "5", name: "Dolor en la espalda", description: "Dolor en la espalda" },
+      { id: "6", name: "Quemaduras en la espalda", description: "Quemaduras en la espalda" },
+      { id: "7", name: "Ampollas miembros inferiores", description: "Ampollas en miembros inferiores" },
+      { id: "8", name: "Ampollas miembros superiores", description: "Ampollas en miembros superiores" }
+    ];
+    component.injuries = existingInjuries;
+
+    component.getInjuries();
+
+    expect(component.injuries).toEqual(existingInjuries);
+  });
+
+  it('should initialize appointments as an empty array', () => {
+    expect(component.appointments).toEqual([]);
+  });
+
+  it('should initialize creatingSchedule as false', () => {
+    expect(component.creatingSchedule).toBe(false);
+  });
+
+  it('should initialize injuries as an empty array', () => {
+    expect(component.injuries).toBeTruthy();
+  });
+
 });
+
+

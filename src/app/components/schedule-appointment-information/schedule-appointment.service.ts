@@ -35,9 +35,9 @@ export class ScheduleAppointmentService {
     return this.http.post(url, data, { headers });
   }
 
-  getScheduleAppointment(): Observable<any> {
+  getScheduleAppointment(sportman_id: string | null): Observable<any> {
     const token = sessionStorage.getItem('access_token')
-    const sportman_id = sessionStorage.getItem('sportman_id')
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`

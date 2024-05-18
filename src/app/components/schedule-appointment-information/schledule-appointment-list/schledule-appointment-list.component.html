@@ -43,7 +43,7 @@
 
 <div *ngIf="creatingSchedule===true">
   <div class="close-screen">
-    <button (click)="closeWindow()" class="close-button">Cerrar</button>
+    <button (click)="closeWindow()" class="close-button">{{'close'| translate}}</button>
   </div>
   <app-schedule-appointment></app-schedule-appointment>
 </div>

@@ -31,7 +31,7 @@ describe('CalendarService', () => {
     const initialDate = '2022-01-01';
     const finalDate = '2022-12-31';
     const cityId = 1;
-    const expectedUrl = `auth/events/sport?initial_date=${initialDate}&final_date=${finalDate}&city_id=${cityId}`;
+    const expectedUrl = `auth/events/sport/event?initial_date=${initialDate}&final_date=${finalDate}&city_id=${cityId}`;
 
     service.getAllEvents(initialDate, finalDate, cityId).subscribe((response) => {
       expect(response).toBeTruthy();
@@ -50,7 +50,7 @@ describe('CalendarService', () => {
     const initialDate = '2022-01-01';
     const finalDate = '2022-12-31';
     const cityId = 1;
-    const expectedUrl = `auth/events/sport?initial_date=${initialDate}&final_date=${finalDate}&city_id=${cityId}`;
+    const expectedUrl = `auth/events/sport/event?initial_date=${initialDate}&final_date=${finalDate}&city_id=${cityId}`;
 
     service.getAllEvents(initialDate, finalDate, cityId).subscribe((response) => {
       expect(response).toBeTruthy();
