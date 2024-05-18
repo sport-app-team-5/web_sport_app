@@ -1,38 +1,37 @@
 import { Component, OnInit } from '@angular/core'
-import { Router } from '@angular/router'
-import {
-  TranslateService,TranslateModule
-} from '@ngx-translate/core'
+import { TranslateService, TranslateModule } from '@ngx-translate/core'
 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  styleUrls: ['./home.component.css', '../offer-service/offer-service.component.css'],
   standalone: true,
-   imports: [TranslateModule]
+  imports: [TranslateModule]
 })
 export class HomeComponent implements OnInit {
-  constructor (
-    private router: Router,
+  language: string = 'es';
+
+  constructor(
     private translate: TranslateService
-  ) {}
+  ) { }
 
-  ngOnInit () {
-    this.switchLanguage('es')
+  ngOnInit() {
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
 
-  switchLanguage (language: string): void {
-    this.translate.use(language)
-  }
-  getLocalizedText (key: string): string {
-    return this.translate.instant(key)
-  }
-
-  goToRegitry () {
-    this.router.navigate(['/register'])
-  }
-  goToLogin () {
-    this.router.navigate(['/login'])
+  switchLanguage(event: any): void {
+    const value = event.target.value;
+    this.translate.use(value)
+    localStorage.setItem('lang', value);
   }
 }

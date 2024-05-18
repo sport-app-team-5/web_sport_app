@@ -1,4 +1,16 @@
-<app-header-main></app-header-main>
+<header class="header">
+  <div class="logo">
+    <a href="/">
+      <img src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="Logo de la empresa">
+    </a>
+  </div>
+  <div class="buttons">
+    <select id="select-language" (change)="switchLanguage($event)">
+      <option value="es">{{ 'spanish' | translate }}</option>
+      <option value="pt">{{ 'portuguese' | translate }}</option>
+    </select>
+  </div>
+</header>
 <main class="wrapper">
   <div *ngIf="currentStep === 1">
     <div class="question">{{ 'questionNutritionalType' | translate }} </div>

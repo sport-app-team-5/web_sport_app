@@ -17,10 +17,11 @@ import {Dashboard } from './dashboard';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
+  language: string = 'es';
   constructor (
     private dashboardService: DashboardService,
     private toastr: ToastrService,
-    private translate: TranslateService
+    public translate: TranslateService
   ) {}
 
   profile: Dashboard | undefined
@@ -31,12 +32,22 @@ export class DashboardComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.switchLanguage('es')
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
      this.getProfile()
   }
 
   switchLanguage (language: string): void {
     this.translate.use(language)
+    localStorage.setItem('lang', language);
   }
 
   getProfile(): void {

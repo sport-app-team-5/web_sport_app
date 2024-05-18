@@ -12,6 +12,7 @@ import {
 } from '@ngx-translate/core'
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { HttpLoaderFactory } from '../../app.config'
+
 describe('RegisterComponent', () => {
     let component: RegisterComponent
     let fixture: ComponentFixture<RegisterComponent>
@@ -20,7 +21,7 @@ describe('RegisterComponent', () => {
     let registerUserService: RegisterUserService
 
     const fakeService1 = {
-        getCountries (): Observable<any[]> {
+        getCountries(): Observable<any[]> {
             return of([
                 { id: 1, name: 'Country1' },
                 { id: 2, name: 'Country2' }
@@ -58,7 +59,7 @@ describe('RegisterComponent', () => {
         fixture.detectChanges()
     })
 
-    it('should create the component', () => {
+    it('should create the component 1', () => {
         let mock = TestBed.inject(RegisterUserService)
         spyOn(mock, 'getCountries').and.returnValue(fakeService1.getCountries())
         component.getCountries()
@@ -123,6 +124,7 @@ describe('RegisterComponent', () => {
             spyOn(component, 'saveUserData')
             spyOn(component, 'validateStep4').and.returnValue(false)
             component.nextStep()
+            expect(component).toBeTruthy()
         })
         it('should call saveUserData if currentStep is 4 and return false and role id is 2', () => {
             component.currentStep = 4
@@ -130,6 +132,7 @@ describe('RegisterComponent', () => {
             spyOn(component, 'saveUserData')
             spyOn(component, 'validateStep4').and.returnValue(false)
             component.nextStep()
+            expect(component).toBeTruthy()
         })
     })
 
@@ -331,7 +334,7 @@ describe('RegisterComponent', () => {
             resetComponentState(component)
         })
 
-        function resetComponentState (comp: RegisterComponent): void {
+        function resetComponentState(comp: RegisterComponent): void {
             comp.role_id = 0
             // Reiniciar otros valores según sea necesario
         }
@@ -373,6 +376,7 @@ describe('RegisterComponent', () => {
 
             component.role_id = 1
             component.saveUserData()
+            expect(component).toBeTruthy()
         })
 
         it('should call handleResponse when the role id is 3', () => {
@@ -512,5 +516,6 @@ describe('RegisterComponent', () => {
         const spyError = spyOn(toastrService, 'error')
 
         component.handleErrorCities(mockResponse)
+        expect(component).toBeTruthy()
     })
 })

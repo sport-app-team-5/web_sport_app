@@ -21,7 +21,7 @@ export class CalendarService {
       Authorization: `Bearer ${token}`
     })
     return this.http.get(API_ADDITIONAL_SERVICE_BASE_URL +
-      `auth/events/sport?initial_date=${initial_date}&final_date=${final_date}&city_id=${city_id}`, { headers })
+      `auth/events/sport/event?initial_date=${initial_date}&final_date=${final_date}&city_id=${city_id}`, { headers })
   }
 
   subscribeToEvent(eventId: any, spormanId: any): Observable<any> {

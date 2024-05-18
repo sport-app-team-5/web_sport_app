@@ -103,7 +103,7 @@
                    (change)="changeValueForm($event)">
             <div class="error-container" *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)">
               <span class="error" *ngIf="quantity.errors?.['required']">{{'fieldRequired'| translate}} </span>
-              <span class="error" *ngIf="quantity.errors?.['error']">El número debe ser mayor o igual a 1.</span>
+              <span class="error" *ngIf="quantity.errors?.['error']">{{'numberGreaterThan1'| translate}} </span>
 
             </div>
 

@@ -1,13 +1,20 @@
-<header class="header">
-  <img src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="Logo sportapp" />
-  <div class="buttons">
-    <button (click)="goToRegister()">{{ 'register' | translate}}</button>
+<header>
+  <div class="logo">
+    <a href="/">
+      <img src="https://cdn-sport-app.s3.amazonaws.com/logo.png" alt="Logo de la empresa">
+    </a>
+  </div>
+  <div class="right-section">
+    <a href="/login"> {{'login'| translate}} </a>
     <div class="line"></div>
-    <button (click)="switchLanguage('es')">{{'spanish'| translate}}</button>
-    <div class="line"></div>
-    <button (click)="switchLanguage('pt')">{{'portugues'| translate}}</button>
+    <a href="/register" class="register">{{ 'register' | translate }}</a>
+    <select id="select-language" (change)="switchLanguage($event)">
+      <option value="es" [attr.selected]="language === 'es' ? true : null"> {{ 'spanish' | translate }}</option>
+      <option value="pt" [attr.selected]="language === 'pt' ? true : null"> {{ 'portuguese' | translate }}</option>
+    </select>
   </div>
 </header>
+
 <main class="wrapper">
   <div>
     <div class="container-inputs">

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NutritionalProfileListComponent } from './nutritional-profile-list.component';
 import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
@@ -21,6 +20,9 @@ describe('NutritionalProfileListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule,
         ToastrModule.forRoot(),
+        RouterTestingModule.withRoutes([
+          { path: 'login', component: MockLoginComponent },
+        ]),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -80,3 +82,5 @@ describe('NutritionalProfileListComponent', () => {
     });
   });
 });
+export class MockLoginComponent {
+}

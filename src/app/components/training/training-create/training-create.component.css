@@ -111,6 +111,7 @@ button {
   align-items: center;
   gap: 20px;
   font-weight: 500;
+  color: var(--c-black-main);
 }
 
 .container-inputs {
@@ -225,8 +226,11 @@ select:focus-visible {
   height: 40px;
   margin-top: 26px;
 }
+
 .active-button {
   border-radius: 10px;
   border: 1px solid var(--c-green-ligth);
   color: var(--c-green-ligth)
 }
+
+

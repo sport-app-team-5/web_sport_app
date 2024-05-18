@@ -1,10 +1,10 @@
-<app-header-main></app-header-main>
 
-<main class="wrapper">
+<main class="wrapper">  
   <div *ngIf="currentStep == 1" class="container-services">
     <div class="question">{{'exerciseName'| translate}}</div>
     <div>
-      <input [formControl]="name" type="text" name="name" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <input [formControl]="name" type="text" name="name" placeholder="{{'writeHere'| translate}}"
+        (change)="changeValueForm($event)">
       <div class="error-container" *ngIf="name.invalid && (name.dirty || name.touched)">
         <span class="error" *ngIf="name.errors?.['required']">{{'fieldRequired'| translate}} </span>
       </div>
@@ -15,12 +15,13 @@
     <div class="question">{{'exerciseDescription'| translate}}</div>
     <div>
       <input [formControl]="description" type="text" name="description" placeholder="{{'writeHere'| translate}}"
-             (change)="changeValueForm($event)">
+        (change)="changeValueForm($event)">
       <div class="error-container" *ngIf="description.invalid && (description.dirty || description.touched)">
         <span class="error" *ngIf="description.errors?.['required']">{{'fieldRequired'| translate}} </span>
       </div>
     </div>
   </div>
+
 
   <div *ngIf="currentStep == 3" class="container-services">
     <div class="question">{{'exerciseSport'| translate}}</div>
@@ -37,7 +38,8 @@
   <div *ngIf="currentStep == 4" class="container-services">
     <div class="question">{{'duration'| translate}}</div>
     <div>
-      <input [formControl]="duration" type="number" name="duration" placeholder="{{'writeHere'| translate}}" (change)="changeValueForm($event)">
+      <input [formControl]="duration" type="number" name="duration" placeholder="{{'writeHere'| translate}}"
+        (change)="changeValueForm($event)">
       <div class="error-container" *ngIf="duration.invalid && (duration.dirty || duration.touched)">
         <span class="error" *ngIf="duration.errors?.['required']">{{'fieldRequired'| translate}} </span>
       </div>
@@ -57,12 +59,26 @@
     </div>
   </div>
 
+  <div *ngIf="currentStep == 6" class="container-services">
+    <div class="question">¿Fuera de casa?</div>
+    <div>
+      <select [formControl]="is_inside_house" type="text" name="is_inside_house" (change)="changeValueForm($event)">
+        <option value="Si" selected>Si</option>
+        <option value="No">No</option>
+      </select>
+      <div class="error-container"
+        *ngIf="is_inside_house.invalid && (is_inside_house.dirty || is_inside_house.touched)">
+        <span class="error" *ngIf="is_inside_house.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
   <div class="container-buttons">
     <button *ngIf="currentStep !== 1" class="secondary-button" (click)="backStep()">
       {{'back'| translate}}
     </button>
     <button class="primary-button" (click)="nextStep()">
-      {{ currentStep === 5 ? ('registerForm' | translate) : ('next' | translate) }}
+      {{ currentStep === 6 ? ('registerForm' | translate) : ('next' | translate) }}
     </button>
   </div>
 </main>

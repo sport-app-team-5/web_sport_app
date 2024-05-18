@@ -5,6 +5,7 @@ header {
     box-sizing: border-box;
 }
 
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -30,7 +31,7 @@ button {
 
 .sidebar {
     display: flex;
-    width: 42px;
+    width: 72px;
     padding: 14px 15px;
     flex-direction: column;
     align-items: center;
@@ -43,7 +44,7 @@ button {
 
 .container {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
 }
 
 .content {
@@ -52,7 +53,6 @@ button {
     display: flex;
     flex-direction: column;
     color: var(--c-white);
-    
 }
 
 .user-image {
@@ -93,8 +93,8 @@ button {
 }
 
 .brand-img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .button-end {
@@ -144,7 +144,10 @@ button {
     border-bottom: 1px solid gray;
     margin-left: 12px;
     margin-right: 12px;
+
 }
+
+
 
 .menu li:hover {
     background-color: gray;
@@ -180,11 +183,24 @@ button {
     padding: 5px;
 }
 
-.container-logout{
+.container-logout {
     margin-top: auto;
-    padding-bottom: 36px;
+    padding-bottom: 5px;
 }
 
-.main-content{
-    overflow-y: auto; 
+.main-content {
+    overflow-y: auto;
 }
+
+.close-screen {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: end;
+    padding-right: 37px;
+    padding-top: 15px;
+  }
+  
+  .close-button{
+    border-bottom: 1px solid white;
+  }

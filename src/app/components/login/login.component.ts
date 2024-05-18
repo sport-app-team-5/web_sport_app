@@ -8,6 +8,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
 import { DashboardService } from '../dashboard/dashboard.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
   formData: any = {};
+  language: string = 'es';
 
   constructor(
     private toastr: ToastrService,
@@ -29,14 +31,20 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
-  goToRegister() {
-    this.router.navigate(['/register']);
-  }
-
-  switchLanguage(language: string): void {
-    this.translate.use(language);
+  switchLanguage (event: any): void {
+    const value = event.target.value;
+    this.translate.use(value)
   }
 
   passwordValidator(control: FormControl): { [key: string]: boolean } | null {
@@ -53,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.formData[name] = value;
   }
 
-  userLogin() {
+  userLogin() {   
     if (this.email.value && this.password.value) {
       this.loginService.login(this.formData).subscribe({
         next: this.handleUpdateResponse.bind(this),
@@ -81,11 +89,9 @@ export class LoginComponent implements OnInit {
         timeOut: 3000,
       });
       if (role === 'DEPO') {
-        this.router.navigate(['/home']);
         this.dashboardService.getProfile(token).subscribe({
           next: (res) => {
-            console.log(res);
-
+            sessionStorage.setItem('sportman_id', res.id);
             if (res.detail == 'Sport man not have risk') {
               this.router.navigate(['/sports-information']);
             } else {

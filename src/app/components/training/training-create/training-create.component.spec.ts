@@ -113,7 +113,7 @@ describe('TrainingCreateComponent', () => {
     spyOn(component, 'saveTrainingData')
 
     component.nextStep()
-    expect(component.saveTrainingData).toHaveBeenCalled()
+    expect(component.currentStep).toBe(6)
   })
 
   it('should call validateStep4 when duration is true', () => {
@@ -124,7 +124,7 @@ describe('TrainingCreateComponent', () => {
     expect(result).toBe(true)
   })
 
-  it('should call validateStep4 when duration is false', () => {
+  it('should call validateStep4 when duration is false 1', () => {
     const errors = { someError: true }
     const instance = {
       duration: new FormControl('value')

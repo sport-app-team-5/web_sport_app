@@ -54,7 +54,8 @@ export class RegisterComponent implements OnInit {
   selectedType = new FormControl('');
   currentStep: any = 1;
   isActive: boolean = false;
-
+  language: string = 'es';
+  
   constructor(
     private registerUserService: RegisterUserService,
     private toastr: ToastrService,
@@ -64,7 +65,16 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.getCountries();
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
   }
   goToLogin() {
     this.router.navigate(['/login']);
@@ -91,8 +101,10 @@ export class RegisterComponent implements OnInit {
     this.isActive = true;
   }
 
-  switchLanguage(language: string): void {
-    this.translate.use(language);
+  switchLanguage (event: any): void {
+    const value = event.target.value;
+    this.translate.use(value)
+    localStorage.setItem('lang', value)
   }
 
   getCountries(): void {

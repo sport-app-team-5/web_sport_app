@@ -5,26 +5,38 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
 import {ToastrService} from "ngx-toastr";
 import { Router } from '@angular/router';
 import {EventService} from "../event.service";
+import { EventCreateComponent } from '../event-create/event-create.component';
 
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [NgForOf, NgIf, ReactiveFormsModule, TranslateModule, NgClass],
+  imports: [NgForOf, NgIf, ReactiveFormsModule, TranslateModule, NgClass,EventCreateComponent],
   templateUrl: './event-list.component.html',
   styleUrl: './event-list.component.css'
 })
 export class EventListComponent implements OnInit {
   events: any[] = [];
+  language: string = 'es';
+  creatingEvent: boolean = false;
 
   constructor(
     private eventService: EventService,
     private toastr: ToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
     this.getEvents();
   }
 
@@ -33,10 +45,6 @@ export class EventListComponent implements OnInit {
   }
 
   getEvents () {
-    let token=null
-    if (typeof window !== 'undefined' && window.sessionStorage) {
-      token = sessionStorage.getItem('access_token');
-    }
     this.eventService.getEvents().subscribe({
       next: (response) => {this.events = response },
       error: (err) => {
@@ -48,6 +56,11 @@ export class EventListComponent implements OnInit {
   }
 
   createEvent() {
-    this.router.navigate(['/create-event'])
+    this.creatingEvent = true;
+
+  }
+
+  closeWindow(){
+    this.creatingEvent = false;
   }
 }

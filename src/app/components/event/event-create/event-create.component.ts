@@ -3,9 +3,9 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import {NgClass, NgForOf, NgIf} from "@angular/common";
-import {RegisterUserService} from "../../register/registeruser.service";
-import {EventService} from "../event.service";
+import { NgClass, NgForOf, NgIf } from "@angular/common";
+import { RegisterUserService } from "../../register/registeruser.service";
+import { EventService } from "../event.service";
 
 
 @Component({
@@ -17,6 +17,7 @@ import {EventService} from "../event.service";
 })
 export class EventCreateComponent implements OnInit {
   sport: any = null;
+  language: string = 'es';
 
   getDefaultValue() {
     const today = new Date();
@@ -85,7 +86,7 @@ export class EventCreateComponent implements OnInit {
   }
   constructor(
     private toastr: ToastrService,
-    private translate: TranslateService,
+    public translate: TranslateService,
     private registerUserService: RegisterUserService,
     private eventService: EventService,
     private router: Router
@@ -94,7 +95,17 @@ export class EventCreateComponent implements OnInit {
 
 
   ngOnInit() {
-    this.switchLanguage('es')
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
+    
     this.getDefaultValue()
     this.getMinValue()
     this.getMaxValue()
@@ -129,7 +140,7 @@ export class EventCreateComponent implements OnInit {
     }
   }
 
-  changeValueForm (e: any) {
+  changeValueForm(e: any) {
     const name = e.target.name
     if (name === 'country_id') {
       this.getCities()
@@ -201,7 +212,7 @@ export class EventCreateComponent implements OnInit {
       !!this.country_id.value &&
       !!this.city_id.value &&
       this.nameEvent.errors === null &&
-      this.datetimecustom.errors === null ) {
+      this.datetimecustom.errors === null) {
       return true
     } else {
       this.nameEvent.markAsTouched()
@@ -240,7 +251,7 @@ export class EventCreateComponent implements OnInit {
     });
   }
 
-  getCities () {
+  getCities() {
     this.registerUserService
       .getCities(this.country_id.value)
       .subscribe({

@@ -1,0 +1,62 @@
+<main class="wrapper">
+  <div  class="container-services" *ngIf="currentStep === 1">
+    <div class="question">{{"questionAppointmentSport" | translate}} </div>
+    <div>
+      <select [formControl]="sport" id="selectSport" name="sport" (change)="changeValueForm($event)">
+        <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
+        <option value="Athletics">{{'Athletics' | translate}}</option>
+        <option value="Cycling">{{'Cycling' | translate}}</option>
+      </select>
+      <div class="error-container" *ngIf="sport.invalid && (sport.dirty || sport.touched)">
+        <span class="error">{{ 'fieldRequired' | translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 2" class="container-services">
+    <div class="question">{{"questionAppointmentService" | translate}} </div>
+    <div>
+      <select [formControl]="service" id="selectService" name="service_id" (change)="changeValueForm($event)">
+        <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
+        <option *ngFor="let item of sportSpecialist" [value]="item.id">{{item.description}}</option>
+      </select>
+      <div class="error-container" *ngIf="service.invalid && (service.dirty || service.touched)">
+        <span class="error">{{ 'fieldRequired' | translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 3" class="container-services">
+    <div class="question">{{"questionAppointmentInjury" | translate}} </div>
+    <div>
+      <select [formControl]="injury" id="selectInjuries" name="injury_id" (change)="changeValueForm($event)">
+        <option value="" disabled selected hidden>{{'selectAOption'| translate}}</option>
+        <option *ngFor="let item of injuries" [value]="item.id">{{item.name}}</option>
+      </select>
+      <div class="error-container" *ngIf="injury.invalid && (injury.dirty || injury.touched)">
+        <span class="error">{{ 'fieldRequired' | translate}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentStep == 4" class="container-services">
+    <div class="question">{{"date" | translate}} </div>
+    <div>
+      <input type="datetime-local" id="datetimecustom" name="appointment_date" [min]="getMinValue()"
+            [max]="getMaxValue()" [formControl]="datetimecustom"  (change)="changeValueForm($event)"/>
+
+      <div *ngIf="datetimecustom.invalid && (datetimecustom.dirty || datetimecustom.touched)">
+        <span class="error" *ngIf="datetimecustom.errors?.['required']">{{'fieldRequired'| translate}} </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-buttons">
+    <button *ngIf="currentStep !== 1" class="secondary-button" (click)="backStep()">
+      {{'back'| translate}}
+    </button>
+    <button class="primary-button" (click)="nextStep()">
+      {{ currentStep === 4 ? ('registerForm' | translate) : ('next' | translate) }}
+    </button>
+  </div>
+</main>

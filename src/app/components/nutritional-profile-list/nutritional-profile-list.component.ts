@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForOf, NgIf} from "@angular/common";
-import {ReactiveFormsModule} from '@angular/forms'
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
-import {ToastrService} from "ngx-toastr";
+import { NgForOf, NgIf } from "@angular/common";
+import { ReactiveFormsModule } from '@angular/forms'
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import { ToastrService } from "ngx-toastr";
 import { Router } from '@angular/router';
 import { NutritionalProfileListService } from './nutritional-profile-list.service';
 
@@ -14,13 +14,13 @@ import { NutritionalProfileListService } from './nutritional-profile-list.servic
   styleUrls: ['./nutritional-profile-list.component.css']
 })
 export class NutritionalProfileListComponent implements OnInit {
-
-foodList: any[] = [];
-questiontype: string = '';
-answerProfile: string = '';
-formTitle: string = '';
-formDescription: string = '';
-sportManNutritionalProfile: any;
+  foodList: any[] = [];
+  questiontype: string = '';
+  answerProfile: string = '';
+  formTitle: string = '';
+  formDescription: string = '';
+  sportManNutritionalProfile: any;
+  language: string = 'es';
 
   constructor(
     private nutritionalProfileListService: NutritionalProfileListService,
@@ -30,23 +30,31 @@ sportManNutritionalProfile: any;
   ) { }
 
   ngOnInit() {
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
     this.questiontype = "Tipo";
     this.answerProfile = "Nombre";
     this.formTitle = "Tu información";
     this.formDescription = "Encontrarás tus datos personales de tu perfil alimenticio";
-
     this.getData();
+  }
 
-    }
+  switchLanguage(language: string): void {
+    this.translate.use(language)
+    localStorage.setItem('lang', language);
+  }
 
-    switchLanguage (language: string): void {
-      this.translate.use(language)
-    }
-
-    getData () {
-      this.nutritionalProfileListService.getNutritionalProfileService().subscribe({
-      next: (response) => { console.log(response);
+  getData() {
+    this.nutritionalProfileListService.getNutritionalProfileService().subscribe({
+      next: (response) => {
         this.sportManNutritionalProfile = response;
         this.sportManNutritionalProfile.allergies.forEach((element: any) => {
           this.foodList.push({
@@ -65,6 +73,7 @@ sportManNutritionalProfile: any;
         this.toastr.error('Error obteniendo el perfil nutricional', 'Error', {
           timeOut: 3000
         });
+     
       }
     })
   }

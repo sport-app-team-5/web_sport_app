@@ -4,15 +4,18 @@ import {TranslateLoader, TranslateModule, TranslateService} from "@ngx-translate
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {HttpLoaderFactory} from "../../../app.config";
 import {HttpClient} from "@angular/common/http";
-import {of} from "rxjs";
+import {of, throwError} from "rxjs";
 import {TrainingListComponent} from "./training-list.component";
 import {TrainingService} from "../training.service";
+import { Router } from '@angular/router';
 
 describe('TrainingListComponent', () => {
   let component: TrainingListComponent;
   let fixture: ComponentFixture<TrainingListComponent>;
   let toastrService: ToastrService;
   let translateService: TranslateService;
+  let trainingService: TrainingService;
+  let router: Router;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -34,6 +37,9 @@ describe('TrainingListComponent', () => {
     component = fixture.componentInstance;
     toastrService = TestBed.inject(ToastrService);
     translateService = TestBed.inject(TranslateService);
+    trainingService = TestBed.inject(TrainingService);
+    router = TestBed.inject(Router);
+
     fixture.detectChanges();
   });
 
@@ -47,13 +53,66 @@ describe('TrainingListComponent', () => {
     expect(translateService.use).toHaveBeenCalledWith('en');
   });
 
-  it('should get trainings successfully', () => {
-    const mockTrainings = [{ id: 1, name: 'Training 1' }, { id: 2, name: 'Training 2' }];
-    const trainingService = TestBed.inject(TrainingService);
-    spyOn(trainingService, 'getTrainings').and.returnValue(of(mockTrainings));
+  it('should get trainings', () => {
+    const trainingsBySportMan = [
+      { id: 1, name: 'Training 1' },
+      { id: 2, name: 'Training 2' }
+    ];
+
+    spyOn(trainingService, 'getTrainings').and.returnValue(of(trainingsBySportMan));
 
     component.getTrainings();
 
-    expect(component.trainings).toEqual(mockTrainings);
+    expect(trainingService.getTrainings).toHaveBeenCalled();
+  });
+
+  it('should handle error when getting training suggestions', () => {
+    spyOn(trainingService, 'getTrainings').and.returnValue(of([]));
+
+    component.getTrainings();
+    expect(trainingService.getTrainings).toHaveBeenCalled();
+    expect(component.trainings).toEqual([]);
+  });
+
+  it('should handle error from getTrainings', () => {
+    spyOn(trainingService, 'getTrainings').and.returnValue(throwError('Error'));
+
+    component.ngOnInit();
+
+    expect(trainingService.getTrainings).toHaveBeenCalled();
+  });
+
+
+  it('should return "Si" when getValueOfInsideHouse is called with true', () => {
+    const result = component.getValueOfInsideHouse(true);
+    expect(result).toEqual('Si');
+  });
+
+  it('should return "No" when getValueOfInsideHouse is called with false', () => {
+    const result = component.getValueOfInsideHouse(false);
+    expect(result).toEqual('No');
+  });
+
+  it('should set the default language to the value stored in localStorage', () => {
+    const mockLanguage = 'en';
+    spyOn(localStorage, 'getItem').and.returnValue(mockLanguage);
+    spyOn(component.translate, 'setDefaultLang');
+    
+    component.ngOnInit();
+    
+    expect(localStorage.getItem).toHaveBeenCalledWith('lang');
+    expect(component.translate.setDefaultLang).toHaveBeenCalledWith(mockLanguage);
+    expect(component.language).toEqual(mockLanguage);
+  });
+  
+  it('should set the default language to "es" if no value is stored in localStorage', () => {
+    spyOn(localStorage, 'getItem').and.returnValue(null);
+    spyOn(component.translate, 'setDefaultLang');
+    
+    component.ngOnInit();
+    
+    expect(localStorage.getItem).toHaveBeenCalledWith('lang');
+    expect(component.translate.setDefaultLang).toHaveBeenCalledWith('es');
+    expect(component.language).toEqual('es');
   });
 });

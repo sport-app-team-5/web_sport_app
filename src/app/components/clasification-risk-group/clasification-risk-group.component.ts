@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ClasificationRiskGroupComponent implements OnInit {
 
+
   risk: string = '';
   sportManRisk: string = '';
   recommendedPlan: string = '(Recomendado)';
@@ -22,15 +23,17 @@ export class ClasificationRiskGroupComponent implements OnInit {
   recommendedAdvancePlan: string = '';
 
   activePlan: string = '';
+  planSelected : string = '';
   basicPlanList: any = [];
   mediunPlanList: any = [];
   advancePlanList: any = [];
+  language: string = 'es';
 
   constructor(
-    private toastr: ToastrService,
-    private translate: TranslateService,
-    private casificationRiskGroupService: CasificationRiskGroupService,
-    private router: Router
+    public toastr: ToastrService,
+    public translate: TranslateService,
+    public casificationRiskGroupService: CasificationRiskGroupService,
+    public router: Router,
   ) { }
 
   ngOnInit() {
@@ -38,12 +41,26 @@ export class ClasificationRiskGroupComponent implements OnInit {
     this.setMediunPlanList();
     this.setAdvancePlanList();
 
-    this.switchLanguage('es');
+    if (typeof localStorage !== 'undefined') {
+      let idioma = localStorage.getItem('lang');
+      if (idioma != null) {
+        this.translate.setDefaultLang(idioma);
+        this.language = idioma;
+      } else {
+        this.translate.setDefaultLang('es');
+        this.language = 'es';
+      }
+    }
     this.getData();
   }
 
   switchLanguage(language: string): void {
     this.translate.use(language)
+    localStorage.setItem('lang', language);
+  }
+
+  setPlan(plan: string) {
+    this.planSelected = plan;
   }
 
   setRecommendedPlan() {
@@ -77,7 +94,21 @@ export class ClasificationRiskGroupComponent implements OnInit {
 
   selectPlan(plan: string) {
     this.activePlan = plan;
+    this.casificationRiskGroupService.setPlanSuscriptionService(plan).subscribe({
+      next: (response) => {
+        this.toastr.success('Exito comprando plan', 'Exito', {
+          timeOut: 3000
+        });
+        this.router.navigate(['/home']);
+      },
+      error: () => {
+        this.toastr.error('Error obteniendo el plan', 'Error', {
+          timeOut: 3000
+        });
+      }
+    })
   }
+
 
   getPlanClassesSelected(value: string) {
     return {
