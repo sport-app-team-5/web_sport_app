@@ -48,7 +48,7 @@ export class OfferServiceComponent implements OnInit {
     if (typeof sessionStorage !== 'undefined') {
       let inside_home = sessionStorage.getItem('inside_home');
       if (inside_home != null) {
-        this.isChecked = inside_home === 'true' ? true : false;
+        this.isChecked = inside_home === 'true';
       }
     }
 
