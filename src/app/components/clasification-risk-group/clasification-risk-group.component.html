@@ -1,7 +1,7 @@
 <div class="content">
   <div class="main-content">
     <div class="container">
-      <h2>Planes</h2>
+      <h2>{{'classificationName' | translate}}</h2>
       <div [ngClass]="getPlanClassesSelected('BASIC')" class="column" (click)="setPlan('Basic')"
         (keydown)="handleKeyDown($event)">
         <div class="columnTitle">
@@ -16,8 +16,8 @@
           </ul>
         </div>
         <div class="footer">
-          <p>Precio: $0 USD</p>
-          <button class="primary-button" (click)="selectPlan('Basic')">Comprar</button>
+          <p>{{'classificationPriceBasic' | translate}}</p>
+          <button class="primary-button" (click)="selectPlan('Basic')">{{'classificationBuy' | translate}}</button>
         </div>
       </div>
       <div [ngClass]="getPlanClassesSelected('INTERMETIATE')" class="column" (click)="setPlan('Intermediate')"
@@ -34,8 +34,8 @@
           </ul>
         </div>
         <div class="footer">
-          <p>Precio: $20 USD</p>
-          <button class="primary-button" (click)="selectPlan('Intermediate')">Comprar</button>
+          <p>{{'classificationPriceMedium' | translate}}</p>
+          <button class="primary-button" (click)="selectPlan('Intermediate')">{{'classificationBuy' | translate}}</button>
         </div>
       </div>
       <div [ngClass]="getPlanClassesSelected('PREMIUM')" class="column" (click)="setPlan('Premiun')"
@@ -52,7 +52,7 @@
           </ul>
         </div>
         <div class="footer">
-          <p>Precio: $30 USD</p>
+          <p>{{'classificationPricePremium' | translate}}</p>
           <button class="primary-button" (click)="selectPlan('Premiun')">Comprar</button>
         </div>
       </div>
