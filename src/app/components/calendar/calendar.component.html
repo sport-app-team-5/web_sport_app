@@ -56,6 +56,9 @@
                         <div class="event-time-text"> {{eventDatails.time| translate}}</div>
                         <div class="event-location-title"> {{'eventListColumnLocation' | translate}} </div>
                         <div class="event-location-text">{{eventDatails.location}}</div>
+                        <div class="event-buttons" *ngIf="showButtonToSuscribe===true">
+                            <button class="primary-button" (click)="subscribeToEvent(eventDatails)">Inscribirse</button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -50,11 +50,12 @@ describe('OfferServiceComponent', () => {
   });
 
   it('should change inside home', () => {
-    const event = {};
-    const checkServiceSpy = spyOn(checkService, 'changeCheck');
-    component.changeInsideHome(event);
+    const event = { target: { checked: true } };
+    const inputElement = event.target as HTMLInputElement;
+    const sessionStorageSpy = spyOn(sessionStorage, 'setItem');  
+    component.changeInsideHome(event);  
     expect(component.isChecked).toBe(true);
-    expect(checkServiceSpy).toHaveBeenCalledWith(component.isChecked);
+    expect(sessionStorageSpy).toHaveBeenCalledWith('inside_home', 'true');
   });
 
   it('should display success message', () => {

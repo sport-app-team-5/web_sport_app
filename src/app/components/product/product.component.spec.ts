@@ -284,10 +284,19 @@ describe('ProductComponent', () => {
   })
 
   it('should call handleUpdateResponse', () => {
-    const response = {}
-    component.handleUpdateResponse(response)
-    expect(router.navigate).toHaveBeenCalledWith(['/products-list'])
-  })
+    const response = {};
+    spyOn(component.toastr, 'success');
+    spyOn(component.closeWindow, 'emit');
+    spyOn(component.getProducts, 'emit');
+  
+    component.handleUpdateResponse(response);
+  
+    expect(component.toastr.success).toHaveBeenCalledWith('Registro exitoso del producto', 'Exito', {
+      timeOut: 3000
+    });
+    expect(component.closeWindow.emit).toHaveBeenCalled();
+    expect(component.getProducts.emit).toHaveBeenCalled();
+  });
 
   it('should call handleError', () => {
     const toastrProduct = TestBed.inject(ToastrService)

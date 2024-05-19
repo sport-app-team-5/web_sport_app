@@ -123,8 +123,9 @@ export class CalendarComponent implements OnInit {
     })
   }
 
-  getDay(date: any) {
-    const day = date.split('T')[0]
+  getDay(date: any) {   
+    const dateFormat = new Date(date);
+    const day = dateFormat.getDate();
     return day;
   }
 

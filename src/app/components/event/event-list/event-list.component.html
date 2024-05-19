@@ -49,5 +49,5 @@
   <div class="close-screen">
     <button (click)="closeWindow()" class="close-button"> {{'close'| translate}} </button>
   </div>
-  <app-event-create></app-event-create>
+  <app-event-create (closeWindow)="closeWindow()" (getEvents)="getEvents()"></app-event-create>
 </div>
