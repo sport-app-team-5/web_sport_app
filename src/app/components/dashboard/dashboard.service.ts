@@ -18,7 +18,7 @@ export class DashboardService {
       if (typeof window !== 'undefined' && window.sessionStorage) {
         token = sessionStorage.getItem('access_token');
       }
-  
+
     }
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -26,6 +26,40 @@ export class DashboardService {
     });
     return this.http.get(
       API_SPORT_PLAN_BASE_URL + 'auth/sports_men/profile/sport',
+      { headers: headers }
+    );
+  }
+
+  getInjuries(token: any): Observable<any> {
+    if (!token) {
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        token = sessionStorage.getItem('access_token');
+      }
+
+    }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(
+      API_SPORT_PLAN_BASE_URL + 'auth/injuries/sportsman',
+      { headers: headers }
+    );
+  }
+
+  getSessions(token: any): Observable<any> {
+    if (!token) {
+      if (typeof window !== 'undefined' && window.sessionStorage) {
+        token = sessionStorage.getItem('access_token');
+      }
+
+    }
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(
+      API_SPORT_PLAN_BASE_URL + 'auth/trainings/plan/sportsman',
       { headers: headers }
     );
   }
