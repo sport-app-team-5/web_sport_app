@@ -219,6 +219,6 @@
   "sport_specialist":"Deportólogo",
   "serviceListTitle": "Lista de servicios de tercero",
   "serviceListDescription": "Aquí encontrarás los servicios creados",
-  "serviceListButtonCreateService": "Crear servicio"
+  "serviceListButtonCreateService": "Crear servicio",
   "session": "Sesión"
 }
