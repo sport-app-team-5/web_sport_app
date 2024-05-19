@@ -26,7 +26,7 @@ export const domainGuard = () => {
 export const routes: Routes = [
   {
     path: '',
-    component: MainComponent,
+    component: HomeComponent,
     pathMatch: 'full'
   },
   {
