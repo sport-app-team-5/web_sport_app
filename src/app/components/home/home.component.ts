@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { TranslateService, TranslateModule } from '@ngx-translate/core'
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -13,6 +14,7 @@ export class HomeComponent implements OnInit {
   language: string = 'es';
 
   constructor(
+    private router: Router,
     private translate: TranslateService
   ) { }
 
@@ -33,5 +35,13 @@ export class HomeComponent implements OnInit {
     const value = event.target.value;
     this.translate.use(value)
     localStorage.setItem('lang', value);
+  }
+
+  goToRegistry () {
+    this.router.navigate(['/register'])
+  }
+
+  goToLogin () {
+    this.router.navigate(['/login'])
   }
 }
