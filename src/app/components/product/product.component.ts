@@ -79,7 +79,7 @@ export class ProductComponent implements OnInit {
   };
 
   constructor(
-    private toastr: ToastrService,
+    public toastr: ToastrService,
     private translate: TranslateService,
     private productService: ProductService,
     private router: Router,

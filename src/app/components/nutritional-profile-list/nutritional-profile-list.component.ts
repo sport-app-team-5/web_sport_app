@@ -71,8 +71,7 @@ export class NutritionalProfileListComponent implements OnInit {
       },
       error: () => {
         this.toastr.error('Error obteniendo el perfil nutricional', 'Error', {
-          timeOut: 3000,
-          tapToDismiss: true
+          timeOut: 3000
         });
      
       }
