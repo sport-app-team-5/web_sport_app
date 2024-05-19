@@ -8,6 +8,7 @@ import { provideToastr } from 'ngx-toastr';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { BrowserModule } from '@angular/platform-browser';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'https://cdn-sport-app.s3.amazonaws.com/', '.json');
 }
@@ -18,6 +19,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(),
@@ -28,6 +30,7 @@ export const appConfig: ApplicationConfig = {
       preventDuplicates: true
     }),
     importProvidersFrom(BrowserAnimationsModule),
+    importProvidersFrom(BrowserModule),
     {
       provide: TranslateLoader,
       useFactory: createTranslateLoader,
