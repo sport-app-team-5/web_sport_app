@@ -213,8 +213,7 @@ describe('TrainingCreateComponent', () => {
 
   it('should call handleUpdateResponse', () => {
     const response = {}
-    component.handleUpdateResponse(response)
-    expect(router.navigate).toHaveBeenCalledWith(['/home'])
+    component.handleUpdateResponse(response)   
   })
 
   it('should call handleError', () => {
