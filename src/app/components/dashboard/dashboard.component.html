@@ -43,17 +43,21 @@
           <table aria-describedby="food profile" >
             <thead>
               <tr>
-                <th class="thead">{{'event' | translate}}</th>
-                <th class="thead">{{'date' | translate}}</th>
+                <th class="thead">{{'session' | translate}}</th>
+                <th class="thead">{{'trainingListColumnIntensity' | translate}}</th>
+                <th class="thead">{{'trainingListColumnSportDuration' | translate}}</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="tr" *ngFor="let event of events">
+              <tr class="tr" *ngFor="let session of sessions">
                 <td class="td">
-                  <dd class="fw-bold">{{event.name}}</dd>
+                  <dd class="fw-bold">{{session.training_plan.name}}</dd>
                 </td>
                 <td>
-                  <dd>{{event.date}}</dd>
+                  <dd>{{session.training_plan.intensity}}</dd>
+                </td>
+                <td>
+                  <dd>{{session.time}}</dd>
                 </td>
               </tr>
             </tbody>
