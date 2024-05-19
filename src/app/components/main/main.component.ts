@@ -17,6 +17,7 @@ import { ProductComponent } from '../product/product.component';
 import { AdditionalserviceComponent } from '../additionalservice/additionalservice.component';
 import { ProductListComponent } from '../product/product-list/product-list.component';
 import { SchleduleAppointmentListComponent } from "../schedule-appointment-information/schledule-appointment-list/schledule-appointment-list.component";
+import { AdditionalserviceListComponent } from "../additionalservice-list/additionalservice-list.component";
 @Component({
     selector: 'app-main',
     templateUrl: './main.component.html',
@@ -37,7 +38,8 @@ import { SchleduleAppointmentListComponent } from "../schedule-appointment-infor
         ProductComponent,
         AdditionalserviceComponent,
         ProductListComponent,
-        SchleduleAppointmentListComponent
+        SchleduleAppointmentListComponent,
+        AdditionalserviceListComponent
     ]
 })
 export class MainComponent implements OnInit {
@@ -115,7 +117,7 @@ export class MainComponent implements OnInit {
   }
 
   createService() {
-    this.creatingService = true;
+    this.creatingService = false;
   }
 
   createNutritionalInfo() {

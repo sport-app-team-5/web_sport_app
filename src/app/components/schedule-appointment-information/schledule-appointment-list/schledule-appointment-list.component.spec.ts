@@ -59,6 +59,35 @@ describe('SchleduleAppointmentListComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should initialize language to "es" if localStorage is not available', () => {
+    spyOn(localStorage, 'getItem').and.returnValue(null);
+    spyOn(component.translate, 'setDefaultLang');
+
+    component.ngOnInit();
+
+    expect(localStorage.getItem).toHaveBeenCalledWith('lang');
+    expect(component.translate.setDefaultLang).toHaveBeenCalledWith('es');
+    expect(component.language).toEqual('es');
+  });
+
+  it('should initialize language to the value stored in localStorage', () => {
+    spyOn(localStorage, 'getItem').and.returnValue('en');
+
+    component.ngOnInit();
+
+    expect(component.language).toBe('en');
+  });
+
+  it('should call getInjuries and getAppointmentsServices methods', () => {
+    spyOn(component, 'getInjuries');
+    spyOn(component, 'getAppointmentsServices');
+
+    component.ngOnInit();
+
+    expect(component.getInjuries).toHaveBeenCalled();
+    expect(component.getAppointmentsServices).toHaveBeenCalled();
+  });
+
   it('should set the default language to "es" if localStorage is not available', () => {
     const mockLanguage = 'en';
     spyOn(localStorage, 'getItem').and.returnValue(mockLanguage);

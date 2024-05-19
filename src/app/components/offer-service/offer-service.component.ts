@@ -28,9 +28,9 @@ export class OfferServiceComponent implements OnInit {
 
   constructor(private mainService: MainService,
     private checkService: OfferServiceService,
-    private additionalService: AdittionaloffersService,
-    private toastr: ToastrService,
-    private translate: TranslateService
+    public additionalService: AdittionaloffersService,
+    public toastr: ToastrService,
+    public translate: TranslateService
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +45,13 @@ export class OfferServiceComponent implements OnInit {
       }
     }
   }
+
+  callCongrats() {
+    this.toastr.success('Gracias por confiar en nosotros, pronto sera contactado por un agente', 'Contacto', {
+      timeOut: 3000
+    })
+  }
+
 
   switchLanguage(language: string): void {
     this.translate.use(language)

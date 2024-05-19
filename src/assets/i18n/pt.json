@@ -214,5 +214,8 @@
   "4_6_horas": "4-6 horas",
   "5_7_horas": "5-7 horas",
   "7_8_HOURS": "7-8 horas",
-  "MORE_8_HOURS": "+8 horas"
+  "MORE_8_HOURS": "+8 horas",
+  "serviceListTitle": "Lista de serviços de terceiros",
+  "serviceListDescription": "Aqui você encontrará os serviços criados",
+  "serviceListButtonCreateService": "Criar serviço"
 }
