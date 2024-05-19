@@ -45,5 +45,5 @@
   <div class="close-screen">
     <button (click)="closeWindow()" class="close-button">{{'close'| translate}}</button>
   </div>
-  <app-schedule-appointment></app-schedule-appointment>
+  <app-schedule-appointment (closeWindow)="closeWindow()" (getAppointmentsServices)="getAppointmentsServices(sportman_id)"></app-schedule-appointment>
 </div>

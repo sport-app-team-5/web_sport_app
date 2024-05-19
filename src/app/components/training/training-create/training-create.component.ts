@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output ,EventEmitter } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { HeaderMainComponent } from "../../header-main/header-main.component";
 import { NgIf } from "@angular/common";
@@ -16,6 +16,9 @@ import { TrainingService } from "../training.service";
   styleUrl: './training-create.component.css'
 })
 export class TrainingCreateComponent implements OnInit {
+  @Output() closeWindow = new EventEmitter<void>();
+  @Output()  getTrainings = new EventEmitter<void>();
+ 
   currentStep: any = 1
   formData: any = {"is_inside_house":true};
   sport = new FormControl('', [Validators.required])
@@ -150,6 +153,8 @@ export class TrainingCreateComponent implements OnInit {
     this.toastr.success('Registro exitoso del entrenamiento', 'Exito', {
       timeOut: 3000
     })
+    this.closeWindow.emit();
+    this. getTrainings.emit();
     this.router.navigate(['/home'])
   }
 
@@ -159,7 +164,4 @@ export class TrainingCreateComponent implements OnInit {
     })
   }
 
-  closeWindow(){
-    this.router.navigate(['/home'])
-  }
 }

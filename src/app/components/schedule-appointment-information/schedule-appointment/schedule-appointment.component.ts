@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,EventEmitter,Output} from '@angular/core';
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {TranslateModule, TranslateService} from "@ngx-translate/core";
@@ -15,7 +15,9 @@ import { Router } from '@angular/router';
 })
 export class ScheduleAppointmentComponent implements OnInit {
 
-
+  @Output() closeWindow = new EventEmitter<void>();  
+  @Output() getAppointmentsServices = new EventEmitter<void>();
+  
   formData: any = {}
   currentStep: number = 1;
   service: FormControl = new FormControl('', [Validators.required])
@@ -185,6 +187,8 @@ export class ScheduleAppointmentComponent implements OnInit {
     this.toastr.success('Registro exitoso de la cita con el deportológo', 'Exito', {
       timeOut: 3000
     })
+    this.closeWindow.emit();
+    this.getAppointmentsServices.emit();
     this.router.navigate(['/home'])
   }
 
