@@ -41,7 +41,7 @@ describe('CalendarComponent', () => {
     fixture = TestBed.createComponent(CalendarComponent);
     component = fixture.componentInstance;
     eventsService = TestBed.inject(CalendarService);
-    toastrService = TestBed.inject(ToastrService); 
+    toastrService = TestBed.inject(ToastrService);
     fixture.detectChanges();
   });
 
@@ -85,9 +85,9 @@ describe('CalendarComponent', () => {
   it('should handle errors when subscribing', () => {
     const mockError = 'Algo salió mal, intenta más tarde.';
     spyOn(toastrService, 'error');
-  
+
     component.handleErrorsSubscribe(mockError);
-  
+
     expect(toastrService.error).toHaveBeenCalledWith(mockError, 'Error', {
       timeOut: 3000
     });
@@ -96,9 +96,9 @@ describe('CalendarComponent', () => {
   it('should handle the response correctly when subscribing', () => {
     const mockResponse = { message: 'Inscripción exitosa' };
     spyOn(toastrService, 'success');
-  
+
     component.handleResponseSubscribe(mockResponse);
-  
+
     expect(toastrService.success).toHaveBeenCalledWith('Te has inscrito éxitosamente', 'Exito', {
       timeOut: 3000
     });
@@ -117,19 +117,19 @@ describe('CalendarComponent', () => {
     spyOn(eventsService, 'subscribeToEvent').and.returnValue(of({}));
     spyOn(component, 'handleResponseSubscribe');
     spyOn(component, 'handleErrorsSubscribe');
-  
+
     component.subscribeToEvent(mockEvent);
-  
+
     expect(sessionStorage.getItem).toHaveBeenCalledWith('sportman_id');
     expect(eventsService.subscribeToEvent).toHaveBeenCalledWith(mockEvent.id, mockSportmanId);
     expect(component.handleResponseSubscribe).toHaveBeenCalledWith({});
     expect(component.handleErrorsSubscribe).not.toHaveBeenCalled();
   });
-  
+
   it('should get the day correctly', () => {
-    const date = '2024-05-21T00:10';
+    const date = '2022-01-01T00:00:00.000Z';
     const day = component.getDay(date);
-    expect(day).toEqual(21);
+    expect(day).toEqual(1);
   });
 
   it('should return "Ruta" when type is "ROUTE"', () => {
@@ -137,7 +137,7 @@ describe('CalendarComponent', () => {
     const result = component.getType(type);
     expect(result).toEqual('Ruta');
   });
-  
+
   it('should return "Evento" when type is not "ROUTE"', () => {
     const type = 'OTHER';
     const result = component.getType(type);
@@ -152,7 +152,7 @@ describe('CalendarComponent', () => {
       'active-item-list': true
     });
   });
-  
+
   it('should set the class correctly when eventDatails.id does not match the given id', () => {
     const id = 2;
     component.eventDatails = { id: 1, name: 'Event 1' };
@@ -173,20 +173,20 @@ describe('CalendarComponent', () => {
     const mockLanguage = 'en';
     spyOn(localStorage, 'getItem').and.returnValue(mockLanguage);
     spyOn(component.translate, 'setDefaultLang');
-    
+
     component.ngOnInit();
-    
+
     expect(localStorage.getItem).toHaveBeenCalledWith('lang');
     expect(component.translate.setDefaultLang).toHaveBeenCalledWith(mockLanguage);
     expect(component.language).toEqual(mockLanguage);
   });
-  
+
   it('should set the default language to "es" if no value is stored in localStorage', () => {
     spyOn(localStorage, 'getItem').and.returnValue(null);
     spyOn(component.translate, 'setDefaultLang');
-    
+
     component.ngOnInit();
-    
+
     expect(localStorage.getItem).toHaveBeenCalledWith('lang');
     expect(component.translate.setDefaultLang).toHaveBeenCalledWith('es');
     expect(component.language).toEqual('es');
@@ -197,7 +197,7 @@ describe('CalendarComponent', () => {
     const result = component.isSubscribed({});
     expect(result).toBe(true);
   });
-  
+
   it('should return false if events array is empty', () => {
     component.events = [];
     const result = component.isSubscribed({});
@@ -209,5 +209,5 @@ describe('CalendarComponent', () => {
     component.handleKeyDown(event);
     expect(component.risk).toEqual('Riesgo gourmet');
   });
-  
+
 });

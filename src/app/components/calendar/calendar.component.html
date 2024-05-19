@@ -1,6 +1,6 @@
 <div class="continer-content">
     <div class="info-style">{{'calendar'| translate}}</div>
-    <div class="description-style">{{'findCalendarText'| translate }}</div> 
+    <div class="description-style">{{'findCalendarText'| translate }}</div>
     <div>
         <div class="container-search">
             <igx-date-range-picker [(ngModel)]="range" class="datepicker-custom">
@@ -44,7 +44,10 @@
                 <div class="event-info">
                     <div class="event-image-container">
                         <img src="https://cdn-sport-app.s3.amazonaws.com/ciclismo-image.png" alt="Event details"
-                            class="event-image">                     
+                            class="event-image">
+                        <div class="event-buttons" *ngIf="showButtonToSuscribe">
+                            <button class="primary-button" (click)="subscribeToEvent(eventDatails)">Inscribirse</button>
+                        </div>
                         <div class="event-name-title">{{'name'| translate}}</div>
                         <div class="event-name-text"> {{eventDatails.name}}</div>
                         <div class="event-level-title"> {{'level'| translate}} </div>
@@ -61,3 +64,4 @@
             </div>
         </div>
     </div>
+</div>

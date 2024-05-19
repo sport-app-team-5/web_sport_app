@@ -1,5 +1,5 @@
 
-<main class="wrapper">  
+<main class="wrapper">
   <div *ngIf="currentStep == 1" class="container-services">
     <div class="question">{{'exerciseName'| translate}}</div>
     <div>
@@ -60,11 +60,11 @@
   </div>
 
   <div *ngIf="currentStep == 6" class="container-services">
-    <div class="question">¿Fuera de casa?</div>
+    <div class="question">{{'questionOutHouse'| translate }}</div>
     <div>
       <select [formControl]="is_inside_house" type="text" name="is_inside_house" (change)="changeValueForm($event)">
-        <option value="Si" selected>Si</option>
-        <option value="No">No</option>
+        <option value="Si" selected>{{'yes'| translate }}</option>
+        <option value="No">{{'no'| translate }}</option>
       </select>
       <div class="error-container"
         *ngIf="is_inside_house.invalid && (is_inside_house.dirty || is_inside_house.touched)">
