@@ -189,7 +189,6 @@ export class ScheduleAppointmentComponent implements OnInit {
     })
     this.closeWindow.emit();
     this.getAppointmentsServices.emit();
-    this.router.navigate(['/home'])
   }
 
   handleError (error: any) {
