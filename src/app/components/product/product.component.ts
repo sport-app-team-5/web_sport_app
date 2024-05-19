@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgClass, NgIf} from "@angular/common";
-import {TranslateModule, TranslateService} from "@ngx-translate/core";
-import {ToastrService} from "ngx-toastr";
-import {Router} from "@angular/router";
-import {ProductService} from "./product.service";
+import { Component, OnInit , EventEmitter, Output } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { NgClass, NgIf } from "@angular/common";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import { ToastrService } from "ngx-toastr";
+import { Router } from "@angular/router";
+import { ProductService } from "./product.service";
 import { NutritionalInformationService } from '../nutritional-information/nutritional-information.service';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
@@ -17,35 +17,42 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 })
 export class ProductComponent implements OnInit {
 
-getButtonClassesVegetables(): any {
-  return {
-    'question-button': true,
-    'active-button': this.categoryFood === 'Vegetales'
-  }}
+  @Output() closeWindow = new EventEmitter<void>();
+  @Output() getProducts = new EventEmitter<void>();
+  getButtonClassesVegetables(): any {
+    return {
+      'question-button': true,
+      'active-button': this.categoryFood === 'Vegetales'
+    }
+  }
 
-getButtonClassesBaked(): any {
-  return {
-    'question-button': true,
-    'active-button': this.categoryFood === 'Productos Horneados'
-  }}
+  getButtonClassesBaked(): any {
+    return {
+      'question-button': true,
+      'active-button': this.categoryFood === 'Productos Horneados'
+    }
+  }
 
-getButtonClassesDairy(): any {
-  return {
-    'question-button': true,
-    'active-button': this.categoryFood === 'Productos lácteos'
-  }}
+  getButtonClassesDairy(): any {
+    return {
+      'question-button': true,
+      'active-button': this.categoryFood === 'Productos lácteos'
+    }
+  }
 
-getButtonClassesLegumes(): any {
-  return {
-    'question-button': true,
-    'active-button': this.categoryFood === 'Legumbres'
-  }}
+  getButtonClassesLegumes(): any {
+    return {
+      'question-button': true,
+      'active-button': this.categoryFood === 'Legumbres'
+    }
+  }
 
-getButtonClassesMeal(): any {
-  return {
-    'question-button': true,
-    'active-button': this.categoryFood === 'Aves de carne'
-  }}
+  getButtonClassesMeal(): any {
+    return {
+      'question-button': true,
+      'active-button': this.categoryFood === 'Aves de carne'
+    }
+  }
 
   currentStep: any = 1
   formData: any = {}
@@ -71,15 +78,15 @@ getButtonClassesMeal(): any {
     enableCheckAll: false
   };
 
-  constructor (
+  constructor(
     private toastr: ToastrService,
     private translate: TranslateService,
     private productService: ProductService,
     private router: Router,
     private nutritionalInformationService: NutritionalInformationService,
-  ) {}
+  ) { }
 
-  ngOnInit () {
+  ngOnInit() {
     if (typeof localStorage !== 'undefined') {
       let idioma = localStorage.getItem('lang');
       if (idioma != null) {
@@ -123,31 +130,31 @@ getButtonClassesMeal(): any {
     }
   }
 
-  changeValueForm (e: any) {
+  changeValueForm(e: any) {
     const name = e.target.name
     this.formData[name] = e.target.value
   }
 
-  switchLanguage (language: string): void {
+  switchLanguage(language: string): void {
     this.translate.use(language);
     localStorage.setItem('lang', language);
   }
 
-  setCategory (value: any) {
+  setCategory(value: any) {
     this.category = value
     this.formData['category'] = value
     this.activateErrorMessageForCategory = false
   }
 
-  setCategoryFood (value: any) {
+  setCategoryFood(value: any) {
     this.categoryFood = value
     this.formData['category_food'] = value
     this.activateErrorMessageForCategoryFood = false
   }
 
-  backStep () {
+  backStep() {
     if (this.currentStep > 1) {
-      if (this.currentStep === 4  && this.category != 'Food') {
+      if (this.currentStep === 4 && this.category != 'Food') {
         this.currentStep = 1;
       } else {
         this.currentStep--
@@ -156,7 +163,7 @@ getButtonClassesMeal(): any {
     }
   }
 
-  nextStep () {
+  nextStep() {
 
     switch (this.currentStep) {
       case 1:
@@ -191,13 +198,13 @@ getButtonClassesMeal(): any {
   }
 
   private handleStep2() {
-    if (this.validateStep2Food() ) {
+    if (this.validateStep2Food()) {
       this.currentStep++;
     }
   }
 
   private handleStep3() {
-    this.changeValueForm({target: {name: 'allergies', value: this.allergies.join(',')}})
+    this.changeValueForm({ target: { name: 'allergies', value: this.allergies.join(',') } })
     if (this.validateStep3Allergies()) {
       this.currentStep++;
     }
@@ -222,7 +229,7 @@ getButtonClassesMeal(): any {
   }
 
 
-  validateStep1 () {
+  validateStep1() {
     if (this.category) {
       return true
     } else {
@@ -231,7 +238,7 @@ getButtonClassesMeal(): any {
     }
   }
 
-  validateStep2Food () {
+  validateStep2Food() {
     if (this.categoryFood) {
       return true
     } else {
@@ -245,14 +252,14 @@ getButtonClassesMeal(): any {
     if (this.allergies.length > 0) {
       this.validateAllergies = false
       result = true
-    }else{
+    } else {
       this.validateAllergies = true
     }
     return result
 
   }
 
-  validateStep4 () {
+  validateStep4() {
     if (this.name && this.name.errors === null) {
       return true
     } else {
@@ -261,7 +268,7 @@ getButtonClassesMeal(): any {
     }
   }
 
-  validateStep5 () {
+  validateStep5() {
     if (this.cost && this.cost.errors === null) {
       return true
     } else {
@@ -270,7 +277,7 @@ getButtonClassesMeal(): any {
     }
   }
 
-  validateStep6 () {
+  validateStep6() {
     if (this.description && this.description.errors === null) {
       return true
     } else {
@@ -279,7 +286,7 @@ getButtonClassesMeal(): any {
     }
   }
 
-  saveProductData () {
+  saveProductData() {
     this.productService.createProduct(this.formData).subscribe({
       next: this.handleUpdateResponse.bind(this),
       complete: this.cleanData.bind(this),
@@ -288,7 +295,7 @@ getButtonClassesMeal(): any {
 
   }
 
-  cleanData(){
+  cleanData() {
     this.formData = {}
     this.category = null
     this.categoryFood = null
@@ -302,26 +309,27 @@ getButtonClassesMeal(): any {
     this.validateAllergies = false
   }
 
-  handleUpdateResponse (response: any) {
+  handleUpdateResponse(response: any) {
     this.toastr.success('Registro exitoso del producto', 'Exito', {
       timeOut: 3000
     })
-    this.router.navigate(['/products-list'])
+    this.closeWindow.emit();
+    this.getProducts.emit();
   }
 
-  handleError (error: any) {
+  handleError(error: any) {
     this.toastr.error('Error registrando el producto', 'Error', {
       timeOut: 3000
     })
   }
 
   getAllergies(): void {
-    let token=null
+    let token = null
     if (typeof window !== 'undefined' && window.sessionStorage) {
       token = sessionStorage.getItem('access_token');
     }
     this.nutritionalInformationService.getAllergies(token).subscribe({
-      next: (response) => {this.allergies_list = response },
+      next: (response) => { this.allergies_list = response },
       error: (err) => {
         this.toastr.error('Error obteniendo las alergias', 'Error', {
           timeOut: 3000,

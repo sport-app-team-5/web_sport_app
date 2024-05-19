@@ -166,8 +166,8 @@ h2 {
 
 .event-buttons {
     position: absolute;
-    bottom: 550px;
-    left: 266px;
+    bottom: 10px;
+    right: 1px;
     background-color: transparent;
     padding: 40px;
 }
