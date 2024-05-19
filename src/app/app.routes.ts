@@ -9,7 +9,7 @@ import {AdditionalserviceComponent} from "./components/additionalservice/additio
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {ProductComponent} from "./components/product/product.component";
 import { inject } from '@angular/core'
-import { AuthService } from '../app/services/auth.service'
+import { AuthService } from './services/auth.service'
 import { SportsInformationComponent } from './components/sports-information/sports-information.component'
 import {EventListComponent} from "./components/event/event-list/event-list.component";
 import {TrainingCreateComponent} from "./components/training/training-create/training-create.component";
@@ -21,8 +21,8 @@ import { RecommendationComponent } from './components/recommendation/recommendat
 export const domainGuard = () => {
   const service = inject(AuthService)
   return service.canActivate()
-
 }
+
 export const routes: Routes = [
   {
     path: '',
@@ -89,8 +89,7 @@ export const routes: Routes = [
   {
     path:'plans',
     component: ClasificationRiskGroupComponent
-  }
-  ,
+  },
   {
     path:'recommendations',
     component: RecommendationComponent

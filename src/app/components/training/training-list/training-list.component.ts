@@ -43,7 +43,6 @@ export class TrainingListComponent implements OnInit {
       }
     }
     this.getTrainings();
-
   }
 
   switchLanguage(language: string): void {
@@ -53,11 +52,7 @@ export class TrainingListComponent implements OnInit {
   getTrainings() {
     this.trainingService.getTrainings().subscribe({
       next: (response) => {this.trainings = response },
-      error: (err) => {
-        this.toastr.error('Error obteniendo los entrenamientos', 'Error', {
-          timeOut: 3000
-        });
-      }
+      error: (err) => { console.log("EGT")}
     });
   }
 
