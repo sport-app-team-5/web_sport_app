@@ -5,9 +5,9 @@
     </a>
   </div>
   <div class="right-section">
-    <a href="/login">{{'login'| translate}} </a>
+    <button (click)="goToLogin()">{{'login'| translate}}</button>
     <div class="line"></div>
-    <a href="/register" class="register">{{ 'register' | translate }}</a>
+    <button class="register" (click)="goToRegistry()"> {{ 'register' | translate }} </button>
     <select id="select-language" (change)="switchLanguage($event)">
       <option value="es" [attr.selected]="language === 'es' ? true : null"> {{ 'spanish' | translate }}</option>
       <option value="pt" [attr.selected]="language === 'pt' ? true : null"> {{ 'portuguese' | translate }}</option>
