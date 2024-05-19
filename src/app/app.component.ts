@@ -24,6 +24,7 @@ import { TranslateModule } from '@ngx-translate/core'
     ])
   ]
 })
+
 export class AppComponent {
   title = 'web_sport_app'
 }
