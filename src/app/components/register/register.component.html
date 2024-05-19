@@ -9,8 +9,8 @@
     <div class="line"></div>
     <a href="/register" class="register">{{ 'register' | translate }}</a>
     <select id="select-language" (change)="switchLanguage($event)">
-      <option value="es">{{ 'spanish' | translate }}</option>
-      <option value="pt">{{ 'portuguese' | translate }}</option>
+      <option value="es" [attr.selected]="language === 'es' ? true : null">{{ 'spanish' | translate }}</option>
+      <option value="pt" [attr.selected]="language === 'pt' ? true : null">{{ 'portuguese' | translate }}</option>
     </select>
   </div>
 </header>

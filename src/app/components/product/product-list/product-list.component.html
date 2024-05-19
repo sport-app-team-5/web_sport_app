@@ -45,5 +45,5 @@
   <div class="close-screen">
     <button (click)="closeWindow()" class="close-button">{{'close'| translate }}</button>
   </div>
-  <app-product></app-product>
+  <app-product (closeWindow)="closeWindow()" (getProducts)="getProducts()"></app-product>
 </div>

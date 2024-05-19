@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter, Output } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -16,6 +16,9 @@ import { EventService } from "../event.service";
   styleUrl: './event-create.component.css'
 })
 export class EventCreateComponent implements OnInit {
+  @Output() closeWindow = new EventEmitter<void>();
+  @Output() getEvents = new EventEmitter<void>();
+  
   sport: any = null;
   language: string = 'es';
 
@@ -291,7 +294,8 @@ export class EventCreateComponent implements OnInit {
     this.toastr.success('Registro exitoso del servicio', 'Exito', {
       timeOut: 3000
     })
-    this.router.navigate(['/home'])
+    this.closeWindow.emit();
+    this.getEvents.emit();
   }
 
   handleError(error: any) {

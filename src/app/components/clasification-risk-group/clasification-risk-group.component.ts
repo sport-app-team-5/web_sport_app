@@ -68,7 +68,7 @@ export class ClasificationRiskGroupComponent implements OnInit {
     this.recommendedMediunPlan = '';
     this.recommendedAdvancePlan = '';
 
-    if (this.sportManRisk === 'Sin riesgo') {
+    if (this.sportManRisk === 'Sin riesgo' || this.sportManRisk === 'Riesgo bajo') {
       this.recommendedBasicPlan = this.recommendedPlan;
     } else if (this.sportManRisk === 'Riesgo Medio') {
       this.recommendedMediunPlan = this.recommendedPlan;
