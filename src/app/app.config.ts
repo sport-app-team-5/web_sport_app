@@ -19,7 +19,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-
+    HttpClient,
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(),
