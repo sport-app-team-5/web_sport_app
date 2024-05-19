@@ -29,4 +29,19 @@ export class AdditionalServiceService {
             { headers }
         )
     }
+
+    getAdditionalService (): Observable<any> {
+      const token = sessionStorage.getItem('access_token')
+      const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+      })
+
+      return this.http.get(
+          API_ADDITIONAL_SERVICE_BASE_URL +
+              'auth/services',
+          { headers }
+      )
+  }
+
 }

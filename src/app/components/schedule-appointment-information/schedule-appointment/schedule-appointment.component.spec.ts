@@ -221,5 +221,26 @@ describe('ScheduleAppointmentComponent', () => {
     expect(component.appoinmentDate).toBe('');
   });
 
+  it('should save appointment data', () => {
+    const mockFormData = {
+      appointment_date: '2022-12-31T23:59',
+      sportman_id: '12345'
+    };
+    const mockResponse = { success: true };
+    spyOn(component.toastr, 'success');
+    spyOn(component.scheduleAppointmentService, 'createScheduleAppointment').and.returnValue(of(mockResponse));
+
+    component.formData = mockFormData;
+    component.saveAppointmentData();
+
+    expect(component.scheduleAppointmentService.createScheduleAppointment).toHaveBeenCalledWith(mockFormData);
+    expect(component.toastr.success).toHaveBeenCalledWith('Registro exitoso de la cita con el deportológo', 'Exito', {
+      timeOut: 3000
+    });
+    expect(component.formData).toEqual({});
+  });
+
+
+
 });
 

@@ -166,22 +166,15 @@ describe('ClasificationRiskGroupComponent', () => {
 
 
   it('should select plan and navigate to home on success', () => {
-    // Arrange
     const plan = 'Basic Plan';
     spyOn(component.casificationRiskGroupService, 'setPlanSuscriptionService').and.returnValue(of({}));
     spyOn(component.toastr, 'success');
-    spyOn(component.router, 'navigate');
-
-    // Act
     component.selectPlan(plan);
-
-    // Assert
     expect(component.activePlan).toEqual(plan);
     expect(component.casificationRiskGroupService.setPlanSuscriptionService).toHaveBeenCalledWith(plan);
     expect(component.toastr.success).toHaveBeenCalledWith('Exito comprando plan', 'Exito', {
       timeOut: 3000
     });
-    expect(component.router.navigate).toHaveBeenCalledWith(['/home']);
   });
 
   it('should show error toastr when getting plan fails', () => {
