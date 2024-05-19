@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
   currentStep: any = 1;
   isActive: boolean = false;
   language: string = 'es';
-  
+
   constructor(
     private registerUserService: RegisterUserService,
     private toastr: ToastrService,
@@ -75,9 +75,6 @@ export class RegisterComponent implements OnInit {
         this.language = 'es';
       }
     }
-  }
-  goToLogin() {
-    this.router.navigate(['/login']);
   }
 
   getButtonClasses() {
@@ -379,5 +376,13 @@ export class RegisterComponent implements OnInit {
     this.toastr.error(text, 'Error', {
       timeOut: 3000,
     });
+  }
+
+  goToRegistry () {
+    this.router.navigate(['/register'])
+  }
+
+  goToLogin () {
+    this.router.navigate(['/login'])
   }
 }
