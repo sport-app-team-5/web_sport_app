@@ -5,7 +5,7 @@
       <div class="description-style">{{'appointmentListDescription' | translate}}</div>
     </div>
     <div>
-      <button class="primary-button" (click)="createAppointment()">{{'appointmentListButtonCreateEvent'| translate}}</button>
+      <button class="primary-button" (click)="createAppointment()">{{'appointmentListButtonCreateSchedule'| translate}}</button>
     </div>
   </div>
 
@@ -26,7 +26,7 @@
               <dd>{{appointment.service_name| translate}}</dd>
             </td>
             <td>
-              <dd>{{ setFormatDate(appointment.appointment_date)}}</dd>
+              <dd>{{ (appointment.appointment_date)}}</dd>
             </td>
             <td>
               <dd>{{ getInjuryName(appointment.injury_id) | translate}}</dd>

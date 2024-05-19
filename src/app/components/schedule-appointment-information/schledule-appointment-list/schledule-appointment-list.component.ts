@@ -3,7 +3,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ScheduleAppointmentService } from '../schedule-appointment.service';
 import { Router } from '@angular/router';
-import { CommonModule, formatDate } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScheduleAppointmentComponent } from "../schedule-appointment/schedule-appointment.component";
 
@@ -48,14 +48,6 @@ export class SchleduleAppointmentListComponent implements OnInit {
     this.getInjuries();
     this.getAppointmentsServices(sportman_id);
   }
-
-  setFormatDate(value: string)
-  {
-    const format = 'yyyy-MM-dd hh:mm';
-    let dateFormatted: string = formatDate(value, format, 'en-US')
-    return dateFormatted
-  }
-
 
   getAppointmentsServices(sportman_id: string | null) {
 

@@ -77,6 +77,12 @@ describe('ProductComponent', () => {
     expect(component.formData['category']).toBe('test')
   })
 
+  it('should set the value in setProductType', () => {
+    const value = 'test'
+    component.setCategory(value)
+    expect(component.formData['category']).toBe('test')
+  })
+
   it('should call backStep', () => {
     component.currentStep = 2
     component.backStep()
