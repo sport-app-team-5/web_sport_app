@@ -44,6 +44,14 @@ describe('RecommendationComponent', () => {
   });
 
   it('should call getProducts on ngOnInit', () => {
+    const getProductsSpy = spyOn(component, 'getData');
+
+    component.ngOnInit();
+
+    expect(getProductsSpy).toHaveBeenCalled();
+  });
+
+  it('should call getProducts on ngOnInit', () => {
     const products = [
       {
         "id": 6,
