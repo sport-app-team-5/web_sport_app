@@ -130,6 +130,7 @@ describe('CalendarComponent', () => {
     const date = '2022-01-01T00:00:00.000Z';
     const day = component.getDay(date);
     expect(day).toEqual(31);
+    console.log(day);
   });
 
   it('should return "Ruta" when type is "ROUTE"', () => {
