@@ -25,6 +25,8 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   profile: Dashboard | undefined
+  injuries: string = ''
+  sessions: any
 
   events= [
     { name: "Runner", date: "10-12-2024" },
@@ -43,6 +45,9 @@ export class DashboardComponent implements OnInit {
       }
     }
      this.getProfile()
+    this.getInjuries()
+    this.getSessions()
+    console.log(this.sessions)
   }
 
   switchLanguage (language: string): void {
@@ -62,6 +67,33 @@ export class DashboardComponent implements OnInit {
         }
       });
     }
+  }
 
+  getInjuries(): void {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const token= sessionStorage.getItem('acces_token')
+      this.dashboardService.getInjuries(token).subscribe({
+        next: (response) => {this.injuries = response.name},
+        error: () => {
+          this.toastr.error('Error obteniendo las lesiones', 'Error', {
+            timeOut: 3000
+          });
+        }
+      });
+    }
+  }
+
+  getSessions(): void {
+    if (typeof window !== 'undefined' && window.sessionStorage) {
+      const token= sessionStorage.getItem('acces_token')
+      this.dashboardService.getSessions(token).subscribe({
+        next: (response) => {this.sessions = response},
+        error: () => {
+          this.toastr.error('Error obteniendo las sesiones', 'Error', {
+            timeOut: 3000
+          });
+        }
+      });
+    }
   }
 }
