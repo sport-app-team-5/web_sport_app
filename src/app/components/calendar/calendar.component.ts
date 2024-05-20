@@ -71,13 +71,15 @@ export class CalendarComponent implements OnInit {
   }
 
   searchEvents() {
+    const sportman_id = sessionStorage.getItem('sportman_id')
+
     const formattedDateStart = this.formatDate(this.range.start);
     const formattedDateEnd = this.formatDate(this.range.end);
-    this.eventsService.getAllEvents(formattedDateStart, formattedDateEnd, 0).subscribe({
+    this.eventsService.getAllEvents(formattedDateStart, formattedDateEnd, sportman_id).subscribe({
       next: this.handleResponseEvents.bind(this),
       error: this.handleErrorsEvents.bind(this),
     });
-    const sportman_id = sessionStorage.getItem('sportman_id')
+
     this.eventsService.getAllEventsSuscribed(sportman_id, formattedDateStart, formattedDateEnd).subscribe({
       next: this.handleResponseSuscribedEvents.bind(this),
       error: this.handleErrorsEvents.bind(this),
@@ -123,7 +125,7 @@ export class CalendarComponent implements OnInit {
     })
   }
 
-  getDay(date: any) {   
+  getDay(date: any) {
     const dateFormat = new Date(date);
     const day = dateFormat.getDate();
     return day;
