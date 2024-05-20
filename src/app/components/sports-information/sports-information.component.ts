@@ -41,6 +41,7 @@ export class SportsInformationComponent implements OnInit {
     { id: 6, name: 'Quemaduras en la espalda' },
     { id: 7, name: 'Ampollas miembros inferiores' },
     { id: 8, name: 'Ampollas miembros superiores' },
+    { id: 9, name: 'Ninguna' },
   ];
   injuries: Array<number> = [];
 

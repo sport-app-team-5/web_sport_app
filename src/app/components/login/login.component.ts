@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
     this.formData[name] = value;
   }
 
-  userLogin() {   
+  userLogin() {
     if (this.email.value && this.password.value) {
       this.loginService.login(this.formData).subscribe({
         next: this.handleUpdateResponse.bind(this),
@@ -119,5 +119,13 @@ export class LoginComponent implements OnInit {
     this.toastr.error(text, 'Error', {
       timeOut: 3000,
     });
+  }
+
+  goToRegistry () {
+    this.router.navigate(['/register'])
+  }
+
+  goToLogin () {
+    this.router.navigate(['/login'])
   }
 }

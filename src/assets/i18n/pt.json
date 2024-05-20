@@ -217,5 +217,6 @@
   "MORE_8_HOURS": "+8 horas",
   "serviceListTitle": "Lista de serviços de terceiros",
   "serviceListDescription": "Aqui você encontrará os serviços criados",
-  "serviceListButtonCreateService": "Criar serviço"
+  "serviceListButtonCreateService": "Criar serviço",
+  "session": "Sessão"
 }

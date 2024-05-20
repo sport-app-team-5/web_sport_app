@@ -44,6 +44,14 @@ export class OfferServiceComponent implements OnInit {
         this.language = 'es';
       }
     }
+
+    if (typeof sessionStorage !== 'undefined') {
+      let inside_home = sessionStorage.getItem('inside_home');
+      if (inside_home != null) {
+        this.isChecked = inside_home === 'true';
+      }
+    }
+
   }
 
   callCongrats() {
@@ -69,8 +77,9 @@ export class OfferServiceComponent implements OnInit {
   }
 
   changeInsideHome($event: any) {
-    this.isChecked = !this.isChecked;
-    this.checkService.changeCheck(this.isChecked);
+    const inputElement = $event.target as HTMLInputElement;
+    this.isChecked = inputElement.checked;
+    sessionStorage.setItem('inside_home', this.isChecked.toString())
   }
 
   getValueOfInsideHouse(value: any) {
@@ -84,6 +93,7 @@ export class OfferServiceComponent implements OnInit {
 
   getAdditionalServices() {
     this.isAdditionalServiceActive = true;
+    console.log(this.isChecked)
     this.additionalService.getAdditionalServices(this.isChecked).subscribe({
       next: (services) => {
         this.services = services
@@ -97,7 +107,7 @@ export class OfferServiceComponent implements OnInit {
     })
   }
 
-  handleKeyDown($event:any){
+  handleKeyDown($event: any) {
     console.log($event)
   }
 

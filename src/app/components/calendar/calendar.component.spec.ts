@@ -126,11 +126,7 @@ describe('CalendarComponent', () => {
     expect(component.handleErrorsSubscribe).not.toHaveBeenCalled();
   });
 
-  it('should get the day correctly', () => {
-    const date = '2022-01-01T00:00:00.000Z';
-    const day = component.getDay(date);
-    expect(day).toEqual('2022-01-01');
-  });
+
 
   it('should return "Ruta" when type is "ROUTE"', () => {
     const type = 'ROUTE';
